@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>free_divination_result_charas_pattern_01</key>
+	<array>
+        <string>ア</string>
+        <string>カ</string>
+        <string>ヒ</string>
+        <string>レ</string>
+	</array>
+	<key>free_divination_result_charas_pattern_02</key>
+    <array>
+        <string>ク</string>
+        <string>フ</string>
+        <string>ヱ</string>
+    </array>
+    <key>free_divination_result_charas_pattern_03</key>
+    <array>
+        <string>ウ</string>
+        <string>チ</string>
+        <string>ミ</string>
+        <string>ラ</string>
+    </array>
+    <key>free_divination_result_charas_pattern_04</key>
+    <array>
+        <string>ヘ</string>
+        <string>ユ</string>
+        <string>ヨ</string>
+        <string>ヲ</string>
+    </array>
+    <key>free_divination_result_charas_pattern_05</key>
+    <array>
+        <string>イ</string>
+        <string>シ</string>
+        <string>ソ</string>
+        <string>ン</string>
+    </array>
+    <key>free_divination_result_charas_pattern_06</key>
+    <array>
+        <string>オ</string>
+        <string>ム</string>
+    </array>
+    <key>free_divination_result_charas_pattern_07</key>
+    <array>
+        <string>ナ</string>
+        <string>ニ</string>
+    </array>
+    <key>free_divination_result_charas_pattern_08</key>
+    <array>
+        <string>ヌ</string>
+        <string>ス</string>
+        <string>ヤ</string>
+    </array>
+</dict>
+</plist>

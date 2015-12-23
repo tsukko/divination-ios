@@ -49,7 +49,7 @@ class A4ViewController : UIViewController {
     override func viewDidAppear(animated:Bool) {
         // 参考：http://dev.classmethod.jp/references/ios-8-cabasicanimation/
         
-        let duration = 2.0    // アニメーション時間 2秒
+        let duration = 1.3    // アニメーション時間 2秒
         let singleTwist = M_PI * 2 // 360度
         
         // 縦回転アニメーション（X軸を中心に回転）
@@ -64,16 +64,18 @@ class A4ViewController : UIViewController {
         // アニメーションを実行
         imgYatagarasu.layer.addAnimation(animationGroup, forKey: "moonSaltoAnimation")
         
-        NSTimer.scheduledTimerWithTimeInterval(3.0,target:self,selector:Selector("transition"), userInfo: nil, repeats: false)
+        // 計算する
+        aaa()
+        
+        // 3秒後に次の結果画面に遷移する
+        NSTimer.scheduledTimerWithTimeInterval(2.0,target:self,selector:Selector("transition"), userInfo: nil, repeats: false)
     }
     
+    // 3秒後に次の結果画面に遷移する
     func transition() {
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        
         let next:UIViewController = storyboard.instantiateViewControllerWithIdentifier("A05View") as UIViewController
-        
         next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-        
         self.presentViewController(next, animated: true, completion: nil)
     }
     
@@ -98,6 +100,44 @@ class A4ViewController : UIViewController {
      */
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    // test
+    func aaa() {
+        // NSUserDefaultsオブジェクトを取得
+        let defaults = NSUserDefaults.standardUserDefaults()
+        // すでに名前が設定されていたら今日の運勢を行うボタンを表示する
+        if let _ = defaults.stringForKey("userName") {
+            // NSUserDefaultsに格納された値を取得
+            userName = defaults.stringForKey("userName")!
+            print("userName:\(userName)")
+        }
+        let characters = userName.characters.map { String($0) }
+ 
+        for v in characters {
+            print(v.unicodeScalars)
+            for c in v.unicodeScalars {
+                if c.value >= 0x3041 && c.value <= 0x3096 {
+                    print("ChackHiragana OK")
+                
+                } else {
+                    print("ChackHiragana NG")
+                    break
+                }
+            }
+        }
+        
+        // プロパティファイルをバインド
+        let path = NSBundle.mainBundle().pathForResource("arrays", ofType: "plist")
+        // rootがDictionaryなのでNSDictionaryに取り込み
+        let dict = NSDictionary(contentsOfFile: path!)
+        // キー"AAA"の中身はarrayなのでNSArrayで取得
+        let arr:NSArray = dict!.objectForKey("free_divination_result_charas_pattern_01") as! NSArray
+        // arrayで取れた分だけループ
+        for value in arr {
+            print(value)
+            
+        }
     }
 }
 

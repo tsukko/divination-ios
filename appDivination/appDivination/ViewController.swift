@@ -42,9 +42,9 @@ class ViewController: UIViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         
         // すでに名前が設定されていたら今日の運勢を行うボタンを表示する
-        if let _ = defaults.stringForKey("userName") {
+        if let tempUserName = defaults.stringForKey("userName") {
             // NSUserDefaultsに格納された値を取得
-            userName = defaults.stringForKey("userName")!
+            userName = tempUserName
             print("userName:\(userName)")
             btnTodayTweet.hidden = false
         } else {
