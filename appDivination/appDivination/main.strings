@@ -1,0 +1,25 @@
+/* 
+  data.strings
+  appDivination
+
+  Created by Norizou on 2015/12/22.
+  Copyright © 2015年 Nori. All rights reserved.
+*/
+
+
+//NSUserDefaults
+
+// ボタン
+"btnOK" = "OK";
+"btnNG" = "NG";
+
+// 名前の削除
+"delNameTitle" = "削除";
+"delNameMsg" = "名前を削除しました.";
+
+// 入力エラー
+"errorTitle" = "入力エラー";
+"errorMsgNameEmpty" = "名前欄が空欄です.";
+"errorMsgNameKana" = "お名前はひらがなで入力してください.";
+"errorMsgDate" = "誕生日欄が空欄です.";
+"errorMsgSex" = "性別が選択されていません.";
