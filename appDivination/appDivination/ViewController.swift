@@ -14,11 +14,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var btnDescription: UIButton!
     @IBOutlet weak var btnProfile: UIButton!
     @IBOutlet weak var btnTodayTweet: UIButton!
-
     
     /// 画面遷移時に渡す為の値
     var _param:Int = -1
-    
     // ユーザー名 今日の運勢のボタンを表示するかどうか
     var userName : String = ""
     

@@ -1,5 +1,5 @@
 //
-//  A2ViewController.swift
+//  A4ViewController.swift
 //  appDivination
 //
 //  Created by Norizou on 2015/12/22.
@@ -8,12 +8,9 @@
 
 import UIKit
 
-class A2ViewController : UIViewController {
+class A5ViewController : UIViewController {
     
     @IBOutlet var viewBack: UIView!
-    @IBOutlet weak var image_back: UIImageView!
-    @IBOutlet weak var btnConsultation: UIButton!
-    @IBOutlet weak var btnReceiveMail: UIButton!
     
     /// 画面遷移時に渡す為の値
     var _param:Int = -1
@@ -26,32 +23,20 @@ class A2ViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSLog("A2ViewController viewDidLoad")
+        NSLog("A5ViewController viewDidLoad")
         
         // バック画像の設定
         viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue.png")!)
         
-        if _second == 0  {
-            // 鑑定術とは？を押した時
-            image_back.image = UIImage(named: "page_01_whats_Katakamuna.png")
-            btnReceiveMail.hidden = true
-            btnConsultation.hidden = false
-        } else if _second == 1  {
-            // プロフィールを押した時
-            image_back.image = UIImage(named: "page_04_appraisers_profile.png")
-            btnReceiveMail.hidden = true
-            btnConsultation.hidden = false
-        } else if _second == 2  {
-            // 相談を押した時
-            image_back.image = UIImage(named: "page_07_kanteiirai.png")
-            btnReceiveMail.hidden = false
-            btnConsultation.hidden = true
-        } else {
-            // その他
-            image_back.image = UIImage(named: "page_02_free_appraisal.png")
-            btnReceiveMail.hidden = false
-            btnConsultation.hidden = false
-        }
+        // TODO タイマー処理
+        // TODO アニメーション
+        // TODO 鑑定、そのために前の画面の名前を持ってくる
+        
+        
+    }
+    
+    // 画面が表示された直後
+    override func viewDidAppear(animated:Bool) {
         
     }
     
@@ -77,3 +62,4 @@ class A2ViewController : UIViewController {
         super.didReceiveMemoryWarning()
     }
 }
+

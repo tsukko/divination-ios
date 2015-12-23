@@ -10,16 +10,19 @@ import UIKit
 
 class A3ViewController : UIViewController, UITextFieldDelegate {
     
-    /// 遷移時の受け取り用の変数
-    var _second:Int = 0
-    
     @IBOutlet var viewBack: UIView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
-    @IBOutlet weak var btnAppraise: UIButton!
+    @IBOutlet weak var btnAppraise: UIButton!    
+    @IBOutlet weak var btnConsultation: UIButton!
     @IBOutlet weak var sgCtlSex: UISegmentedControl!
     
-//    var toolBar:UIToolbar!
+    /// 画面遷移時に渡す為の値
+    var _param:Int = -1
+    /// 遷移時の受け取り用の変数
+    var _second:Int = 0
+
+    //    var toolBar:UIToolbar!
     var datePicker1: UIDatePicker!
     let defDateString = "2000-01-01"
     let minDateString = "1900-01-01"
@@ -69,6 +72,21 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
 */
         // nameTextField の情報を受け取るための delegate を設定
         nameTextField.delegate = self
+    }
+    
+    // 相談ボタンを押した時
+    @IBAction func touchDownBtnConsultation(sender: AnyObject) {
+        _param = 2
+        performSegueWithIdentifier("segue",sender: nil)
+    }
+    
+    // Segueはビューが遷移するタイミングで呼ばれるもの
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        NSLog("prepareForSegue : \(segue.identifier), _param : \(_param)")
+        if segue.identifier == "segue" {
+            let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
+            secondViewController._second = _param
+        }
     }
     
     // 日付の変更イベント
