@@ -17,16 +17,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="page_00_top" translatesAutoresizingMaskIntoConstraints="NO" id="fgd-tM-xpz">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="component_00_title" translatesAutoresizingMaskIntoConstraints="NO" id="3eA-hQ-A2Z">
+                                <rect key="frame" x="124" y="176" width="352" height="248"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="352" id="3Vv-uN-lrC"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fgd-tM-xpz" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="VbP-eD-SVu"/>
-                            <constraint firstAttribute="trailing" secondItem="fgd-tM-xpz" secondAttribute="trailing" id="lRW-b4-3fZ"/>
-                            <constraint firstItem="fgd-tM-xpz" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="lat-rg-f2Q"/>
-                            <constraint firstAttribute="bottom" secondItem="fgd-tM-xpz" secondAttribute="bottom" id="yaA-0A-Qx8"/>
+                            <constraint firstItem="3eA-hQ-A2Z" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="OFB-iW-u3W"/>
+                            <constraint firstItem="3eA-hQ-A2Z" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="156" id="OxD-hG-ngB"/>
+                            <constraint firstItem="3eA-hQ-A2Z" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="gEs-Or-9if"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -36,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="page_00_top" width="1440" height="2560"/>
+        <image name="component_00_title" width="1353" height="914"/>
     </resources>
 </document>

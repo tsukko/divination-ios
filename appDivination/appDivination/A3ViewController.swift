@@ -14,8 +14,9 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var btnAppraise: UIButton!    
-    @IBOutlet weak var btnConsultation: UIButton!
+//    @IBOutlet weak var btnConsultation: UIButton!
     @IBOutlet weak var sgCtlSex: UISegmentedControl!
+    @IBOutlet weak var naviBar: UINavigationBar!
     
     /// 画面遷移時に渡す為の値
     var _param:Int = -1
@@ -37,7 +38,10 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         NSLog("A3ViewController viewDidLoad")
         
         // バック画像の設定
-        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue.png")!)
+        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
+        
+        naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
+        
         
         // テキストフィールドにDatePickerを表示する
         datePicker1 = UIDatePicker()

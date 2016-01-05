@@ -29,7 +29,7 @@ class A4ViewController : UIViewController {
         NSLog("A4ViewController viewDidLoad")
         
         // バック画像の設定
-        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue.png")!)
+        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
         
         // TODO タイマー処理
         
@@ -102,8 +102,13 @@ class A4ViewController : UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    
+    
+    
     // test
     func aaa() {
+        
+        // 名前は、NSUserDefaultsに保存したのを読み出す
         // NSUserDefaultsオブジェクトを取得
         let defaults = NSUserDefaults.standardUserDefaults()
         // すでに名前が設定されていたら今日の運勢を行うボタンを表示する
@@ -114,6 +119,7 @@ class A4ViewController : UIViewController {
         }
         let characters = userName.characters.map { String($0) }
  
+        // ここでひらがな１文字づつ繰り返し処理
         for v in characters {
             print(v.unicodeScalars)
             for c in v.unicodeScalars {
@@ -121,6 +127,7 @@ class A4ViewController : UIViewController {
                     print("ChackHiragana OK")
                 
                 } else {
+                    // ここに来るまでに判定しているので、ここは通らない想定
                     print("ChackHiragana NG")
                     break
                 }

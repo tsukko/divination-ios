@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         NSLog("ViewController viewDidLoad")
         
         // バック画像の設定
-        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue.png")!)
+        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
         
         // viewにロングタップのジェスチャーを追加
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: "doGesture:")

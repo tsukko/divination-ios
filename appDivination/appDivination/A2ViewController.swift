@@ -14,6 +14,7 @@ class A2ViewController : UIViewController {
     @IBOutlet weak var image_back: UIImageView!
     @IBOutlet weak var btnConsultation: UIButton!
     @IBOutlet weak var btnReceiveMail: UIButton!
+    @IBOutlet weak var naviBar: UINavigationBar!
     
     /// 画面遷移時に渡す為の値
     var _param:Int = -1
@@ -29,26 +30,28 @@ class A2ViewController : UIViewController {
         NSLog("A2ViewController viewDidLoad")
         
         // バック画像の設定
-        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue.png")!)
-        
+        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
+
+        naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
+
         if _second == 0  {
             // 鑑定術とは？を押した時
-            image_back.image = UIImage(named: "page_01_whats_Katakamuna.png")
+            image_back.image = UIImage(named: "page_01_whats_Katakamuna")
             btnReceiveMail.hidden = true
             btnConsultation.hidden = false
         } else if _second == 1  {
             // プロフィールを押した時
-            image_back.image = UIImage(named: "page_04_appraisers_profile.png")
+            image_back.image = UIImage(named: "page_04_appraisers_profile")
             btnReceiveMail.hidden = true
             btnConsultation.hidden = false
         } else if _second == 2  {
             // 相談を押した時
-            image_back.image = UIImage(named: "page_07_kanteiirai.png")
+            image_back.image = UIImage(named: "page_07_kanteiirai")
             btnReceiveMail.hidden = false
             btnConsultation.hidden = true
         } else {
             // その他
-            image_back.image = UIImage(named: "page_02_free_appraisal.png")
+            image_back.image = UIImage(named: "page_02_free_appraisal")
             btnReceiveMail.hidden = false
             btnConsultation.hidden = false
         }
