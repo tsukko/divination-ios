@@ -741,9 +741,6 @@
                                     <constraint firstAttribute="width" secondItem="BMH-vq-rSd" secondAttribute="height" multiplier="686/253" id="Aei-Nw-e1v"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="btn_12_consultation"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="213" y="540" width="152" height="56"/>
-                                </variation>
                                 <connections>
                                     <action selector="touchDownBtnConsultation:" destination="SIg-8U-asc" eventType="touchDown" id="SF8-uM-QHo"/>
                                     <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="FJY-Ht-s9i"/>
