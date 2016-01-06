@@ -264,9 +264,9 @@
                                 <exclude reference="LLj-5C-daA"/>
                                 <exclude reference="ZuU-ya-s9J"/>
                                 <exclude reference="ao3-r5-E4u"/>
+                                <exclude reference="VYM-c4-3g5"/>
                                 <exclude reference="nbu-Ay-maN"/>
                                 <exclude reference="uco-Fl-9ev"/>
-                                <exclude reference="VYM-c4-3g5"/>
                                 <exclude reference="bDE-re-0Vd"/>
                                 <exclude reference="u1g-DN-0d2"/>
                                 <exclude reference="zvT-f9-gTo"/>
@@ -283,9 +283,9 @@
                                 <include reference="LLj-5C-daA"/>
                                 <include reference="ZuU-ya-s9J"/>
                                 <include reference="ao3-r5-E4u"/>
+                                <include reference="VYM-c4-3g5"/>
                                 <include reference="nbu-Ay-maN"/>
                                 <include reference="uco-Fl-9ev"/>
-                                <include reference="VYM-c4-3g5"/>
                                 <include reference="bDE-re-0Vd"/>
                                 <include reference="u1g-DN-0d2"/>
                                 <include reference="zvT-f9-gTo"/>
@@ -479,11 +479,11 @@
                                 <exclude reference="1fz-jf-bma"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="n9F-KY-p0q"/>
+                                <exclude reference="ngq-es-5ck"/>
                                 <exclude reference="68H-4c-jdU"/>
                                 <exclude reference="Wod-D2-5Vq"/>
                                 <exclude reference="eTA-nr-xGP"/>
-                                <exclude reference="n9F-KY-p0q"/>
-                                <exclude reference="ngq-es-5ck"/>
                                 <exclude reference="6Ab-g5-lb7"/>
                                 <exclude reference="9wx-hK-RDh"/>
                                 <exclude reference="ApK-Be-rwB"/>
@@ -506,11 +506,11 @@
                                 <include reference="1fz-jf-bma"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="n9F-KY-p0q"/>
+                                <include reference="ngq-es-5ck"/>
                                 <include reference="68H-4c-jdU"/>
                                 <include reference="Wod-D2-5Vq"/>
                                 <include reference="eTA-nr-xGP"/>
-                                <include reference="n9F-KY-p0q"/>
-                                <include reference="ngq-es-5ck"/>
                                 <include reference="6Ab-g5-lb7"/>
                                 <include reference="9wx-hK-RDh"/>
                                 <include reference="ApK-Be-rwB"/>
@@ -651,7 +651,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="scp-qk-owV"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
@@ -666,7 +665,7 @@
         <!--A5VIew-->
         <scene sceneID="noO-6p-Tr2">
             <objects>
-                <viewController storyboardIdentifier="A05View" title="A5VIew" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SIg-8U-asc" customClass="A5ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="A05View" title="A5VIew" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SIg-8U-asc" customClass="A5ViewController" customModule="appDivination" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Syk-Ax-4M7"/>
                         <viewControllerLayoutGuide type="bottom" id="vOp-z5-XP4"/>
@@ -732,7 +731,7 @@
                                 </constraints>
                                 <state key="normal" title="Button" image="btn_14_back_top"/>
                                 <connections>
-                                    <segue destination="aqh-nv-CCN" kind="show" id="KDN-Z0-pf5"/>
+                                    <segue destination="aqh-nv-CCN" kind="show" id="nWs-Py-5z6"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMH-vq-rSd" userLabel="btn Consultation">
@@ -831,9 +830,12 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="gnZ-BU-CsD"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="lblMessage" destination="ZYy-IV-GJu" id="IGe-fx-9e9"/>
+                        <outlet property="viewBack" destination="jGb-JR-87V" id="m86-AF-wYa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hBl-nx-ZY4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -861,7 +863,7 @@
         <image name="page_01_whats_Katakamuna" width="1440" height="2560"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KDN-Z0-pf5"/>
-        <segue reference="FJY-Ht-s9i"/>
+        <segue reference="Yzp-WV-oRW"/>
+        <segue reference="ajD-2a-HmZ"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -65,17 +65,20 @@ class A4ViewController : UIViewController {
         imgYatagarasu.layer.addAnimation(animationGroup, forKey: "moonSaltoAnimation")
         
         // 計算する
-        aaa()
+        let msg:String = aaa()
         
         // 3秒後に次の結果画面に遷移する
-        NSTimer.scheduledTimerWithTimeInterval(2.0,target:self,selector:Selector("transition"), userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(2.0,target:self,selector:Selector("transition:"), userInfo: msg, repeats: false)
     }
     
     // 3秒後に次の結果画面に遷移する
-    func transition() {
+    func transition(timer: NSTimer) {
+        let msg = timer.userInfo as! String
+        
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let next:UIViewController = storyboard.instantiateViewControllerWithIdentifier("A05View") as UIViewController
+        let next:A5ViewController = storyboard.instantiateViewControllerWithIdentifier("A05View") as! A5ViewController
         next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        next._message = msg
         self.presentViewController(next, animated: true, completion: nil)
     }
     
@@ -106,7 +109,7 @@ class A4ViewController : UIViewController {
     
     
     // test
-    func aaa() {
+    func aaa() -> String {
         
         // 名前は、NSUserDefaultsに保存したのを読み出す
         // NSUserDefaultsオブジェクトを取得
@@ -119,13 +122,20 @@ class A4ViewController : UIViewController {
         }
         let characters = userName.characters.map { String($0) }
  
+
+        let kanaData = kanaDataClass()
+        var plotResult:[Int] = [0,0,0,0,0,0,0,0]
+
         // ここでひらがな１文字づつ繰り返し処理
         for v in characters {
-            print(v.unicodeScalars)
             for c in v.unicodeScalars {
                 if c.value >= 0x3041 && c.value <= 0x3096 {
-                    print("ChackHiragana OK")
-                
+                    print("ChackHiragana OK: \(v) : \(c.value)")
+                    let s = NSString(format:"%2X", c.value) as String
+                    var test:[String!] = kanaData.getPlotData("0x" + s)
+                    for i in 0...7 {
+                        plotResult[i] += Int(test[i])!
+                    }
                 } else {
                     // ここに来るまでに判定しているので、ここは通らない想定
                     print("ChackHiragana NG")
@@ -134,6 +144,11 @@ class A4ViewController : UIViewController {
             }
         }
         
+        print("plotResult : \(plotResult)")
+        let message = kanaData.checkResult(plotResult)
+ //       print("message : \(message)")
+        return message
+        /*
         // プロパティファイルをバインド
         let path = NSBundle.mainBundle().pathForResource("arrays", ofType: "plist")
         // rootがDictionaryなのでNSDictionaryに取り込み
@@ -145,6 +160,7 @@ class A4ViewController : UIViewController {
             print(value)
             
         }
+*/
     }
 }
 

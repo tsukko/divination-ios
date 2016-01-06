@@ -11,11 +11,14 @@ import UIKit
 class A5ViewController : UIViewController {
     
     @IBOutlet var viewBack: UIView!
-    
+    @IBOutlet weak var lblMessage: UILabel!
+
     /// 画面遷移時に渡す為の値
     var _param:Int = -1
     /// 遷移時の受け取り用の変数
     var _second:Int = 0
+    
+    var _message:String = "b"
     
     /**
      インスタンス化された直後（初回に一度のみ）
@@ -23,15 +26,12 @@ class A5ViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSLog("A5ViewController viewDidLoad")
+        NSLog("A5ViewController viewDidLoad msg: \(_message)")
         
         // バック画像の設定
         viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
         
-        // TODO タイマー処理
-        // TODO アニメーション
-        // TODO 鑑定、そのために前の画面の名前を持ってくる
-        
+        lblMessage.text = _message
         
     }
     
