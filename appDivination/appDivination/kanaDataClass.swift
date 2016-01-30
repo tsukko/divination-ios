@@ -163,12 +163,13 @@ class kanaDataClass {
         }
 
         for i in 0...7 {
-            if plotData[i] > 0 {
-                if i == 0 || i == 2 || i == 4 || i == 6 {
-                    flagHutomani = true
-                } else {
-                    flagHutomani = false
-                    break
+            if (i % 2 == 0) {
+                if (plotData[i] == 0) {
+                    flagHutomani = false;
+                }
+            } else {
+                if (plotData[i] >= 1) {
+                    flagHutomani = false;
                 }
             }
         }
@@ -178,29 +179,10 @@ class kanaDataClass {
             return "あなたは、なんの使命もたずに生れ出た特殊な存在です。\n五感で感じるこの世には、まるで無のような存在です。\nもしかすると別の次元において大きな意味を持つ、特別な存在なのかもしれません。\n\nあなたの運気を上げる音：５０音すべて。"
         }
         
-        var message: String = ""
-        var messageUnki: String = ""
         // 一般的なパターン
-        // 01. 基本
-        if plotData[0] >= 3 {
-            message = message + "資格やライセンスなどを取得したり、マニュアルなどを理解する能力がとても高いです。\n"
-        } else if plotData[0] == 2 || plotData[0] == 1 {
-            message = message + "基本的な事をすぐに身に付ける能力を持っています。\n"
-        } else {
-            message = message + "一般的な常識の型にはまると上手くいきません。\n"
-            messageUnki = messageUnki + "ア, カ, ヒ, レ"
-        }
-        
-        // 02. 努力
-        if plotData[1] >= 3 {
-            message = message + "資格やライセンスなどを取得したり、マニュアルなどを理解する能力がとても高いです。\n"
-        } else if plotData[1] == 2 || plotData[0] == 1 {
-            message = message + "資格やライセンスなどを取得したり、マニュアルなどを理解する能力がとても高いです。\n"
-        } else {
-            message = message + "一般的な常識の型にはまると上手くいきません。\n"
-            messageUnki = messageUnki + "ア, カ, ヒ, レ"
-        }
+        let retDivination = resultDivinationClass()
+        let test123:String = retDivination.getMessage(plotData)
 
-        return message + "\n" + messageUnki
+        return test123
     }
 }

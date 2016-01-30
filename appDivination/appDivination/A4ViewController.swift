@@ -144,7 +144,7 @@ class A4ViewController : UIViewController {
             }
         }
         
-        print("plotResult : \(plotResult)")
+        print("plotResult : \(plotResult)")        
         let message = kanaData.checkResult(plotResult)
  //       print("message : \(message)")
         return message

@@ -12,7 +12,7 @@ class A2ViewController : UIViewController {
     
     @IBOutlet var viewBack: UIView!
     @IBOutlet weak var image_back: UIImageView!
-    @IBOutlet weak var btnConsultation: UIButton!
+//    @IBOutlet weak var btnConsultation: UIButton!
     @IBOutlet weak var btnReceiveMail: UIButton!
     @IBOutlet weak var naviBar: UINavigationBar!
     
@@ -38,22 +38,22 @@ class A2ViewController : UIViewController {
             // 鑑定術とは？を押した時
             image_back.image = UIImage(named: "page_01_whats_Katakamuna")
             btnReceiveMail.hidden = true
-            btnConsultation.hidden = false
+//            btnConsultation.hidden = false
         } else if _second == 1  {
             // プロフィールを押した時
             image_back.image = UIImage(named: "page_04_appraisers_profile")
             btnReceiveMail.hidden = true
-            btnConsultation.hidden = false
+//            btnConsultation.hidden = false
         } else if _second == 2  {
             // 相談を押した時
             image_back.image = UIImage(named: "page_07_kanteiirai")
             btnReceiveMail.hidden = false
-            btnConsultation.hidden = true
+//            btnConsultation.hidden = true
         } else {
             // その他
             image_back.image = UIImage(named: "page_02_free_appraisal")
             btnReceiveMail.hidden = false
-            btnConsultation.hidden = false
+//            btnConsultation.hidden = false
         }
         
     }

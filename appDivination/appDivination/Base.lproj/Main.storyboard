@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aqh-nv-CCN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aqh-nv-CCN">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -187,7 +188,41 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="GJy-lA-gXZ" secondAttribute="height" multiplier="40:7" id="Rps-PV-yPg"/>
                                 </constraints>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="Rps-PV-yPg"/>
+                                    </mask>
+                                </variation>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9X-WM-UKx" userLabel="Button_m">
+                                <rect key="frame" x="407" y="554" width="42" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="A38-90-Wm4"/>
+                                    <constraint firstAttribute="width" secondItem="g9X-WM-UKx" secondAttribute="height" multiplier="1:1" id="Gor-rs-HIR"/>
+                                    <constraint firstAttribute="height" constant="42" id="T6w-n2-oXB"/>
+                                    <constraint firstAttribute="width" constant="42" id="x6g-nW-40w"/>
+                                    <constraint firstAttribute="width" constant="42" id="z6P-hm-Ppc"/>
+                                </constraints>
+                                <state key="normal" image="btn_00_myOtodama"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="A38-90-Wm4"/>
+                                        <exclude reference="x6g-nW-40w"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="A38-90-Wm4"/>
+                                        <exclude reference="Gor-rs-HIR"/>
+                                        <exclude reference="T6w-n2-oXB"/>
+                                        <include reference="x6g-nW-40w"/>
+                                        <exclude reference="z6P-hm-Ppc"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="touchDownBtnTodayTweet:" destination="aqh-nv-CCN" eventType="touchDown" id="h9l-mx-xlH"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOS-ix-hDh">
                                 <rect key="frame" x="40" y="514" width="180" height="72"/>
                                 <constraints>
@@ -205,17 +240,6 @@
                                 </constraints>
                                 <state key="normal" title="Button" image="btn_13_receive_mail"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pX4-KA-nXa">
-                                <rect key="frame" x="40" y="514" width="180" height="72"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="pX4-KA-nXa" secondAttribute="height" multiplier="686/253" id="5kT-fI-cRj"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="btn_12_consultation"/>
-                                <connections>
-                                    <action selector="touchDownBtnConsultation:" destination="VKe-fk-2mg" eventType="touchDown" id="9W2-vM-CFP"/>
-                                    <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="UaE-Lt-tsj"/>
-                                </connections>
-                            </button>
                             <navigationBar contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="8Zg-kR-MnD">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <color key="barTintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -225,7 +249,12 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem id="2EL-aY-HnH">
-                                        <barButtonItem key="leftBarButtonItem" title="&lt;" id="cTX-Mf-NDX"/>
+                                        <barButtonItem key="leftBarButtonItem" title="&lt;" id="cTX-Mf-NDX">
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <segue destination="aqh-nv-CCN" kind="show" id="Tgl-yj-OU9"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -234,8 +263,10 @@
                         <constraints>
                             <constraint firstItem="GJy-lA-gXZ" firstAttribute="width" secondItem="T49-5Z-QTn" secondAttribute="width" id="6gs-TC-VyB"/>
                             <constraint firstItem="GJy-lA-gXZ" firstAttribute="centerX" secondItem="T49-5Z-QTn" secondAttribute="centerX" id="90v-Pb-pDD"/>
+                            <constraint firstItem="fzc-p6-1ed" firstAttribute="top" secondItem="g9X-WM-UKx" secondAttribute="bottom" constant="11" id="Bvy-vD-KzT"/>
                             <constraint firstItem="gOS-ix-hDh" firstAttribute="height" secondItem="GJy-lA-gXZ" secondAttribute="height" multiplier="0.8" id="CGF-cm-epj"/>
                             <constraint firstItem="eUP-9t-hgL" firstAttribute="leading" secondItem="yvu-1x-PLv" secondAttribute="leading" id="EYD-BF-Tc6"/>
+                            <constraint firstItem="GJy-lA-gXZ" firstAttribute="centerY" secondItem="T49-5Z-QTn" secondAttribute="centerY" id="JfM-Kk-J4a"/>
                             <constraint firstItem="yvu-1x-PLv" firstAttribute="width" secondItem="T49-5Z-QTn" secondAttribute="width" id="KAp-8o-y3o"/>
                             <constraint firstItem="GJy-lA-gXZ" firstAttribute="bottom" secondItem="T49-5Z-QTn" secondAttribute="bottom" constant="3" id="KSx-ei-ZvP"/>
                             <constraint firstItem="8Zg-kR-MnD" firstAttribute="leading" secondItem="yvu-1x-PLv" secondAttribute="leading" id="LLj-5C-daA"/>
@@ -244,51 +275,52 @@
                             <constraint firstItem="eUP-9t-hgL" firstAttribute="width" secondItem="T49-5Z-QTn" secondAttribute="width" id="Pzp-sU-dbn"/>
                             <constraint firstItem="GJy-lA-gXZ" firstAttribute="top" secondItem="PLq-4d-VJB" secondAttribute="bottom" constant="8" id="VYM-c4-3g5"/>
                             <constraint firstItem="yvu-1x-PLv" firstAttribute="centerX" secondItem="T49-5Z-QTn" secondAttribute="centerX" id="WP8-aX-hcQ"/>
+                            <constraint firstItem="g9X-WM-UKx" firstAttribute="trailing" secondItem="T49-5Z-QTn" secondAttribute="trailingMargin" id="ZKK-IE-paM"/>
                             <constraint firstItem="8Zg-kR-MnD" firstAttribute="centerX" secondItem="T49-5Z-QTn" secondAttribute="centerX" id="ZuU-ya-s9J"/>
                             <constraint firstItem="gOS-ix-hDh" firstAttribute="leading" secondItem="GJy-lA-gXZ" secondAttribute="leading" constant="30" id="aM9-kC-XJO"/>
                             <constraint firstItem="8Zg-kR-MnD" firstAttribute="bottom" secondItem="yvu-1x-PLv" secondAttribute="bottom" id="ao3-r5-E4u"/>
-                            <constraint firstItem="pX4-KA-nXa" firstAttribute="top" secondItem="gOS-ix-hDh" secondAttribute="top" id="bDE-re-0Vd"/>
+                            <constraint firstItem="g9X-WM-UKx" firstAttribute="centerY" secondItem="gOS-ix-hDh" secondAttribute="centerY" id="dVM-IX-XOe"/>
                             <constraint firstItem="yvu-1x-PLv" firstAttribute="top" secondItem="T49-5Z-QTn" secondAttribute="top" constant="-3" id="lxl-FN-rZw"/>
                             <constraint firstItem="PLq-4d-VJB" firstAttribute="width" secondItem="T49-5Z-QTn" secondAttribute="width" multiplier="0.5" id="nbu-Ay-maN"/>
-                            <constraint firstItem="pX4-KA-nXa" firstAttribute="height" secondItem="GJy-lA-gXZ" secondAttribute="height" multiplier="0.8" id="u1g-DN-0d2"/>
                             <constraint firstItem="PLq-4d-VJB" firstAttribute="centerX" secondItem="GJy-lA-gXZ" secondAttribute="centerX" id="uco-Fl-9ev"/>
-                            <constraint firstItem="pX4-KA-nXa" firstAttribute="trailing" secondItem="GJy-lA-gXZ" secondAttribute="trailing" constant="-30" id="zvT-f9-gTo"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="g9X-WM-UKx"/>
                                 <exclude reference="PLq-4d-VJB"/>
-                                <exclude reference="pX4-KA-nXa"/>
                                 <exclude reference="8Zg-kR-MnD"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="LLj-5C-daA"/>
                                 <exclude reference="ZuU-ya-s9J"/>
                                 <exclude reference="ao3-r5-E4u"/>
+                                <exclude reference="JfM-Kk-J4a"/>
                                 <exclude reference="VYM-c4-3g5"/>
+                                <exclude reference="Bvy-vD-KzT"/>
                                 <exclude reference="nbu-Ay-maN"/>
                                 <exclude reference="uco-Fl-9ev"/>
-                                <exclude reference="bDE-re-0Vd"/>
-                                <exclude reference="u1g-DN-0d2"/>
-                                <exclude reference="zvT-f9-gTo"/>
+                                <exclude reference="ZKK-IE-paM"/>
+                                <exclude reference="dVM-IX-XOe"/>
                                 <exclude reference="EYD-BF-Tc6"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
+                                <include reference="g9X-WM-UKx"/>
                                 <include reference="PLq-4d-VJB"/>
-                                <include reference="pX4-KA-nXa"/>
                                 <include reference="8Zg-kR-MnD"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="LLj-5C-daA"/>
                                 <include reference="ZuU-ya-s9J"/>
                                 <include reference="ao3-r5-E4u"/>
+                                <exclude reference="JfM-Kk-J4a"/>
                                 <include reference="VYM-c4-3g5"/>
+                                <include reference="Bvy-vD-KzT"/>
                                 <include reference="nbu-Ay-maN"/>
                                 <include reference="uco-Fl-9ev"/>
-                                <include reference="bDE-re-0Vd"/>
-                                <include reference="u1g-DN-0d2"/>
-                                <include reference="zvT-f9-gTo"/>
+                                <include reference="ZKK-IE-paM"/>
+                                <include reference="dVM-IX-XOe"/>
                                 <include reference="EYD-BF-Tc6"/>
                             </mask>
                         </variation>
@@ -296,7 +328,6 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="btnConsultation" destination="pX4-KA-nXa" id="NqW-tT-hqk"/>
                         <outlet property="btnReceiveMail" destination="PLq-4d-VJB" id="peq-4G-YqP"/>
                         <outlet property="image_back" destination="eUP-9t-hgL" id="hAF-Jt-kMP"/>
                         <outlet property="naviBar" destination="8Zg-kR-MnD" id="nCb-4m-wTc"/>
@@ -863,7 +894,7 @@
         <image name="page_01_whats_Katakamuna" width="1440" height="2560"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Yzp-WV-oRW"/>
-        <segue reference="ajD-2a-HmZ"/>
+        <segue reference="MDb-Xd-QKb"/>
+        <segue reference="tck-e7-cfV"/>
     </inferredMetricsTieBreakers>
 </document>
