@@ -2,7 +2,6 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "backimage_blue.png",
       "scale" : "1x"
     },
     {
@@ -10,7 +9,22 @@
       "scale" : "2x"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "tile",
+          "width" : 104,
+          "height" : 120
+        },
+        "cap-insets" : {
+          "bottom" : 0,
+          "top" : 31,
+          "right" : 0,
+          "left" : 54
+        }
+      },
       "idiom" : "universal",
+      "filename" : "backimage_blue.png",
       "scale" : "3x"
     }
   ],

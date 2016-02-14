@@ -38,7 +38,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         NSLog("A3ViewController viewDidLoad")
         
         // バック画像の設定
-        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
+//        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
         
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
         
