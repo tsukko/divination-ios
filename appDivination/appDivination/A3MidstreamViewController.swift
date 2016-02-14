@@ -1,5 +1,5 @@
 //
-//  A4ViewController.swift
+//  A3MidstreamViewController.swift
 //  appDivination
 //
 //  Created by Norizou on 2015/12/22.
@@ -76,7 +76,7 @@ class A3MidstreamViewController : UIViewController {
         let msg = timer.userInfo as! String
         
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let next:A3ResultVIewController = storyboard.instantiateViewControllerWithIdentifier("A3ResultVIew") as! A3ResultVIewController
+        let next:A3ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A3ResultView") as! A3ResultViewController
         next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         next._message = msg
         self.presentViewController(next, animated: true, completion: nil)

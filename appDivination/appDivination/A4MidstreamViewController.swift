@@ -1,5 +1,5 @@
 //
-//  A4ViewController.swift
+//  A4MidstreamViewController.swift
 //  appDivination
 //
 //  Created by Norizou on 2015/12/22.
@@ -10,8 +10,8 @@ import UIKit
 
 class A4MidstreamViewController : UIViewController {
 
-//    @IBOutlet var viewBack: UIView!
-//    @IBOutlet weak var imgYatagarasu: UIImageView!
+    @IBOutlet var viewBack: UIView!
+    @IBOutlet weak var imgYatagarasu: UIImageView!
     
     /// 画面遷移時に渡す為の値
     var _param:Int = -1
@@ -26,7 +26,7 @@ class A4MidstreamViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-/*        NSLog("A4MidstreamViewController viewDidLoad")
+        NSLog("A4MidstreamViewController viewDidLoad")
         
         // バック画像の設定
         viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
@@ -43,13 +43,13 @@ class A4MidstreamViewController : UIViewController {
             userName = defaults.stringForKey("userName")!
             print("userName:\(userName)")
         }
-*/
+
     }
     
     // 画面が表示された直後
     override func viewDidAppear(animated:Bool) {
         // 参考：http://dev.classmethod.jp/references/ios-8-cabasicanimation/
-/*
+
         let duration = 1.3    // アニメーション時間 2秒
         let singleTwist = M_PI * 2 // 360度
         
@@ -70,21 +70,22 @@ class A4MidstreamViewController : UIViewController {
         
         // 3秒後に次の結果画面に遷移する
         NSTimer.scheduledTimerWithTimeInterval(2.0,target:self,selector:Selector("transition:"), userInfo: msg, repeats: false)
-*/
+
     }
     
+    // TODO そのうち共通化
     // 3秒後に次の結果画面に遷移する
     func transition(timer: NSTimer) {
         let msg = timer.userInfo as! String
         
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let next:A5ViewController = storyboard.instantiateViewControllerWithIdentifier("A05View") as! A5ViewController
+        let next:A4ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A4ResultView") as! A4ResultViewController
         next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         next._message = msg
         self.presentViewController(next, animated: true, completion: nil)
     }
     
-/*
+
     // 相談ボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
         _param = 2
@@ -99,7 +100,7 @@ class A4MidstreamViewController : UIViewController {
             secondViewController._second = _param
         }
     }
-*/
+
 
     /**
      memoryWarnig

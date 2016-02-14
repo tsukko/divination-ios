@@ -1,5 +1,5 @@
 //
-//  A4ViewController.swift
+//  A4ResultViewController.swift
 //  appDivination
 //
 //  Created by Norizou on 2015/12/22.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class A5ViewController : UIViewController {
+class A4ResultViewController : UIViewController {
     
     @IBOutlet var viewBack: UIView!
     @IBOutlet weak var lblMessage: UILabel!
@@ -26,10 +26,10 @@ class A5ViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSLog("A5ViewController viewDidLoad msg: \(_message)")
+        NSLog("A4ResultViewController viewDidLoad msg: \(_message)")
         
         // バック画像の設定
-        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
+//        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
         
         lblMessage.text = _message
         
