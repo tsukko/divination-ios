@@ -272,6 +272,9 @@
                                     <constraint firstAttribute="width" secondItem="PLq-4d-VJB" secondAttribute="height" multiplier="686/253" id="DUN-4H-ceY"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="btn_13_receive_mail"/>
+                                <connections>
+                                    <action selector="touchDownSendMailBtn:" destination="VKe-fk-2mg" eventType="touchDown" id="iLs-aI-N7S"/>
+                                </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="8Zg-kR-MnD">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1187,8 +1190,7 @@
                                         <exclude reference="RIV-4k-3qo"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="19" y="164" width="361" height="53"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="RIV-4k-3qo"/>
                                     </mask>
@@ -1199,18 +1201,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="19" y="242" width="169" height="21"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="生年月日" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3L1-RZ-Lcg">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="19" y="297" width="169" height="23"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="性別" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWW-Tn-AJR">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -1225,8 +1221,7 @@
                                         <exclude reference="iHo-fn-YMc"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="19" y="358" width="169" height="21"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="iHo-fn-YMc"/>
                                     </mask>
@@ -1236,9 +1231,6 @@
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="208" y="237" width="172" height="31"/>
-                                </variation>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2000年 01月 01日" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uul-Oo-2hr" customClass="SampleTextField" customModule="appDivination" customModuleProvider="target">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
@@ -1252,8 +1244,7 @@
                                         <exclude reference="FA4-A5-wOh"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="208" y="294" width="172" height="30"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="FA4-A5-wOh"/>
                                     </mask>
@@ -1276,8 +1267,7 @@
                                         <exclude reference="5Ty-SM-Wye"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="208" y="356" width="172" height="29"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="5Ty-SM-Wye"/>
                                     </mask>
@@ -1881,7 +1871,7 @@
         <image name="page_01_whats_Katakamuna" width="1440" height="2560"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8Wy-Uf-WxJ"/>
+        <segue reference="Tgl-yj-OU9"/>
         <segue reference="FJY-Ht-s9i"/>
     </inferredMetricsTieBreakers>
 </document>

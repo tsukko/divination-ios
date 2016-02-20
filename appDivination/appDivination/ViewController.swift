@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         if let tempUserName = defaults.stringForKey("userName") {
             // NSUserDefaultsに格納された値を取得
             userName = tempUserName
-            print("userName:\(userName)")
+            print("userName:\(userName)", terminator: "")
             btnTodayTweet.hidden = false
         } else {
             btnTodayTweet.hidden = true

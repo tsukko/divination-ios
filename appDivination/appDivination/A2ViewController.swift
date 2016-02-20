@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class A2ViewController : UIViewController {
+class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate{
     
     @IBOutlet var viewBack: UIView!
     @IBOutlet weak var image_back: UIImageView!
@@ -71,6 +72,52 @@ class A2ViewController : UIViewController {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
         }
+    }
+    
+    @IBAction func touchDownSendMailBtn(sender: AnyObject) {
+        //メールを送信できるかチェック
+        if MFMailComposeViewController.canSendMail()==false {
+            NSLog("Email Send Failed")
+            return
+        }
+        
+        let mailViewController = MFMailComposeViewController()
+        let toRecipients = ["to@1gmail.com"]
+        let CcRecipients = ["cc@1gmail.com","Cc2@1gmail.com"]
+        let BccRecipients = ["Bcc@1gmail.com","Bcc2@1gmail.com"]
+        
+        
+        mailViewController.mailComposeDelegate = self
+        mailViewController.setSubject("メールの件名")
+        mailViewController.setToRecipients(toRecipients) //Toアドレスの表示
+        mailViewController.setCcRecipients(CcRecipients) //Ccアドレスの表示
+        mailViewController.setBccRecipients(BccRecipients) //Bccアドレスの表示
+        mailViewController.setMessageBody("メールの本文", isHTML: false)
+        
+        self.presentViewController(mailViewController, animated: true, completion: nil)
+    
+    }
+
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        
+        switch result.rawValue {
+        case MFMailComposeResultCancelled.rawValue:
+            NSLog("Email Send Cancelled")
+            break
+        case MFMailComposeResultSaved.rawValue:
+            NSLog("Email Saved as a Draft")
+            break
+        case MFMailComposeResultSent.rawValue:
+            NSLog("Email Sent Successfully")
+            break
+        case MFMailComposeResultFailed.rawValue:
+            NSLog("Email Send Failed")
+            break
+        default:
+            break
+        }
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     /**

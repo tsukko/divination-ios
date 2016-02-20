@@ -118,7 +118,7 @@ class A3MidstreamViewController : UIViewController {
         if let _ = defaults.stringForKey("userName") {
             // NSUserDefaultsに格納された値を取得
             userName = defaults.stringForKey("userName")!
-            print("userName:\(userName)")
+            print("userName:\(userName)", terminator: "")
         }
         let characters = userName.characters.map { String($0) }
  
