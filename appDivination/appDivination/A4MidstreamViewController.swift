@@ -41,7 +41,7 @@ class A4MidstreamViewController : UIViewController {
         if let _ = defaults.stringForKey("userName") {
             // NSUserDefaultsに格納された値を取得
             userName = defaults.stringForKey("userName")!
-            print("userName:\(userName)")
+            print("userName:\(userName)", terminator: "")
         }
 
     }
@@ -122,7 +122,7 @@ class A4MidstreamViewController : UIViewController {
         if let _ = defaults.stringForKey("userName") {
             // NSUserDefaultsに格納された値を取得
             userName = defaults.stringForKey("userName")!
-            print("userName:\(userName)")
+            print("userName:\(userName)", terminator: "")
         }
         let characters = userName.characters.map { String($0) }
  
@@ -148,7 +148,7 @@ class A4MidstreamViewController : UIViewController {
             }
         }
         
-        print("plotResult : \(plotResult)")        
+        print("plotResult : \(plotResult)", terminator: "")        
         let message = kanaData.checkResult(plotResult)
  //       print("message : \(message)")
         return message
