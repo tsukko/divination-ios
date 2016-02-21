@@ -45,7 +45,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="backimg_blue" width="52" height="50"/>
+        <image name="backimg_blue" width="69" height="60"/>
         <image name="component_00_title" width="1353" height="914"/>
     </resources>
 </document>

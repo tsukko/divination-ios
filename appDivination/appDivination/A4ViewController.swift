@@ -10,7 +10,7 @@ import UIKit
 
 class A4ViewController : UIViewController, UITextFieldDelegate {
     
-    @IBOutlet var viewBack: UIView!
+//    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var btnAppraise: UIButton!    

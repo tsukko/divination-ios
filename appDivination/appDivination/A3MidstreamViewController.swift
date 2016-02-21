@@ -10,7 +10,7 @@ import UIKit
 
 class A3MidstreamViewController : UIViewController {
     
-    @IBOutlet var viewBack: UIView!
+//    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var imgYatagarasu: UIImageView!
     
     /// 画面遷移時に渡す為の値
@@ -29,7 +29,7 @@ class A3MidstreamViewController : UIViewController {
         NSLog("A3MidstreamViewController viewDidLoad")
         
         // バック画像の設定
-        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
+//        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
         
         // TODO タイマー処理
         

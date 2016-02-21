@@ -14,12 +14,12 @@
         "center" : {
           "mode" : "tile",
           "width" : 104,
-          "height" : 120
+          "height" : 60
         },
         "cap-insets" : {
-          "bottom" : 0,
-          "top" : 31,
-          "right" : 0,
+          "bottom" : 59,
+          "top" : 61,
+          "right" : 50,
           "left" : 54
         }
       },

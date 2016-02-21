@@ -10,7 +10,7 @@ import UIKit
 
 class A4ResultViewController : UIViewController {
     
-    @IBOutlet var viewBack: UIView!
+//    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var lblMessage: UILabel!
 
     /// 画面遷移時に渡す為の値
