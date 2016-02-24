@@ -1232,13 +1232,14 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="1Em-RN-YPK" firstAttribute="centerY" secondItem="ww8-vt-a3V" secondAttribute="centerY" id="0jJ-jD-aEd"/>
+                                    <constraint firstItem="1Em-RN-YPK" firstAttribute="top" secondItem="ww8-vt-a3V" secondAttribute="top" id="BdI-hw-Ofx"/>
                                     <constraint firstItem="mwx-HY-ZKQ" firstAttribute="centerX" secondItem="ww8-vt-a3V" secondAttribute="centerX" id="D6X-9f-MBl"/>
                                     <constraint firstItem="OC2-jG-ta6" firstAttribute="centerX" secondItem="ww8-vt-a3V" secondAttribute="centerX" id="IUc-oi-Utk"/>
                                     <constraint firstItem="mwx-HY-ZKQ" firstAttribute="top" secondItem="ww8-vt-a3V" secondAttribute="top" constant="40" id="LQ0-0n-fKe"/>
-                                    <constraint firstItem="1Em-RN-YPK" firstAttribute="height" secondItem="ww8-vt-a3V" secondAttribute="height" id="Lo9-x4-ASp"/>
                                     <constraint firstItem="1Em-RN-YPK" firstAttribute="centerX" secondItem="ww8-vt-a3V" secondAttribute="centerX" id="Z7g-5A-Td8"/>
                                     <constraint firstItem="ZYy-IV-GJu" firstAttribute="centerX" secondItem="ww8-vt-a3V" secondAttribute="centerX" id="iYF-p4-CZH"/>
                                     <constraint firstItem="ZYy-IV-GJu" firstAttribute="width" secondItem="ww8-vt-a3V" secondAttribute="width" multiplier="0.65" id="pye-yU-eY5"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZYy-IV-GJu" secondAttribute="bottom" id="u6i-dT-OM4"/>
                                     <constraint firstItem="mwx-HY-ZKQ" firstAttribute="bottom" secondItem="OC2-jG-ta6" secondAttribute="top" constant="-10" id="uGr-q5-O8s"/>
                                     <constraint firstItem="1Em-RN-YPK" firstAttribute="width" secondItem="ww8-vt-a3V" secondAttribute="width" id="wpd-Ze-see"/>
                                     <constraint firstItem="ZYy-IV-GJu" firstAttribute="top" secondItem="OC2-jG-ta6" secondAttribute="bottom" constant="10" id="yXX-Kf-Gkc"/>
@@ -1252,15 +1253,16 @@
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="IUc-oi-Utk"/>
+                                        <exclude reference="0jJ-jD-aEd"/>
+                                        <exclude reference="BdI-hw-Ofx"/>
+                                        <exclude reference="Z7g-5A-Td8"/>
+                                        <exclude reference="wpd-Ze-see"/>
                                         <exclude reference="D6X-9f-MBl"/>
                                         <exclude reference="LQ0-0n-fKe"/>
                                         <exclude reference="uGr-q5-O8s"/>
-                                        <exclude reference="0jJ-jD-aEd"/>
-                                        <exclude reference="Lo9-x4-ASp"/>
-                                        <exclude reference="Z7g-5A-Td8"/>
-                                        <exclude reference="wpd-Ze-see"/>
                                         <exclude reference="iYF-p4-CZH"/>
                                         <exclude reference="pye-yU-eY5"/>
+                                        <exclude reference="u6i-dT-OM4"/>
                                         <exclude reference="yXX-Kf-Gkc"/>
                                     </mask>
                                 </variation>
@@ -1274,15 +1276,16 @@
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="IUc-oi-Utk"/>
+                                        <include reference="0jJ-jD-aEd"/>
+                                        <include reference="BdI-hw-Ofx"/>
+                                        <include reference="Z7g-5A-Td8"/>
+                                        <include reference="wpd-Ze-see"/>
                                         <include reference="D6X-9f-MBl"/>
                                         <include reference="LQ0-0n-fKe"/>
                                         <include reference="uGr-q5-O8s"/>
-                                        <include reference="0jJ-jD-aEd"/>
-                                        <include reference="Lo9-x4-ASp"/>
-                                        <include reference="Z7g-5A-Td8"/>
-                                        <include reference="wpd-Ze-see"/>
                                         <include reference="iYF-p4-CZH"/>
                                         <include reference="pye-yU-eY5"/>
+                                        <include reference="u6i-dT-OM4"/>
                                         <include reference="yXX-Kf-Gkc"/>
                                     </mask>
                                 </variation>
