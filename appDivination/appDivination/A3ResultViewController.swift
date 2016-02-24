@@ -15,7 +15,23 @@ class A3ResultViewController : UIViewController {
     @IBOutlet weak var resultScrollView: UIScrollView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var resultBackImage: UIImageView!
-    @IBOutlet weak var CircleImageView: UIImageView!
+    @IBOutlet weak var CircleImageView1: UIImageView!
+    @IBOutlet weak var CircleImageView2: UIImageView!
+    @IBOutlet weak var CircleImageView3: UIImageView!
+    @IBOutlet weak var CircleImageView4: UIImageView!
+    @IBOutlet weak var CircleImageView5: UIImageView!
+    @IBOutlet weak var CircleImageView6: UIImageView!
+    @IBOutlet weak var CircleImageView7: UIImageView!
+    @IBOutlet weak var CircleImageView8: UIImageView!
+    
+    var img: [UIImage] = [
+        UIImage(named:"maru1")!,
+        UIImage(named:"maru2")!,
+        UIImage(named:"maru3")!,
+        UIImage(named:"maru4")!,
+        UIImage(named:"maru5")!,
+        UIImage(named:"maru6")!]
+    var imageView01: [UIImageView?] = []
     
     /// 画面遷移時に渡す為の値
     var _param:Int = -1
@@ -51,10 +67,26 @@ class A3ResultViewController : UIViewController {
     
     // 画面が表示された直後
     override func viewDidAppear(animated:Bool) {
-        let SVSize = resultScrollView.frame.size
-        self.resultScrollView.contentSize = CGSizeMake(SVSize.width, 1500);
-        resultBackImage.frame.size.height = 1500
         
+        lblMessage.numberOfLines = 0
+        // サイズを自動調整
+        lblMessage.sizeToFit()
+        
+        let height = CGRectGetHeight(lblMessage.frame)
+        let width = CGRectGetWidth(lblMessage.frame)
+        print("ラベルの高さ:\(height) 幅:\(width)")
+        
+        // ボタンの位置取得
+        let midX = CGRectGetMidX(lblMessage.frame)
+        let midY = CGRectGetMidY(lblMessage.frame)
+        print("ボタンの中心のX座業:\(midX) Y座標:\(midY)")
+        
+        let newContentHeight = height+midY
+        
+        let SVSize = resultScrollView.frame.size
+        self.resultScrollView.contentSize = CGSizeMake(SVSize.width, newContentHeight-100);
+        resultBackImage.frame = CGRectMake(0, 0, resultBackImage.frame.width, newContentHeight)
+
         //scroll画面の初期位置
         resultScrollView.contentOffset = CGPointMake(0, 0);
     }
@@ -76,15 +108,30 @@ class A3ResultViewController : UIViewController {
     
     // 占い結果の円の表示
     func displayCycle(plotResult:[Int]) {
-        CircleImageView.hidden = false
-        if (plotResult[0]==0) {
-            CircleImageView.hidden = true
-        } else if (plotResult[0]==1) {
-            CircleImageView.image = UIImage(named: "maru1")
-        } else if (plotResult[0]==2) {
-            CircleImageView.image = UIImage(named: "maru2")
-        }
+        // UIImageViewにUIIimageを追加
+        imageView01 = [
+            CircleImageView1,
+            CircleImageView2,
+            CircleImageView3,
+            CircleImageView4,
+            CircleImageView5,
+            CircleImageView6,
+            CircleImageView7,
+            CircleImageView8]
         
+        for index in 0...7 {
+            imageView01[index]!.hidden = false
+            if (plotResult[index]==0) {
+                // 0の場合は、円の画像は表示しない
+                imageView01[index]!.hidden = true
+            } else if (plotResult[index]>=1 && plotResult[index]<=6) {
+                // 1〜6までの時は、画像を表示
+                imageView01[index]!.image = img[plotResult[index]-1]
+            } else {
+                // TODO 7以上は、数字を表示
+                
+            }
+        }
     }
     
     /**
