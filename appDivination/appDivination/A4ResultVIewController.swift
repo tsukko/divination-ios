@@ -12,6 +12,7 @@ class A4ResultViewController : UIViewController {
     
 //    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var lblMessage: UILabel!
+    @IBOutlet weak var lblName: UILabel!
 
     /// 画面遷移時に渡す為の値
     var _param:Int = -1
@@ -33,6 +34,8 @@ class A4ResultViewController : UIViewController {
         
         lblMessage.text = _message
         
+        let defaults = NSUserDefaults.standardUserDefaults()
+        lblName.text = defaults.stringForKey("userName")!+" さん"
     }
     
     // 画面が表示された直後

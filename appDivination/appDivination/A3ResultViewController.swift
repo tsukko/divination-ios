@@ -52,10 +52,6 @@ class A3ResultViewController : UIViewController {
 //        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
         
         lblMessage.text = _message
-        // 行数無制限
-        lblMessage.numberOfLines = 0
-        // サイズを自動調整
-        lblMessage.sizeToFit()
         
         let defaults = NSUserDefaults.standardUserDefaults()
         lblName.text = defaults.stringForKey("userName")!+" さん"
@@ -67,7 +63,7 @@ class A3ResultViewController : UIViewController {
     
     // 画面が表示された直後
     override func viewDidAppear(animated:Bool) {
-        
+        // 行数無制限
         lblMessage.numberOfLines = 0
         // サイズを自動調整
         lblMessage.sizeToFit()

@@ -947,7 +947,7 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="makimono_blue" translatesAutoresizingMaskIntoConstraints="NO" id="1Em-RN-YPK">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前さん" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwx-HY-ZKQ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前さん" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwx-HY-ZKQ">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2008,6 +2008,9 @@
                                     <constraint firstAttribute="width" secondItem="Hbh-bb-h0V" secondAttribute="height" multiplier="529/250" id="urh-pr-taq"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="btn_14_back_top"/>
+                                <connections>
+                                    <segue destination="aqh-nv-CCN" kind="show" id="lOJ-XT-m2a"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7wr-iy-FYb" userLabel="btn Consultation">
                                 <rect key="frame" x="40" y="514" width="180" height="72"/>
@@ -2017,15 +2020,16 @@
                                 <state key="normal" title="Button" image="btn_12_consultation"/>
                                 <connections>
                                     <action selector="touchDownBtnConsultation:" destination="8z2-3R-GBa" eventType="touchDown" id="WVJ-A0-kPV"/>
+                                    <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="dIp-DA-xeb"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前さん" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXa-Ru-VFw">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前さん" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXa-Ru-VFw">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="165" y="188" width="70" height="21"/>
+                                    <rect key="frame" x="66" y="188" width="268" height="21"/>
                                 </variation>
                             </label>
                         </subviews>
@@ -2055,7 +2059,9 @@
                             </constraint>
                             <constraint firstItem="7wr-iy-FYb" firstAttribute="height" secondItem="md7-Yy-19L" secondAttribute="height" multiplier="0.8" id="tXP-WM-50e"/>
                             <constraint firstItem="md7-Yy-19L" firstAttribute="width" secondItem="WYN-Ge-O2x" secondAttribute="width" id="uSo-Na-IZP"/>
-                            <constraint firstItem="md7-Yy-19L" firstAttribute="top" secondItem="JhN-bh-d5d" secondAttribute="bottom" constant="9" id="wLL-tu-vfa"/>
+                            <constraint firstItem="md7-Yy-19L" firstAttribute="top" secondItem="JhN-bh-d5d" secondAttribute="bottom" constant="9" id="wLL-tu-vfa">
+                                <variation key="widthClass=compact" constant="121"/>
+                            </constraint>
                             <constraint firstItem="a0V-ne-qhr" firstAttribute="width" secondItem="WYN-Ge-O2x" secondAttribute="width" id="x1Z-TV-rMs"/>
                             <constraint firstItem="JhN-bh-d5d" firstAttribute="centerX" secondItem="WYN-Ge-O2x" secondAttribute="centerX" id="xio-ED-TG5"/>
                         </constraints>
@@ -2120,6 +2126,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="lblMessage" destination="JhN-bh-d5d" id="pn6-SS-8SN"/>
+                        <outlet property="lblName" destination="aXa-Ru-VFw" id="CKa-GD-5oa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1jt-MY-xsj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2151,7 +2158,7 @@
         <image name="page_01_whats_Katakamuna" width="1440" height="2560"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="M0E-pf-EoX"/>
-        <segue reference="CDA-hv-7QY"/>
+        <segue reference="lOJ-XT-m2a"/>
+        <segue reference="dIp-DA-xeb"/>
     </inferredMetricsTieBreakers>
 </document>
