@@ -94,7 +94,7 @@ class resultDivinationClass {
                 "イメージ通りの状態に整えて仕上げていく能力をもっています。\n",
                 "記録をつくったり賞を取ったり、何かを達成する能力がとても高いです。\n"],
             fortuneWord: ["ヌ", "ス", "ヤ"]))
-        print(retDivination, terminator: "")
+//        print(retDivination)
     }
     
     func getMessage(plotCount:[Int]) -> String {

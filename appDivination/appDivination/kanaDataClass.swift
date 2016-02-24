@@ -134,7 +134,7 @@ class kanaDataClass {
         let sPlot: [String!]=["","","","","","","",""]
         for chara in knDt {
             if code == chara.code {
-                print(chara.character, terminator: "")
+                //print(chara.character)
                 return chara.plot
             }
         }

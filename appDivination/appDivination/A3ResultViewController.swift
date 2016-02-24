@@ -14,6 +14,8 @@ class A3ResultViewController : UIViewController {
     @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var resultScrollView: UIScrollView!
     @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var resultBackImage: UIImageView!
+    @IBOutlet weak var CircleImageView: UIImageView!
     
     /// 画面遷移時に渡す為の値
     var _param:Int = -1
@@ -28,25 +30,33 @@ class A3ResultViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSLog("A3ResultViewController viewDidLoad msg: \(_message)")
+        print("A3ResultViewController viewDidLoad msg: \(_message)")
         
         // バック画像の設定
 //        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
         
         lblMessage.text = _message
+        // 行数無制限
+        lblMessage.numberOfLines = 0
+        // サイズを自動調整
+        lblMessage.sizeToFit()
         
         let defaults = NSUserDefaults.standardUserDefaults()
-        lblName.text = defaults.stringForKey("userName")
-        
-        resultScrollView.contentSize = CGSizeMake(self.view.frame.size.width, 2200)
+        lblName.text = defaults.stringForKey("userName")!+" さん"
+        let plotResult:[Int] = (defaults.objectForKey("plotResult") as? [Int])!
         
         // 占い結果の円の表示
-        displayCycle()
+        displayCycle(plotResult)
     }
     
     // 画面が表示された直後
     override func viewDidAppear(animated:Bool) {
+        let SVSize = resultScrollView.frame.size
+        self.resultScrollView.contentSize = CGSizeMake(SVSize.width, 1500);
+        resultBackImage.frame.size.height = 1500
         
+        //scroll画面の初期位置
+        resultScrollView.contentOffset = CGPointMake(0, 0);
     }
     
     // 相談ボタンを押した時
@@ -57,7 +67,7 @@ class A3ResultViewController : UIViewController {
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        NSLog("prepareForSegue : \(segue.identifier), _param : \(_param)")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
@@ -65,7 +75,15 @@ class A3ResultViewController : UIViewController {
     }
     
     // 占い結果の円の表示
-    func displayCycle() {
+    func displayCycle(plotResult:[Int]) {
+        CircleImageView.hidden = false
+        if (plotResult[0]==0) {
+            CircleImageView.hidden = true
+        } else if (plotResult[0]==1) {
+            CircleImageView.image = UIImage(named: "maru1")
+        } else if (plotResult[0]==2) {
+            CircleImageView.image = UIImage(named: "maru2")
+        }
         
     }
     
