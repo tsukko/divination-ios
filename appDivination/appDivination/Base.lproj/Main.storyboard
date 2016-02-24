@@ -1421,8 +1421,11 @@
                                     <constraint firstAttribute="width" secondItem="zdH-om-Xiw" secondAttribute="height" multiplier="529/250" id="gKg-6F-fk4"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="btn_14_back_top"/>
+                                <connections>
+                                    <segue destination="aqh-nv-CCN" kind="show" id="M0E-pf-EoX"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zED-ub-aPE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zED-ub-aPE">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="kB4-yA-ucm">
@@ -1431,7 +1434,7 @@
                                 </constraints>
                                 <string key="text">運気を上げる
 今日のつぶやき</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
@@ -1590,6 +1593,7 @@
                                 <state key="normal" title="Button" image="btn_12_consultation"/>
                                 <connections>
                                     <action selector="touchDownBtnConsultation:" destination="lbR-qQ-xeK" eventType="touchDown" id="s1b-oo-Cre"/>
+                                    <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="CDA-hv-7QY"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1599,7 +1603,7 @@
                             <constraint firstItem="uul-Oo-2hr" firstAttribute="trailing" secondItem="FQD-Te-1RL" secondAttribute="trailing" id="0r6-r1-W7M"/>
                             <constraint firstItem="CM5-gO-DAq" firstAttribute="centerY" secondItem="7dt-gf-Fg1" secondAttribute="centerY" id="66t-gh-jhi"/>
                             <constraint firstItem="TqR-yk-RhP" firstAttribute="top" secondItem="zED-ub-aPE" secondAttribute="bottom" constant="18" id="6a8-L8-HbH">
-                                <variation key="widthClass=compact" constant="-18"/>
+                                <variation key="widthClass=compact" constant="-8"/>
                             </constraint>
                             <constraint firstItem="zdH-om-Xiw" firstAttribute="centerY" secondItem="xNg-Jf-uUF" secondAttribute="centerY" id="72u-av-nNb"/>
                             <constraint firstItem="Dsk-7a-xwO" firstAttribute="trailing" secondItem="xNg-Jf-uUF" secondAttribute="trailing" constant="-30" id="7Pa-dQ-1jK"/>
@@ -1616,8 +1620,12 @@
                             <constraint firstItem="AWW-Tn-AJR" firstAttribute="leading" secondItem="3L1-RZ-Lcg" secondAttribute="leading" id="HMg-kV-w5L"/>
                             <constraint firstItem="xNg-Jf-uUF" firstAttribute="width" secondItem="7dt-gf-Fg1" secondAttribute="width" id="HOo-9i-Egk"/>
                             <constraint firstItem="Dsk-7a-xwO" firstAttribute="top" secondItem="zdH-om-Xiw" secondAttribute="top" id="Jjx-En-nAd"/>
-                            <constraint firstItem="9Qw-D0-8bd" firstAttribute="leading" secondItem="TqR-yk-RhP" secondAttribute="leading" id="KeW-Ky-aEC"/>
-                            <constraint firstItem="9Qw-D0-8bd" firstAttribute="top" secondItem="TqR-yk-RhP" secondAttribute="bottom" constant="25" id="Nft-gE-NBh"/>
+                            <constraint firstItem="9Qw-D0-8bd" firstAttribute="leading" secondItem="TqR-yk-RhP" secondAttribute="leading" id="KeW-Ky-aEC">
+                                <variation key="widthClass=compact" constant="-11"/>
+                            </constraint>
+                            <constraint firstItem="9Qw-D0-8bd" firstAttribute="top" secondItem="TqR-yk-RhP" secondAttribute="bottom" constant="25" id="Nft-gE-NBh">
+                                <variation key="widthClass=compact" constant="15"/>
+                            </constraint>
                             <constraint firstItem="pH4-M0-Pfk" firstAttribute="trailing" secondItem="FQD-Te-1RL" secondAttribute="trailing" id="Oi2-Rx-5ZR"/>
                             <constraint firstItem="FQD-Te-1RL" firstAttribute="leading" secondItem="9Qw-D0-8bd" secondAttribute="trailing" constant="20" id="RAt-MJ-Weg"/>
                             <constraint firstItem="m4N-d7-UcT" firstAttribute="top" secondItem="7dt-gf-Fg1" secondAttribute="top" constant="-3" id="RUR-VE-Qfj"/>
@@ -1626,7 +1634,9 @@
                             </constraint>
                             <constraint firstItem="pH4-M0-Pfk" firstAttribute="top" secondItem="uul-Oo-2hr" secondAttribute="bottom" constant="32" id="ScZ-ey-2oR"/>
                             <constraint firstItem="zdH-om-Xiw" firstAttribute="leading" secondItem="xNg-Jf-uUF" secondAttribute="leading" constant="30" id="Sw7-nu-UnX"/>
-                            <constraint firstItem="TqR-yk-RhP" firstAttribute="trailing" secondItem="FQD-Te-1RL" secondAttribute="trailing" id="UYX-Ed-bdy"/>
+                            <constraint firstItem="TqR-yk-RhP" firstAttribute="trailing" secondItem="FQD-Te-1RL" secondAttribute="trailing" id="UYX-Ed-bdy">
+                                <variation key="widthClass=compact" constant="11"/>
+                            </constraint>
                             <constraint firstItem="xNg-Jf-uUF" firstAttribute="centerX" secondItem="7dt-gf-Fg1" secondAttribute="centerX" id="Up6-dv-6VC"/>
                             <constraint firstItem="9Qw-D0-8bd" firstAttribute="leading" secondItem="3L1-RZ-Lcg" secondAttribute="leading" id="VjS-ts-oMa"/>
                             <constraint firstItem="9Qw-D0-8bd" firstAttribute="trailing" secondItem="3L1-RZ-Lcg" secondAttribute="trailing" id="XtM-AQ-d0T"/>
@@ -1654,7 +1664,9 @@
                             <constraint firstItem="zdH-om-Xiw" firstAttribute="height" secondItem="xNg-Jf-uUF" secondAttribute="height" multiplier="0.8" id="ry8-IG-uSd"/>
                             <constraint firstItem="Ecm-p3-axt" firstAttribute="leading" secondItem="m4N-d7-UcT" secondAttribute="leading" id="wkg-hf-gYr"/>
                             <constraint firstItem="pH4-M0-Pfk" firstAttribute="leading" secondItem="FQD-Te-1RL" secondAttribute="leading" id="xmM-CL-03k"/>
-                            <constraint firstItem="FQD-Te-1RL" firstAttribute="top" secondItem="TqR-yk-RhP" secondAttribute="bottom" constant="20" id="yIb-0m-EUF"/>
+                            <constraint firstItem="FQD-Te-1RL" firstAttribute="top" secondItem="TqR-yk-RhP" secondAttribute="bottom" constant="20" id="yIb-0m-EUF">
+                                <variation key="widthClass=compact" constant="10"/>
+                            </constraint>
                             <constraint firstItem="m4N-d7-UcT" firstAttribute="width" secondItem="7dt-gf-Fg1" secondAttribute="width" id="z0R-uf-fBh"/>
                         </constraints>
                         <variation key="default">
@@ -2139,7 +2151,7 @@
         <image name="page_01_whats_Katakamuna" width="1440" height="2560"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nWs-Py-5z6"/>
-        <segue reference="FJY-Ht-s9i"/>
+        <segue reference="M0E-pf-EoX"/>
+        <segue reference="CDA-hv-7QY"/>
     </inferredMetricsTieBreakers>
 </document>
