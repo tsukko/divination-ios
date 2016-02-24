@@ -12,6 +12,7 @@ class A4ResultViewController : UIViewController {
     
 //    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var lblMessage: UILabel!
+    @IBOutlet weak var lblName: UILabel!
 
     /// 画面遷移時に渡す為の値
     var _param:Int = -1
@@ -26,13 +27,15 @@ class A4ResultViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSLog("A4ResultViewController viewDidLoad msg: \(_message)")
+        print("A4ResultViewController viewDidLoad msg: \(_message)")
         
         // バック画像の設定
 //        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
         
         lblMessage.text = _message
         
+        let defaults = NSUserDefaults.standardUserDefaults()
+        lblName.text = defaults.stringForKey("userName")!+" さん"
     }
     
     // 画面が表示された直後
@@ -48,7 +51,7 @@ class A4ResultViewController : UIViewController {
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        NSLog("prepareForSegue : \(segue.identifier), _param : \(_param)")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param

@@ -8,6 +8,9 @@
 
 import UIKit
 
+
+// TODO これ、あとで、A3MidstreamViewControllerと共通化すること
+
 class A4MidstreamViewController : UIViewController {
 
 //    @IBOutlet var viewBack: UIView!
@@ -26,7 +29,7 @@ class A4MidstreamViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSLog("A4MidstreamViewController viewDidLoad")
+        print("A4MidstreamViewController viewDidLoad")
         
         // バック画像の設定
 //        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
@@ -41,7 +44,7 @@ class A4MidstreamViewController : UIViewController {
         if let _ = defaults.stringForKey("userName") {
             // NSUserDefaultsに格納された値を取得
             userName = defaults.stringForKey("userName")!
-            print("userName:\(userName)", terminator: "")
+            print("A4MidstreamViewController viewDidLoad userName:\(userName)")
         }
 
     }
@@ -66,7 +69,7 @@ class A4MidstreamViewController : UIViewController {
         imgYatagarasu.layer.addAnimation(animationGroup, forKey: "moonSaltoAnimation")
         
         // 計算する
-        let msg:String = aaa()
+        let msg:String = divination()
         
         // 3秒後に次の結果画面に遷移する
         NSTimer.scheduledTimerWithTimeInterval(2.0,target:self,selector:Selector("transition:"), userInfo: msg, repeats: false)
@@ -94,7 +97,7 @@ class A4MidstreamViewController : UIViewController {
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        NSLog("prepareForSegue : \(segue.identifier), _param : \(_param)")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
@@ -113,7 +116,7 @@ class A4MidstreamViewController : UIViewController {
     
     
     // test
-    func aaa() -> String {
+    func divination() -> String {
         
         // 名前は、NSUserDefaultsに保存したのを読み出す
         // NSUserDefaultsオブジェクトを取得
@@ -122,7 +125,7 @@ class A4MidstreamViewController : UIViewController {
         if let _ = defaults.stringForKey("userName") {
             // NSUserDefaultsに格納された値を取得
             userName = defaults.stringForKey("userName")!
-            print("userName:\(userName)", terminator: "")
+            print("divination userName:\(userName)")
         }
         let characters = userName.characters.map { String($0) }
  
@@ -148,7 +151,7 @@ class A4MidstreamViewController : UIViewController {
             }
         }
         
-        print("plotResult : \(plotResult)", terminator: "")        
+        print("divination plotResult : \(plotResult)")
         let message = kanaData.checkResult(plotResult)
  //       print("message : \(message)")
         return message

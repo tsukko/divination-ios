@@ -35,7 +35,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSLog("A3ViewController viewDidLoad")
+        print("A3ViewController viewDidLoad")
         
         // バック画像の設定
 //        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
@@ -74,6 +74,12 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         
         dateTextField.inputAccessoryView = toolBar
 */
+        // 保存していた情報の復元
+        let defaults = NSUserDefaults.standardUserDefaults()
+        nameTextField.text = defaults.stringForKey("userName")
+        dateTextField.text = defaults.stringForKey("birthday")
+        sgCtlSex.selectedSegmentIndex = defaults.integerForKey("sex")
+        
         // nameTextField の情報を受け取るための delegate を設定
         nameTextField.delegate = self
     }
@@ -86,7 +92,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        NSLog("prepareForSegue : \(segue.identifier), _param : \(_param)")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
@@ -112,7 +118,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
     @IBAction func touchDownbtnAppraise(sender: AnyObject) {
         // 名前欄のTextFieldの確認
         if (nameTextField.text!.isEmpty) {
-            NSLog("nameTextField.text is enpty.")
+            print("nameTextField.text is enpty.")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
                 message: NSLocalizedString("errorMsgNameEmpty", tableName: "main", comment: ""),
@@ -122,7 +128,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
             presentViewController(alertController, animated: true, completion: nil)
         } else {
             if !nameTextField.text!.ChackHiragana() {
-                NSLog("nameTextField.text is not hiragana.")
+                print("nameTextField.text is not hiragana.")
                 let alertController = UIAlertController(
                     title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
                     message: NSLocalizedString("errorMsgNameKana", tableName: "main", comment: ""),
@@ -135,7 +141,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         
         // 誕生日欄のTextFieldの確認
         if (dateTextField.text!.isEmpty) {
-            NSLog("dateTextField.text is not hiragana.")
+            print("dateTextField.text is not hiragana.")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
                 message: NSLocalizedString("errorMsgDate", tableName: "main", comment: ""),
@@ -147,7 +153,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         
         // 性別選択の確認
         if (sgCtlSex.selectedSegmentIndex == -1) {
-            NSLog("sgCtlSex.selectedSegmentIndex == -1")
+            print("sgCtlSex.selectedSegmentIndex == -1")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
                 message: NSLocalizedString("errorMsgSex", tableName: "main", comment: ""),
@@ -171,7 +177,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event)
 
-        NSLog("close keyboard")
+        print("close keyboard")
         nameTextField.resignFirstResponder()
         dateTextField.resignFirstResponder()
     }
@@ -213,10 +219,10 @@ extension String {
         // 文字列を表現するUInt32
         for c in unicodeScalars {
             if c.value >= 0x3041 && c.value <= 0x3096 {
-                NSLog("ChackHiragana OK")
+       //         print("ChackHiragana OK")
                 flagKana = true
             } else {
-                NSLog("ChackHiragana NG")
+                print("ChackHiragana NG : \(c.value)")
                 flagKana = false
                 break
             }

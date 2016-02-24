@@ -134,7 +134,7 @@ class kanaDataClass {
         let sPlot: [String!]=["","","","","","","",""]
         for chara in knDt {
             if code == chara.code {
-                print(chara.character, terminator: "")
+                //print(chara.character)
                 return chara.plot
             }
         }
@@ -143,7 +143,7 @@ class kanaDataClass {
     
     func checkResult(plotData:[Int]) -> String {
         var flagYatanokagami: Int = 0
-        var flagHutomani: Bool = false
+        var flagHutomani: Bool = true
         var flagMikumari: Int = 0
         for i in 0...7 {
             if plotData[i] > 0 {
@@ -159,15 +159,17 @@ class kanaDataClass {
         }
         // 03. ミクマリ： 丸がひとつもつかない
         if flagMikumari == 8 {
-            return "攻撃と防御を最大限に使うことが出来る、とても強い特殊な言霊です。\nただし、いつも張り詰めていて、ゆるみを持っていないため、常に戦い続けなければならない特性を持ち合わせています。\n\nあなたの運気を上げる最強の音：ネ"
+            return "あなたは、なんの使命もたずに生れ出た特殊な存在です。\n五感で感じるこの世には、まるで無のような存在です。\nもしかすると別の次元において大きな意味を持つ、特別な存在なのかもしれません。\n\nあなたの運気を上げる音：５０音すべて。"
         }
 
         for i in 0...7 {
             if (i % 2 == 0) {
+                // 十字の部分がどれか一つでも値がない場合はfalseを設定
                 if (plotData[i] == 0) {
                     flagHutomani = false;
                 }
             } else {
+                // ×字の部分がどれか一つでも値がある場合はfalseを設定
                 if (plotData[i] >= 1) {
                     flagHutomani = false;
                 }
@@ -176,9 +178,10 @@ class kanaDataClass {
         
         // 02. フトマニ： 十字の部分にだけ丸がつく
         if flagHutomani {
-            return "あなたは、なんの使命もたずに生れ出た特殊な存在です。\n五感で感じるこの世には、まるで無のような存在です。\nもしかすると別の次元において大きな意味を持つ、特別な存在なのかもしれません。\n\nあなたの運気を上げる音：５０音すべて。"
+            return "攻撃と防御を最大限に使うことが出来る、とても強い特殊な言霊です。\nただし、いつも張り詰めていて、ゆるみを持っていないため、常に戦い続けなければならない特性を持ち合わせています。\n\nあなたの運気を上げる最強の音：ネ"
         }
         
+        //////////// TODO ここは分ける。上記の3パターンになる場合も、以下の文言の表示チェックを行う必要があるため
         // 一般的なパターン
         let retDivination = resultDivinationClass()
         let test123:String = retDivination.getMessage(plotData)

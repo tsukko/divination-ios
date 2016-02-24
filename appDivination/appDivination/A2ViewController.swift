@@ -28,7 +28,7 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate{
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSLog("A2ViewController viewDidLoad")
+        print("A2ViewController viewDidLoad")
         
         // バック画像の設定
 //        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
@@ -67,7 +67,7 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate{
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        NSLog("prepareForSegue : \(segue.identifier), _param : \(_param)")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
@@ -77,7 +77,7 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate{
     @IBAction func touchDownSendMailBtn(sender: AnyObject) {
         //メールを送信できるかチェック
         if MFMailComposeViewController.canSendMail()==false {
-            NSLog("Email Send Failed")
+            print("Email Send Failed")
             return
         }
         
@@ -102,16 +102,16 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate{
         
         switch result.rawValue {
         case MFMailComposeResultCancelled.rawValue:
-            NSLog("Email Send Cancelled")
+            print("Email Send Cancelled")
             break
         case MFMailComposeResultSaved.rawValue:
-            NSLog("Email Saved as a Draft")
+            print("Email Saved as a Draft")
             break
         case MFMailComposeResultSent.rawValue:
-            NSLog("Email Sent Successfully")
+            print("Email Sent Successfully")
             break
         case MFMailComposeResultFailed.rawValue:
-            NSLog("Email Send Failed")
+            print("Email Send Failed")
             break
         default:
             break

@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     // インスタンス化された直後（初回に一度のみ）
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSLog("ViewController viewDidLoad")
+        print("ViewController viewDidLoad")
         
         // バック画像の設定
    //     viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         if let tempUserName = defaults.stringForKey("userName") {
             // NSUserDefaultsに格納された値を取得
             userName = tempUserName
-            print("userName:\(userName)", terminator: "")
+            print("ViewController viewWillAppear userName:\(userName)")
             btnTodayTweet.hidden = false
         } else {
             btnTodayTweet.hidden = true
@@ -71,7 +71,7 @@ class ViewController: UIViewController {
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        NSLog("prepareForSegue : \(segue.identifier), _param : \(_param)")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param

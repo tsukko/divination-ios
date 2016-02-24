@@ -26,12 +26,7 @@ class A3MidstreamViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSLog("A3MidstreamViewController viewDidLoad")
-        
-        // バック画像の設定
-//        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
-        
-        // TODO タイマー処理
+        print("A3MidstreamViewController viewDidLoad")
         
         // TODO 鑑定、そのために前の画面の名前を持ってくる
         // NSUserDefaultsオブジェクトを取得
@@ -49,7 +44,8 @@ class A3MidstreamViewController : UIViewController {
     override func viewDidAppear(animated:Bool) {
         // 参考：http://dev.classmethod.jp/references/ios-8-cabasicanimation/
         
-        let duration = 1.3    // アニメーション時間 2秒
+        // アニメーション時間　2.0秒で設定→1.3秒
+        let duration = 0.2 //1.3    // アニメーション時間 2秒
         let singleTwist = M_PI * 2 // 360度
         
         // 縦回転アニメーション（X軸を中心に回転）
@@ -65,10 +61,14 @@ class A3MidstreamViewController : UIViewController {
         imgYatagarasu.layer.addAnimation(animationGroup, forKey: "moonSaltoAnimation")
         
         // 計算する
-        let msg:String = aaa()
+        let msg:String = divination()
         
         // 3秒後に次の結果画面に遷移する
-        NSTimer.scheduledTimerWithTimeInterval(2.0,target:self,selector:Selector("transition:"), userInfo: msg, repeats: false)
+        // 第1引数の部分は、タイマーを発生させる間隔です。例えば、0.1なら0.1秒間隔になります。1.0なら1.0秒間隔です。
+        // 第2引数の「target」は、タイマー発生時に呼び出すメソッドがあるターゲットを指定します。通常は「self」で大丈夫だと思います。
+        // 第3引数の「selector」の部分は、タイマー発生時に呼び出すメソッドを指定します。今回の場合は「onUpdate」を呼び出しています。
+        // 2.0で設定していた
+        NSTimer.scheduledTimerWithTimeInterval(0.1,target:self,selector:Selector("transition:"), userInfo: msg, repeats: false)
     }
     
     // 3秒後に次の結果画面に遷移する
@@ -91,7 +91,7 @@ class A3MidstreamViewController : UIViewController {
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        NSLog("prepareForSegue : \(segue.identifier), _param : \(_param)")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
@@ -109,7 +109,7 @@ class A3MidstreamViewController : UIViewController {
     
     
     // test
-    func aaa() -> String {
+    func divination() -> String {
         
         // 名前は、NSUserDefaultsに保存したのを読み出す
         // NSUserDefaultsオブジェクトを取得
@@ -118,7 +118,7 @@ class A3MidstreamViewController : UIViewController {
         if let _ = defaults.stringForKey("userName") {
             // NSUserDefaultsに格納された値を取得
             userName = defaults.stringForKey("userName")!
-            print("userName:\(userName)", terminator: "")
+//            print("userName:\(userName)")
         }
         let characters = userName.characters.map { String($0) }
  
@@ -144,7 +144,11 @@ class A3MidstreamViewController : UIViewController {
             }
         }
         
-        print("plotResult : \(plotResult)")        
+        // やっつけ。プロットの結果を保存
+        defaults.setObject(plotResult, forKey: "plotResult")
+        defaults.synchronize()
+
+        print("plotResult : \(plotResult)")
         let message = kanaData.checkResult(plotResult)
  //       print("message : \(message)")
         return message

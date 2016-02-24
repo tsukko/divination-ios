@@ -2,7 +2,6 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "巻物（緑）.png",
       "scale" : "1x"
     },
     {
@@ -10,7 +9,19 @@
       "scale" : "2x"
     },
     {
+      "resizing" : {
+        "mode" : "3-part-vertical",
+        "center" : {
+          "mode" : "tile",
+          "height" : 1151
+        },
+        "cap-insets" : {
+          "top" : 186,
+          "bottom" : 136
+        }
+      },
       "idiom" : "universal",
+      "filename" : "巻物（緑）.png",
       "scale" : "3x"
     }
   ],
