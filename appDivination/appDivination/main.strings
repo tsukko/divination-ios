@@ -24,7 +24,7 @@
 "errorMsgDate" = "誕生日欄が空欄です.";
 "errorMsgSex" = "性別が選択されていません.";
 
-
+// 使っていない
 // Pattern 01: 基本.
 "free_divination_result_message_pattern_01_none" = "一般的な常識の型にはまると上手くいきません。";
 "free_divination_result_message_pattern_01_few" = "基本的な事をすぐに身に付ける能力を持っています。";
