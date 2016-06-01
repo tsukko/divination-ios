@@ -147,12 +147,12 @@ class kanaDataClass {
         var flagMikumari: Int = 0
         for i in 0...7 {
             if plotData[i] > 0 {
-                flagYatanokagami++
+                flagYatanokagami += 1
             } else {
-                flagMikumari++
+                flagMikumari += 1
             }
         }
-        
+
         // 01. ヤタノカガミ： 全てのプロット位置に丸がつく
         if flagYatanokagami == 8 {
             return "この世に必要な音の響きの全てを持って誕生したあなた。\n皆に分け与え、繋ないでいく役目を持っています。\nただ、すべてを持ち合わせるためか、なかなか個性が見えづらい部分があります。\n\nあなたの運気を上げる音：５０音すべて。"

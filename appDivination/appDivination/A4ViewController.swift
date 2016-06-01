@@ -121,7 +121,7 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
             alertController.addAction(defaultAction)
             presentViewController(alertController, animated: true, completion: nil)
         } else {
-            if !nameTextField.text!.ChackHiragana() {
+            if !nameTextField.text!.ChackHiraganaOrKatakana() {
                 print("nameTextField.text is not hiragana.")
                 let alertController = UIAlertController(
                     title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),

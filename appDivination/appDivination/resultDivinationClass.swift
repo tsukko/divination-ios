@@ -110,13 +110,12 @@ class resultDivinationClass {
                 msgTotal += "・" + msg.message[0]
                 
                 // 運気を上げる言葉をランダムで取得する
-                var fruits : [ String ] = ["Apple", "Orange"]
-                var randInt = Int(arc4random_uniform(UInt32(msg.fortuneWord.count)))
+                let randInt = Int(arc4random_uniform(UInt32(msg.fortuneWord.count)))
          //       mainTitle.text = msg.fortuneWord[randInt]
                 if index == 0 {
-                    fortuneWordTotal += msg.fortuneWord[0]
+                    fortuneWordTotal += msg.fortuneWord[randInt]
                 } else {
-                    fortuneWordTotal += ", " + msg.fortuneWord[0]
+                    fortuneWordTotal += ", " + msg.fortuneWord[randInt]
                 }
             }
             index++

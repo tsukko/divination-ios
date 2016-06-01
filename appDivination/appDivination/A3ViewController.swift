@@ -127,8 +127,8 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
             alertController.addAction(defaultAction)
             presentViewController(alertController, animated: true, completion: nil)
         } else {
-            if !nameTextField.text!.ChackHiragana() {
-                print("nameTextField.text is not hiragana.")
+            if !nameTextField.text!.ChackHiraganaOrKatakana() {
+                print("nameTextField.text is not hiragana or katakana.")
                 let alertController = UIAlertController(
                     title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
                     message: NSLocalizedString("errorMsgNameKana", tableName: "main", comment: ""),
@@ -213,12 +213,15 @@ class SampleTextField: UITextField{
 
 // ひらがなチェック用の拡張
 extension String {
-    func ChackHiragana() -> Bool {
+    func ChackHiraganaOrKatakana() -> Bool {
         var flagKana:Bool = false
         
         // 文字列を表現するUInt32
         for c in unicodeScalars {
-            if c.value >= 0x3041 && c.value <= 0x3096 {
+            // ひらがな、もしくは、カタカナ、半角空白、全角空白であること
+            if (c.value >= 0x3041 && c.value <= 0x3096) ||
+                (c.value >= 0x30A1 && c.value <= 0x30F6) ||
+                c.value == 0x0020 || c.value == 0xFF5A {
        //         print("ChackHiragana OK")
                 flagKana = true
             } else {
