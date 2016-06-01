@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate{
+class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
     
 //    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var image_back: UIImageView!
@@ -98,6 +98,7 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate{
     
     }
 
+    // メールキャンセル
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         
         switch result.rawValue {
