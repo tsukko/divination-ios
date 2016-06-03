@@ -104,13 +104,9 @@ class A3MidstreamViewController : UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    
-    
-    
-    // test
+
+    // 占った結果、表示する文章をつくる
     func divination() -> String {
-        
         // 名前は、NSUserDefaultsに保存したのを読み出す
         // NSUserDefaultsオブジェクトを取得
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -121,7 +117,6 @@ class A3MidstreamViewController : UIViewController {
 //            print("userName:\(userName)")
         }
         let characters = userName.characters.map { String($0) }
- 
 
         let kanaData = kanaDataClass()
         var plotResult:[Int] = [0,0,0,0,0,0,0,0]
@@ -152,7 +147,8 @@ class A3MidstreamViewController : UIViewController {
         let message = kanaData.checkResult(plotResult)
  //       print("message : \(message)")
         return message
-        /*
+
+/*
         // プロパティファイルをバインド
         let path = NSBundle.mainBundle().pathForResource("arrays", ofType: "plist")
         // rootがDictionaryなのでNSDictionaryに取り込み

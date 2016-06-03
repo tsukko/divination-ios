@@ -74,6 +74,8 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
         }
     }
     
+    // メーラー起動
+    // TODO 送信先メールアドレス、件名、本文を決める
     @IBAction func touchDownSendMailBtn(sender: AnyObject) {
         //メールを送信できるかチェック
         if MFMailComposeViewController.canSendMail()==false {
@@ -100,7 +102,6 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
 
     // メールキャンセル
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        
         switch result.rawValue {
         case MFMailComposeResultCancelled.rawValue:
             print("Email Send Cancelled")
