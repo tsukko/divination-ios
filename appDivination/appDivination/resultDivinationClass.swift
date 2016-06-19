@@ -97,8 +97,10 @@ class resultDivinationClass {
 //        print(retDivination)
     }
 
+    
     func getMessage(plotCount:[Int]) -> String {
         var index:Int = 0
+        var unkiIndex:Int = 0
         var msgTotal:String = ""
         var fortuneWordTotal:String = ""
         for msg in retDivination {
@@ -112,14 +114,16 @@ class resultDivinationClass {
                 // 運気を上げる言葉をランダムで取得する
                 let randInt = Int(arc4random_uniform(UInt32(msg.fortuneWord.count)))
          //       mainTitle.text = msg.fortuneWord[randInt]
-                if index == 0 {
+                if unkiIndex == 0 {
                     fortuneWordTotal += msg.fortuneWord[randInt]
                 } else {
                     fortuneWordTotal += ", " + msg.fortuneWord[randInt]
                 }
+                unkiIndex += 1
             }
-            index++
+            index += 1
         }
-        return msgTotal + "\n\n" + fortuneWordTotal
+ //       return msgTotal + "\n\n" + fortuneWordTotal
+        return msgTotal + "\n\n" + "✩あなたの運気を上げる音✩ \n" + fortuneWordTotal + " など"
     }
 }

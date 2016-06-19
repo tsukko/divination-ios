@@ -84,7 +84,6 @@ class A3ResultViewController : UIViewController {
         self.resultScrollView.contentSize = CGSizeMake(SVSize.width, newContentHeight);
         resultBackImage.frame = CGRectMake(0, 0, resultBackImage.frame.width, newContentHeight)
         
-    
         //scroll画面の初期位置
         resultScrollView.contentOffset = CGPointMake(0, 0);
     }
