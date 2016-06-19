@@ -23,6 +23,7 @@ class A3ResultViewController : UIViewController {
     @IBOutlet weak var CircleImageView6: UIImageView!
     @IBOutlet weak var CircleImageView7: UIImageView!
     @IBOutlet weak var CircleImageView8: UIImageView!
+    @IBOutlet weak var contentView: UIView!
     
     var img: [UIImage] = [
         UIImage(named:"maru1")!,
@@ -80,9 +81,10 @@ class A3ResultViewController : UIViewController {
         let newContentHeight = height+midY
         
         let SVSize = resultScrollView.frame.size
-        self.resultScrollView.contentSize = CGSizeMake(SVSize.width, newContentHeight-100);
+        self.resultScrollView.contentSize = CGSizeMake(SVSize.width, newContentHeight);
         resultBackImage.frame = CGRectMake(0, 0, resultBackImage.frame.width, newContentHeight)
-
+        
+    
         //scroll画面の初期位置
         resultScrollView.contentOffset = CGPointMake(0, 0);
     }
