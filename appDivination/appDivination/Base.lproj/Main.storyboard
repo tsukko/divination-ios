@@ -247,6 +247,9 @@
                                     <constraint firstAttribute="width" secondItem="gOS-ix-hDh" secondAttribute="height" multiplier="529/250" id="jqg-T7-dlf"/>
                                 </constraints>
                                 <state key="normal" title="Btn GoTop" image="btn_14_back_top"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="30" y="540" width="117" height="56"/>
+                                </variation>
                                 <connections>
                                     <segue destination="aqh-nv-CCN" kind="show" id="MDb-Xd-QKb"/>
                                 </connections>
@@ -1249,16 +1252,16 @@
                                             </mask>
                                             <mask key="constraints">
                                                 <exclude reference="r8H-4f-Ril"/>
+                                                <exclude reference="D8S-x9-SrE"/>
+                                                <exclude reference="Jlh-hK-Tk1"/>
+                                                <exclude reference="g7h-PZ-lcH"/>
+                                                <exclude reference="GqH-tR-AbU"/>
+                                                <exclude reference="r3Y-ly-WIu"/>
                                                 <exclude reference="Vb1-Zt-HLe"/>
                                                 <exclude reference="Zd2-ah-JCD"/>
                                                 <exclude reference="eup-0K-naD"/>
                                                 <exclude reference="8YD-08-WfF"/>
                                                 <exclude reference="Jtj-hK-1Ia"/>
-                                                <exclude reference="GqH-tR-AbU"/>
-                                                <exclude reference="r3Y-ly-WIu"/>
-                                                <exclude reference="D8S-x9-SrE"/>
-                                                <exclude reference="Jlh-hK-Tk1"/>
-                                                <exclude reference="g7h-PZ-lcH"/>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact">
@@ -1270,16 +1273,16 @@
                                             </mask>
                                             <mask key="constraints">
                                                 <include reference="r8H-4f-Ril"/>
+                                                <include reference="D8S-x9-SrE"/>
+                                                <include reference="Jlh-hK-Tk1"/>
+                                                <include reference="g7h-PZ-lcH"/>
+                                                <include reference="GqH-tR-AbU"/>
+                                                <include reference="r3Y-ly-WIu"/>
                                                 <include reference="Vb1-Zt-HLe"/>
                                                 <include reference="Zd2-ah-JCD"/>
                                                 <include reference="eup-0K-naD"/>
                                                 <include reference="8YD-08-WfF"/>
                                                 <include reference="Jtj-hK-1Ia"/>
-                                                <include reference="GqH-tR-AbU"/>
-                                                <include reference="r3Y-ly-WIu"/>
-                                                <include reference="D8S-x9-SrE"/>
-                                                <include reference="Jlh-hK-Tk1"/>
-                                                <include reference="g7h-PZ-lcH"/>
                                             </mask>
                                         </variation>
                                     </view>
