@@ -34,34 +34,33 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ec4-g2-KjJ">
                                 <rect key="frame" x="27" y="270" width="547" height="257"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZl-Dg-xer" userLabel="Button1">
-                                        <rect key="frame" x="0.0" y="0.0" width="172" height="69"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="YZl-Dg-xer" secondAttribute="height" multiplier="686/253" id="0R1-y8-rYf"/>
-                                        </constraints>
-                                        <state key="normal" image="ボタン_音霊鑑定術とはのコピー"/>
-                                        <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                            <rect key="frame" x="192" y="198" width="184" height="68"/>
-                                        </variation>
-                                        <connections>
-                                            <action selector="touchDownBtnDescription:" destination="aqh-nv-CCN" eventType="touchDown" id="TLu-w8-91R"/>
-                                            <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="2WK-vS-tXM"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0h-rx-IYU" userLabel="Button2">
+                                    <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0h-rx-IYU" userLabel="無料音霊鑑定">
                                         <rect key="frame" x="0.0" y="94" width="172" height="69"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="L0h-rx-IYU" secondAttribute="height" multiplier="686/253" id="zRT-wS-k3E"/>
                                         </constraints>
                                         <state key="normal" image="ボタン_無料音霊鑑定のコピー"/>
-                                        <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                        <variation key="widthClass=compact" misplaced="YES">
                                             <rect key="frame" x="0.0" y="0.0" width="184" height="68"/>
                                         </variation>
                                         <connections>
                                             <segue destination="eIq-Xr-zDS" kind="show" id="HLb-qW-CF6"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECF-Fg-fn9" userLabel="Button3">
+                                    <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbQ-tO-6oy" userLabel="今日のつぶやき">
+                                        <rect key="frame" x="375" y="94" width="172" height="69"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="GbQ-tO-6oy" secondAttribute="height" multiplier="686/253" id="KyV-RK-AAg"/>
+                                        </constraints>
+                                        <state key="normal" image="ボタン_今日のつぶやきのコピー"/>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="68" width="184" height="68"/>
+                                        </variation>
+                                        <connections>
+                                            <segue destination="lbR-qQ-xeK" kind="show" id="CFn-J0-8rs"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECF-Fg-fn9" userLabel="相性診断">
                                         <rect key="frame" x="0.0" y="188" width="172" height="69"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ECF-Fg-fn9" secondAttribute="height" multiplier="686/253" id="7CI-uV-Yr4"/>
@@ -71,34 +70,7 @@
                                             <rect key="frame" x="0.0" y="132" width="184" height="68"/>
                                         </variation>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PeD-dZ-QEg" userLabel="Button4">
-                                        <rect key="frame" x="375" y="0.0" width="172" height="69"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="PeD-dZ-QEg" secondAttribute="height" multiplier="686/253" id="woa-Kk-vk5"/>
-                                        </constraints>
-                                        <state key="normal" image="ボタン_鑑定士プロフのコピー"/>
-                                        <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                            <rect key="frame" x="192" y="132" width="184" height="68"/>
-                                        </variation>
-                                        <connections>
-                                            <action selector="touchDownBtnProfile:" destination="aqh-nv-CCN" eventType="touchDown" id="Rhn-Ot-LCJ"/>
-                                            <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="tck-e7-cfV"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbQ-tO-6oy" userLabel="Button5">
-                                        <rect key="frame" x="375" y="94" width="172" height="69"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="GbQ-tO-6oy" secondAttribute="height" multiplier="686/253" id="KyV-RK-AAg"/>
-                                        </constraints>
-                                        <state key="normal" image="ボタン_今日のつぶやきのコピー"/>
-                                        <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="71" width="184" height="68"/>
-                                        </variation>
-                                        <connections>
-                                            <segue destination="lbR-qQ-xeK" kind="show" id="CFn-J0-8rs"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleAspectFill" semanticContentAttribute="spatial" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWf-29-VYV" userLabel="Button6">
+                                    <button opaque="NO" contentMode="scaleAspectFill" semanticContentAttribute="spatial" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWf-29-VYV" userLabel="音霊命名術">
                                         <rect key="frame" x="375" y="188" width="172" height="69"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="IWf-29-VYV" secondAttribute="height" multiplier="686/253" id="qyI-FW-jgz"/>
@@ -108,29 +80,72 @@
                                             <rect key="frame" x="0.0" y="198" width="184" height="68"/>
                                         </variation>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PeD-dZ-QEg" userLabel="鑑定士プロフ">
+                                        <rect key="frame" x="375" y="0.0" width="172" height="69"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="PeD-dZ-QEg" secondAttribute="height" multiplier="686/253" id="woa-Kk-vk5"/>
+                                        </constraints>
+                                        <state key="normal" image="ボタン_鑑定士プロフのコピー"/>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="192" y="132" width="184" height="68"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="touchDownBtnProfile:" destination="aqh-nv-CCN" eventType="touchDown" id="Rhn-Ot-LCJ"/>
+                                            <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="tck-e7-cfV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZl-Dg-xer" userLabel="音霊鑑定術とは">
+                                        <rect key="frame" x="0.0" y="0.0" width="172" height="69"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="YZl-Dg-xer" secondAttribute="height" multiplier="686/253" id="0R1-y8-rYf"/>
+                                        </constraints>
+                                        <state key="normal" image="ボタン_音霊鑑定術とはのコピー"/>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="192" y="198" width="184" height="68"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="touchDownBtnDescription:" destination="aqh-nv-CCN" eventType="touchDown" id="TLu-w8-91R"/>
+                                            <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="2WK-vS-tXM"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="PeD-dZ-QEg" secondAttribute="trailing" id="2Fb-r4-Drs"/>
                                     <constraint firstItem="L0h-rx-IYU" firstAttribute="leading" secondItem="ec4-g2-KjJ" secondAttribute="leading" id="4vx-ur-Oko"/>
-                                    <constraint firstItem="IWf-29-VYV" firstAttribute="width" secondItem="ec4-g2-KjJ" secondAttribute="width" multiplier="0.49" id="9q0-rW-CXD"/>
-                                    <constraint firstItem="GbQ-tO-6oy" firstAttribute="width" secondItem="ec4-g2-KjJ" secondAttribute="width" multiplier="0.49" id="AYP-di-HDC"/>
-                                    <constraint firstItem="YZl-Dg-xer" firstAttribute="width" secondItem="ec4-g2-KjJ" secondAttribute="width" multiplier="0.49" id="BMR-ba-IHt"/>
+                                    <constraint firstItem="IWf-29-VYV" firstAttribute="width" secondItem="ec4-g2-KjJ" secondAttribute="width" multiplier="0.4" id="9q0-rW-CXD"/>
+                                    <constraint firstItem="GbQ-tO-6oy" firstAttribute="width" secondItem="ec4-g2-KjJ" secondAttribute="width" multiplier="0.4" id="AYP-di-HDC">
+                                        <variation key="widthClass=compact" constant="0.0"/>
+                                    </constraint>
+                                    <constraint firstItem="YZl-Dg-xer" firstAttribute="width" secondItem="ec4-g2-KjJ" secondAttribute="width" multiplier="0.3" id="BMR-ba-IHt"/>
                                     <constraint firstItem="PeD-dZ-QEg" firstAttribute="top" secondItem="ec4-g2-KjJ" secondAttribute="top" id="GkC-sE-5NI"/>
-                                    <constraint firstAttribute="trailing" secondItem="GbQ-tO-6oy" secondAttribute="trailing" id="ION-14-vZC"/>
-                                    <constraint firstItem="YZl-Dg-xer" firstAttribute="leading" secondItem="ec4-g2-KjJ" secondAttribute="leading" id="LeG-gr-cDA"/>
-                                    <constraint firstItem="PeD-dZ-QEg" firstAttribute="width" secondItem="ec4-g2-KjJ" secondAttribute="width" multiplier="0.49" id="Nk4-aj-fgz"/>
+                                    <constraint firstAttribute="trailing" secondItem="GbQ-tO-6oy" secondAttribute="trailing" id="ION-14-vZC">
+                                        <variation key="widthClass=compact" constant="192"/>
+                                    </constraint>
+                                    <constraint firstItem="YZl-Dg-xer" firstAttribute="trailing" secondItem="ec4-g2-KjJ" secondAttribute="trailing" id="LeG-gr-cDA"/>
+                                    <constraint firstItem="PeD-dZ-QEg" firstAttribute="width" secondItem="ec4-g2-KjJ" secondAttribute="width" multiplier="0.3" id="Nk4-aj-fgz"/>
+                                    <constraint firstItem="PeD-dZ-QEg" firstAttribute="centerY" secondItem="ECF-Fg-fn9" secondAttribute="centerY" id="USV-zF-WdF"/>
                                     <constraint firstItem="L0h-rx-IYU" firstAttribute="centerY" secondItem="ec4-g2-KjJ" secondAttribute="centerY" id="VGt-V0-PnP"/>
                                     <constraint firstAttribute="trailing" secondItem="IWf-29-VYV" secondAttribute="trailing" id="XLd-7E-4AM"/>
-                                    <constraint firstItem="GbQ-tO-6oy" firstAttribute="centerY" secondItem="ec4-g2-KjJ" secondAttribute="centerY" id="XTo-Uv-gcM"/>
-                                    <constraint firstItem="YZl-Dg-xer" firstAttribute="top" secondItem="ec4-g2-KjJ" secondAttribute="top" id="XhV-gu-MZy"/>
-                                    <constraint firstItem="L0h-rx-IYU" firstAttribute="width" secondItem="ec4-g2-KjJ" secondAttribute="width" multiplier="0.49" id="YhV-1C-GR8"/>
+                                    <constraint firstItem="GbQ-tO-6oy" firstAttribute="centerY" secondItem="ec4-g2-KjJ" secondAttribute="centerY" id="XTo-Uv-gcM">
+                                        <variation key="widthClass=compact" constant="-28"/>
+                                    </constraint>
+                                    <constraint firstItem="YZl-Dg-xer" firstAttribute="bottom" secondItem="ec4-g2-KjJ" secondAttribute="bottom" id="XhV-gu-MZy"/>
+                                    <constraint firstItem="L0h-rx-IYU" firstAttribute="width" secondItem="ec4-g2-KjJ" secondAttribute="width" multiplier="0.4" id="YhV-1C-GR8"/>
                                     <constraint firstAttribute="bottom" secondItem="ECF-Fg-fn9" secondAttribute="bottom" id="cE9-Mm-xwq"/>
                                     <constraint firstItem="ECF-Fg-fn9" firstAttribute="leading" secondItem="ec4-g2-KjJ" secondAttribute="leading" id="hdk-17-kUD"/>
-                                    <constraint firstItem="ECF-Fg-fn9" firstAttribute="width" secondItem="ec4-g2-KjJ" secondAttribute="width" multiplier="0.49" id="rD2-SO-n95"/>
+                                    <constraint firstItem="ECF-Fg-fn9" firstAttribute="width" secondItem="ec4-g2-KjJ" secondAttribute="width" multiplier="0.4" id="rD2-SO-n95"/>
                                     <constraint firstAttribute="bottom" secondItem="IWf-29-VYV" secondAttribute="bottom" id="tmS-9x-eCX"/>
                                 </constraints>
-                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="USV-zF-WdF"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="12" y="266" width="376" height="266"/>
+                                    <mask key="constraints">
+                                        <include reference="USV-zF-WdF"/>
+                                    </mask>
                                 </variation>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="component_02_footer" translatesAutoresizingMaskIntoConstraints="NO" id="dXj-Ha-Kfw">
