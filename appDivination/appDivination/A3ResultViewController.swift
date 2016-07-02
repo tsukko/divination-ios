@@ -55,15 +55,22 @@ class A3ResultViewController : UIViewController {
         lblMessage.text = _message
         
         let defaults = NSUserDefaults.standardUserDefaults()
-        lblName.text = defaults.stringForKey("userName")!+" さん"
+//        lblName.text = defaults.stringForKey("userName")!+" さん"
         let plotResult:[Int] = (defaults.objectForKey("plotResult") as? [Int])!
         
         // 占い結果の円の表示
         displayCycle(plotResult)
+        
+        //ここで変更しても反映されない
+        //changeLayout();
     }
     
     // 画面が表示された直後
     override func viewDidAppear(animated:Bool) {
+        changeLayout();
+    }
+    
+    func changeLayout(){
         // 行数無制限
         lblMessage.numberOfLines = 0
         // サイズを自動調整

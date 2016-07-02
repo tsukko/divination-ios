@@ -82,17 +82,19 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
         }
         
         let mailViewController = MFMailComposeViewController()
-        let toRecipients = ["to@1gmail.com"]
-        let CcRecipients = ["cc@1gmail.com","Cc2@1gmail.com"]
-        let BccRecipients = ["Bcc@1gmail.com","Bcc2@1gmail.com"]
+        let toRecipients = ["otodamakantei@gmail.com"]
+//        let CcRecipients = ["cc@1gmail.com","Cc2@1gmail.com"]
+//        let BccRecipients = ["Bcc@1gmail.com","Bcc2@1gmail.com"]
         
         
         mailViewController.mailComposeDelegate = self
-        mailViewController.setSubject("メールの件名")
+        // メール件名
+        mailViewController.setSubject("")
         mailViewController.setToRecipients(toRecipients) //Toアドレスの表示
-        mailViewController.setCcRecipients(CcRecipients) //Ccアドレスの表示
-        mailViewController.setBccRecipients(BccRecipients) //Bccアドレスの表示
-        mailViewController.setMessageBody("メールの本文", isHTML: false)
+//        mailViewController.setCcRecipients(CcRecipients) //Ccアドレスの表示
+//        mailViewController.setBccRecipients(BccRecipients) //Bccアドレスの表示
+        // メール本文
+        mailViewController.setMessageBody("件名・本文を変更せずに、このまま送信してください。鑑定についての詳細を返信致します。", isHTML: false)
         
         self.presentViewController(mailViewController, animated: true, completion: nil)
     
