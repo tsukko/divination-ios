@@ -22,20 +22,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backimg_blue" translatesAutoresizingMaskIntoConstraints="NO" id="4Si-Yt-df7">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="トップページイメージ" translatesAutoresizingMaskIntoConstraints="NO" id="4Si-Yt-df7">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="320" misplaced="YES" restorationIdentifier="img_header" image="component_01_header" translatesAutoresizingMaskIntoConstraints="NO" id="PKC-nJ-eUy">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PKC-nJ-eUy" secondAttribute="height" multiplier="40:7" id="s68-BZ-nGz"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="component_00_title" translatesAutoresizingMaskIntoConstraints="NO" id="U2f-9F-jMO">
-                                <rect key="frame" x="151" y="66" width="299" height="188"/>
-                                <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="U2f-9F-jMO" secondAttribute="height" id="wcW-Jb-r5s"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ec4-g2-KjJ">
@@ -46,7 +39,10 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="YZl-Dg-xer" secondAttribute="height" multiplier="686/253" id="0R1-y8-rYf"/>
                                         </constraints>
-                                        <state key="normal" image="btn_01_whats_onryoukanteizyutu"/>
+                                        <state key="normal" image="ボタン_音霊鑑定術とはのコピー"/>
+                                        <variation key="widthClass=compact" ambiguous="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="184" height="68"/>
+                                        </variation>
                                         <connections>
                                             <action selector="touchDownBtnDescription:" destination="aqh-nv-CCN" eventType="touchDown" id="TLu-w8-91R"/>
                                             <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="2WK-vS-tXM"/>
@@ -57,7 +53,10 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="L0h-rx-IYU" secondAttribute="height" multiplier="686/253" id="zRT-wS-k3E"/>
                                         </constraints>
-                                        <state key="normal" image="btn_02_free_appraisal"/>
+                                        <state key="normal" image="ボタン_無料音霊鑑定のコピー"/>
+                                        <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="44" width="184" height="68"/>
+                                        </variation>
                                         <connections>
                                             <segue destination="eIq-Xr-zDS" kind="show" id="HLb-qW-CF6"/>
                                         </connections>
@@ -67,14 +66,20 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ECF-Fg-fn9" secondAttribute="height" multiplier="686/253" id="7CI-uV-Yr4"/>
                                         </constraints>
-                                        <state key="normal" image="btn_03_compatibility_diagnosis"/>
+                                        <state key="normal" image="ボタン_相性診断のコピー"/>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="88" width="184" height="68"/>
+                                        </variation>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PeD-dZ-QEg" userLabel="Button4">
                                         <rect key="frame" x="375" y="0.0" width="172" height="69"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="PeD-dZ-QEg" secondAttribute="height" multiplier="686/253" id="woa-Kk-vk5"/>
                                         </constraints>
-                                        <state key="normal" image="btn_04_appraisers_profile"/>
+                                        <state key="normal" image="ボタン_鑑定士プロフのコピー"/>
+                                        <variation key="widthClass=compact" ambiguous="YES">
+                                            <rect key="frame" x="192" y="0.0" width="184" height="68"/>
+                                        </variation>
                                         <connections>
                                             <action selector="touchDownBtnProfile:" destination="aqh-nv-CCN" eventType="touchDown" id="Rhn-Ot-LCJ"/>
                                             <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="tck-e7-cfV"/>
@@ -85,7 +90,10 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="GbQ-tO-6oy" secondAttribute="height" multiplier="686/253" id="KyV-RK-AAg"/>
                                         </constraints>
-                                        <state key="normal" image="btn_05_today_murmur"/>
+                                        <state key="normal" image="ボタン_今日のつぶやきのコピー"/>
+                                        <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="192" y="44" width="184" height="68"/>
+                                        </variation>
                                         <connections>
                                             <segue destination="lbR-qQ-xeK" kind="show" id="CFn-J0-8rs"/>
                                         </connections>
@@ -95,7 +103,10 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="IWf-29-VYV" secondAttribute="height" multiplier="686/253" id="qyI-FW-jgz"/>
                                         </constraints>
-                                        <state key="normal" image="btn_06_naming_surgery"/>
+                                        <state key="normal" image="ボタン_音霊命名術のコピー"/>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="192" y="88" width="184" height="68"/>
+                                        </variation>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -118,6 +129,9 @@
                                     <constraint firstItem="ECF-Fg-fn9" firstAttribute="width" secondItem="ec4-g2-KjJ" secondAttribute="width" multiplier="0.49" id="rD2-SO-n95"/>
                                     <constraint firstAttribute="bottom" secondItem="IWf-29-VYV" secondAttribute="bottom" id="tmS-9x-eCX"/>
                                 </constraints>
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="12" y="347" width="376" height="156"/>
+                                </variation>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="component_02_footer" translatesAutoresizingMaskIntoConstraints="NO" id="dXj-Ha-Kfw">
                                 <rect key="frame" x="0.0" y="549" width="600" height="53"/>
@@ -145,19 +159,15 @@
                             <constraint firstItem="4Si-Yt-df7" firstAttribute="centerX" secondItem="xqx-i4-ngs" secondAttribute="centerX" id="6iL-tu-JEe"/>
                             <constraint firstItem="4Si-Yt-df7" firstAttribute="height" secondItem="xqx-i4-ngs" secondAttribute="height" id="9AZ-iq-OHy"/>
                             <constraint firstItem="4Si-Yt-df7" firstAttribute="width" secondItem="xqx-i4-ngs" secondAttribute="width" id="9Dx-UG-3yU"/>
-                            <constraint firstItem="U2f-9F-jMO" firstAttribute="top" secondItem="PKC-nJ-eUy" secondAttribute="bottom" constant="10" id="9SE-bF-ICG"/>
                             <constraint firstItem="PKC-nJ-eUy" firstAttribute="centerX" secondItem="xqx-i4-ngs" secondAttribute="centerX" id="CPu-gt-hGt"/>
-                            <constraint firstItem="ec4-g2-KjJ" firstAttribute="top" secondItem="U2f-9F-jMO" secondAttribute="bottom" constant="30" id="Cvx-9G-5oe"/>
                             <constraint firstItem="ec4-g2-KjJ" firstAttribute="centerX" secondItem="xqx-i4-ngs" secondAttribute="centerX" id="DRl-71-xFE"/>
                             <constraint firstItem="ec4-g2-KjJ" firstAttribute="bottom" secondItem="dXj-Ha-Kfw" secondAttribute="top" constant="-30" id="FmT-b6-9TT"/>
-                            <constraint firstItem="U2f-9F-jMO" firstAttribute="centerX" secondItem="xqx-i4-ngs" secondAttribute="centerX" id="Fwy-Gj-g27"/>
                             <constraint firstItem="dXj-Ha-Kfw" firstAttribute="bottom" secondItem="xqx-i4-ngs" secondAttribute="bottom" constant="3" id="PH6-3N-YYW"/>
                             <constraint firstItem="PKC-nJ-eUy" firstAttribute="top" secondItem="xqx-i4-ngs" secondAttribute="top" constant="-3" id="RZe-dO-eK8"/>
                             <constraint firstItem="6Tb-pN-kyb" firstAttribute="centerY" secondItem="dXj-Ha-Kfw" secondAttribute="centerY" id="Ry5-FC-Gd3"/>
                             <constraint firstItem="PKC-nJ-eUy" firstAttribute="width" secondItem="xqx-i4-ngs" secondAttribute="width" id="S2j-x0-CIH"/>
                             <constraint firstItem="dXj-Ha-Kfw" firstAttribute="centerX" secondItem="xqx-i4-ngs" secondAttribute="centerX" id="YN6-5H-9nr"/>
                             <constraint firstItem="ec4-g2-KjJ" firstAttribute="width" secondItem="xqx-i4-ngs" secondAttribute="width" multiplier="0.94" id="otx-uA-Toz"/>
-                            <constraint firstItem="U2f-9F-jMO" firstAttribute="width" relation="lessThanOrEqual" secondItem="xqx-i4-ngs" secondAttribute="width" multiplier="0.6" id="teV-X2-7E4"/>
                             <constraint firstItem="4Si-Yt-df7" firstAttribute="centerY" secondItem="xqx-i4-ngs" secondAttribute="centerY" id="wg3-1J-w8g"/>
                         </constraints>
                         <variation key="default">
@@ -246,7 +256,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gOS-ix-hDh" secondAttribute="height" multiplier="529/250" id="jqg-T7-dlf"/>
                                 </constraints>
-                                <state key="normal" title="Btn GoTop" image="btn_14_back_top"/>
+                                <state key="normal" title="Btn GoTop" image="ボタン_最初のページ"/>
                                 <variation key="widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="30" y="540" width="117" height="56"/>
                                 </variation>
@@ -259,7 +269,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PLq-4d-VJB" secondAttribute="height" multiplier="686:253" id="DUN-4H-ceY"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="btn_13_receive_mail"/>
+                                <state key="normal" title="Button" image="ボタン_詳細メールを受信のコピー"/>
                                 <connections>
                                     <action selector="touchDownSendMailBtn:" destination="VKe-fk-2mg" eventType="touchDown" id="iLs-aI-N7S"/>
                                 </connections>
@@ -390,7 +400,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="1Hw-Oo-xrg" secondAttribute="height" multiplier="529/250" id="ORM-0a-1ud"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="btn_14_back_top"/>
+                                <state key="normal" title="Button" image="ボタン_最初のページのコピー"/>
                                 <connections>
                                     <segue destination="aqh-nv-CCN" kind="show" id="CSK-l2-DbJ"/>
                                 </connections>
@@ -517,7 +527,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RjT-4L-TVy" secondAttribute="height" multiplier="685/250" id="r93-8y-Aum"/>
                                 </constraints>
-                                <state key="normal" title="鑑定" image="btn_07_Appraise"/>
+                                <state key="normal" title="鑑定" image="ボタン_鑑定するのコピー"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="r93-8y-Aum"/>
@@ -556,7 +566,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="1fz-jf-bma" secondAttribute="height" multiplier="686:253" id="x99-fi-AFJ"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="btn_12_consultation"/>
+                                <state key="normal" title="Button" image="ボタン_先生に相談のコピー"/>
                                 <connections>
                                     <action selector="touchDownBtnConsultation:" destination="eIq-Xr-zDS" eventType="touchDown" id="oLw-1s-xzA"/>
                                     <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="g2r-TZ-zpt"/>
@@ -779,7 +789,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ykN-cm-g56" secondAttribute="height" multiplier="529/250" id="wR8-jP-dtA"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="btn_14_back_top"/>
+                                <state key="normal" title="Button" image="ボタン_最初のページのコピー"/>
                                 <connections>
                                     <segue destination="aqh-nv-CCN" kind="show" id="Yzp-WV-oRW"/>
                                 </connections>
@@ -789,7 +799,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yBU-sh-RSK" secondAttribute="height" multiplier="686/253" id="Snt-6U-DXV"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="btn_12_consultation"/>
+                                <state key="normal" title="Button" image="ボタン_先生に相談のコピー"/>
                                 <connections>
                                     <action selector="touchDownBtnConsultation:" destination="Og1-p9-gF9" eventType="touchDown" id="50F-5M-6fP"/>
                                     <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="ajD-2a-HmZ"/>
@@ -921,7 +931,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ZQc-4U-fle" secondAttribute="height" multiplier="529/250" id="ge9-iL-RcI"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="btn_14_back_top"/>
+                                <state key="normal" title="Button" image="ボタン_最初のページのコピー"/>
                                 <connections>
                                     <segue destination="aqh-nv-CCN" kind="show" id="nWs-Py-5z6"/>
                                 </connections>
@@ -931,7 +941,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="BMH-vq-rSd" secondAttribute="height" multiplier="686:253" id="Aei-Nw-e1v"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="btn_12_consultation"/>
+                                <state key="normal" title="Button" image="ボタン_先生に相談のコピー"/>
                                 <connections>
                                     <action selector="touchDownBtnConsultation:" destination="SIg-8U-asc" eventType="touchDown" id="SF8-uM-QHo"/>
                                     <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="FJY-Ht-s9i"/>
@@ -1465,7 +1475,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zdH-om-Xiw" secondAttribute="height" multiplier="529/250" id="gKg-6F-fk4"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="btn_14_back_top"/>
+                                <state key="normal" title="Button" image="ボタン_最初のページ"/>
                                 <connections>
                                     <segue destination="aqh-nv-CCN" kind="show" id="M0E-pf-EoX"/>
                                 </connections>
@@ -1583,7 +1593,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="obS-Of-ErE" secondAttribute="height" multiplier="685/250" id="LLD-Mw-nfA"/>
                                 </constraints>
-                                <state key="normal" title="鑑定" image="btn_07_Appraise"/>
+                                <state key="normal" title="鑑定" image="ボタン_鑑定するのコピー"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="LLD-Mw-nfA"/>
@@ -1622,7 +1632,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Dsk-7a-xwO" secondAttribute="height" multiplier="686/253" id="9iG-fM-C8S"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="btn_12_consultation"/>
+                                <state key="normal" title="Button" image="ボタン_先生に相談のコピー"/>
                                 <connections>
                                     <action selector="touchDownBtnConsultation:" destination="lbR-qQ-xeK" eventType="touchDown" id="s1b-oo-Cre"/>
                                     <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="CDA-hv-7QY"/>
@@ -1860,14 +1870,14 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="o3W-5S-E3Z" secondAttribute="height" multiplier="529/250" id="BfL-2Z-LDD"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="btn_14_back_top"/>
+                                <state key="normal" title="Button" image="ボタン_最初のページのコピー"/>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzr-vm-4xQ" userLabel="btn Consultation">
                                 <rect key="frame" x="40" y="514" width="180" height="72"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="kzr-vm-4xQ" secondAttribute="height" multiplier="686:253" id="jKb-Ir-a9f"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="btn_12_consultation"/>
+                                <state key="normal" title="Button" image="ボタン_先生に相談のコピー"/>
                                 <connections>
                                     <action selector="touchDownBtnConsultation:" destination="tEE-gm-X0U" eventType="touchDown" id="7cj-d4-y1s"/>
                                 </connections>
@@ -2033,7 +2043,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Hbh-bb-h0V" secondAttribute="height" multiplier="529/250" id="urh-pr-taq"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="btn_14_back_top"/>
+                                <state key="normal" title="Button" image="ボタン_最初のページのコピー"/>
                                 <connections>
                                     <segue destination="aqh-nv-CCN" kind="show" id="lOJ-XT-m2a"/>
                                 </connections>
@@ -2043,7 +2053,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="7wr-iy-FYb" secondAttribute="height" multiplier="686/253" id="f48-bz-XQ2"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="btn_12_consultation"/>
+                                <state key="normal" title="Button" image="ボタン_先生に相談のコピー"/>
                                 <connections>
                                     <action selector="touchDownBtnConsultation:" destination="8z2-3R-GBa" eventType="touchDown" id="WVJ-A0-kPV"/>
                                     <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="dIp-DA-xeb"/>
@@ -2163,17 +2173,6 @@
     <resources>
         <image name="backimg_blue" width="69" height="60"/>
         <image name="btn_00_myOtodama" width="239" height="239"/>
-        <image name="btn_01_whats_onryoukanteizyutu" width="686" height="253"/>
-        <image name="btn_02_free_appraisal" width="686" height="253"/>
-        <image name="btn_03_compatibility_diagnosis" width="686" height="254"/>
-        <image name="btn_04_appraisers_profile" width="686" height="253"/>
-        <image name="btn_05_today_murmur" width="686" height="253"/>
-        <image name="btn_06_naming_surgery" width="686" height="254"/>
-        <image name="btn_07_Appraise" width="685" height="250"/>
-        <image name="btn_12_consultation" width="686" height="253"/>
-        <image name="btn_13_receive_mail" width="686" height="253"/>
-        <image name="btn_14_back_top" width="529" height="250"/>
-        <image name="component_00_title" width="1353" height="914"/>
         <image name="component_01_header" width="1440" height="247"/>
         <image name="component_02_footer" width="1440" height="247"/>
         <image name="component_04_yatagarasu" width="1403" height="1040"/>
@@ -2182,9 +2181,21 @@
         <image name="makimono_blue" width="479" height="678"/>
         <image name="maru2" width="289" height="289"/>
         <image name="page_01_whats_Katakamuna" width="1440" height="2560"/>
+        <image name="トップページイメージ" width="1440" height="2560"/>
+        <image name="ボタン_今日のつぶやきのコピー" width="686" height="254"/>
+        <image name="ボタン_先生に相談のコピー" width="686" height="254"/>
+        <image name="ボタン_最初のページ" width="529" height="250"/>
+        <image name="ボタン_最初のページのコピー" width="518" height="254"/>
+        <image name="ボタン_無料音霊鑑定のコピー" width="686" height="254"/>
+        <image name="ボタン_相性診断のコピー" width="686" height="254"/>
+        <image name="ボタン_詳細メールを受信のコピー" width="686" height="254"/>
+        <image name="ボタン_鑑定するのコピー" width="686" height="254"/>
+        <image name="ボタン_鑑定士プロフのコピー" width="686" height="254"/>
+        <image name="ボタン_音霊命名術のコピー" width="686" height="254"/>
+        <image name="ボタン_音霊鑑定術とはのコピー" width="686" height="254"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FJY-Ht-s9i"/>
-        <segue reference="nWs-Py-5z6"/>
+        <segue reference="Tgl-yj-OU9"/>
+        <segue reference="tck-e7-cfV"/>
     </inferredMetricsTieBreakers>
 </document>
