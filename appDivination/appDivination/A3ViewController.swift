@@ -115,9 +115,11 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         return true
     }
     
+    // 入力の確認
     @IBAction func touchDownbtnAppraise(sender: AnyObject) {
         // 名前欄のTextFieldの確認
         if (nameTextField.text!.isEmpty) {
+            // null、空のとき
             print("nameTextField.text is enpty.")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
@@ -128,6 +130,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
             presentViewController(alertController, animated: true, completion: nil)
         } else {
             if !nameTextField.text!.ChackHiraganaOrKatakana() {
+                // ひらがな、カタカナ、空白以外のとき
                 print("nameTextField.text is not hiragana or katakana.")
                 let alertController = UIAlertController(
                     title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
@@ -141,6 +144,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         
         // 誕生日欄のTextFieldの確認
         if (dateTextField.text!.isEmpty) {
+            // null、空のとき
             print("dateTextField.text is not hiragana.")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
@@ -153,6 +157,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         
         // 性別選択の確認
         if (sgCtlSex.selectedSegmentIndex == -1) {
+            // 未選択のとき
             print("sgCtlSex.selectedSegmentIndex == -1")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
@@ -212,6 +217,7 @@ class SampleTextField: UITextField{
 }
 
 // ひらがなチェック用の拡張
+// TODO 定義するクラスを変更する
 extension String {
     func ChackHiraganaOrKatakana() -> Bool {
         var flagKana:Bool = false

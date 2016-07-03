@@ -62,6 +62,7 @@ class A3MidstreamViewController : UIViewController {
         
         // 計算する
         // TODO 特別な結果と、一般を一気にして、一つのStringとして取得している
+        // TODO 前半のメッセージと後半のメッセージ、運気の上がる言葉の３つのストリングを取得する
         let msg:String = divination()
         
         // 3秒後に次の結果画面に遷移する
@@ -79,6 +80,7 @@ class A3MidstreamViewController : UIViewController {
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let next:A3ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A3ResultView") as! A3ResultViewController
         next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        next._messageAAA = msg
         next._message = msg
         self.presentViewController(next, animated: true, completion: nil)
     }
@@ -108,10 +110,9 @@ class A3MidstreamViewController : UIViewController {
     
     
     
-    
     // TODO 特別な結果と、一般を一気にして、一つのStringとして取得している
+    // 占った結果、表示する文章をつくる
     func divination() -> String {
-        
         // 名前は、NSUserDefaultsに保存したのを読み出す
         // NSUserDefaultsオブジェクトを取得
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -122,7 +123,6 @@ class A3MidstreamViewController : UIViewController {
 //            print("userName:\(userName)")
         }
         let characters = userName.characters.map { String($0) }
- 
 
         let kanaData = kanaDataClass()
         var plotResult:[Int] = [0,0,0,0,0,0,0,0]
@@ -157,7 +157,8 @@ class A3MidstreamViewController : UIViewController {
         let message:String = retDivination.specialResult(plotResult)
         
         return message
-        /*
+
+/*
         // プロパティファイルをバインド
         let path = NSBundle.mainBundle().pathForResource("arrays", ofType: "plist")
         // rootがDictionaryなのでNSDictionaryに取り込み

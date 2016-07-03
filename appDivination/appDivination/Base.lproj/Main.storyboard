@@ -31,7 +31,7 @@
                                     <constraint firstAttribute="width" secondItem="PKC-nJ-eUy" secondAttribute="height" multiplier="40:7" id="s68-BZ-nGz"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ec4-g2-KjJ">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ec4-g2-KjJ" userLabel="buttonView">
                                 <rect key="frame" x="27" y="270" width="547" height="257"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0h-rx-IYU" userLabel="音霊鑑定">
@@ -67,9 +67,6 @@
                                             <constraint firstAttribute="width" secondItem="IWf-29-VYV" secondAttribute="height" multiplier="686/253" id="qyI-FW-jgz"/>
                                         </constraints>
                                         <state key="normal" image="ボタン_音霊命名術のコピー"/>
-                                        <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="231" width="173" height="63"/>
-                                        </variation>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PeD-dZ-QEg" userLabel="鑑定士プロフ">
                                         <rect key="frame" x="375" y="0.0" width="172" height="69"/>
@@ -88,9 +85,6 @@
                                             <constraint firstAttribute="width" secondItem="YZl-Dg-xer" secondAttribute="height" multiplier="686/253" id="0R1-y8-rYf"/>
                                         </constraints>
                                         <state key="normal" image="ボタン_音霊鑑定術とはのコピー"/>
-                                        <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="241" y="240" width="135" height="50"/>
-                                        </variation>
                                         <connections>
                                             <action selector="touchDownBtnDescription:" destination="aqh-nv-CCN" eventType="touchDown" id="TLu-w8-91R"/>
                                             <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="2WK-vS-tXM"/>
@@ -98,46 +92,43 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="PeD-dZ-QEg" secondAttribute="trailing" id="2Fb-r4-Drs"/>
+                                    <constraint firstItem="PeD-dZ-QEg" firstAttribute="trailing" secondItem="ec4-g2-KjJ" secondAttribute="trailing" id="2Fb-r4-Drs"/>
                                     <constraint firstItem="L0h-rx-IYU" firstAttribute="leading" secondItem="ec4-g2-KjJ" secondAttribute="leading" id="4vx-ur-Oko"/>
-                                    <constraint firstItem="GbQ-tO-6oy" firstAttribute="top" secondItem="L0h-rx-IYU" secondAttribute="bottom" constant="13" id="5Is-Kb-ZcH"/>
                                     <constraint firstItem="IWf-29-VYV" firstAttribute="width" secondItem="ec4-g2-KjJ" secondAttribute="width" multiplier="0.46" id="9q0-rW-CXD"/>
                                     <constraint firstItem="GbQ-tO-6oy" firstAttribute="width" secondItem="ec4-g2-KjJ" secondAttribute="width" multiplier="0.46" id="AYP-di-HDC"/>
                                     <constraint firstItem="YZl-Dg-xer" firstAttribute="width" secondItem="ec4-g2-KjJ" secondAttribute="width" multiplier="0.36" id="BMR-ba-IHt"/>
-                                    <constraint firstAttribute="leading" secondItem="GbQ-tO-6oy" secondAttribute="leading" id="ION-14-vZC"/>
-                                    <constraint firstItem="ECF-Fg-fn9" firstAttribute="top" secondItem="GbQ-tO-6oy" secondAttribute="bottom" constant="13" id="KKF-42-vKB"/>
+                                    <constraint firstItem="GbQ-tO-6oy" firstAttribute="leading" secondItem="ec4-g2-KjJ" secondAttribute="leading" id="ION-14-vZC"/>
+                                    <constraint firstItem="GbQ-tO-6oy" firstAttribute="bottom" secondItem="ec4-g2-KjJ" secondAttribute="centerY" constant="-8" id="KhI-hh-ldd"/>
                                     <constraint firstItem="YZl-Dg-xer" firstAttribute="trailing" secondItem="ec4-g2-KjJ" secondAttribute="trailing" id="LeG-gr-cDA"/>
                                     <constraint firstItem="PeD-dZ-QEg" firstAttribute="width" secondItem="ec4-g2-KjJ" secondAttribute="width" multiplier="0.36" id="Nk4-aj-fgz"/>
                                     <constraint firstItem="YZl-Dg-xer" firstAttribute="bottom" secondItem="IWf-29-VYV" secondAttribute="bottom" constant="-4" id="T4w-DI-A29"/>
+                                    <constraint firstItem="ECF-Fg-fn9" firstAttribute="top" secondItem="ec4-g2-KjJ" secondAttribute="centerY" constant="7" id="TnM-kL-E0e"/>
                                     <constraint firstItem="L0h-rx-IYU" firstAttribute="top" secondItem="ec4-g2-KjJ" secondAttribute="top" id="VGt-V0-PnP"/>
                                     <constraint firstItem="PeD-dZ-QEg" firstAttribute="bottom" secondItem="ECF-Fg-fn9" secondAttribute="bottom" constant="8" id="WVc-9t-H7y"/>
                                     <constraint firstItem="L0h-rx-IYU" firstAttribute="width" secondItem="ec4-g2-KjJ" secondAttribute="width" multiplier="0.46" id="YhV-1C-GR8"/>
-                                    <constraint firstItem="IWf-29-VYV" firstAttribute="top" secondItem="ECF-Fg-fn9" secondAttribute="bottom" constant="13" id="a4J-M5-Es6"/>
                                     <constraint firstItem="IWf-29-VYV" firstAttribute="leading" secondItem="ec4-g2-KjJ" secondAttribute="leading" id="eLU-Ld-Rwe"/>
                                     <constraint firstItem="ECF-Fg-fn9" firstAttribute="leading" secondItem="ec4-g2-KjJ" secondAttribute="leading" id="hdk-17-kUD"/>
                                     <constraint firstItem="ECF-Fg-fn9" firstAttribute="width" secondItem="ec4-g2-KjJ" secondAttribute="width" multiplier="0.46" id="rD2-SO-n95"/>
-                                    <constraint firstItem="L0h-rx-IYU" firstAttribute="leading" secondItem="IWf-29-VYV" secondAttribute="leading" id="wOK-BV-zCb"/>
+                                    <constraint firstItem="IWf-29-VYV" firstAttribute="bottom" secondItem="ec4-g2-KjJ" secondAttribute="bottom" id="rO6-3p-nRR"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="T4w-DI-A29"/>
-                                        <exclude reference="wOK-BV-zCb"/>
-                                        <exclude reference="KKF-42-vKB"/>
-                                        <exclude reference="WVc-9t-H7y"/>
-                                        <exclude reference="5Is-Kb-ZcH"/>
-                                        <exclude reference="a4J-M5-Es6"/>
+                                        <exclude reference="KhI-hh-ldd"/>
+                                        <exclude reference="TnM-kL-E0e"/>
                                         <exclude reference="eLU-Ld-Rwe"/>
+                                        <exclude reference="rO6-3p-nRR"/>
+                                        <exclude reference="WVc-9t-H7y"/>
+                                        <exclude reference="T4w-DI-A29"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="T4w-DI-A29"/>
-                                        <include reference="wOK-BV-zCb"/>
-                                        <include reference="KKF-42-vKB"/>
-                                        <include reference="WVc-9t-H7y"/>
-                                        <include reference="5Is-Kb-ZcH"/>
-                                        <include reference="a4J-M5-Es6"/>
+                                        <include reference="KhI-hh-ldd"/>
+                                        <include reference="TnM-kL-E0e"/>
                                         <include reference="eLU-Ld-Rwe"/>
+                                        <include reference="rO6-3p-nRR"/>
+                                        <include reference="WVc-9t-H7y"/>
+                                        <include reference="T4w-DI-A29"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -169,14 +160,14 @@
                             <constraint firstItem="4Si-Yt-df7" firstAttribute="width" secondItem="xqx-i4-ngs" secondAttribute="width" id="9Dx-UG-3yU"/>
                             <constraint firstItem="PKC-nJ-eUy" firstAttribute="centerX" secondItem="xqx-i4-ngs" secondAttribute="centerX" id="CPu-gt-hGt"/>
                             <constraint firstItem="ec4-g2-KjJ" firstAttribute="centerX" secondItem="xqx-i4-ngs" secondAttribute="centerX" id="DRl-71-xFE"/>
-                            <constraint firstItem="ec4-g2-KjJ" firstAttribute="bottom" secondItem="dXj-Ha-Kfw" secondAttribute="top" constant="-10" id="FmT-b6-9TT"/>
+                            <constraint firstItem="ec4-g2-KjJ" firstAttribute="bottom" secondItem="dXj-Ha-Kfw" secondAttribute="top" constant="-15" id="FmT-b6-9TT"/>
                             <constraint firstItem="dXj-Ha-Kfw" firstAttribute="bottom" secondItem="xqx-i4-ngs" secondAttribute="bottom" constant="3" id="PH6-3N-YYW"/>
                             <constraint firstItem="PKC-nJ-eUy" firstAttribute="top" secondItem="xqx-i4-ngs" secondAttribute="top" constant="-3" id="RZe-dO-eK8"/>
                             <constraint firstItem="6Tb-pN-kyb" firstAttribute="centerY" secondItem="dXj-Ha-Kfw" secondAttribute="centerY" id="Ry5-FC-Gd3"/>
                             <constraint firstItem="PKC-nJ-eUy" firstAttribute="width" secondItem="xqx-i4-ngs" secondAttribute="width" id="S2j-x0-CIH"/>
                             <constraint firstItem="ec4-g2-KjJ" firstAttribute="centerX" secondItem="xqx-i4-ngs" secondAttribute="centerX" id="XMa-nu-vEF"/>
                             <constraint firstItem="dXj-Ha-Kfw" firstAttribute="centerX" secondItem="xqx-i4-ngs" secondAttribute="centerX" id="YN6-5H-9nr"/>
-                            <constraint firstItem="ec4-g2-KjJ" firstAttribute="top" secondItem="xqx-i4-ngs" secondAttribute="top" constant="312" id="lFl-Br-T4a"/>
+                            <constraint firstItem="ec4-g2-KjJ" firstAttribute="top" secondItem="xqx-i4-ngs" secondAttribute="centerY" constant="-21" id="lFl-Br-T4a"/>
                             <constraint firstItem="ec4-g2-KjJ" firstAttribute="width" secondItem="xqx-i4-ngs" secondAttribute="width" multiplier="0.94" id="otx-uA-Toz"/>
                             <constraint firstItem="4Si-Yt-df7" firstAttribute="centerY" secondItem="xqx-i4-ngs" secondAttribute="centerY" id="wg3-1J-w8g"/>
                         </constraints>
@@ -232,6 +223,12 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="page_01_whats_Katakamuna" translatesAutoresizingMaskIntoConstraints="NO" id="eUP-9t-hgL">
                                 <rect key="frame" x="0.0" y="-979.5" width="600" height="2560"/>
+                                <variation key="heightClass=regular" ambiguous="YES">
+                                    <rect key="frame" x="0.0" y="-880" width="600" height="2560"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES">
+                                    <rect key="frame" x="0.0" y="-880" width="800" height="2560"/>
+                                </variation>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="component_01_header" translatesAutoresizingMaskIntoConstraints="NO" id="yvu-1x-PLv">
                                 <rect key="frame" x="0.0" y="-3" width="600" height="105"/>
@@ -2245,7 +2242,7 @@
         <image name="ボタン_音霊鑑定術とはのコピー" width="686" height="254"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="tck-e7-cfV"/>
         <segue reference="nWs-Py-5z6"/>
-        <segue reference="FJY-Ht-s9i"/>
     </inferredMetricsTieBreakers>
 </document>

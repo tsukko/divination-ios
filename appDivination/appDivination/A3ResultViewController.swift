@@ -39,6 +39,7 @@ class A3ResultViewController : UIViewController {
     /// 遷移時の受け取り用の変数
     var _second:Int = 0
     
+    var _messageAAA:String = "b"
     var _message:String = "b"
     
     /**
