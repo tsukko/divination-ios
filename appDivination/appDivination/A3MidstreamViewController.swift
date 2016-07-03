@@ -45,7 +45,7 @@ class A3MidstreamViewController : UIViewController {
         // 参考：http://dev.classmethod.jp/references/ios-8-cabasicanimation/
         
         // アニメーション時間　2.0秒で設定→1.3秒
-        let duration = 0.2 //1.3    // アニメーション時間 2秒
+        let duration = 0.2 //1.3 デバッグ用に変更   // アニメーション時間 2秒
         let singleTwist = M_PI * 2 // 360度
         
         // 縦回転アニメーション（X軸を中心に回転）
@@ -61,6 +61,7 @@ class A3MidstreamViewController : UIViewController {
         imgYatagarasu.layer.addAnimation(animationGroup, forKey: "moonSaltoAnimation")
         
         // 計算する
+        // TODO 特別な結果と、一般を一気にして、一つのStringとして取得している
         let msg:String = divination()
         
         // 3秒後に次の結果画面に遷移する
@@ -108,7 +109,7 @@ class A3MidstreamViewController : UIViewController {
     
     
     
-    // test
+    // TODO 特別な結果と、一般を一気にして、一つのStringとして取得している
     func divination() -> String {
         
         // 名前は、NSUserDefaultsに保存したのを読み出す
@@ -149,7 +150,7 @@ class A3MidstreamViewController : UIViewController {
         defaults.synchronize()
 
         print("plotResult : \(plotResult)")
-        let message = kanaData.checkResult(plotResult)
+        let message = kanaData.specialResult(plotResult)
  //       print("message : \(message)")
         return message
         /*

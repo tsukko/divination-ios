@@ -141,7 +141,7 @@ class kanaDataClass {
         return sPlot
     }
     
-    func checkResult(plotData:[Int]) -> String {
+    func specialResult(plotData:[Int]) -> String {
         var flagYatanokagami: Int = 0
         var flagHutomani: Bool = true
         var flagMikumari: Int = 0

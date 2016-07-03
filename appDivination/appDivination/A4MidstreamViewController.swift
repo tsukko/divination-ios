@@ -152,7 +152,7 @@ class A4MidstreamViewController : UIViewController {
         }
         
         print("divination plotResult : \(plotResult)")
-        let message = kanaData.checkResult(plotResult)
+        let message = kanaData.specialResult(plotResult)
  //       print("message : \(message)")
         return message
         /*
