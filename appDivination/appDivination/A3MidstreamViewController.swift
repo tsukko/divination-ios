@@ -150,8 +150,12 @@ class A3MidstreamViewController : UIViewController {
         defaults.synchronize()
 
         print("plotResult : \(plotResult)")
-        let message = kanaData.specialResult(plotResult)
+ //       let message = resultDivinationClass.specialResult(plotResult)
  //       print("message : \(message)")
+
+        let retDivination = resultDivinationClass()
+        let message:String = retDivination.specialResult(plotResult)
+        
         return message
         /*
         // プロパティファイルをバインド
