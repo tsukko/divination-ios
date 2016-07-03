@@ -25,6 +25,10 @@ class A3ResultViewController : UIViewController {
     @IBOutlet weak var CircleImageView8: UIImageView!
     @IBOutlet weak var contentView: UIView!
     
+    @IBOutlet weak var lblReakotodama: UILabel!
+    @IBOutlet weak var lblReaResult: UILabel!
+    
+    
     var img: [UIImage] = [
         UIImage(named:"maru1")!,
         UIImage(named:"maru2")!,
@@ -39,8 +43,10 @@ class A3ResultViewController : UIViewController {
     /// 遷移時の受け取り用の変数
     var _second:Int = 0
     
-    var _messageAAA:String = "b"
+    // 前半メッセージ、後半メッセージ、運気のあがある言葉の３種類
+    var _messageAAA:String = ""
     var _message:String = "b"
+    var _messageUnki:String = "b"
     
     /**
      インスタンス化された直後（初回に一度のみ）
@@ -53,7 +59,13 @@ class A3ResultViewController : UIViewController {
         // バック画像の設定
 //        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
         
+        // TODO レア言霊がある場合は表示して、ない場合は非表示とする
+//        if _messageAAA == ""
+        
+        // 特性の表示
         lblMessage.text = _message
+        
+        // 運気の
         
         let defaults = NSUserDefaults.standardUserDefaults()
 //        lblName.text = defaults.stringForKey("userName")!+" さん"

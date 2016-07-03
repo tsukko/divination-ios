@@ -1482,6 +1482,8 @@
                         <outlet property="contentView" destination="WCA-dS-Xud" id="jNp-rL-pA3"/>
                         <outlet property="lblMessage" destination="ZYy-IV-GJu" id="IGe-fx-9e9"/>
                         <outlet property="lblName" destination="mwx-HY-ZKQ" id="Nn4-4R-khP"/>
+                        <outlet property="lblReaResult" destination="g95-CJ-bc2" id="ALv-IJ-bXO"/>
+                        <outlet property="lblReakotodama" destination="M1D-9W-vfP" id="0qK-GW-spr"/>
                         <outlet property="resultBackImage" destination="1Em-RN-YPK" id="VgF-Pp-l7B"/>
                         <outlet property="resultScrollView" destination="ww8-vt-a3V" id="w4b-fi-T1H"/>
                     </connections>
@@ -2242,7 +2244,7 @@
         <image name="ボタン_音霊鑑定術とはのコピー" width="686" height="254"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tck-e7-cfV"/>
+        <segue reference="FJY-Ht-s9i"/>
         <segue reference="nWs-Py-5z6"/>
     </inferredMetricsTieBreakers>
 </document>
