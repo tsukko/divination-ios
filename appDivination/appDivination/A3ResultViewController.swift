@@ -11,7 +11,6 @@ import UIKit
 class A3ResultViewController : UIViewController {
     
 //    @IBOutlet var viewBack: UIView!
-    @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var resultScrollView: UIScrollView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var resultBackImage: UIImageView!
@@ -25,9 +24,14 @@ class A3ResultViewController : UIViewController {
     @IBOutlet weak var CircleImageView8: UIImageView!
     @IBOutlet weak var contentView: UIView!
     
-    @IBOutlet weak var lblReakotodama: UILabel!
-    @IBOutlet weak var lblReaResult: UILabel!
+    @IBOutlet weak var lblTitleRare: UILabel!
+    @IBOutlet weak var lblMessageRare: UILabel!
+    @IBOutlet weak var lblTitleLatter: UILabel!
+    @IBOutlet weak var lblMessageLatter: UILabel!
+    @IBOutlet weak var lblTitleLuckyWord: UILabel!
+    @IBOutlet weak var lblMessageLuckyWord: UILabel!
     
+    @IBOutlet weak var labelHeightConstraintRare: NSLayoutConstraint!
     
     var img: [UIImage] = [
         UIImage(named:"maru1")!,
@@ -59,20 +63,30 @@ class A3ResultViewController : UIViewController {
         // バック画像の設定
 //        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
         
-        // TODO レア言霊がある場合は表示して、ない場合は非表示とする
-//        if _messageAAA == ""
-        
-        // 特性の表示
-        lblMessage.text = _message
-        
-        // 運気の
-        
+        // 占い結果を取得
         let defaults = NSUserDefaults.standardUserDefaults()
-//        lblName.text = defaults.stringForKey("userName")!+" さん"
         let plotResult:[Int] = (defaults.objectForKey("plotResult") as? [Int])!
         
         // 占い結果の円の表示
         displayCycle(plotResult)
+        
+        let retDivination = resultDivinationClass()
+        // レア言霊
+        lblMessageRare.text = retDivination.getMessagRare(plotResult)
+        if lblMessageRare.text!.isEmpty {
+            lblMessageRare.hidden = true
+            lblTitleRare.hidden = true
+            labelHeightConstraintRare.constant = -20
+        } else {
+            lblMessageRare.hidden = false
+            lblTitleRare.hidden = false
+            labelHeightConstraintRare.constant = 10
+        }
+        // あなたの特性の表示
+        lblMessageLatter.text = retDivination.getMessageLatter(plotResult)
+        
+        // 運気を上げる文言の表示
+        lblMessageLuckyWord.text = retDivination.getMessageLuckyWord(plotResult)
         
         //ここで変更しても反映されない
         //changeLayout();
@@ -85,20 +99,20 @@ class A3ResultViewController : UIViewController {
     
     func changeLayout(){
         // 行数無制限
-        lblMessage.numberOfLines = 0
+        lblMessageLatter.numberOfLines = 0
         // サイズを自動調整
-        lblMessage.sizeToFit()
+        lblMessageLatter.sizeToFit()
         
-        let height = CGRectGetHeight(lblMessage.frame)
-        let width = CGRectGetWidth(lblMessage.frame)
+        let height = CGRectGetHeight(lblMessageLatter.frame)
+        let width = CGRectGetWidth(lblMessageLatter.frame)
         print("ラベルの高さ:\(height) 幅:\(width)")
         
         // ボタンの位置取得
-        let midX = CGRectGetMidX(lblMessage.frame)
-        let midY = CGRectGetMidY(lblMessage.frame)
+        let midX = CGRectGetMidX(lblMessageLatter.frame)
+        let midY = CGRectGetMidY(lblMessageLatter.frame)
         print("ボタンの中心のX座業:\(midX) Y座標:\(midY)")
         
-        let newContentHeight = height+midY
+        let newContentHeight = height+midY-80
         
         let SVSize = resultScrollView.frame.size
         self.resultScrollView.contentSize = CGSizeMake(SVSize.width, newContentHeight);

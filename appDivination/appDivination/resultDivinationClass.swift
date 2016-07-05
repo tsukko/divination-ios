@@ -98,39 +98,23 @@ class resultDivinationClass {
 //        print(retDivination)
     }
 
-    // 後半部分のメッセージの取得
-    func getMessage(plotCount:[Int]) -> String {
-        var index:Int = 0
-        var unkiIndex:Int = 0
-        var msgTotal:String = ""
-        var fortuneWordTotal:String = ""
-        for msg in retDivination {
-            if plotCount[index] >= 3 {
-                msgTotal += "・" + msg.message[2]
-            } else if plotCount[index] < 3 && plotCount[index] >= 1 {
-                msgTotal += "・" + msg.message[1]
-            } else  {
-                msgTotal += "・" + msg.message[0]
-                
-                // 運気を上げる言葉をランダムで取得する
-                let randInt = Int(arc4random_uniform(UInt32(msg.fortuneWord.count)))
-         //       mainTitle.text = msg.fortuneWord[randInt]
-                if unkiIndex == 0 {
-                    fortuneWordTotal += msg.fortuneWord[randInt]
-                } else {
-                    fortuneWordTotal += ", " + msg.fortuneWord[randInt]
-                }
-                unkiIndex += 1
-            }
-            index += 1
-        }
- //       return msgTotal + "\n\n" + fortuneWordTotal
-        return msgTotal + "\n\n" + "✩あなたの運気を上げる音✩ \n" + fortuneWordTotal + " など"
-    }
-
     // レア言霊の出力判定、
     // 表示する文を返す。レアではない場合はnullを返す
-    func specialResult(plotData:[Int]) -> String {
+    func getMessagRare(plotData:[Int]) -> String {
+        let type: Int = getTypeRare(plotData)
+        if type == 1 {
+            return "この世に必要な音の響きの全てを持って誕生したあなた。\n皆に分け与え、繋ないでいく役目を持っています。\nただ、すべてを持ち合わせるためか、なかなか個性が見えづらい部分があります。"
+        } else if type == 3 {
+            return "あなたは、なんの使命もたずに生れ出た特殊な存在です。\n五感で感じるこの世には、まるで無のような存在です。\nもしかすると別の次元において大きな意味を持つ、特別な存在なのかもしれません。"
+        } else if type == 2 {
+            return "攻撃と防御を最大限に使うことが出来る、とても強い特殊な言霊です。\nただし、いつも張り詰めていて、ゆるみを持っていないため、常に戦い続けなければならない特性を持ち合わせています。"
+        } else {
+            return ""
+        }
+    }
+    
+    // レア言霊かどうか、タイプを判定する。-1はレアではないことを示す
+    func getTypeRare(plotData:[Int]) -> Int {
         var flagYatanokagami: Int = 0
         var flagHutomani: Bool = true
         var flagMikumari: Int = 0
@@ -144,11 +128,11 @@ class resultDivinationClass {
         
         // 01. ヤタノカガミ： 全てのプロット位置に丸がつく
         if flagYatanokagami == 8 {
-            return "この世に必要な音の響きの全てを持って誕生したあなた。\n皆に分け与え、繋ないでいく役目を持っています。\nただ、すべてを持ち合わせるためか、なかなか個性が見えづらい部分があります。\n\nあなたの運気を上げる音：５０音すべて。"
+            return 1
         }
         // 03. ミクマリ： 丸がひとつもつかない
         if flagMikumari == 8 {
-            return "あなたは、なんの使命もたずに生れ出た特殊な存在です。\n五感で感じるこの世には、まるで無のような存在です。\nもしかすると別の次元において大きな意味を持つ、特別な存在なのかもしれません。\n\nあなたの運気を上げる音：５０音すべて。"
+            return 3
         }
         
         for i in 0...7 {
@@ -167,14 +151,61 @@ class resultDivinationClass {
         
         // 02. フトマニ： 十字の部分にだけ丸がつく
         if flagHutomani {
-            return "攻撃と防御を最大限に使うことが出来る、とても強い特殊な言霊です。\nただし、いつも張り詰めていて、ゆるみを持っていないため、常に戦い続けなければならない特性を持ち合わせています。\n\nあなたの運気を上げる最強の音：ネ"
+            return 2
+        }
+        return -1
+    }
+    
+    // 後半部分のメッセージ、特性について表示する文言の取得
+    func getMessageLatter(plotData:[Int]) -> String {
+        var index:Int = 0
+        var msgTotal:String = ""
+        for msg in retDivination {
+            if plotData[index] >= 3 {
+                msgTotal += "・" + msg.message[2]
+            } else if plotData[index] < 3 && plotData[index] >= 1 {
+                msgTotal += "・" + msg.message[1]
+            } else  {
+                msgTotal += "・" + msg.message[0]
+            }
+            index += 1
         }
         
-        //////////// TODO ここは分ける。上記の3パターンになる場合も、以下の文言の表示チェックを行う必要があるため
-        // 一般的なパターン
-//        let retDivination = resultDivinationClass()
-//        let test123:String = retDivination.getMessage(plotData)
-        
-        return ""
+        return msgTotal
     }
+    
+    // 運気を上げる文言の取得、
+    // TODO 上と共通部分を抜き出したい
+    func getMessageLuckyWord(plotData:[Int]) -> String {
+        let type: Int = getTypeRare(plotData)
+        if type == 1 {
+            return "５０音すべて。"
+        } else if type == 3 {
+            return "５０音すべて。"
+        } else if type == 2 {
+            return "ネ"
+        } else {
+            var index:Int = 0
+            var unkiIndex:Int = 0
+            var fortuneWordTotal:String = ""
+            for msg in retDivination {
+                if plotData[index] >= 3 {
+                } else if plotData[index] < 3 && plotData[index] >= 1 {
+                } else  {
+                    // 運気を上げる言葉をランダムで取得する
+                    let randInt = Int(arc4random_uniform(UInt32(msg.fortuneWord.count)))
+                    if unkiIndex == 0 {
+                        fortuneWordTotal += msg.fortuneWord[randInt]
+                    } else {
+                        fortuneWordTotal += ", " + msg.fortuneWord[randInt]
+                    }
+                    unkiIndex += 1
+                }
+                index += 1
+            }
+            
+            return fortuneWordTotal + " など"
+        }
+    }
+    
 }

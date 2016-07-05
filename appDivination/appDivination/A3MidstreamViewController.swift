@@ -63,14 +63,16 @@ class A3MidstreamViewController : UIViewController {
         // 計算する
         // TODO 特別な結果と、一般を一気にして、一つのStringとして取得している
         // TODO 前半のメッセージと後半のメッセージ、運気の上がる言葉の３つのストリングを取得する
-        let msg:String = divination()
+//        let msg:String = divination()
+        divination()
         
         // 3秒後に次の結果画面に遷移する
         // 第1引数の部分は、タイマーを発生させる間隔です。例えば、0.1なら0.1秒間隔になります。1.0なら1.0秒間隔です。
         // 第2引数の「target」は、タイマー発生時に呼び出すメソッドがあるターゲットを指定します。通常は「self」で大丈夫だと思います。
         // 第3引数の「selector」の部分は、タイマー発生時に呼び出すメソッドを指定します。今回の場合は「onUpdate」を呼び出しています。
         // 2.0で設定していた
-        NSTimer.scheduledTimerWithTimeInterval(0.1,target:self,selector:Selector("transition:"), userInfo: msg, repeats: false)
+        // TODO userInfo: msg を空にした
+        NSTimer.scheduledTimerWithTimeInterval(0.1,target:self,selector:#selector(A3MidstreamViewController.transition(_:)), userInfo: "", repeats: false)
     }
     
     // 3秒後に次の結果画面に遷移する
@@ -111,8 +113,8 @@ class A3MidstreamViewController : UIViewController {
     
     
     // TODO 特別な結果と、一般を一気にして、一つのStringとして取得している
-    // 占った結果、表示する文章をつくる
-    func divination() -> String {
+    // 占った結果をNSUserDefaultsで保存
+    func divination() {
         // 名前は、NSUserDefaultsに保存したのを読み出す
         // NSUserDefaultsオブジェクトを取得
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -127,10 +129,12 @@ class A3MidstreamViewController : UIViewController {
         let kanaData = kanaDataClass()
         var plotResult:[Int] = [0,0,0,0,0,0,0,0]
 
-        // ここでひらがな１文字づつ繰り返し処理
+        // ここで文字を１文字づつ繰り返し処理
         for v in characters {
             for c in v.unicodeScalars {
-                if c.value >= 0x3041 && c.value <= 0x3096 {
+                if (c.value >= 0x3041 && c.value <= 0x3096) ||
+                   (c.value >= 0x30A1 && c.value <= 0x30F6) ||
+                   c.value == 0x0020 || c.value == 0xFF5A {
                     print("ChackHiragana OK: \(v) : \(c.value)")
                     let s = NSString(format:"%2X", c.value) as String
                     var test:[String!] = kanaData.getPlotData("0x" + s)
@@ -153,10 +157,10 @@ class A3MidstreamViewController : UIViewController {
  //       let message = resultDivinationClass.specialResult(plotResult)
  //       print("message : \(message)")
 
-        let retDivination = resultDivinationClass()
-        let message:String = retDivination.specialResult(plotResult)
+//        let retDivination = resultDivinationClass()
+//        let message:String = retDivination.specialResult(plotResult)
         
-        return message
+//        return message
 
 /*
         // プロパティファイルをバインド

@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         //viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
         
         // viewにロングタップのジェスチャーを追加
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: "doGesture:")
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.doGesture(_:)))
         longPressGesture.minimumPressDuration = 1.0
         self.btnTodayTweet.userInteractionEnabled = true
         self.btnTodayTweet.addGestureRecognizer(longPressGesture)

@@ -113,22 +113,22 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="KhI-hh-ldd"/>
+                                        <exclude reference="T4w-DI-A29"/>
                                         <exclude reference="TnM-kL-E0e"/>
+                                        <exclude reference="WVc-9t-H7y"/>
+                                        <exclude reference="KhI-hh-ldd"/>
                                         <exclude reference="eLU-Ld-Rwe"/>
                                         <exclude reference="rO6-3p-nRR"/>
-                                        <exclude reference="WVc-9t-H7y"/>
-                                        <exclude reference="T4w-DI-A29"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="KhI-hh-ldd"/>
+                                        <include reference="T4w-DI-A29"/>
                                         <include reference="TnM-kL-E0e"/>
+                                        <include reference="WVc-9t-H7y"/>
+                                        <include reference="KhI-hh-ldd"/>
                                         <include reference="eLU-Ld-Rwe"/>
                                         <include reference="rO6-3p-nRR"/>
-                                        <include reference="WVc-9t-H7y"/>
-                                        <include reference="T4w-DI-A29"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -966,7 +966,7 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="あなたの音霊をうつす鏡" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwx-HY-ZKQ">
                                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1240,25 +1240,37 @@
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="レア言霊" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1D-9W-vfP">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="レア言霊" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1D-9W-vfP" userLabel="lblTitleRare">
                                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="あなたは、" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g95-CJ-bc2">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="あなたは、" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g95-CJ-bc2" userLabel="lblMessageRare">
                                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="あなたの特性" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xD-Zu-sIv">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="あなたの特性" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xD-Zu-sIv" userLabel="lblTitleLatter">
                                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一般的な常識の型にはまると上手くいきません。¥n努力が実りづらいので、自分の好きなことをしていた方がいい結果がでます。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYy-IV-GJu">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一般的な常識の型にはまると上手くいきません。¥n努力が実りづらいので、自分の好きなことをしていた方がいい結果がでます。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYy-IV-GJu" userLabel="lblMessageLatter">
+                                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✩あなたの運気を上げる音✩" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSW-0X-1yr" userLabel="lblTitleLuckyWord">
+                                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50音すべて。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTZ-gd-2wC" userLabel="lblMessageLuckyWord">
                                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1268,9 +1280,12 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="7xD-Zu-sIv" firstAttribute="top" secondItem="g95-CJ-bc2" secondAttribute="bottom" constant="10" id="2qy-K5-hXO"/>
+                                            <constraint firstItem="UTZ-gd-2wC" firstAttribute="centerX" secondItem="WCA-dS-Xud" secondAttribute="centerX" id="3zY-GF-ccd"/>
                                             <constraint firstItem="OC2-jG-ta6" firstAttribute="centerX" secondItem="WCA-dS-Xud" secondAttribute="centerX" id="8YD-08-WfF"/>
+                                            <constraint firstItem="UTZ-gd-2wC" firstAttribute="width" secondItem="WCA-dS-Xud" secondAttribute="width" multiplier="0.65" id="9qs-Xk-vPF"/>
                                             <constraint firstItem="M1D-9W-vfP" firstAttribute="centerX" secondItem="WCA-dS-Xud" secondAttribute="centerX" id="Aob-8T-YHA"/>
                                             <constraint firstItem="g95-CJ-bc2" firstAttribute="top" secondItem="M1D-9W-vfP" secondAttribute="bottom" id="BPi-zf-da6"/>
+                                            <constraint firstItem="MSW-0X-1yr" firstAttribute="bottom" secondItem="UTZ-gd-2wC" secondAttribute="top" constant="5" id="Bpc-PV-Oxa"/>
                                             <constraint firstItem="g95-CJ-bc2" firstAttribute="width" secondItem="WCA-dS-Xud" secondAttribute="width" multiplier="0.65" id="CXo-3U-ItA"/>
                                             <constraint firstItem="ZYy-IV-GJu" firstAttribute="width" secondItem="WCA-dS-Xud" secondAttribute="width" multiplier="0.65" id="D8S-x9-SrE"/>
                                             <constraint firstItem="mwx-HY-ZKQ" firstAttribute="top" secondItem="WCA-dS-Xud" secondAttribute="top" constant="90" id="GqH-tR-AbU"/>
@@ -1282,10 +1297,13 @@
                                             <constraint firstItem="1Em-RN-YPK" firstAttribute="width" secondItem="WCA-dS-Xud" secondAttribute="width" id="Zd2-ah-JCD"/>
                                             <constraint firstItem="M1D-9W-vfP" firstAttribute="top" secondItem="OC2-jG-ta6" secondAttribute="bottom" constant="10" id="bNI-Xz-19q"/>
                                             <constraint firstItem="7xD-Zu-sIv" firstAttribute="width" secondItem="WCA-dS-Xud" secondAttribute="width" multiplier="0.65" id="bNt-8S-0DX"/>
+                                            <constraint firstItem="ZYy-IV-GJu" firstAttribute="bottom" secondItem="MSW-0X-1yr" secondAttribute="top" constant="10" id="e0l-eo-cYQ"/>
                                             <constraint firstItem="1Em-RN-YPK" firstAttribute="centerX" secondItem="WCA-dS-Xud" secondAttribute="centerX" id="eup-0K-naD"/>
                                             <constraint firstItem="ZYy-IV-GJu" firstAttribute="centerX" secondItem="WCA-dS-Xud" secondAttribute="centerX" id="g7h-PZ-lcH"/>
+                                            <constraint firstItem="MSW-0X-1yr" firstAttribute="centerX" secondItem="WCA-dS-Xud" secondAttribute="centerX" id="pU0-20-Opg"/>
                                             <constraint firstItem="mwx-HY-ZKQ" firstAttribute="centerX" secondItem="WCA-dS-Xud" secondAttribute="centerX" id="r3Y-ly-WIu"/>
-                                            <constraint firstAttribute="height" constant="500" id="r8H-4f-Ril"/>
+                                            <constraint firstAttribute="height" constant="700" id="r8H-4f-Ril"/>
+                                            <constraint firstItem="MSW-0X-1yr" firstAttribute="width" secondItem="WCA-dS-Xud" secondAttribute="width" multiplier="0.65" id="vG7-xr-oPI"/>
                                             <constraint firstItem="mwx-HY-ZKQ" firstAttribute="bottom" secondItem="OC2-jG-ta6" secondAttribute="top" constant="-10" id="xqX-FA-fPg"/>
                                         </constraints>
                                         <variation key="default">
@@ -1297,6 +1315,8 @@
                                                 <exclude reference="g95-CJ-bc2"/>
                                                 <exclude reference="7xD-Zu-sIv"/>
                                                 <exclude reference="ZYy-IV-GJu"/>
+                                                <exclude reference="MSW-0X-1yr"/>
+                                                <exclude reference="UTZ-gd-2wC"/>
                                             </mask>
                                             <mask key="constraints">
                                                 <exclude reference="r8H-4f-Ril"/>
@@ -1306,8 +1326,14 @@
                                                 <exclude reference="Aob-8T-YHA"/>
                                                 <exclude reference="Jf8-cE-8Yi"/>
                                                 <exclude reference="bNI-Xz-19q"/>
+                                                <exclude reference="Bpc-PV-Oxa"/>
+                                                <exclude reference="pU0-20-Opg"/>
+                                                <exclude reference="vG7-xr-oPI"/>
+                                                <exclude reference="3zY-GF-ccd"/>
+                                                <exclude reference="9qs-Xk-vPF"/>
                                                 <exclude reference="D8S-x9-SrE"/>
                                                 <exclude reference="Z21-AP-9Fa"/>
+                                                <exclude reference="e0l-eo-cYQ"/>
                                                 <exclude reference="g7h-PZ-lcH"/>
                                                 <exclude reference="BPi-zf-da6"/>
                                                 <exclude reference="CXo-3U-ItA"/>
@@ -1330,6 +1356,8 @@
                                                 <include reference="g95-CJ-bc2"/>
                                                 <include reference="7xD-Zu-sIv"/>
                                                 <include reference="ZYy-IV-GJu"/>
+                                                <include reference="MSW-0X-1yr"/>
+                                                <include reference="UTZ-gd-2wC"/>
                                             </mask>
                                             <mask key="constraints">
                                                 <include reference="r8H-4f-Ril"/>
@@ -1339,8 +1367,14 @@
                                                 <include reference="Aob-8T-YHA"/>
                                                 <include reference="Jf8-cE-8Yi"/>
                                                 <include reference="bNI-Xz-19q"/>
+                                                <include reference="Bpc-PV-Oxa"/>
+                                                <include reference="pU0-20-Opg"/>
+                                                <include reference="vG7-xr-oPI"/>
+                                                <include reference="3zY-GF-ccd"/>
+                                                <include reference="9qs-Xk-vPF"/>
                                                 <include reference="D8S-x9-SrE"/>
                                                 <include reference="Z21-AP-9Fa"/>
+                                                <include reference="e0l-eo-cYQ"/>
                                                 <include reference="g7h-PZ-lcH"/>
                                                 <include reference="BPi-zf-da6"/>
                                                 <include reference="CXo-3U-ItA"/>
@@ -1480,10 +1514,14 @@
                         <outlet property="CircleImageView7" destination="wGW-ea-HSb" id="yVT-yP-zXl"/>
                         <outlet property="CircleImageView8" destination="rcw-58-ZCq" id="RBf-bP-tqX"/>
                         <outlet property="contentView" destination="WCA-dS-Xud" id="jNp-rL-pA3"/>
-                        <outlet property="lblMessage" destination="ZYy-IV-GJu" id="IGe-fx-9e9"/>
+                        <outlet property="labelHeightConstraintRare" destination="bNI-Xz-19q" id="AST-WK-0lq"/>
+                        <outlet property="lblMessageLatter" destination="ZYy-IV-GJu" id="gTZ-S7-9ih"/>
+                        <outlet property="lblMessageLuckyWord" destination="UTZ-gd-2wC" id="lNo-dg-hxd"/>
+                        <outlet property="lblMessageRare" destination="g95-CJ-bc2" id="1xj-Po-EXR"/>
                         <outlet property="lblName" destination="mwx-HY-ZKQ" id="Nn4-4R-khP"/>
-                        <outlet property="lblReaResult" destination="g95-CJ-bc2" id="ALv-IJ-bXO"/>
-                        <outlet property="lblReakotodama" destination="M1D-9W-vfP" id="0qK-GW-spr"/>
+                        <outlet property="lblTitleLatter" destination="7xD-Zu-sIv" id="hBR-AN-K8m"/>
+                        <outlet property="lblTitleLuckyWord" destination="MSW-0X-1yr" id="czJ-LR-nn2"/>
+                        <outlet property="lblTitleRare" destination="M1D-9W-vfP" id="hHW-0L-tTj"/>
                         <outlet property="resultBackImage" destination="1Em-RN-YPK" id="VgF-Pp-l7B"/>
                         <outlet property="resultScrollView" destination="ww8-vt-a3V" id="w4b-fi-T1H"/>
                     </connections>

@@ -72,7 +72,7 @@ class A4MidstreamViewController : UIViewController {
         let msg:String = divination()
         
         // 3秒後に次の結果画面に遷移する
-        NSTimer.scheduledTimerWithTimeInterval(2.0,target:self,selector:Selector("transition:"), userInfo: msg, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(2.0,target:self,selector:#selector(A4MidstreamViewController.transition(_:)), userInfo: msg, repeats: false)
 
     }
     
@@ -113,8 +113,6 @@ class A4MidstreamViewController : UIViewController {
     }
     
     
-    
-    
     // test
     func divination() -> String {
         
@@ -152,11 +150,12 @@ class A4MidstreamViewController : UIViewController {
         }
         
         print("divination plotResult : \(plotResult)")
-        let retDivination = resultDivinationClass()
-        let message = retDivination.specialResult(plotResult)
-        let test123:String = retDivination.getMessage(plotResult)
+//        let retDivination = resultDivinationClass()
+//        let message = retDivination.specialResult(plotResult)
+//        let test123:String = retDivination.getMessage(plotResult)
  //       print("message : \(message)")
-        return message
+//        return message
+        return ""
         /*
         // プロパティファイルをバインド
         let path = NSBundle.mainBundle().pathForResource("arrays", ofType: "plist")
