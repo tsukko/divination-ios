@@ -244,6 +244,19 @@
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="component_02_footer" translatesAutoresizingMaskIntoConstraints="NO" id="GJy-lA-gXZ">
                                 <rect key="frame" x="0.0" y="498" width="600" height="105"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="69" id="m4c-g4-beq"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="m4c-g4-beq"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="m4c-g4-beq"/>
+                                    </mask>
+                                </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9X-WM-UKx" userLabel="Button_m">
                                 <rect key="frame" x="407" y="554" width="42" height="42"/>
@@ -276,6 +289,28 @@
                                 <state key="normal" title="Btn GoTop" image="ボタン_最初のページのコピー"/>
                                 <connections>
                                     <segue destination="aqh-nv-CCN" kind="show" id="MDb-Xd-QKb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fmr-ax-0ow" userLabel="btn Consultation">
+                                <rect key="frame" x="40" y="514" width="180" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Fmr-ax-0ow" secondAttribute="height" multiplier="686:253" id="bTs-Rc-jC1"/>
+                                    <constraint firstAttribute="height" constant="273" id="zWP-wO-6Qe"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="ボタン_先生に相談のコピー"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="zWP-wO-6Qe"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="zWP-wO-6Qe"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="touchDownBtnConsultation:" destination="eIq-Xr-zDS" eventType="touchDown" id="e3f-gG-zq4"/>
+                                    <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="jBI-xi-5Nn"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLq-4d-VJB">
@@ -322,11 +357,14 @@
                             <constraint firstItem="eUP-9t-hgL" firstAttribute="width" secondItem="T49-5Z-QTn" secondAttribute="width" id="Pzp-sU-dbn"/>
                             <constraint firstItem="GJy-lA-gXZ" firstAttribute="top" secondItem="PLq-4d-VJB" secondAttribute="bottom" constant="8" id="VYM-c4-3g5"/>
                             <constraint firstItem="yvu-1x-PLv" firstAttribute="centerX" secondItem="T49-5Z-QTn" secondAttribute="centerX" id="WP8-aX-hcQ"/>
+                            <constraint firstItem="Fmr-ax-0ow" firstAttribute="height" secondItem="GJy-lA-gXZ" secondAttribute="height" multiplier="0.8" id="Y8V-QV-L5t"/>
                             <constraint firstItem="g9X-WM-UKx" firstAttribute="trailing" secondItem="T49-5Z-QTn" secondAttribute="trailingMargin" id="ZKK-IE-paM"/>
                             <constraint firstItem="8Zg-kR-MnD" firstAttribute="centerX" secondItem="T49-5Z-QTn" secondAttribute="centerX" id="ZuU-ya-s9J"/>
                             <constraint firstItem="gOS-ix-hDh" firstAttribute="leading" secondItem="GJy-lA-gXZ" secondAttribute="leading" constant="30" id="aM9-kC-XJO"/>
+                            <constraint firstItem="Fmr-ax-0ow" firstAttribute="trailing" secondItem="GJy-lA-gXZ" secondAttribute="trailing" constant="-20" id="ank-5D-BUx"/>
                             <constraint firstItem="8Zg-kR-MnD" firstAttribute="bottom" secondItem="yvu-1x-PLv" secondAttribute="bottom" id="ao3-r5-E4u"/>
                             <constraint firstItem="g9X-WM-UKx" firstAttribute="centerY" secondItem="gOS-ix-hDh" secondAttribute="centerY" id="dVM-IX-XOe"/>
+                            <constraint firstItem="Fmr-ax-0ow" firstAttribute="centerY" secondItem="GJy-lA-gXZ" secondAttribute="centerY" id="h3W-99-33K"/>
                             <constraint firstItem="yvu-1x-PLv" firstAttribute="top" secondItem="T49-5Z-QTn" secondAttribute="top" constant="-3" id="lxl-FN-rZw"/>
                             <constraint firstItem="PLq-4d-VJB" firstAttribute="width" secondItem="T49-5Z-QTn" secondAttribute="width" multiplier="0.5" id="nbu-Ay-maN"/>
                             <constraint firstItem="PLq-4d-VJB" firstAttribute="centerX" secondItem="GJy-lA-gXZ" secondAttribute="centerX" id="uco-Fl-9ev"/>
@@ -334,6 +372,7 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="g9X-WM-UKx"/>
+                                <exclude reference="Fmr-ax-0ow"/>
                                 <exclude reference="PLq-4d-VJB"/>
                                 <exclude reference="8Zg-kR-MnD"/>
                             </mask>
@@ -341,10 +380,13 @@
                                 <exclude reference="LLj-5C-daA"/>
                                 <exclude reference="ZuU-ya-s9J"/>
                                 <exclude reference="ao3-r5-E4u"/>
-                                <exclude reference="VYM-c4-3g5"/>
-                                <exclude reference="Bvy-vD-KzT"/>
                                 <exclude reference="nbu-Ay-maN"/>
                                 <exclude reference="uco-Fl-9ev"/>
+                                <exclude reference="VYM-c4-3g5"/>
+                                <exclude reference="Y8V-QV-L5t"/>
+                                <exclude reference="ank-5D-BUx"/>
+                                <exclude reference="h3W-99-33K"/>
+                                <exclude reference="Bvy-vD-KzT"/>
                                 <exclude reference="ZKK-IE-paM"/>
                                 <exclude reference="dVM-IX-XOe"/>
                                 <exclude reference="EYD-BF-Tc6"/>
@@ -353,6 +395,7 @@
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="g9X-WM-UKx"/>
+                                <include reference="Fmr-ax-0ow"/>
                                 <include reference="PLq-4d-VJB"/>
                                 <include reference="8Zg-kR-MnD"/>
                             </mask>
@@ -360,10 +403,13 @@
                                 <include reference="LLj-5C-daA"/>
                                 <include reference="ZuU-ya-s9J"/>
                                 <include reference="ao3-r5-E4u"/>
-                                <include reference="VYM-c4-3g5"/>
-                                <include reference="Bvy-vD-KzT"/>
                                 <include reference="nbu-Ay-maN"/>
                                 <include reference="uco-Fl-9ev"/>
+                                <include reference="VYM-c4-3g5"/>
+                                <include reference="Y8V-QV-L5t"/>
+                                <include reference="ank-5D-BUx"/>
+                                <include reference="h3W-99-33K"/>
+                                <include reference="Bvy-vD-KzT"/>
                                 <include reference="ZKK-IE-paM"/>
                                 <include reference="dVM-IX-XOe"/>
                                 <include reference="EYD-BF-Tc6"/>
@@ -373,6 +419,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="btnConsultation" destination="Fmr-ax-0ow" id="dLt-K0-T1q"/>
                         <outlet property="btnReceiveMail" destination="PLq-4d-VJB" id="peq-4G-YqP"/>
                         <outlet property="image_back" destination="eUP-9t-hgL" id="hAF-Jt-kMP"/>
                         <outlet property="naviBar" destination="8Zg-kR-MnD" id="nCb-4m-wTc"/>
@@ -380,7 +427,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q1o-ui-sG7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="-71"/>
+            <point key="canvasLocation" x="639" y="-61"/>
         </scene>
         <!--A3VIew-->
         <scene sceneID="Z5y-O4-zxj">
@@ -3314,6 +3361,7 @@
         <image name="maru2" width="289" height="289"/>
         <image name="トップページイメージ" width="1440" height="2560"/>
         <image name="ボタン_今日のつぶやきのコピー" width="686" height="254"/>
+        <image name="ボタン_先生に相談のコピー" width="686" height="254"/>
         <image name="ボタン_先生の説明のコピー" width="686" height="254"/>
         <image name="ボタン_最初のページ" width="529" height="250"/>
         <image name="ボタン_最初のページのコピー" width="518" height="254"/>
@@ -3327,8 +3375,8 @@
         <image name="説明ページ＿先生プロフ" width="1440" height="2560"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nWs-Py-5z6"/>
-        <segue reference="FJY-Ht-s9i"/>
-        <segue reference="g9Z-A6-7ss"/>
+        <segue reference="MDb-Xd-QKb"/>
+        <segue reference="g2r-TZ-zpt"/>
+        <segue reference="8Ge-4t-3jW"/>
     </inferredMetricsTieBreakers>
 </document>

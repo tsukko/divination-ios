@@ -27,7 +27,7 @@ import MessageUI
 class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var image_back: UIImageView!
-//    @IBOutlet weak var btnConsultation: UIButton!
+    @IBOutlet weak var btnConsultation: UIButton!
     @IBOutlet weak var btnReceiveMail: UIButton!
     @IBOutlet weak var naviBar: UINavigationBar!
     
@@ -53,37 +53,37 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
             // 鑑定士プロフィールを押した時
             image_back.image = UIImage(named: "説明ページ＿先生プロフ")
             btnReceiveMail.hidden = true
-//            btnConsultation.hidden = false
+            btnConsultation.hidden = false
         } else if _second == 1  {
             // 音霊鑑定術とは？を押した時
             image_back.image = UIImage(named: "説明ページ＿カタカムナとは？")
             btnReceiveMail.hidden = true
-//            btnConsultation.hidden = false
+            btnConsultation.hidden = false
         } else if _second == 2  {
             // 池田先生の説明を聞く(説明ページ＿音霊鑑定)
             image_back.image = UIImage(named: "説明ページ＿音霊鑑定")
             btnReceiveMail.hidden = true
-//            btnConsultation.hidden = false
+            btnConsultation.hidden = false
         } else if _second == 3  {
             // 池田先生の説明を聞く(説明ページ＿今日のつぶやき)を押した時
             image_back.image = UIImage(named: "説明ページ＿今日のつぶやき")
             btnReceiveMail.hidden = true
-//            btnConsultation.hidden = false
+            btnConsultation.hidden = false
         } else if _second == 4  {
             // 池田先生の説明を聞く(説明ページ＿相性診断)を押した時
             image_back.image = UIImage(named: "説明ページ＿相性診断")
             btnReceiveMail.hidden = true
-//            btnConsultation.hidden = false
+            btnConsultation.hidden = false
         } else if _second == 5  {
             // 池田先生の説明を聞く(説明ページ＿命名術)を押した時
             image_back.image = UIImage(named: "説明ページ＿命名術")
             btnReceiveMail.hidden = true
-//            btnConsultation.hidden = false
+            btnConsultation.hidden = false
         } else if _second == 6  {
             // 池田先生に相談するを押した時
-            image_back.image = UIImage(named: "ページ_鑑定依頼")
+            image_back.image = UIImage(named: "ページ_鑑定依頼")
             btnReceiveMail.hidden = false
-//            btnConsultation.hidden = true
+            btnConsultation.hidden = true
         }  else {
             // その他　ここはこない
         }
