@@ -47,7 +47,7 @@ class A3MidstreamViewController : UIViewController {
         if let _ = defaults.stringForKey("userName") {
             // NSUserDefaultsに格納された値を取得
             userName = defaults.stringForKey("userName")!
-            print("userName:\(userName)")
+            print("A3MidstreamViewController viewDidLoad userName:\(userName)")
         }
     }
     
@@ -89,10 +89,20 @@ class A3MidstreamViewController : UIViewController {
         let msg = timer.userInfo as! String
         
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        // TODO ここで共通化する！！！！！！！！！！
+        if _paramOriginal == 3 {
+            // 無料言霊鑑定結果画面
+        } else if _paramOriginal == 4 {
+            // 今日のつぶやき結果画面
+        } else if _paramOriginal == 5 {
+            // 相性診断結果画面
+        } else if _paramOriginal == 6 {
+            // 命名術結果画面
+        }
         let next:A3ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A3ResultView") as! A3ResultViewController
         next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-        next._messageAAA = msg
-        next._message = msg
+//        next._messageAAA = msg
+//        next._message = msg
         self.presentViewController(next, animated: true, completion: nil)
     }
     
@@ -120,6 +130,7 @@ class A3MidstreamViewController : UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    // TODO resultDivinationClassに移す
     // 占った結果をNSUserDefaultsで保存
     func divination() {
         // 名前は、NSUserDefaultsに保存したのを読み出す
@@ -129,7 +140,7 @@ class A3MidstreamViewController : UIViewController {
         if let _ = defaults.stringForKey("userName") {
             // NSUserDefaultsに格納された値を取得
             userName = defaults.stringForKey("userName")!
-//            print("userName:\(userName)")
+//            print("divination userName:\(userName)")
         }
         let characters = userName.characters.map { String($0) }
 
@@ -155,12 +166,12 @@ class A3MidstreamViewController : UIViewController {
                 }
             }
         }
-        
+
         // プロットの結果を保存、無料言霊鑑定結果画面
         defaults.setObject(plotResult, forKey: "plotResult")
         defaults.synchronize()
 
-        print("plotResult : \(plotResult)")
+        print("divination plotResult : \(plotResult)")
     }
 }
 

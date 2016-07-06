@@ -1,5 +1,5 @@
 //
-//  A4ResultViewController.swift
+//  A5ResultViewController.swift
 //  appDivination
 //
 //  Created by Norizou on 2015/12/22.
@@ -9,15 +9,15 @@
 import UIKit
 
 /*
- * 今日のつぶやき結果画面
+ * 相性診断結果画面
  * 遷移先
- * 　池田先生の説明を聞く(説明ページ＿今日のつぶやき)
+ * 　池田先生の説明を聞く(説明ページ＿相性診断)
  * 　戻る（略）
  * 遷移元
- * 　今日のつぶやきアニメーション画面
+ * 　相性診断アニメーション画面
  * 　トップ画面（右下のボタン）
  */
-class A4ResultViewController : UIViewController {
+class A5ResultViewController : UIViewController {
     
 //    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var lblMessage: UILabel!
@@ -26,7 +26,7 @@ class A4ResultViewController : UIViewController {
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
     // 画面遷移時に遷移元が渡す遷移元の値　（TODO final値）
-    var _paramOriginal:Int = 4
+    var _paramOriginal:Int = 5
     // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
 
@@ -36,25 +36,21 @@ class A4ResultViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("A4ResultViewController viewDidLoad)
+        print("A5ResultViewController viewDidLoad)
   
-        // 名前部分の表示
         let defaults = NSUserDefaults.standardUserDefaults()
-        lblName.text = defaults.stringForKey("userName")!+" さんの"
         
-        // TODO 名前の下に"今日の運気を上げるつぶやきは．．．"を表示
+        // TODO "音霊相性診断結果"を表示
 
-		// 運気を上げるつぶやき文字の取得とセット
-        let plotResult:[Int] = (defaults.objectForKey("plotResult") as? [Int])!
+		// 点数のセット
+		// TODO plotResultは人数分必要、getCompatibilityScoreの引数も配列で
+		let plotResult:[Int] = (defaults.objectForKey("plotResult") as? [Int])!
 		let retDivination = resultDivinationClass()
-		lblMessage.text = retDivination.getTodayLuckyWord(userName, plotResult)
-
-		// TODO 下に表示
-        // "声に出してつぶやくとより運気も高まります！"
+		lblMessage.text = retDivination.getCompatibilityScore(plotResult)
     }
     
     // 画面が表示された直後
-    override func viewDidAppear(animated:Bool) {     
+    override func viewDidAppear(animated:Bool) {
         changeLayout();
     }
 
@@ -64,7 +60,7 @@ class A4ResultViewController : UIViewController {
     
     // 説明を聞くボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
-        _param = 3
+        _param = 4
         performSegueWithIdentifier("segue",sender: nil)
     }
     

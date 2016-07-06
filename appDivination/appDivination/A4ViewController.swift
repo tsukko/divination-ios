@@ -37,7 +37,7 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
     
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
-    // 画面遷移時に遷移元が渡す遷移元の値
+    // 画面遷移時に遷移元が渡す遷移元の値　（TODO final値）
     var _paramOriginal:Int = 4
     // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
@@ -55,13 +55,9 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("A4ViewController viewDidLoad")
-        
-        // バック画像の設定
-//        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
-        
+
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
-        
-        
+
         // テキストフィールドにDatePickerを表示する
         datePicker1 = UIDatePicker()
         datePicker1.addTarget(self, action: "changedDateEvent:", forControlEvents: UIControlEvents.ValueChanged)
@@ -93,13 +89,20 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
         
         dateTextField.inputAccessoryView = toolBar
 */
+        // 保存していた情報の復元
+        // TODO 無料音霊鑑定と共通？？？？
+        let defaults = NSUserDefaults.standardUserDefaults()
+        nameTextField.text = defaults.stringForKey("userName")
+        dateTextField.text = defaults.stringForKey("birthday")
+        sgCtlSex.selectedSegmentIndex = defaults.integerForKey("sex")
+        
         // nameTextField の情報を受け取るための delegate を設定
         nameTextField.delegate = self
     }
     
     // 相談ボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
-        _param = 2
+        _param = 3
         performSegueWithIdentifier("segue",sender: nil)
     }
     
@@ -109,6 +112,7 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
+            secondViewController._paramOriginal = _paramOriginal
         }
     }
     
@@ -128,9 +132,11 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
         return true
     }
     
+    // 入力の確認
     @IBAction func touchDownbtnAppraise(sender: AnyObject) {
         // 名前欄のTextFieldの確認
         if (nameTextField.text!.isEmpty) {
+            // null、空のとき
             print("nameTextField.text is enpty.")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
@@ -141,7 +147,8 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
             presentViewController(alertController, animated: true, completion: nil)
         } else {
             if !nameTextField.text!.ChackHiraganaOrKatakana() {
-                print("nameTextField.text is not hiragana.")
+                // ひらがな、カタカナ、空白以外のとき
+                print("nameTextField.text is not hiragana or katakana.")
                 let alertController = UIAlertController(
                     title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
                     message: NSLocalizedString("errorMsgNameKana", tableName: "main", comment: ""),
@@ -154,6 +161,7 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
         
         // 誕生日欄のTextFieldの確認
         if (dateTextField.text!.isEmpty) {
+            // null、空のとき
             print("dateTextField.text is not hiragana.")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
@@ -166,6 +174,7 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
         
         // 性別選択の確認
         if (sgCtlSex.selectedSegmentIndex == -1) {
+            // 未選択のとき
             print("sgCtlSex.selectedSegmentIndex == -1")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
@@ -215,7 +224,7 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
     }
 }
-/*
+
 // コピーやペーストなどのメニューを非表示にするための拡張
 class SampleTextField: UITextField{
     override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
@@ -225,17 +234,21 @@ class SampleTextField: UITextField{
 }
 
 // ひらがなチェック用の拡張
+// TODO 定義するクラスを変更する
 extension String {
-    func ChackHiragana() -> Bool {
+    func ChackHiraganaOrKatakana() -> Bool {
         var flagKana:Bool = false
         
         // 文字列を表現するUInt32
         for c in unicodeScalars {
-            if c.value >= 0x3041 && c.value <= 0x3096 {
-                print("ChackHiragana OK")
+            // ひらがな、もしくは、カタカナ、半角空白、全角空白であること
+            if (c.value >= 0x3041 && c.value <= 0x3096) ||
+                (c.value >= 0x30A1 && c.value <= 0x30F6) ||
+                c.value == 0x0020 || c.value == 0xFF5A {
+       //         print("ChackHiragana OK")
                 flagKana = true
             } else {
-                print("ChackHiragana NG")
+                print("ChackHiragana NG : \(c.value)")
                 flagKana = false
                 break
             }
@@ -244,4 +257,3 @@ extension String {
         return flagKana
     }
 }
-*/

@@ -98,6 +98,57 @@ class resultDivinationClass {
 //        print(retDivination)
     }
 
+    // 占った結果をNSUserDefaultsで保存
+    func divination() {
+        // 名前は、NSUserDefaultsに保存したのを読み出す
+        // NSUserDefaultsオブジェクトを取得
+        let defaults = NSUserDefaults.standardUserDefaults()
+        // すでに名前が設定されていたら今日の運勢を行うボタンを表示する
+        if let _ = defaults.stringForKey("userName") {
+            // NSUserDefaultsに格納された値を取得
+            userName = defaults.stringForKey("userName")!
+//            print("divination userName:\(userName)")
+        }
+        
+        var plotResult:[Int] = [0,0,0,0,0,0,0,0]
+        plotResult = divinationReturnResult(userName)
+        
+        // プロットの結果を保存、無料言霊鑑定結果画面
+        defaults.setObject(plotResult, forKey: "plotResult")
+        defaults.synchronize()
+
+        print("divination plotResult : \(plotResult)")
+    }
+    
+    // 占った結果をInt配列で返却
+    func divinationReturnResult(userName:String) -> plotResult:[Int] {
+        let characters = userName.characters.map { String($0) }
+
+        let kanaData = kanaDataClass()
+        var plotResult:[Int] = [0,0,0,0,0,0,0,0]
+
+        // ここで文字を１文字づつ繰り返し処理
+        for v in characters {
+            for c in v.unicodeScalars {
+                if (c.value >= 0x3041 && c.value <= 0x3096) ||
+                   (c.value >= 0x30A1 && c.value <= 0x30F6) ||
+                   c.value == 0x0020 || c.value == 0xFF5A {
+                    print("ChackHiragana OK: \(v) : \(c.value)")
+                    let s = NSString(format:"%2X", c.value) as String
+                    var test:[String!] = kanaData.getPlotData("0x" + s)
+                    for i in 0...7 {
+                        plotResult[i] += Int(test[i])!
+                    }
+                } else {
+                    // ここに来るまでに判定しているので、ここは通らない想定
+                    print("ChackHiragana NG")
+                    break
+                }
+            }
+        }
+        return plotResult
+    }
+
     // レア言霊の出力判定、
     // 表示する文を返す。レアではない場合はnullを返す
     func getMessagRare(plotData:[Int]) -> String {
@@ -208,4 +259,42 @@ class resultDivinationClass {
         }
     }
     
+    // 今日のつぶやきの結果文言の取得、
+    func getTodayLuckyWord(userName:String, plotData:[Int]) -> String {
+        var flagYatanokagami: Int = 0
+        var flagHutomani: Bool = true
+        var flagMikumari: Int = 0
+        var userNameNew: String = userName
+            for i in 0...7 {
+            if plotData[i] > 0 {
+                flagYatanokagami += 1
+            } else {
+				// a: 丸が付かない場所を埋める言葉を洗い出す
+				// b: その中からランダムに一文字決め、名前にその文字を足し合わせる
+				// userNameNew に一文字追加
+            }
+        }
+        
+        // 全てのプロット位置に丸がつくようになると終わり
+        if flagYatanokagami == 8 {
+            return "埋め終えるまでに引用した全ての言葉をランダムに並び替える"
+        } else {
+            // c: 音の鏡を確認し、まだ丸が付いて居ない箇所があれば、aからやり直す
+            getTodayLuckyWord(divinationReturnResult(userNameNew)) 
+        }
+        
+         return "ここは来ない想定"
+    }
+    
+    // 相性診断の結果文言の取得
+	// TODO plotResultは人数分必要、getCompatibilityScoreの引数も配列で
+    func getCompatibilityScore(plotData:[Int]) -> String {
+    	return ""
+    }
+    
+    // 命名術の結果文言の取得
+	// TODO plotResultは2人分必要、getNamingの引数も配列で
+    func getNaming(plotData:[Int]) -> String {
+    	return ""
+    }
 }
