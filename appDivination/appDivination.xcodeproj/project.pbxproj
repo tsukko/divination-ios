@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C61A5DF1D2D71AA007CDB0A /* A5ResultVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C61A5DE1D2D71AA007CDB0A /* A5ResultVIewController.swift */; };
+		8C61A5E51D2D71BA007CDB0A /* A5ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C61A5E11D2D71BA007CDB0A /* A5ViewController.swift */; };
+		8C61A5E61D2D71BA007CDB0A /* A6ResultVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C61A5E21D2D71BA007CDB0A /* A6ResultVIewController.swift */; };
+		8C61A5E71D2D71BA007CDB0A /* A6ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C61A5E31D2D71BA007CDB0A /* A6ViewController.swift */; };
 		8C7AFC4E1C3D6919007E7785 /* kanaDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7AFC4C1C3D6919007E7785 /* kanaDataClass.swift */; };
 		8C7AFC4F1C3D6919007E7785 /* resultDivinationClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7AFC4D1C3D6919007E7785 /* resultDivinationClass.swift */; };
-		8C837B391C70EEFC0087589D /* A3MidstreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C837B381C70EEFC0087589D /* A3MidstreamViewController.swift */; };
-		8C837B3E1C70EFE60087589D /* A4MidstreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C837B3B1C70EFE60087589D /* A4MidstreamViewController.swift */; };
+		8C837B391C70EEFC0087589D /* MidstreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C837B381C70EEFC0087589D /* MidstreamViewController.swift */; };
 		8C837B461C70F7620087589D /* A3ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C837B441C70F7620087589D /* A3ResultViewController.swift */; };
 		8C837B471C70F7620087589D /* A4ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C837B451C70F7620087589D /* A4ResultViewController.swift */; };
 		8C837B491C780FF70087589D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C837B481C780FF70087589D /* MessageUI.framework */; };
@@ -46,10 +49,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8C61A5DE1D2D71AA007CDB0A /* A5ResultVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = A5ResultVIewController.swift; sourceTree = "<group>"; };
+		8C61A5E11D2D71BA007CDB0A /* A5ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = A5ViewController.swift; sourceTree = "<group>"; };
+		8C61A5E21D2D71BA007CDB0A /* A6ResultVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = A6ResultVIewController.swift; sourceTree = "<group>"; };
+		8C61A5E31D2D71BA007CDB0A /* A6ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = A6ViewController.swift; sourceTree = "<group>"; };
 		8C7AFC4C1C3D6919007E7785 /* kanaDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = kanaDataClass.swift; sourceTree = "<group>"; };
 		8C7AFC4D1C3D6919007E7785 /* resultDivinationClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resultDivinationClass.swift; sourceTree = "<group>"; };
-		8C837B381C70EEFC0087589D /* A3MidstreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = A3MidstreamViewController.swift; sourceTree = "<group>"; };
-		8C837B3B1C70EFE60087589D /* A4MidstreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = A4MidstreamViewController.swift; sourceTree = "<group>"; };
+		8C837B381C70EEFC0087589D /* MidstreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MidstreamViewController.swift; sourceTree = "<group>"; };
 		8C837B441C70F7620087589D /* A3ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = A3ResultViewController.swift; sourceTree = "<group>"; };
 		8C837B451C70F7620087589D /* A4ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = A4ResultViewController.swift; sourceTree = "<group>"; };
 		8C837B481C780FF70087589D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -127,11 +133,14 @@
 				8CE368E91BEF283E00CC7A35 /* ViewController.swift */,
 				8C8BD9B81C28763600640DC8 /* A2ViewController.swift */,
 				8C8BD9BA1C2876DA00640DC8 /* A3ViewController.swift */,
-				8C837B381C70EEFC0087589D /* A3MidstreamViewController.swift */,
+				8C837B381C70EEFC0087589D /* MidstreamViewController.swift */,
 				8C837B441C70F7620087589D /* A3ResultViewController.swift */,
-				8C8BD9BC1C28882600640DC8 /* A4ViewController.swift */,
-				8C837B3B1C70EFE60087589D /* A4MidstreamViewController.swift */,
 				8C837B451C70F7620087589D /* A4ResultViewController.swift */,
+				8C61A5DE1D2D71AA007CDB0A /* A5ResultVIewController.swift */,
+				8C8BD9BC1C28882600640DC8 /* A4ViewController.swift */,
+				8C61A5E11D2D71BA007CDB0A /* A5ViewController.swift */,
+				8C61A5E21D2D71BA007CDB0A /* A6ResultVIewController.swift */,
+				8C61A5E31D2D71BA007CDB0A /* A6ViewController.swift */,
 				8C7AFC4C1C3D6919007E7785 /* kanaDataClass.swift */,
 				8C7AFC4D1C3D6919007E7785 /* resultDivinationClass.swift */,
 				8CE368EB1BEF283E00CC7A35 /* Main.storyboard */,
@@ -300,12 +309,15 @@
 				8CE368E81BEF283E00CC7A35 /* AppDelegate.swift in Sources */,
 				8CE368EA1BEF283E00CC7A35 /* ViewController.swift in Sources */,
 				8C8BD9B91C28763600640DC8 /* A2ViewController.swift in Sources */,
+				8C61A5DF1D2D71AA007CDB0A /* A5ResultVIewController.swift in Sources */,
 				8C837B461C70F7620087589D /* A3ResultViewController.swift in Sources */,
 				8C8BD9BB1C2876DA00640DC8 /* A3ViewController.swift in Sources */,
-				8C837B3E1C70EFE60087589D /* A4MidstreamViewController.swift in Sources */,
-				8C837B391C70EEFC0087589D /* A3MidstreamViewController.swift in Sources */,
+				8C61A5E71D2D71BA007CDB0A /* A6ViewController.swift in Sources */,
+				8C837B391C70EEFC0087589D /* MidstreamViewController.swift in Sources */,
 				8C837B471C70F7620087589D /* A4ResultViewController.swift in Sources */,
 				8C8BD9BD1C28882600640DC8 /* A4ViewController.swift in Sources */,
+				8C61A5E51D2D71BA007CDB0A /* A5ViewController.swift in Sources */,
+				8C61A5E61D2D71BA007CDB0A /* A6ResultVIewController.swift in Sources */,
 				8C7AFC4E1C3D6919007E7785 /* kanaDataClass.swift in Sources */,
 				8C7AFC4F1C3D6919007E7785 /* resultDivinationClass.swift in Sources */,
 			);

@@ -36,7 +36,7 @@ class A6ResultViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("A6ResultViewController viewDidLoad)
+        print("A6ResultViewController viewDidLoad")
   
         let defaults = NSUserDefaults.standardUserDefaults()
         

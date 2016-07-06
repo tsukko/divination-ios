@@ -100,6 +100,7 @@ class resultDivinationClass {
 
     // 占った結果をNSUserDefaultsで保存
     func divination() {
+        var userName:String = ""
         // 名前は、NSUserDefaultsに保存したのを読み出す
         // NSUserDefaultsオブジェクトを取得
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -108,20 +109,19 @@ class resultDivinationClass {
             // NSUserDefaultsに格納された値を取得
             userName = defaults.stringForKey("userName")!
 //            print("divination userName:\(userName)")
-        }
-        
-        var plotResult:[Int] = [0,0,0,0,0,0,0,0]
-        plotResult = divinationReturnResult(userName)
-        
-        // プロットの結果を保存、無料言霊鑑定結果画面
-        defaults.setObject(plotResult, forKey: "plotResult")
-        defaults.synchronize()
 
-        print("divination plotResult : \(plotResult)")
+            var plotResult:[Int] = [0,0,0,0,0,0,0,0]
+            plotResult = divinationReturnResult(userName)
+            
+            // プロットの結果を保存、無料言霊鑑定結果画面
+            defaults.setObject(plotResult, forKey: "plotResult")
+            defaults.synchronize()
+            print("divination plotResult : \(plotResult)")
+        }
     }
     
     // 占った結果をInt配列で返却
-    func divinationReturnResult(userName:String) -> plotResult:[Int] {
+    func divinationReturnResult(userName:String) -> Array<Int> {
         let characters = userName.characters.map { String($0) }
 
         let kanaData = kanaDataClass()
@@ -262,9 +262,9 @@ class resultDivinationClass {
     // 今日のつぶやきの結果文言の取得、
     func getTodayLuckyWord(userName:String, plotData:[Int]) -> String {
         var flagYatanokagami: Int = 0
-        var flagHutomani: Bool = true
-        var flagMikumari: Int = 0
-        var userNameNew: String = userName
+//        var flagHutomani: Bool = true
+//        var flagMikumari: Int = 0
+        let userNameNew: String = userName
             for i in 0...7 {
             if plotData[i] > 0 {
                 flagYatanokagami += 1
@@ -280,7 +280,7 @@ class resultDivinationClass {
             return "埋め終えるまでに引用した全ての言葉をランダムに並び替える"
         } else {
             // c: 音の鏡を確認し、まだ丸が付いて居ない箇所があれば、aからやり直す
-            getTodayLuckyWord(divinationReturnResult(userNameNew)) 
+            getTodayLuckyWord(userNameNew, plotData: divinationReturnResult(userNameNew))
         }
         
          return "ここは来ない想定"

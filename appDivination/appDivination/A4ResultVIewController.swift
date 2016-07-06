@@ -36,18 +36,21 @@ class A4ResultViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("A4ResultViewController viewDidLoad)
-  
+        print("A4ResultViewController viewDidLoad")
+ 
+        var userName:String = ""
+        
         // 名前部分の表示
         let defaults = NSUserDefaults.standardUserDefaults()
-        lblName.text = defaults.stringForKey("userName")!+" さんの"
+        userName = defaults.stringForKey("userName")! + " さんの"
+        lblName.text = userName
         
         // TODO 名前の下に"今日の運気を上げるつぶやきは．．．"を表示
 
 		// 運気を上げるつぶやき文字の取得とセット
         let plotResult:[Int] = (defaults.objectForKey("plotResult") as? [Int])!
 		let retDivination = resultDivinationClass()
-		lblMessage.text = retDivination.getTodayLuckyWord(userName, plotResult)
+		lblMessage.text = retDivination.getTodayLuckyWord(userName, plotData: plotResult)
 
 		// TODO 下に表示
         // "声に出してつぶやくとより運気も高まります！"

@@ -1,5 +1,5 @@
 //
-//  A4MidstreamViewController.swift
+//  A3MidstreamViewController.swift
 //  appDivination
 //
 //  Created by Norizou on 2015/12/22.
@@ -8,26 +8,24 @@
 
 import UIKit
 
-
-// TODO これ、あとで、A3MidstreamViewControllerと共通化すること
 /*
- * 今日のつぶやきアニメーション画面
+ * 無料言霊鑑定アニメーション画面
  * 遷移先ページ
  * 　自動遷移
- * 　池田先生の説明を聞く(説明ページ＿今日のつぶやき)
+ * 　池田先生の説明を聞く(説明ページ＿音霊鑑定)
  * 　戻る（略）
  * 遷移元ページ
  * 　無料言霊鑑定入力画面
  */
-class A4MidstreamViewController : UIViewController {
-
+class MidstreamViewController : UIViewController {
+    
 //    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var imgYatagarasu: UIImageView!
     
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
     // 画面遷移時に遷移元が渡す遷移元の値　（TODO final値）
-    var _paramOriginal:Int = 4
+    var _paramOriginal:Int = -1
     // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
     // ユーザー名 今日の運勢のボタンを表示するかどうか
@@ -39,7 +37,7 @@ class A4MidstreamViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("A4MidstreamViewController viewDidLoad")
+        print("MidstreamViewController viewDidLoad:_paramOriginal:\(_paramOriginal)")
         
         // TODO 鑑定、そのために前の画面の名前を持ってくる
         // NSUserDefaultsオブジェクトを取得
@@ -49,15 +47,16 @@ class A4MidstreamViewController : UIViewController {
         if let _ = defaults.stringForKey("userName") {
             // NSUserDefaultsに格納された値を取得
             userName = defaults.stringForKey("userName")!
-            print("A4MidstreamViewController viewDidLoad userName:\(userName)")
+            print("MidstreamViewController viewDidLoad userName:\(userName)")
         }
     }
     
     // 画面が表示された直後
     override func viewDidAppear(animated:Bool) {
         // 参考：http://dev.classmethod.jp/references/ios-8-cabasicanimation/
-
-        let duration = 1.3    // アニメーション時間 2秒
+        
+        // アニメーション時間　2.0秒で設定→1.3秒
+        let duration = 0.2 //1.3 デバッグ用に変更   // アニメーション時間 2秒
         let singleTwist = M_PI * 2 // 360度
         
         // 縦回転アニメーション（X軸を中心に回転）
@@ -82,17 +81,27 @@ class A4MidstreamViewController : UIViewController {
         // 第3引数の「selector」の部分は、タイマー発生時に呼び出すメソッドを指定します。今回の場合は「onUpdate」を呼び出しています。
         // 2.0で設定していた
         // TODO userInfo: msg を空にした
-        NSTimer.scheduledTimerWithTimeInterval(2.0,target:self,selector:#selector(A4MidstreamViewController.transition(_:)), userInfo: "", repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.1,target:self,selector:#selector(MidstreamViewController.transition(_:)), userInfo: "", repeats: false)
     }
     
-    // TODO そのうち共通化
     // 3秒後に次の結果画面に遷移する
     func transition(timer: NSTimer) {
-        let msg = timer.userInfo as! String
+//        let msg = timer.userInfo as! String
         
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let next:A4ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A4ResultView") as! A4ResultViewController
+        // TODO ここで共通化する！！！！！！！！！！
+        if _paramOriginal == 3 {
+            // 無料言霊鑑定結果画面
+        } else if _paramOriginal == 4 {
+            // 今日のつぶやき結果画面
+        } else if _paramOriginal == 5 {
+            // 相性診断結果画面
+        } else if _paramOriginal == 6 {
+            // 命名術結果画面
+        }
+        let next:A3ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A3ResultView") as! A3ResultViewController
         next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+//        next._messageAAA = msg
 //        next._message = msg
         self.presentViewController(next, animated: true, completion: nil)
     }
@@ -100,7 +109,7 @@ class A4MidstreamViewController : UIViewController {
 
     // 説明を聞くボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
-        _param = 3
+        _param = 2
         performSegueWithIdentifier("segue",sender: nil)
     }
     
@@ -113,7 +122,7 @@ class A4MidstreamViewController : UIViewController {
             secondViewController._paramOriginal = _paramOriginal
         }
     }
-
+    
     /**
      memoryWarnig
      */
@@ -134,7 +143,7 @@ class A4MidstreamViewController : UIViewController {
 //            print("divination userName:\(userName)")
         }
         let characters = userName.characters.map { String($0) }
- 
+
         let kanaData = kanaDataClass()
         var plotResult:[Int] = [0,0,0,0,0,0,0,0]
 
@@ -161,25 +170,7 @@ class A4MidstreamViewController : UIViewController {
         // プロットの結果を保存、無料言霊鑑定結果画面
         defaults.setObject(plotResult, forKey: "plotResult")
         defaults.synchronize()
-//        let retDivination = resultDivinationClass()
-//        let message = retDivination.specialResult(plotResult)
-//        let test123:String = retDivination.getMessage(plotResult)
- //       print("message : \(message)")
-//        return message
-//        return ""
-        /*
-        // プロパティファイルをバインド
-        let path = NSBundle.mainBundle().pathForResource("arrays", ofType: "plist")
-        // rootがDictionaryなのでNSDictionaryに取り込み
-        let dict = NSDictionary(contentsOfFile: path!)
-        // キー"AAA"の中身はarrayなのでNSArrayで取得
-        let arr:NSArray = dict!.objectForKey("free_divination_result_charas_pattern_01") as! NSArray
-        // arrayで取れた分だけループ
-        for value in arr {
-            print(value)
-            
-        }
-*/
+
         print("divination plotResult : \(plotResult)")
     }
 }

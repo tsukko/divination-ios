@@ -105,7 +105,7 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
         
         // テキストフィールドにDatePickerを表示する
         datePicker1 = UIDatePicker()
-        datePicker1.addTarget(self, action: "changedDateEvent:", forControlEvents: UIControlEvents.ValueChanged)
+        datePicker1.addTarget(self, action: #selector(A6ViewController.changedDateEvent(_:)), forControlEvents: UIControlEvents.ValueChanged)
         // 日本の日付表示形式にする、年月日の表示にする
         datePicker1.datePickerMode = UIDatePickerMode.Date
         format(datePicker1.date,style: "yyyy/MM/dd")

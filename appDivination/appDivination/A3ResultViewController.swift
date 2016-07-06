@@ -98,6 +98,10 @@ class A3ResultViewController : UIViewController {
         //ここで変更しても反映されない
         //changeLayout();
     }
+
+    override func viewWillAppear(animated:Bool) {
+        changeLayout();
+    }
     
     // 画面が表示された直後
     override func viewDidAppear(animated:Bool) {

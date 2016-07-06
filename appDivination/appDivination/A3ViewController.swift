@@ -216,6 +216,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
     }
 }
 
+/*
 // コピーやペーストなどのメニューを非表示にするための拡張
 class SampleTextField: UITextField{
     override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
@@ -248,3 +249,4 @@ extension String {
         return flagKana
     }
 }
+ */

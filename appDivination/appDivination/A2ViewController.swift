@@ -45,38 +45,38 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("A2ViewController viewDidLoad")
+        print("A2ViewController viewDidLoad _param : \(_param) _second: \(_second)")
         
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
 
         if _second == 0  {
             // 鑑定士プロフィールを押した時
-            image_back.image = UIImage(named: "説明ページ＿先生プロフ")
+            image_back.image = UIImage(named: "説明ページ＿先生プロフ")
             btnReceiveMail.hidden = true
 //            btnConsultation.hidden = false
         } else if _second == 1  {
             // 音霊鑑定術とは？を押した時
-            image_back.image = UIImage(named: "説明ページ＿カタカムナとは？")
+            image_back.image = UIImage(named: "説明ページ＿カタカムナとは？")
             btnReceiveMail.hidden = true
 //            btnConsultation.hidden = false
         } else if _second == 2  {
             // 池田先生の説明を聞く(説明ページ＿音霊鑑定)
-            image_back.image = UIImage(named: "説明ページ＿音霊鑑定")
+            image_back.image = UIImage(named: "説明ページ＿音霊鑑定")
             btnReceiveMail.hidden = true
 //            btnConsultation.hidden = false
         } else if _second == 3  {
             // 池田先生の説明を聞く(説明ページ＿今日のつぶやき)を押した時
-            image_back.image = UIImage(named: "説明ページ＿今日のつぶやき")
+            image_back.image = UIImage(named: "説明ページ＿今日のつぶやき")
             btnReceiveMail.hidden = true
 //            btnConsultation.hidden = false
         } else if _second == 4  {
             // 池田先生の説明を聞く(説明ページ＿相性診断)を押した時
-            image_back.image = UIImage(named: "説明ページ＿相性診断")
+            image_back.image = UIImage(named: "説明ページ＿相性診断")
             btnReceiveMail.hidden = true
 //            btnConsultation.hidden = false
         } else if _second == 5  {
             // 池田先生の説明を聞く(説明ページ＿命名術)を押した時
-            image_back.image = UIImage(named: "説明ページ＿命名術")
+            image_back.image = UIImage(named: "説明ページ＿命名術")
             btnReceiveMail.hidden = true
 //            btnConsultation.hidden = false
         } else if _second == 6  {
