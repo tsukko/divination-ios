@@ -8,11 +8,20 @@
 
 import UIKit
 
+/*
+ * 無料言霊鑑定結果画面
+ * 遷移先
+ * 　池田先生の説明を聞く(説明ページ＿音霊鑑定)
+ * 　戻る（略）
+ * 遷移元
+ * 　無料言霊鑑定アニメーション画面
+ * 　トップ画面（右下のボタン）
+ */
 class A3ResultViewController : UIViewController {
     
 //    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var resultScrollView: UIScrollView!
-    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var resultBackImage: UIImageView!
     @IBOutlet weak var CircleImageView1: UIImageView!
     @IBOutlet weak var CircleImageView2: UIImageView!
@@ -22,8 +31,10 @@ class A3ResultViewController : UIViewController {
     @IBOutlet weak var CircleImageView6: UIImageView!
     @IBOutlet weak var CircleImageView7: UIImageView!
     @IBOutlet weak var CircleImageView8: UIImageView!
-    @IBOutlet weak var contentView: UIView!
-    
+
+    // 
+//    @IBOutlet weak var lblName: UILabel!
+    // レア音霊、あなたの特性、運気を上げる文言のタイトルとメッセージ表示部
     @IBOutlet weak var lblTitleRare: UILabel!
     @IBOutlet weak var lblMessageRare: UILabel!
     @IBOutlet weak var lblTitleLatter: UILabel!
@@ -31,6 +42,7 @@ class A3ResultViewController : UIViewController {
     @IBOutlet weak var lblTitleLuckyWord: UILabel!
     @IBOutlet weak var lblMessageLuckyWord: UILabel!
     
+    // レア音霊が非表示となったときに高さをつめるための定義
     @IBOutlet weak var labelHeightConstraintRare: NSLayoutConstraint!
     
     var img: [UIImage] = [
@@ -42,15 +54,12 @@ class A3ResultViewController : UIViewController {
         UIImage(named:"maru6")!]
     var imageView01: [UIImageView?] = []
     
-    /// 画面遷移時に渡す為の値
+    // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
-    /// 遷移時の受け取り用の変数
+    // 画面遷移時に遷移元が渡す遷移元の値　（TODO final値）
+    var _paramOriginal:Int = 3
+    // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
-    
-    // 前半メッセージ、後半メッセージ、運気のあがある言葉の３種類
-    var _messageAAA:String = ""
-    var _message:String = "b"
-    var _messageUnki:String = "b"
     
     /**
      インスタンス化された直後（初回に一度のみ）
@@ -58,12 +67,9 @@ class A3ResultViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("A3ResultViewController viewDidLoad msg: \(_message)")
-        
-        // バック画像の設定
-//        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
-        
-        // 占い結果を取得
+        print("A3ResultViewController viewDidLoad")
+
+        // 占い結果を取得、無料言霊鑑定アニメーション画面で保存している
         let defaults = NSUserDefaults.standardUserDefaults()
         let plotResult:[Int] = (defaults.objectForKey("plotResult") as? [Int])!
         
@@ -76,6 +82,7 @@ class A3ResultViewController : UIViewController {
         if lblMessageRare.text!.isEmpty {
             lblMessageRare.hidden = true
             lblTitleRare.hidden = true
+            // TOOD -20にしているのは見た目を合わせるため。。。
             labelHeightConstraintRare.constant = -20
         } else {
             lblMessageRare.hidden = false
@@ -112,8 +119,10 @@ class A3ResultViewController : UIViewController {
         let midY = CGRectGetMidY(lblMessageLatter.frame)
         print("ボタンの中心のX座業:\(midX) Y座標:\(midY)")
         
+        // -80にしているのは見た目を合わせるため。。。
         let newContentHeight = height+midY-80
         
+        // TODO contentViewの方がよかったりする？？？？？
         let SVSize = resultScrollView.frame.size
         self.resultScrollView.contentSize = CGSizeMake(SVSize.width, newContentHeight);
         resultBackImage.frame = CGRectMake(0, 0, resultBackImage.frame.width, newContentHeight)
@@ -122,7 +131,7 @@ class A3ResultViewController : UIViewController {
         resultScrollView.contentOffset = CGPointMake(0, 0);
     }
     
-    // 相談ボタンを押した時
+    // 説明を聞くボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
         _param = 2
         performSegueWithIdentifier("segue",sender: nil)
@@ -134,6 +143,7 @@ class A3ResultViewController : UIViewController {
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
+            secondViewController._paramOriginal = _paramOriginal
         }
     }
     
@@ -159,8 +169,8 @@ class A3ResultViewController : UIViewController {
                 // 1〜6までの時は、画像を表示
                 imageView01[index]!.image = img[plotResult[index]-1]
             } else {
-                // TODO 7以上は、数字を表示
-                
+                // TODO 7以上は、数字を表示、ひとまず最大を表示
+                imageView01[index]!.image = img[5]
             }
         }
     }

@@ -1,5 +1,5 @@
 //
-//  A3ViewController.swift
+//  A5ViewController.swift
 //  appDivination
 //
 //  Created by Norizou on 2015/12/22.
@@ -9,15 +9,99 @@
 import UIKit
 
 /*
- * 無料言霊鑑定入力画面
+ * 相性診断入力画面
  * 遷移先
- * 　鑑定する（無料言霊鑑定アニメーション画面）
- * 　池田先生の説明を聞く(説明ページ＿音霊鑑定)
+ * 　鑑定する（相性診断アニメーション画面）
+ * 　池田先生の説明を聞く(説明ページ＿相性診断)
  * 　戻る（略）
  * 遷移元
  * 　トップ画面
+
+相性診断計算方法
+
+～加算～
+
+条件１　丸がない場所が他の人の余った丸で１箇所うまるごとに　＋２
+　　　　（ただし、他の人の丸は一度しか使用できない）
+
+条件２　両端に丸がないラインが他の人の余った丸でうまったとき　＋２
+　　　　（埋まるのが１箇所でも２箇所でも＋２　他の人の丸は一度しか使用できない）
+　　　　（複数人鑑定の場合で、両端に丸のない同位置のラインが複数本ある場合はラインの片側が埋まるように優先的に丸を振り分ける）←これがうまく伝えられないので、手書きで追記します。
+
+条件３　すべての位置が丸でうまったとき　＋８
+　　　　（最初にすべての位置の丸が埋まったときに一度だけ適用）
+
+
+～減点A～
+
+鑑定する人の音の鏡を全て合わせたあとに
+
+両端に丸がないライン１本につき　－２１
+丸がないところ一箇所につき　－９
+
+
+～減点B～
+
+全員分の音の鏡を合わせた丸の位置と数から以下の式で計算
+
+a-eライン
+(b+c+d)と(f+g+h)の差と
+(b+2c+d)と(f+2g+h)の差を合わせて減点
+
+b-fライン
+(c+d+e)と(g+h+a)の差と
+(c+2d+e)と(g+2h+a)の差を合わせて減点
+
+c-gライン
+(d+e+f)と(h+a+b)の差と
+(d+2e+f)と(h+2a+b)の差を合わせて減点
+
+d-hライン
+(e+f+g)と(a+b+c)の差と
+(e+2f+g)と(a+2b+c)の差を合わせて減点
+
+
+計算開始時は１００点とする。
+鑑定される人すべての加算Aの点数を足し、全員の音の鏡を全て重ねたあと減点Aと減点Bを計算し点数を引く。
+
+０点以下と１００点以上が出ます。
+リリース前に、点数の加減の微調整を一度だけさせて頂く予定です。
+
+条件２　両端に丸がないラインが他の人の余った丸でうまったとき
+※ほかの人の余った丸の振り分け方について（複数人鑑定の場合で、両端に丸のない同位置のラインが複数本ある場合はラインの片側が埋まるように優先的に丸を振り分けることにたいしての説明）
+
+追記.jpgを参照してください。
+
+余った丸を与えるときは左のいちたさんから、右のよださんにたいして順に行っていった。
+
+ーーーーーーーーーーーーー
+いちたさんと、よださんはDHラインの両端に丸がない。
+にださんと、さんたさんはともにHに丸を１つ余している。
+にださんのHの丸をいちたさんに与え、さんたさんのHの丸をよださんに与える。
+この場合、いちたさんに与える丸は、にださんの丸でも、さんたさんの丸でも構わない。
+よださんに与える丸も同様。結局は同じになる。
+
+にださんと、よださんはAEラインの両端に丸がない。
+いちたさんはAに１つ、さんたさんはEに１つ丸を余している。
+いちたさんのAの丸をにださんに与え、さんたさんのEの丸をよださんに与える。
+この場合、にださんに与える丸は、いちたさんの丸でもさんたさんの丸でも構わない。
+よださんに与える丸も同様。結局は同じになる。
+
+にださんと、さんたさんと、よださんはCGラインの両端に丸がない。
+いちたさんはCに丸を余している。
+いちたさんのCの丸を、にださんか、さんたさんか、よださんに与える。
+この場合誰に与えても構わない。結局は同じになる。
+
+いちたさんと、にださんと、さんたさんはBFラインの両端に丸がない。
+よださんはBに２つ、Fに１つ丸を余している。
+いちたさんはBとFに丸がないため、よださんのBとFから丸を１つずつ受け取りたいが
+そうしてしまうと、にださんか、さんたさんのBFラインの片側に丸がいきわたらないので、よださんの余った丸は、いちださんと、にださんと、さんたさんに１つずつ与える。
+この場合、よださんのBとFの余った３つの丸は、１つずつなら、いちたさん、にださん、さんたさんにどのように与えても構わない。結局は一緒になる。
+重要なのは、複数の同じ位置の両端の丸がないラインを持つ人に対して少しでも多くのラインに片側がうまるように振り分けをすること。
+よださんの余った丸を、いちたさんのBとFに与えて、にださんか、さんたさんのBFラインに丸がいかなくなってしまうことがないように振り分ける。
+ 
  */
-class A3ViewController : UIViewController, UITextFieldDelegate {
+class A5ViewController : UIViewController, UITextFieldDelegate {
     
 //    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var nameTextField: UITextField!
@@ -29,8 +113,8 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
     
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
-    // 画面遷移時に遷移元が渡す遷移元の値　（TODO final値）
-    var _paramOriginal:Int = 3
+    // 画面遷移時に遷移元が渡す遷移元の値
+    var _paramOriginal:Int = 5
     // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
 
@@ -46,13 +130,17 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("A3ViewController viewDidLoad")
-
+        print("A5ViewController viewDidLoad")
+        
+        // バック画像の設定
+//        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
+        
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
-
+        
+        
         // テキストフィールドにDatePickerを表示する
         datePicker1 = UIDatePicker()
-        datePicker1.addTarget(self, action: #selector(A3ViewController.changedDateEvent(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        datePicker1.addTarget(self, action: "changedDateEvent:", forControlEvents: UIControlEvents.ValueChanged)
         // 日本の日付表示形式にする、年月日の表示にする
         datePicker1.datePickerMode = UIDatePickerMode.Date
         format(datePicker1.date,style: "yyyy/MM/dd")
@@ -81,12 +169,6 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         
         dateTextField.inputAccessoryView = toolBar
 */
-        // 保存していた情報の復元
-        let defaults = NSUserDefaults.standardUserDefaults()
-        nameTextField.text = defaults.stringForKey("userName")
-        dateTextField.text = defaults.stringForKey("birthday")
-        sgCtlSex.selectedSegmentIndex = defaults.integerForKey("sex")
-        
         // nameTextField の情報を受け取るための delegate を設定
         nameTextField.delegate = self
     }
@@ -103,7 +185,6 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
-            secondViewController._paramOriginal = _paramOriginal
         }
     }
     
@@ -123,11 +204,9 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         return true
     }
     
-    // 入力の確認
     @IBAction func touchDownbtnAppraise(sender: AnyObject) {
         // 名前欄のTextFieldの確認
         if (nameTextField.text!.isEmpty) {
-            // null、空のとき
             print("nameTextField.text is enpty.")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
@@ -138,8 +217,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
             presentViewController(alertController, animated: true, completion: nil)
         } else {
             if !nameTextField.text!.ChackHiraganaOrKatakana() {
-                // ひらがな、カタカナ、空白以外のとき
-                print("nameTextField.text is not hiragana or katakana.")
+                print("nameTextField.text is not hiragana.")
                 let alertController = UIAlertController(
                     title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
                     message: NSLocalizedString("errorMsgNameKana", tableName: "main", comment: ""),
@@ -152,7 +230,6 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         
         // 誕生日欄のTextFieldの確認
         if (dateTextField.text!.isEmpty) {
-            // null、空のとき
             print("dateTextField.text is not hiragana.")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
@@ -165,7 +242,6 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         
         // 性別選択の確認
         if (sgCtlSex.selectedSegmentIndex == -1) {
-            // 未選択のとき
             print("sgCtlSex.selectedSegmentIndex == -1")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
@@ -215,7 +291,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
     }
 }
-
+/*
 // コピーやペーストなどのメニューを非表示にするための拡張
 class SampleTextField: UITextField{
     override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
@@ -225,21 +301,17 @@ class SampleTextField: UITextField{
 }
 
 // ひらがなチェック用の拡張
-// TODO 定義するクラスを変更する
 extension String {
-    func ChackHiraganaOrKatakana() -> Bool {
+    func ChackHiragana() -> Bool {
         var flagKana:Bool = false
         
         // 文字列を表現するUInt32
         for c in unicodeScalars {
-            // ひらがな、もしくは、カタカナ、半角空白、全角空白であること
-            if (c.value >= 0x3041 && c.value <= 0x3096) ||
-                (c.value >= 0x30A1 && c.value <= 0x30F6) ||
-                c.value == 0x0020 || c.value == 0xFF5A {
-       //         print("ChackHiragana OK")
+            if c.value >= 0x3041 && c.value <= 0x3096 {
+                print("ChackHiragana OK")
                 flagKana = true
             } else {
-                print("ChackHiragana NG : \(c.value)")
+                print("ChackHiragana NG")
                 flagKana = false
                 break
             }
@@ -248,3 +320,4 @@ extension String {
         return flagKana
     }
 }
+*/

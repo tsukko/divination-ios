@@ -8,14 +8,25 @@
 
 import UIKit
 
+/*
+ * 無料言霊鑑定アニメーション画面
+ * 遷移先ページ
+ * 　自動遷移
+ * 　池田先生の説明を聞く(説明ページ＿音霊鑑定)
+ * 　戻る（略）
+ * 遷移元ページ
+ * 　無料言霊鑑定入力画面
+ */
 class A3MidstreamViewController : UIViewController {
     
 //    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var imgYatagarasu: UIImageView!
     
-    /// 画面遷移時に渡す為の値
+    // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
-    /// 遷移時の受け取り用の変数
+    // 画面遷移時に遷移元が渡す遷移元の値　（TODO final値）
+    var _paramOriginal:Int = 3
+    // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
     // ユーザー名 今日の運勢のボタンを表示するかどうか
     var userName : String = ""
@@ -61,8 +72,6 @@ class A3MidstreamViewController : UIViewController {
         imgYatagarasu.layer.addAnimation(animationGroup, forKey: "moonSaltoAnimation")
         
         // 計算する
-        // TODO 特別な結果と、一般を一気にして、一つのStringとして取得している
-        // TODO 前半のメッセージと後半のメッセージ、運気の上がる言葉の３つのストリングを取得する
 //        let msg:String = divination()
         divination()
         
@@ -88,7 +97,7 @@ class A3MidstreamViewController : UIViewController {
     }
     
 
-    // 相談ボタンを押した時
+    // 説明を聞くボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
         _param = 2
         performSegueWithIdentifier("segue",sender: nil)
@@ -100,6 +109,7 @@ class A3MidstreamViewController : UIViewController {
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
+            secondViewController._paramOriginal = _paramOriginal
         }
     }
     
@@ -110,9 +120,6 @@ class A3MidstreamViewController : UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    
-    
-    // TODO 特別な結果と、一般を一気にして、一つのStringとして取得している
     // 占った結果をNSUserDefaultsで保存
     func divination() {
         // 名前は、NSUserDefaultsに保存したのを読み出す
@@ -149,32 +156,11 @@ class A3MidstreamViewController : UIViewController {
             }
         }
         
-        // やっつけ。プロットの結果を保存
+        // プロットの結果を保存、無料言霊鑑定結果画面
         defaults.setObject(plotResult, forKey: "plotResult")
         defaults.synchronize()
 
         print("plotResult : \(plotResult)")
- //       let message = resultDivinationClass.specialResult(plotResult)
- //       print("message : \(message)")
-
-//        let retDivination = resultDivinationClass()
-//        let message:String = retDivination.specialResult(plotResult)
-        
-//        return message
-
-/*
-        // プロパティファイルをバインド
-        let path = NSBundle.mainBundle().pathForResource("arrays", ofType: "plist")
-        // rootがDictionaryなのでNSDictionaryに取り込み
-        let dict = NSDictionary(contentsOfFile: path!)
-        // キー"AAA"の中身はarrayなのでNSArrayで取得
-        let arr:NSArray = dict!.objectForKey("free_divination_result_charas_pattern_01") as! NSArray
-        // arrayで取れた分だけループ
-        for value in arr {
-            print(value)
-            
-        }
-*/
     }
 }
 

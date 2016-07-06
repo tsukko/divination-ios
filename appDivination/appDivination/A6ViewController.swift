@@ -1,5 +1,5 @@
 //
-//  A3ViewController.swift
+//  A6ViewController.swift
 //  appDivination
 //
 //  Created by Norizou on 2015/12/22.
@@ -9,15 +9,64 @@
 import UIKit
 
 /*
- * 無料言霊鑑定入力画面
+ * 命名術入力画面
  * 遷移先
- * 　鑑定する（無料言霊鑑定アニメーション画面）
- * 　池田先生の説明を聞く(説明ページ＿音霊鑑定)
+ * 　鑑定する（命名術アニメーション画面）
+ * 　池田先生の説明を聞く(説明ページ＿命名術)
  * 　戻る（略）
  * 遷移元
  * 　トップ画面
+
+子供の命名アルゴリズム
+
+父親と母親の氏名の音の鏡を合わせて、丸が足りないところの文字をすべてひろう。
+丸をすべて埋められるような組み合わせを全て拾い出し、文字数ごとに表示する。
+
+例１
+
+父親 ヤマダタロウさん
+母親 ヤマダハナコさん
+あなたのお子様が御家族を幸福に導く存在となれるような、愛と調和の言霊をお伝えさせていただきます。
+
+一文字
+（ケ、ネ、ノ、ヘ、メ、モ、ユ、ヨ、ヲ）
+ の中からどれか一文字を必ず使ってください。
+
+ もし同じ文字が二回以上選べる場合でも、一度使えば繰り返さなくても結構です。
+ お伝えさせていただいた文字は必ずお使い下さい。
+ それ以外の文字もご自由にお使いください。
+
+
+例２
+
+父親 サトウタロウさん
+母親 サトウアイさん
+あなたのお子様が御家族を幸福に導く存在となれるような、愛と調和の言霊をお伝えさせていただきます。
+
+一文字
+なし
+
+二文字
+（ケ、ネ、ノ、メ、モ）
+ の中からどれか一文字と
+（エ、ツ、テ、ナ、ニ、マ）
+ の中からどれか一文字を選んだ二文字。
+
+三文字
+（ケ、ネ、ノ、ヘ、メ、モ、ユ、ヨ、ヲ）
+ の中からどれか一文字と
+（ケ、コ、ス、ヌ、ネ、ノ、メ、モ、ヤ）
+ の中からどれか一文字と
+（エ、ツ、テ、ナ、ニ、マ）
+ の中からどれか一文字を選んだ三文字。
+ 
+ もし同じ文字が二回以上選べる場合でも、一度使えば繰り返さなくても結構です。
+ お伝えさせていただいた文字は必ずお使い下さい。
+ それ以外の文字もご自由にお使いください。
+
+
  */
-class A3ViewController : UIViewController, UITextFieldDelegate {
+class A6ViewController : UIViewController, UITextFieldDelegate {
     
 //    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var nameTextField: UITextField!
@@ -29,8 +78,8 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
     
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
-    // 画面遷移時に遷移元が渡す遷移元の値　（TODO final値）
-    var _paramOriginal:Int = 3
+    // 画面遷移時に遷移元が渡す遷移元の値
+    var _paramOriginal:Int = 6
     // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
 
@@ -46,13 +95,17 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("A3ViewController viewDidLoad")
-
+        print("A6ViewController viewDidLoad")
+        
+        // バック画像の設定
+//        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
+        
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
-
+        
+        
         // テキストフィールドにDatePickerを表示する
         datePicker1 = UIDatePicker()
-        datePicker1.addTarget(self, action: #selector(A3ViewController.changedDateEvent(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        datePicker1.addTarget(self, action: "changedDateEvent:", forControlEvents: UIControlEvents.ValueChanged)
         // 日本の日付表示形式にする、年月日の表示にする
         datePicker1.datePickerMode = UIDatePickerMode.Date
         format(datePicker1.date,style: "yyyy/MM/dd")
@@ -81,12 +134,6 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         
         dateTextField.inputAccessoryView = toolBar
 */
-        // 保存していた情報の復元
-        let defaults = NSUserDefaults.standardUserDefaults()
-        nameTextField.text = defaults.stringForKey("userName")
-        dateTextField.text = defaults.stringForKey("birthday")
-        sgCtlSex.selectedSegmentIndex = defaults.integerForKey("sex")
-        
         // nameTextField の情報を受け取るための delegate を設定
         nameTextField.delegate = self
     }
@@ -103,7 +150,6 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
-            secondViewController._paramOriginal = _paramOriginal
         }
     }
     
@@ -123,11 +169,9 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         return true
     }
     
-    // 入力の確認
     @IBAction func touchDownbtnAppraise(sender: AnyObject) {
         // 名前欄のTextFieldの確認
         if (nameTextField.text!.isEmpty) {
-            // null、空のとき
             print("nameTextField.text is enpty.")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
@@ -138,8 +182,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
             presentViewController(alertController, animated: true, completion: nil)
         } else {
             if !nameTextField.text!.ChackHiraganaOrKatakana() {
-                // ひらがな、カタカナ、空白以外のとき
-                print("nameTextField.text is not hiragana or katakana.")
+                print("nameTextField.text is not hiragana.")
                 let alertController = UIAlertController(
                     title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
                     message: NSLocalizedString("errorMsgNameKana", tableName: "main", comment: ""),
@@ -152,7 +195,6 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         
         // 誕生日欄のTextFieldの確認
         if (dateTextField.text!.isEmpty) {
-            // null、空のとき
             print("dateTextField.text is not hiragana.")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
@@ -165,7 +207,6 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         
         // 性別選択の確認
         if (sgCtlSex.selectedSegmentIndex == -1) {
-            // 未選択のとき
             print("sgCtlSex.selectedSegmentIndex == -1")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
@@ -215,7 +256,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
     }
 }
-
+/*
 // コピーやペーストなどのメニューを非表示にするための拡張
 class SampleTextField: UITextField{
     override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
@@ -225,21 +266,17 @@ class SampleTextField: UITextField{
 }
 
 // ひらがなチェック用の拡張
-// TODO 定義するクラスを変更する
 extension String {
-    func ChackHiraganaOrKatakana() -> Bool {
+    func ChackHiragana() -> Bool {
         var flagKana:Bool = false
         
         // 文字列を表現するUInt32
         for c in unicodeScalars {
-            // ひらがな、もしくは、カタカナ、半角空白、全角空白であること
-            if (c.value >= 0x3041 && c.value <= 0x3096) ||
-                (c.value >= 0x30A1 && c.value <= 0x30F6) ||
-                c.value == 0x0020 || c.value == 0xFF5A {
-       //         print("ChackHiragana OK")
+            if c.value >= 0x3041 && c.value <= 0x3096 {
+                print("ChackHiragana OK")
                 flagKana = true
             } else {
-                print("ChackHiragana NG : \(c.value)")
+                print("ChackHiragana NG")
                 flagKana = false
                 break
             }
@@ -248,3 +285,4 @@ extension String {
         return flagKana
     }
 }
+*/

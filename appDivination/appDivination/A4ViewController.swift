@@ -1,5 +1,5 @@
 //
-//  A3ViewController.swift
+//  A4ViewController.swift
 //  appDivination
 //
 //  Created by Norizou on 2015/12/22.
@@ -8,6 +8,23 @@
 
 import UIKit
 
+/*
+ * 今日のつぶやき入力画面
+ * 遷移先
+ * 　鑑定する（今日のつぶやきアニメーション画面）
+ * 　池田先生の説明を聞く(説明ページ＿今日のつぶやき)
+ * 　戻る（略）
+ * 遷移元
+ * 　トップ画面
+ *  「運気を上げる今日のつぶやき」の出し方
+ * その人の音の鏡を出す。
+ * 丸が付かない場所を埋める言葉を探索する
+ * a: 丸が付かない場所を埋める言葉を洗い出す
+ * b: その中からランダムに一文字決め、名前にその文字を足し合わせる
+ * c: 音の鏡を確認し、まだ丸が付いて居ない箇所があれば、aからやり直す
+ * 全て埋まったら、埋め終えるまでに引用した全ての言葉をランダムに並び替える
+ * 並び替えた言葉を「運気を上げる今日のつぶやき」として表示してあげる！
+ */
 class A4ViewController : UIViewController, UITextFieldDelegate {
     
 //    @IBOutlet var viewBack: UIView!
@@ -18,9 +35,11 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
     @IBOutlet weak var sgCtlSex: UISegmentedControl!
     @IBOutlet weak var naviBar: UINavigationBar!
     
-    /// 画面遷移時に渡す為の値
+    // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
-    /// 遷移時の受け取り用の変数
+    // 画面遷移時に遷移元が渡す遷移元の値
+    var _paramOriginal:Int = 4
+    // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
 
     //    var toolBar:UIToolbar!

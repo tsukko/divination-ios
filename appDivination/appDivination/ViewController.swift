@@ -8,6 +8,19 @@
 
 import UIKit
 
+/*
+ * トップ画面
+ * 遷移先
+ * 　鑑定士プロフィール
+ * 　音霊鑑定術とは？
+ * 　池田先生の説明を聞く(説明ページ＿音霊鑑定)
+ * 　池田先生の説明を聞く(説明ページ＿今日のつぶやき)
+ * 　池田先生の説明を聞く(説明ページ＿相性診断)
+ * 　池田先生の説明を聞く(説明ページ＿命名術)
+ * 　池田先生に相談する
+ * 遷移元
+ * 　なし 
+ */
 class ViewController: UIViewController {
 
     @IBOutlet var viewBack: UIView!
@@ -17,6 +30,8 @@ class ViewController: UIViewController {
     
     /// 画面遷移時に渡す為の値
     var _param:Int = -1
+    // 画面遷移時に遷移元が渡す遷移元の値　（TODO final値）
+    var _paramOriginal:Int = 0
     // ユーザー名 今日の運勢のボタンを表示するかどうか
     var userName : String = ""
     
@@ -57,30 +72,32 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // 鑑定術とは？を押した時
-    @IBAction func touchDownBtnDescription(sender: AnyObject) {
+    // プロフィールを押した時
+    @IBAction func touchDownBtnProfile(sender: AnyObject) {
         _param = 0
         performSegueWithIdentifier("segue",sender: nil)
     }
-    
-    // プロフィールを押した時
-    @IBAction func touchDownBtnProfile(sender: AnyObject) {
+
+    // 鑑定術とは？を押した時
+    @IBAction func touchDownBtnDescription(sender: AnyObject) {
         _param = 1
         performSegueWithIdentifier("segue",sender: nil)
     }
-    
+
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
+            // 元画面を示す値_paramOriginal = 0
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
+            secondViewController._paramOriginal = _paramOriginal
         }
     }
     
     // 今日の運勢を押した時
     @IBAction func touchDownBtnTodayTweet(sender: AnyObject) {
-        
+        // TODO 無料音霊鑑定の結果ページ
     }
     
     // 今日の運勢を長押しした時

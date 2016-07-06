@@ -9,19 +9,36 @@
 import UIKit
 import MessageUI
 
+/*
+ * 一枚絵画面
+ * 遷移先
+ * 　池田先生に相談する
+ * 　戻る（略）
+ * 遷移元
+ * 　トップ画面　　　　　　　　　　　→　鑑定士プロフィール
+ * 　トップ画面　　　　　　　　　　　→　音霊鑑定術とは？
+ * 　無料言霊鑑定入力・結果　　　　　→　池田先生の説明を聞く(説明ページ＿音霊鑑定)
+ * 　今日のつぶやき入力・結果　　　　→　池田先生の説明を聞く(説明ページ＿今日のつぶやき)
+ * 　相性診断入力・結果　　　　　　　→　池田先生の説明を聞く(説明ページ＿相性診断)
+ * 　命名術入力・結果　　　　　　　　→　池田先生の説明を聞く(説明ページ＿命名術)
+ * 　一枚絵ページ全部（相談する以外）→　池田先生に相談する
+ */
+ // TODO バックキーでの戻りを何とかする
 class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
     
-//    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var image_back: UIImageView!
 //    @IBOutlet weak var btnConsultation: UIButton!
     @IBOutlet weak var btnReceiveMail: UIButton!
     @IBOutlet weak var naviBar: UINavigationBar!
     
-    /// 画面遷移時に渡す為の値
+    // _paramと_secondはまとめられる？
+    // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
-    /// 遷移時の受け取り用の変数
+    // 画面遷移時に遷移元が渡す遷移元の値
+    var _paramOriginal:Int = -1
+    // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
-    
+
     /**
      インスタンス化された直後（初回に一度のみ）
      viewDiDLoad
@@ -30,38 +47,51 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
         super.viewDidLoad()
         print("A2ViewController viewDidLoad")
         
-        // バック画像の設定
-//        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
-
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
 
         if _second == 0  {
-            // 鑑定術とは？を押した時
-            image_back.image = UIImage(named: "page_01_whats_Katakamuna")
+            // 鑑定士プロフィールを押した時
+            image_back.image = UIImage(named: "説明ページ＿先生プロフ")
             btnReceiveMail.hidden = true
 //            btnConsultation.hidden = false
         } else if _second == 1  {
-            // プロフィールを押した時
-            image_back.image = UIImage(named: "page_04_appraisers_profile")
+            // 音霊鑑定術とは？を押した時
+            image_back.image = UIImage(named: "説明ページ＿カタカムナとは？")
             btnReceiveMail.hidden = true
 //            btnConsultation.hidden = false
         } else if _second == 2  {
-            // 相談を押した時
-            image_back.image = UIImage(named: "page_07_kanteiirai")
+            // 池田先生の説明を聞く(説明ページ＿音霊鑑定)
+            image_back.image = UIImage(named: "説明ページ＿音霊鑑定")
+            btnReceiveMail.hidden = true
+//            btnConsultation.hidden = false
+        } else if _second == 3  {
+            // 池田先生の説明を聞く(説明ページ＿今日のつぶやき)を押した時
+            image_back.image = UIImage(named: "説明ページ＿今日のつぶやき")
+            btnReceiveMail.hidden = true
+//            btnConsultation.hidden = false
+        } else if _second == 4  {
+            // 池田先生の説明を聞く(説明ページ＿相性診断)を押した時
+            image_back.image = UIImage(named: "説明ページ＿相性診断")
+            btnReceiveMail.hidden = true
+//            btnConsultation.hidden = false
+        } else if _second == 5  {
+            // 池田先生の説明を聞く(説明ページ＿命名術)を押した時
+            image_back.image = UIImage(named: "説明ページ＿命名術")
+            btnReceiveMail.hidden = true
+//            btnConsultation.hidden = false
+        } else if _second == 6  {
+            // 池田先生に相談するを押した時
+            image_back.image = UIImage(named: "ページ_鑑定依頼")
             btnReceiveMail.hidden = false
 //            btnConsultation.hidden = true
-        } else {
-            // その他
-            image_back.image = UIImage(named: "page_02_free_appraisal")
-            btnReceiveMail.hidden = false
-//            btnConsultation.hidden = false
+        }  else {
+            // その他　ここはこない
         }
-        
     }
     
     // 相談ボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
-        _param = 2
+    //    _param = 6
         performSegueWithIdentifier("segue",sender: nil)
     }
     
@@ -69,37 +99,39 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
+            // ここでは、一枚絵ページから、相談する一枚絵ページ（_second = 6）に遷移するための処理
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
-            secondViewController._second = _param
+            secondViewController._second = 6
+            secondViewController._param = _param
+            secondViewController._paramOriginal = _paramOriginal
         }
     }
+
+    // TODO 戻るボタンを押したときの遷移をつくる
+    // もし、今表示しているページが相談するページ（_second = 6）なら、_paramのページに戻って
+    // それ以外の場合は、遷移先ページ（_paramOriginal）に戻る
     
-    // メーラー起動
-    // TODO 送信先メールアドレス、件名、本文を決める
+    
+    // メーラー起動（相談する一枚絵ページのみに表示）
     @IBAction func touchDownSendMailBtn(sender: AnyObject) {
         //メールを送信できるかチェック
         if MFMailComposeViewController.canSendMail()==false {
             print("Email Send Failed")
             return
         }
-        
+
         let mailViewController = MFMailComposeViewController()
         let toRecipients = ["otodamakantei@gmail.com"]
-//        let CcRecipients = ["cc@1gmail.com","Cc2@1gmail.com"]
-//        let BccRecipients = ["Bcc@1gmail.com","Bcc2@1gmail.com"]
-        
-        
+
         mailViewController.mailComposeDelegate = self
         // メール件名
         mailViewController.setSubject("")
-        mailViewController.setToRecipients(toRecipients) //Toアドレスの表示
-//        mailViewController.setCcRecipients(CcRecipients) //Ccアドレスの表示
-//        mailViewController.setBccRecipients(BccRecipients) //Bccアドレスの表示
+        // Toアドレスの表示
+        mailViewController.setToRecipients(toRecipients)
         // メール本文
         mailViewController.setMessageBody("件名・本文を変更せずに、このまま送信してください。鑑定についての詳細を返信致します。", isHTML: false)
         
         self.presentViewController(mailViewController, animated: true, completion: nil)
-    
     }
 
     // メールキャンセル
