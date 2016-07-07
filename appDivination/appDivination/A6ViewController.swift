@@ -69,12 +69,15 @@ import UIKit
 class A6ViewController : UIViewController, UITextFieldDelegate {
     
 //    @IBOutlet var viewBack: UIView!
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var dateTextField: UITextField!
-    @IBOutlet weak var btnAppraise: UIButton!    
-//    @IBOutlet weak var btnConsultation: UIButton!
-    @IBOutlet weak var sgCtlSex: UISegmentedControl!
-    @IBOutlet weak var naviBar: UINavigationBar!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var firstDateTextField: UITextField!
+    @IBOutlet weak var firstSgCtlSex: UISegmentedControl!
+    @IBOutlet weak var secondNameTextField: UITextField!
+    @IBOutlet weak var secondDateTextField: UITextField!
+    @IBOutlet weak var secondSgCtlSex: UISegmentedControl!
+    @IBOutlet weak var btnAppraise: UIButton!
+    @IBOutlet weak var btnConsultation: UIButton!
+//    @IBOutlet weak var naviBar: UINavigationBar!
     
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
@@ -97,11 +100,13 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         print("A6ViewController viewDidLoad")
         
-        // バック画像の設定
-//        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
+        // TODO レイアウト関係
+        // 音霊鑑定術
+        // カタカムナ音霊命名術でお子様の命名のサポートをさせていただきます。会社名・屋号やペットの命名も可能です。
+        // 詳しくは先生の説明をご覧下さい。
+        // 父（母）の名前、お誕生日、性別が2セット
         
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
-        
         
         // テキストフィールドにDatePickerを表示する
         datePicker1 = UIDatePicker()
@@ -116,28 +121,28 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
         datePicker1.minimumDate = dateFormatter.dateFromString(minDateString)
         datePicker1.maximumDate = dateFormatter.dateFromString(maxDateString)
         datePicker1.date = dateFormatter.dateFromString(defDateString)!
-        dateTextField.inputView = datePicker1
-        
-        //        datePicker1.userInteractionEnabled = true
-        //        datePicker1.tag = self.TAG_LABEL1
-        
-        // UIToolBarの設定
-/*        toolBar = UIToolbar(frame: CGRectMake(0, self.view.frame.size.height/6, self.view.frame.size.width, 40.0))
-        toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
-        toolBar.barStyle = .BlackTranslucent
-        toolBar.tintColor = UIColor.whiteColor()
-        toolBar.backgroundColor = UIColor.blackColor()
-        
-        let toolBarBtn = UIBarButtonItem(title: "完了", style: .Done, target: self, action: "tappedToolBarBtn:")
-        toolBarBtn.tag = 1
-        toolBar.items = [toolBarBtn]
-        
-        dateTextField.inputAccessoryView = toolBar
-*/
+        firstDateTextField.inputView = datePicker1
+
+        // テキストフィールドにDatePickerを表示する
+        datePicker2 = UIDatePicker()
+        datePicker2.addTarget(self, action: #selector(A6ViewController.changedDateEvent2(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        // 日本の日付表示形式にする、年月日の表示にする
+        datePicker2.datePickerMode = UIDatePickerMode.Date
+        format(datePicker2.date,style: "yyyy/MM/dd")
+        datePicker2.locale = NSLocale(localeIdentifier: "ja_JP")
+        // 最小値、最大値、初期値を設定
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-DD"
+        datePicker2.minimumDate = dateFormatter.dateFromString(minDateString)
+        datePicker2.maximumDate = dateFormatter.dateFromString(maxDateString)
+        datePicker2.date = dateFormatter.dateFromString(defDateString)!
+        secondDateTextField.inputView = datePicker2
+
         // nameTextField の情報を受け取るための delegate を設定
-        nameTextField.delegate = self
+        firstNameTextField.delegate = self
+        secondNameTextField.delegate = self
     }
-    
+
     // 相談ボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
         _param = 2
@@ -150,28 +155,42 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
+            secondViewController._paramOriginal = _paramOriginal
         }
     }
     
-    // 日付の変更イベント
+    // 日付の変更イベント1
     func changedDateEvent(sender:AnyObject?){
         //        var dateSelecter:UIDatePicker = sender as! UIDatePicker
         self.changeLabelDate(datePicker1.date)
     }
-    // 日付の変更
+    // 日付の変更1
     func changeLabelDate(date:NSDate) {
-        dateTextField.text = format(datePicker1.date,style: "yyyy年 MM月 dd日")
+        firstDateTextField.text = format(datePicker1.date,style: "yyyy年 MM月 dd日")
+    }
+    
+    // 日付の変更イベント2
+    func changedDateEvent2(sender:AnyObject?){
+        //        var dateSelecter:UIDatePicker = sender as! UIDatePicker
+        self.changeLabelDate(datePicker2.date)
+    }
+    // 日付の変更2
+    func changeLabelDate(date:NSDate) {
+        secondDateTextField.text = format(datePicker2.date,style: "yyyy年 MM月 dd日")
     }
     
     // 名前の入力完了時に閉じる
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        nameTextField.resignFirstResponder()
+        firstNameTextField.resignFirstResponder()
+        secondNameTextField.resignFirstResponder()
         return true
     }
     
+    // 鑑定するボタンを押したとき　　入力の確認
     @IBAction func touchDownbtnAppraise(sender: AnyObject) {
         // 名前欄のTextFieldの確認
-        if (nameTextField.text!.isEmpty) {
+        if (firstNameTextField.text!.isEmpty ||
+            secondNameTextField.text!.isEmpty) {
             print("nameTextField.text is enpty.")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
@@ -181,8 +200,9 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
             alertController.addAction(defaultAction)
             presentViewController(alertController, animated: true, completion: nil)
         } else {
-            if !nameTextField.text!.ChackHiraganaOrKatakana() {
-                print("nameTextField.text is not hiragana.")
+            if !firstNameTextField.text!.ChackHiraganaOrKatakana() ||
+               !secondNameTextField.text!.ChackHiraganaOrKatakana() {
+                print("NameTextField.text is not hiragana.")
                 let alertController = UIAlertController(
                     title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
                     message: NSLocalizedString("errorMsgNameKana", tableName: "main", comment: ""),
@@ -194,8 +214,9 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
         }
         
         // 誕生日欄のTextFieldの確認
-        if (dateTextField.text!.isEmpty) {
-            print("dateTextField.text is not hiragana.")
+        if (firstDateTextField.text!.isEmpty ||
+            secondDateTextField.text!.isEmpty) {
+            print("DateTextField.text is not hiragana.")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
                 message: NSLocalizedString("errorMsgDate", tableName: "main", comment: ""),
@@ -206,8 +227,9 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
         }
         
         // 性別選択の確認
-        if (sgCtlSex.selectedSegmentIndex == -1) {
-            print("sgCtlSex.selectedSegmentIndex == -1")
+        if (firstSgCtlSex.selectedSegmentIndex == -1 ||
+            secondSgCtlSex.selectedSegmentIndex == -1 ) {
+            print("SgCtlSex.selectedSegmentIndex == -1")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
                 message: NSLocalizedString("errorMsgSex", tableName: "main", comment: ""),
@@ -221,9 +243,12 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
         
         // NSUserDefaultsオブジェクトを取得し、設定情報を保存する
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(nameTextField.text, forKey: "userName")
-        defaults.setObject(dateTextField.text, forKey: "birthday")
-        defaults.setInteger(sgCtlSex.selectedSegmentIndex, forKey: "sex")
+        defaults.setObject(firstNameTextField.text, forKey: "firstuserName")
+        defaults.setObject(firstDateTextField.text, forKey: "firstbirthday")
+        defaults.setInteger(firstSgCtlSex.selectedSegmentIndex, forKey: "firstsex")
+        defaults.setObject(secondNameTextField.text, forKey: "seconduserName")
+        defaults.setObject(secondDateTextField.text, forKey: "secondbirthday")
+        defaults.setInteger(secondSgCtlSex.selectedSegmentIndex, forKey: "secondsex")
         defaults.synchronize()
     }
     
@@ -232,8 +257,10 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
         super.touchesEnded(touches, withEvent: event)
 
         print("close keyboard")
-        nameTextField.resignFirstResponder()
-        dateTextField.resignFirstResponder()
+        firstNameTextField.resignFirstResponder()
+        firstDateTextField.resignFirstResponder()
+        secondNameTextField.resignFirstResponder()
+        secondDateTextField.resignFirstResponder()
     }
     
     // 書式指定に従って日付を文字列に変換します
@@ -256,33 +283,3 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
     }
 }
-/*
-// コピーやペーストなどのメニューを非表示にするための拡張
-class SampleTextField: UITextField{
-    override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
-        UIMenuController.sharedMenuController().menuVisible = false
-        return false
-    }
-}
-
-// ひらがなチェック用の拡張
-extension String {
-    func ChackHiragana() -> Bool {
-        var flagKana:Bool = false
-        
-        // 文字列を表現するUInt32
-        for c in unicodeScalars {
-            if c.value >= 0x3041 && c.value <= 0x3096 {
-                print("ChackHiragana OK")
-                flagKana = true
-            } else {
-                print("ChackHiragana NG")
-                flagKana = false
-                break
-            }
-        }
-        
-        return flagKana
-    }
-}
-*/

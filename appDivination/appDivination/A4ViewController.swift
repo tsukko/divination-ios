@@ -30,10 +30,10 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
 //    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
-    @IBOutlet weak var btnAppraise: UIButton!    
-//    @IBOutlet weak var btnConsultation: UIButton!
     @IBOutlet weak var sgCtlSex: UISegmentedControl!
+    @IBOutlet weak var btnAppraise: UIButton!
     @IBOutlet weak var naviBar: UINavigationBar!
+//    @IBOutlet weak var btnConsultation: UIButton!
     
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
@@ -132,7 +132,7 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
         return true
     }
     
-    // 入力の確認
+    // 鑑定するボタンを押したとき　　入力の確認
     @IBAction func touchDownbtnAppraise(sender: AnyObject) {
         // 名前欄のTextFieldの確認
         if (nameTextField.text!.isEmpty) {

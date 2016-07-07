@@ -301,6 +301,7 @@ class resultDivinationClass {
     // 相性診断の結果文言の取得
     // TODO plotResultは人数分必要、getCompatibilityScoreの引数も配列で
     func getCompatibilityScore(plotData:[Int]) -> String {
+        var score:Int = 100
         return ""
     }
     

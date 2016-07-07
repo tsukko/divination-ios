@@ -106,10 +106,12 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
 //    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
-    @IBOutlet weak var btnAppraise: UIButton!    
-//    @IBOutlet weak var btnConsultation: UIButton!
     @IBOutlet weak var sgCtlSex: UISegmentedControl!
+    @IBOutlet weak var btnAppraise: UIButton!    
     @IBOutlet weak var naviBar: UINavigationBar!
+//    @IBOutlet weak var btnConsultation: UIButton!
+    
+    @IBOutlet weak var btnAddMenber: UIButton!
     
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
@@ -132,12 +134,16 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         print("A5ViewController viewDidLoad")
         
-        // バック画像の設定
-//        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
+        // TODO レイアウトメモ
+        // 音霊相性診断
+        // 相性を占いたい2人以上の名前を、カタカナで入力してください。
+        // リストビュー、左寄せで名前、右側で削除
+        // リストの最後がプラスボタン
+        // プラスボタンを押すと、ダイアログを表示
         
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
         
-        
+        // ダイアログ用
         // テキストフィールドにDatePickerを表示する
         datePicker1 = UIDatePicker()
         datePicker1.addTarget(self, action: #selector(A5ViewController.changedDateEvent(_:)), forControlEvents: UIControlEvents.ValueChanged)
@@ -153,24 +159,14 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
         datePicker1.date = dateFormatter.dateFromString(defDateString)!
         dateTextField.inputView = datePicker1
         
-        //        datePicker1.userInteractionEnabled = true
-        //        datePicker1.tag = self.TAG_LABEL1
-        
-        // UIToolBarの設定
-/*        toolBar = UIToolbar(frame: CGRectMake(0, self.view.frame.size.height/6, self.view.frame.size.width, 40.0))
-        toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
-        toolBar.barStyle = .BlackTranslucent
-        toolBar.tintColor = UIColor.whiteColor()
-        toolBar.backgroundColor = UIColor.blackColor()
-        
-        let toolBarBtn = UIBarButtonItem(title: "完了", style: .Done, target: self, action: "tappedToolBarBtn:")
-        toolBarBtn.tag = 1
-        toolBar.items = [toolBarBtn]
-        
-        dateTextField.inputAccessoryView = toolBar
-*/
         // nameTextField の情報を受け取るための delegate を設定
         nameTextField.delegate = self
+    }
+        
+    // 追加ボタンを押した時
+    @IBAction func touchDownBtnAddMenber(sender: AnyObject) {
+        // TODO ダイアログの表示
+        
     }
     
     // 相談ボタンを押した時
@@ -185,9 +181,11 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
+            secondViewController._paramOriginal = _paramOriginal
         }
     }
     
+    // ダイアログ用
     // 日付の変更イベント
     func changedDateEvent(sender:AnyObject?){
         //        var dateSelecter:UIDatePicker = sender as! UIDatePicker
@@ -204,6 +202,8 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
         return true
     }
     
+    // 入力確認はダイアログで行う
+    // 鑑定するボタンを押したとき　　入力の確認
     @IBAction func touchDownbtnAppraise(sender: AnyObject) {
         // 名前欄のTextFieldの確認
         if (nameTextField.text!.isEmpty) {
@@ -254,6 +254,7 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
 
         // この判定が終わったら、次の画面に遷移する
         
+        // 保存はどうするか
         // NSUserDefaultsオブジェクトを取得し、設定情報を保存する
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(nameTextField.text, forKey: "userName")
@@ -291,33 +292,3 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
     }
 }
-/*
-// コピーやペーストなどのメニューを非表示にするための拡張
-class SampleTextField: UITextField{
-    override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
-        UIMenuController.sharedMenuController().menuVisible = false
-        return false
-    }
-}
-
-// ひらがなチェック用の拡張
-extension String {
-    func ChackHiragana() -> Bool {
-        var flagKana:Bool = false
-        
-        // 文字列を表現するUInt32
-        for c in unicodeScalars {
-            if c.value >= 0x3041 && c.value <= 0x3096 {
-                print("ChackHiragana OK")
-                flagKana = true
-            } else {
-                print("ChackHiragana NG")
-                flagKana = false
-                break
-            }
-        }
-        
-        return flagKana
-    }
-}
-*/
