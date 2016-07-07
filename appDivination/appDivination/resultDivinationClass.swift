@@ -98,6 +98,7 @@ class resultDivinationClass {
 //        print(retDivination)
     }
 
+/*
     // 占った結果をNSUserDefaultsで保存
     func divination() {
         var userName:String = ""
@@ -119,7 +120,8 @@ class resultDivinationClass {
             print("divination plotResult : \(plotResult)")
         }
     }
-    
+*/
+
     // 占った結果をInt配列で返却
     func divinationReturnResult(userName:String) -> Array<Int> {
         let characters = userName.characters.map { String($0) }
@@ -260,36 +262,46 @@ class resultDivinationClass {
     }
     
     // 今日のつぶやきの結果文言の取得、
-    func getTodayLuckyWord(userName:String, plotData:[Int]) -> String {
+    func getTodayLuckyWord(userName:String, plotData:[Int], tweetWord:String) -> String {
         var flagYatanokagami: Int = 0
 //        var flagHutomani: Bool = true
 //        var flagMikumari: Int = 0
         let userNameNew: String = userName
-            for i in 0...7 {
+        var setLuckyWord: String = ""
+        
+        // TODO 繰り返し呼ばれる可能性があるので、kanaDataClassクラスの読み込みは少なくすべき
+        let kanaData = kanaDataClass()
+        for i in 0...7 {
             if plotData[i] > 0 {
                 flagYatanokagami += 1
             } else {
-				// a: 丸が付かない場所を埋める言葉を洗い出す
-				// b: その中からランダムに一文字決め、名前にその文字を足し合わせる
-				// userNameNew に一文字追加
+                // a: 丸が付かない場所を埋める言葉を洗い出す
+                // b: その中からランダムに一文字決め、名前にその文字を足し合わせる
+                // userNameNew に一文字追加
+                newAddWord = kanaData.getListPlotData(i)
+                tweetWord = tweetWord + newAddWord
+                userNameNew = userName + newAddWord
+                break
             }
         }
         
         // 全てのプロット位置に丸がつくようになると終わり
         if flagYatanokagami == 8 {
-            return "埋め終えるまでに引用した全ての言葉をランダムに並び替える"
+        	//TODO tweetWord　並び替え
+        
+            return tweetWord
         } else {
             // c: 音の鏡を確認し、まだ丸が付いて居ない箇所があれば、aからやり直す
-            getTodayLuckyWord(userNameNew, plotData: divinationReturnResult(userNameNew))
+            return getTodayLuckyWord(userNameNew, plotData: divinationReturnResult(userNameNew), tweetWord)
         }
         
          return "ここは来ない想定"
     }
-    
+
     // 相性診断の結果文言の取得
-	// TODO plotResultは人数分必要、getCompatibilityScoreの引数も配列で
+    // TODO plotResultは人数分必要、getCompatibilityScoreの引数も配列で
     func getCompatibilityScore(plotData:[Int]) -> String {
-    	return ""
+        return ""
     }
     
     // 命名術の結果文言の取得

@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+/*
+ * ひらがな、カタカナ、空白文字の占い結果を扱う
+ */
 class kanaDataClass {
     
     var knDt = [kanaData]()
@@ -222,6 +224,7 @@ class kanaDataClass {
         //        print(params)
     }
     
+    // 引数に渡した文字コード（例：0x3041）に対応するプロットデータを返す
     func getPlotData(code: String) -> [String!] {
         let sPlot: [String!]=["","","","","","","",""]
         for chara in knDt {
@@ -231,5 +234,20 @@ class kanaDataClass {
             }
         }
         return sPlot
+    }
+    
+    // 引数に渡したプロットの位置（0～7）に丸が付く（1が入っている）文字列を取得し、
+    // ランダムに一文字を返却する
+    func getListPlotData(index: Int) -> String {
+        var charaList = [kanaData]()
+        for chara in knDt {
+            if 0 < chara.plot[index] {
+                charaList.append(chara)
+            }
+        }
+        // ランダムに一文字を返却する
+        var d = Int(arc4random_uniform(UInt32(charaList.count)))
+        // TODO インデックスdに当たる文字を返す
+        return "aaaaaaaaaaaaaaaaaaaaaaaaa"
     }
 }

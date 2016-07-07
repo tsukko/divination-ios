@@ -49,6 +49,8 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
         
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
 
+// TODO メールを送るボタンの位置を変更する
+
         if _second == 0  {
             // 鑑定士プロフィールを押した時
             image_back.image = UIImage(named: "説明ページ＿先生プロフ")
@@ -88,7 +90,35 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
             // その他　ここはこない
         }
     }
-    
+
+    // 戻るボタンを押した時
+    @IBAction func touchDownBtnBack(sender: AnyObject) {
+            // 遷移するViewを定義して、遷移してきた画面に移動する
+        if _second == 6  {
+            let mySecondViewController: UIViewController = A2ViewController()
+            self.presentViewController(mySecondViewController, animated: false, completion: nil)
+            _second = -1
+        }
+        if _paramOriginal == 0 {
+            let mySecondViewController: UIViewController = ViewController()
+            self.presentViewController(mySecondViewController, animated: false, completion: nil)
+        } else if _paramOriginal == 1 {
+        } else if _paramOriginal == 2 {
+        } else if _paramOriginal == 3 {
+            let mySecondViewController: UIViewController = A3ViewController()
+            self.presentViewController(mySecondViewController, animated: false, completion: nil)
+        } else if _paramOriginal == 4 {
+            let mySecondViewController: UIViewController = A4ViewController()
+            self.presentViewController(mySecondViewController, animated: false, completion: nil)
+        } else if _paramOriginal == 5 {
+            let mySecondViewController: UIViewController = A5ViewController()
+            self.presentViewController(mySecondViewController, animated: false, completion: nil)
+        } else if _paramOriginal == 6 {
+            let mySecondViewController: UIViewController = A6ViewController()
+            self.presentViewController(mySecondViewController, animated: false, completion: nil)
+        }
+    }
+
     // 相談ボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
     //    _param = 6

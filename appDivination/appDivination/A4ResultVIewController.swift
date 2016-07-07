@@ -40,19 +40,26 @@ class A4ResultViewController : UIViewController {
  
         var userName:String = ""
         
+        // 占いの実行　、standardUserDefaultsにわざわざ保存しなくてもいい
+        let retDivination = resultDivinationClass()
+        retDivination.divination()
+
         // 名前部分の表示
         let defaults = NSUserDefaults.standardUserDefaults()
-        userName = defaults.stringForKey("userName")! + " さんの"
+        userName = defaults.stringForKey("userName")!
         lblName.text = userName
         
+        // 占いの実行　、standardUserDefaultsにわざわざ保存しなくてもいい
+        let retDivination = resultDivinationClass()
+        let plotResult:[Int] = retDivination.divinationReturnResult(userName)
+       
+        // TODO 名前の後に　" さんの"とつける
         // TODO 名前の下に"今日の運気を上げるつぶやきは．．．"を表示
 
-		// 運気を上げるつぶやき文字の取得とセット
-        let plotResult:[Int] = (defaults.objectForKey("plotResult") as? [Int])!
-		let retDivination = resultDivinationClass()
-		lblMessage.text = retDivination.getTodayLuckyWord(userName, plotData: plotResult)
+        // 運気を上げるつぶやき文字の取得とセット
+        lblMessage.text = retDivination.getTodayLuckyWord(userName, plotData: plotResult, "")
 
-		// TODO 下に表示
+        // TODO 下に表示
         // "声に出してつぶやくとより運気も高まります！"
     }
     

@@ -69,14 +69,24 @@ class A3ResultViewController : UIViewController {
         super.viewDidLoad()
         print("A3ResultViewController viewDidLoad")
 
+// TODO 背景画像の配置がずれているので治す
+
+        // 占いの実行　、standardUserDefaultsにわざわざ保存しなくてもいい
+//        let retDivination = resultDivinationClass()
+//        retDivination.divination()
+
         // 占い結果を取得、無料言霊鑑定アニメーション画面で保存している
         let defaults = NSUserDefaults.standardUserDefaults()
-        let plotResult:[Int] = (defaults.objectForKey("plotResult") as? [Int])!
+        userName = defaults.stringForKey("userName")!
+        
+        // 占いの実行　、standardUserDefaultsにわざわざ保存しなくてもいい
+        let retDivination = resultDivinationClass()
+        let plotResult:[Int] = retDivination.divinationReturnResult(userName)
+//        let plotResult:[Int] = (defaults.objectForKey("plotResult") as? [Int])!
         
         // 占い結果の円の表示
         displayCycle(plotResult)
         
-        let retDivination = resultDivinationClass()
         // レア言霊
         lblMessageRare.text = retDivination.getMessagRare(plotResult)
         if lblMessageRare.text!.isEmpty {
