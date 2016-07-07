@@ -37,12 +37,14 @@ class kanaDataClass {
     }
     
     // イニシャライザ
-    init() {
-        initialKanaData()
+    init(flagAll:Bool) {
+        initialKanaData(flagAll)
     }
     
     // ひらがな、カタカナ、空白のデータ
-    func initialKanaData() {
+    func initialKanaData(flagAll:Bool) {
+        // フラグが立っている場合、ひらがなもカタカナも取得する
+        if flagAll {
         // ひらがな
         knDt.append(kanaData(code: "0x3041", character: "ぁ", vowel: "0", plot: ["1", "0", "0", "0", "0", "0", "0", "0"]))
         knDt.append(kanaData(code: "0x3042", character: "あ", vowel: "0", plot: ["1", "0", "0", "0", "0", "0", "0", "0"]))
@@ -127,6 +129,8 @@ class kanaDataClass {
         knDt.append(kanaData(code: "0x3091", character: "ゑ", vowel: "3", plot: ["0", "1", "0", "0", "0", "0", "0", "0"]))
         knDt.append(kanaData(code: "0x3092", character: "を", vowel: "4", plot: ["0", "0", "0", "1", "0", "0", "0", "0"]))
         knDt.append(kanaData(code: "0x3093", character: "ん", vowel: "2", plot: ["0", "0", "0", "0", "1", "0", "0", "0"]))
+        }
+        
         // カタカナ
         knDt.append(kanaData(code: "0x30A1", character: "ァ", vowel: "0", plot: ["1", "0", "0", "0", "0", "0", "0", "0"]))
         knDt.append(kanaData(code: "0x30A2", character: "ア", vowel: "0", plot: ["1", "0", "0", "0", "0", "0", "0", "0"]))
@@ -241,13 +245,12 @@ class kanaDataClass {
     func getListPlotData(index: Int) -> String {
         var charaList = [kanaData]()
         for chara in knDt {
-            if 0 < chara.plot[index] {
+            if 0 < Int(chara.plot[index]) {
                 charaList.append(chara)
             }
         }
         // ランダムに一文字を返却する
-        var d = Int(arc4random_uniform(UInt32(charaList.count)))
-        // TODO インデックスdに当たる文字を返す
-        return "aaaaaaaaaaaaaaaaaaaaaaaaa"
+        let d = Int(arc4random_uniform(UInt32(charaList.count)))
+        return charaList[d].character
     }
 }

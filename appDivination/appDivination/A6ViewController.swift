@@ -76,18 +76,21 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
     @IBOutlet weak var secondDateTextField: UITextField!
     @IBOutlet weak var secondSgCtlSex: UISegmentedControl!
     @IBOutlet weak var btnAppraise: UIButton!
-    @IBOutlet weak var btnConsultation: UIButton!
-//    @IBOutlet weak var naviBar: UINavigationBar!
+    @IBOutlet weak var naviBar: UINavigationBar!
+    //    @IBOutlet weak var btnConsultation: UIButton!
     
+    // 画面番号、遷移元を知るために使用
+    let viewNumber = 6
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
     // 画面遷移時に遷移元が渡す遷移元の値
-    var _paramOriginal:Int = 6
+    var _paramOriginal:Int = -1
     // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
 
     //    var toolBar:UIToolbar!
     var datePicker1: UIDatePicker!
+    var datePicker2: UIDatePicker!
     let defDateString = "2000-01-01"
     let minDateString = "1900-01-01"
     let maxDateString = "2100-01-01"
@@ -131,8 +134,6 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
         format(datePicker2.date,style: "yyyy/MM/dd")
         datePicker2.locale = NSLocale(localeIdentifier: "ja_JP")
         // 最小値、最大値、初期値を設定
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-DD"
         datePicker2.minimumDate = dateFormatter.dateFromString(minDateString)
         datePicker2.maximumDate = dateFormatter.dateFromString(maxDateString)
         datePicker2.date = dateFormatter.dateFromString(defDateString)!
@@ -155,7 +156,11 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
-            secondViewController._paramOriginal = _paramOriginal
+            secondViewController._paramOriginal = viewNumber
+        } else if segue.identifier == "midstream" {
+            let secondViewController:MidstreamViewController = segue.destinationViewController as! MidstreamViewController
+            secondViewController._second = _param
+            secondViewController._paramOriginal = viewNumber
         }
     }
     
@@ -172,10 +177,10 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
     // 日付の変更イベント2
     func changedDateEvent2(sender:AnyObject?){
         //        var dateSelecter:UIDatePicker = sender as! UIDatePicker
-        self.changeLabelDate(datePicker2.date)
+        self.changeLabelDate2(datePicker2.date)
     }
     // 日付の変更2
-    func changeLabelDate(date:NSDate) {
+    func changeLabelDate2(date:NSDate) {
         secondDateTextField.text = format(datePicker2.date,style: "yyyy年 MM月 dd日")
     }
     

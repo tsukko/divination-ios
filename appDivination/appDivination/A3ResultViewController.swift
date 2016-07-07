@@ -54,13 +54,15 @@ class A3ResultViewController : UIViewController {
         UIImage(named:"maru6")!]
     var imageView01: [UIImageView?] = []
     
+    // 画面番号、遷移元を知るために使用
+    let viewNumber = 3
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
-    // 画面遷移時に遷移元が渡す遷移元の値　（TODO final値）
-    var _paramOriginal:Int = 3
+    // 画面遷移時に遷移元が渡す遷移元の値
+    var _paramOriginal:Int = -1
     // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
-    
+
     /**
      インスタンス化された直後（初回に一度のみ）
      viewDiDLoad
@@ -77,7 +79,7 @@ class A3ResultViewController : UIViewController {
 
         // 占い結果を取得、無料言霊鑑定アニメーション画面で保存している
         let defaults = NSUserDefaults.standardUserDefaults()
-        userName = defaults.stringForKey("userName")!
+        let userName = defaults.stringForKey("userName")!
         
         // 占いの実行　、standardUserDefaultsにわざわざ保存しなくてもいい
         let retDivination = resultDivinationClass()
@@ -157,7 +159,7 @@ class A3ResultViewController : UIViewController {
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
-            secondViewController._paramOriginal = _paramOriginal
+            secondViewController._paramOriginal = viewNumber
         }
     }
     

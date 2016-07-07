@@ -113,10 +113,12 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var btnAddMenber: UIButton!
     
+    // 画面番号、遷移元を知るために使用
+    let viewNumber = 5
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
     // 画面遷移時に遷移元が渡す遷移元の値
-    var _paramOriginal:Int = 5
+    var _paramOriginal:Int = -1
     // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
 
@@ -181,7 +183,11 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
-            secondViewController._paramOriginal = _paramOriginal
+            secondViewController._paramOriginal = viewNumber
+        } else if segue.identifier == "midstream" {
+            let secondViewController:MidstreamViewController = segue.destinationViewController as! MidstreamViewController
+            secondViewController._second = _param
+            secondViewController._paramOriginal = viewNumber
         }
     }
     

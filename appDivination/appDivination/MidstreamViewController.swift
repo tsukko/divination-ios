@@ -87,6 +87,7 @@ class MidstreamViewController : UIViewController {
 
     // 3秒後に次の結果画面に遷移する
     func transition(timer: NSTimer) {
+        print("MidstreamViewController transition:_paramOriginal:\(_paramOriginal)")
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
         if _paramOriginal == 3 {
@@ -96,17 +97,17 @@ class MidstreamViewController : UIViewController {
            self.presentViewController(next, animated: true, completion: nil)
         } else if _paramOriginal == 4 {
             // 今日のつぶやき結果画面
-           let next:A4ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A3ResultView") as! A3ResultViewController
+           let next:A4ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A4ResultView") as! A4ResultViewController
            next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
            self.presentViewController(next, animated: true, completion: nil)
         } else if _paramOriginal == 5 {
             // 相性診断結果画面
-           let next:A5ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A3ResultView") as! A3ResultViewController
+           let next:A5ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A5ResultView") as! A5ResultViewController
            next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
            self.presentViewController(next, animated: true, completion: nil)
         } else if _paramOriginal == 6 {
             // 命名術結果画面
-           let next:A6ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A3ResultView") as! A3ResultViewController
+           let next:A6ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A6ResultView") as! A6ResultViewController
            next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
            self.presentViewController(next, animated: true, completion: nil)
         }

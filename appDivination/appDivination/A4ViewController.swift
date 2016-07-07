@@ -35,10 +35,12 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
     @IBOutlet weak var naviBar: UINavigationBar!
 //    @IBOutlet weak var btnConsultation: UIButton!
     
+    // 画面番号、遷移元を知るために使用
+    let viewNumber = 4
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
-    // 画面遷移時に遷移元が渡す遷移元の値　（TODO final値）
-    var _paramOriginal:Int = 4
+    // 画面遷移時に遷移元が渡す遷移元の値
+    var _paramOriginal:Int = -1
     // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
 
@@ -73,22 +75,6 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
         datePicker1.date = dateFormatter.dateFromString(defDateString)!
         dateTextField.inputView = datePicker1
         
-        //        datePicker1.userInteractionEnabled = true
-        //        datePicker1.tag = self.TAG_LABEL1
-        
-        // UIToolBarの設定
-/*        toolBar = UIToolbar(frame: CGRectMake(0, self.view.frame.size.height/6, self.view.frame.size.width, 40.0))
-        toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
-        toolBar.barStyle = .BlackTranslucent
-        toolBar.tintColor = UIColor.whiteColor()
-        toolBar.backgroundColor = UIColor.blackColor()
-        
-        let toolBarBtn = UIBarButtonItem(title: "完了", style: .Done, target: self, action: "tappedToolBarBtn:")
-        toolBarBtn.tag = 1
-        toolBar.items = [toolBarBtn]
-        
-        dateTextField.inputAccessoryView = toolBar
-*/
         // 保存していた情報の復元
         // TODO 無料音霊鑑定と共通？？？？
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -112,7 +98,11 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
-            secondViewController._paramOriginal = _paramOriginal
+            secondViewController._paramOriginal = viewNumber
+        } else if segue.identifier == "midstream" {
+            let secondViewController:MidstreamViewController = segue.destinationViewController as! MidstreamViewController
+            secondViewController._second = _param
+            secondViewController._paramOriginal = viewNumber
         }
     }
     

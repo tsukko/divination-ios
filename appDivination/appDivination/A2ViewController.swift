@@ -31,7 +31,8 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
     @IBOutlet weak var btnReceiveMail: UIButton!
     @IBOutlet weak var naviBar: UINavigationBar!
     
-    // _paramと_secondはまとめられる？
+    // 画面番号、遷移元を知るために使用
+    let viewNumber = 2
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
     // 画面遷移時に遷移元が渡す遷移元の値
@@ -100,9 +101,9 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
             _second = -1
         }
         if _paramOriginal == 0 {
+        } else if _paramOriginal == 1 {
             let mySecondViewController: UIViewController = ViewController()
             self.presentViewController(mySecondViewController, animated: false, completion: nil)
-        } else if _paramOriginal == 1 {
         } else if _paramOriginal == 2 {
         } else if _paramOriginal == 3 {
             let mySecondViewController: UIViewController = A3ViewController()
@@ -129,7 +130,7 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
-            // ここでは、一枚絵ページから、相談する一枚絵ページ（_second = 6）に遷移するための処理
+            // ここでは、一枚絵ページから、同じViewである相談する一枚絵ページ（_second = 6）に遷移するための処理
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = 6
             secondViewController._param = _param

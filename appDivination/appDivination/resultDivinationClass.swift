@@ -126,7 +126,7 @@ class resultDivinationClass {
     func divinationReturnResult(userName:String) -> Array<Int> {
         let characters = userName.characters.map { String($0) }
 
-        let kanaData = kanaDataClass()
+        let kanaData = kanaDataClass(flagAll: true)
         var plotResult:[Int] = [0,0,0,0,0,0,0,0]
 
         // ここで文字を１文字づつ繰り返し処理
@@ -264,22 +264,22 @@ class resultDivinationClass {
     // 今日のつぶやきの結果文言の取得、
     func getTodayLuckyWord(userName:String, plotData:[Int], tweetWord:String) -> String {
         var flagYatanokagami: Int = 0
-//        var flagHutomani: Bool = true
-//        var flagMikumari: Int = 0
-        let userNameNew: String = userName
-        var setLuckyWord: String = ""
+        var userNameNew: String = userName
+        var lTweetWord:String = tweetWord
         
         // TODO 繰り返し呼ばれる可能性があるので、kanaDataClassクラスの読み込みは少なくすべき
-        let kanaData = kanaDataClass()
+        let kanaData = kanaDataClass(flagAll: false)
         for i in 0...7 {
             if plotData[i] > 0 {
                 flagYatanokagami += 1
             } else {
+                print("plotData is zero. i:\(i)")
                 // a: 丸が付かない場所を埋める言葉を洗い出す
                 // b: その中からランダムに一文字決め、名前にその文字を足し合わせる
                 // userNameNew に一文字追加
-                newAddWord = kanaData.getListPlotData(i)
-                tweetWord = tweetWord + newAddWord
+                let newAddWord = kanaData.getListPlotData(i)
+                print("add word :\(newAddWord)")
+                lTweetWord = tweetWord + newAddWord
                 userNameNew = userName + newAddWord
                 break
             }
@@ -288,14 +288,19 @@ class resultDivinationClass {
         // 全てのプロット位置に丸がつくようになると終わり
         if flagYatanokagami == 8 {
         	//TODO tweetWord　並び替え
-        
-            return tweetWord
+            var outputWord:String = ""
+            var characters = lTweetWord.characters.map { String($0) }
+            for _ in characters {
+                let d = Int(arc4random_uniform(UInt32(characters.count)))
+                outputWord = outputWord + characters.removeAtIndex(d)
+            }
+            print("inputWord :\(lTweetWord) -> outputWord :\(outputWord)")
+            return outputWord
         } else {
+            print("flagYatanokagami :\(flagYatanokagami)")
             // c: 音の鏡を確認し、まだ丸が付いて居ない箇所があれば、aからやり直す
-            return getTodayLuckyWord(userNameNew, plotData: divinationReturnResult(userNameNew), tweetWord)
+            return getTodayLuckyWord(userNameNew, plotData: divinationReturnResult(userNameNew), tweetWord: lTweetWord)
         }
-        
-         return "ここは来ない想定"
     }
 
     // 相性診断の結果文言の取得

@@ -28,10 +28,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var btnProfile: UIButton!
     @IBOutlet weak var btnTodayTweet: UIButton!
     
-    /// 画面遷移時に渡す為の値
+    // 画面番号、遷移元を知るために使用
+    let viewNumber = 1
+    // 画面遷移時に渡す為の値
     var _param:Int = -1
-    // 画面遷移時に遷移元が渡す遷移元の値　（TODO final値）
-    var _paramOriginal:Int = 0
+    // 画面遷移時に遷移元が渡す遷移元の値
+    var _paramOriginal:Int = -1
     // ユーザー名 今日の運勢のボタンを表示するかどうか
     var userName : String = ""
     
@@ -39,9 +41,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("ViewController viewDidLoad")
-        
-        // バック画像の設定
-        //viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
         
         // viewにロングタップのジェスチャーを追加
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.doGesture(_:)))
@@ -91,7 +90,7 @@ class ViewController: UIViewController {
             // 元画面を示す値_paramOriginal = 0
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
-            secondViewController._paramOriginal = _paramOriginal
+            secondViewController._paramOriginal = viewNumber
         }
     }
     
