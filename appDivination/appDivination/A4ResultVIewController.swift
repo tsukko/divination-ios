@@ -42,7 +42,7 @@ class A4ResultViewController : UIViewController {
         print("A4ResultViewController viewDidLoad")
  
         var userName:String = ""
-        
+
         // 名前部分の表示
         let defaults = NSUserDefaults.standardUserDefaults()
         userName = defaults.stringForKey("userName")!
@@ -51,15 +51,19 @@ class A4ResultViewController : UIViewController {
         // 占いの実行
         let retDivination = resultDivinationClass()
         let plotResult:[Int] = retDivination.divinationReturnResult(userName)
-       
-        // TODO 名前の後に　" さんの"とつける
-        // TODO 名前の下に"今日の運気を上げるつぶやきは．．．"を表示
 
         // 運気を上げるつぶやき文字の取得とセット
-        lblMessage.text = retDivination.getTodayLuckyWord(userName, plotData: plotResult, tweetWord: "")
-
-        // TODO 下に表示
-        // "声に出してつぶやくとより運気も高まります！"
+        var LukcyWord:String = defaults.stringForKey("LukcyWord")!
+        let saveTime:AnyObject! = defaults.objectForKey("saveTime")!
+        var backgroundDate: NSDate! = saveTime
+        let currentTime = NSDate()
+        // TODO 一日前かどうかも判定する
+        if LukcyWord.isEmpty {
+            LukcyWord = retDivination.getTodayLuckyWord(userName, plotData: plotResult, tweetWord: "")
+            defaults.setObject(LukcyWord, forKey: "LukcyWord")
+            defaults.setObject(currentTime, forKey: "saveTime")
+        }
+        lblMessage.text = LukcyWord
     }
     
     // 画面が表示された直後
