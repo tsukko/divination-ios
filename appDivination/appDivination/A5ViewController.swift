@@ -104,10 +104,10 @@ d-hライン
 class A5ViewController : UIViewController, UITextFieldDelegate {
     
 //    @IBOutlet var viewBack: UIView!
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var dateTextField: UITextField!
-    @IBOutlet weak var sgCtlSex: UISegmentedControl!
-    @IBOutlet weak var btnAppraise: UIButton!    
+//    @IBOutlet weak var nameTextField: UITextField!
+//    @IBOutlet weak var dateTextField: UITextField!
+//    @IBOutlet weak var sgCtlSex: UISegmentedControl!
+    @IBOutlet weak var btnAppraise: UIButton!
     @IBOutlet weak var naviBar: UINavigationBar!
 //    @IBOutlet weak var btnConsultation: UIButton!
     
@@ -147,7 +147,7 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
         
         // ダイアログ用
         // テキストフィールドにDatePickerを表示する
-        datePicker1 = UIDatePicker()
+/*        datePicker1 = UIDatePicker()
         datePicker1.addTarget(self, action: #selector(A5ViewController.changedDateEvent(_:)), forControlEvents: UIControlEvents.ValueChanged)
         // 日本の日付表示形式にする、年月日の表示にする
         datePicker1.datePickerMode = UIDatePickerMode.Date
@@ -163,7 +163,7 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
         
         // nameTextField の情報を受け取るための delegate を設定
         nameTextField.delegate = self
-    }
+*/    }
         
     // 追加ボタンを押した時
     @IBAction func touchDownBtnAddMenber(sender: AnyObject) {
@@ -190,7 +190,7 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
             secondViewController._paramOriginal = viewNumber
         }
     }
-    
+/*
     // ダイアログ用
     // 日付の変更イベント
     func changedDateEvent(sender:AnyObject?){
@@ -207,11 +207,11 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
         nameTextField.resignFirstResponder()
         return true
     }
-    
+  */
     // 入力確認はダイアログで行う
     // 鑑定するボタンを押したとき　　入力の確認
     @IBAction func touchDownbtnAppraise(sender: AnyObject) {
-        // 名前欄のTextFieldの確認
+/*        // 名前欄のTextFieldの確認
         if (nameTextField.text!.isEmpty) {
             print("nameTextField.text is enpty.")
             let alertController = UIAlertController(
@@ -267,6 +267,7 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
         defaults.setObject(dateTextField.text, forKey: "birthday")
         defaults.setInteger(sgCtlSex.selectedSegmentIndex, forKey: "sex")
         defaults.synchronize()
+ */
     }
     
     // 画面の適当なところをタッチした時、キーボードを隠す
@@ -274,8 +275,8 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
         super.touchesEnded(touches, withEvent: event)
 
         print("close keyboard")
-        nameTextField.resignFirstResponder()
-        dateTextField.resignFirstResponder()
+//        nameTextField.resignFirstResponder()
+//        dateTextField.resignFirstResponder()
     }
     
     // 書式指定に従って日付を文字列に変換します
