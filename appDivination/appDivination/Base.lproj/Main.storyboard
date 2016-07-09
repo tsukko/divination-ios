@@ -1721,7 +1721,7 @@
                                         <barButtonItem key="leftBarButtonItem" title="&lt;" id="uqM-vK-s4N">
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
-                                                <segue destination="aqh-nv-CCN" kind="show" id="8Wy-Uf-WxJ"/>
+                                                <segue destination="aqh-nv-CCN" kind="show" id="Wj4-JT-c38"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -1941,7 +1941,7 @@
         <!--A4ResultVIew-->
         <scene sceneID="GyU-xQ-yTq">
             <objects>
-                <viewController storyboardIdentifier="A4ResultView" title="A4ResultVIew" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8z2-3R-GBa" customClass="A4ResultViewController" customModule="appDivination" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="A4ResultView" title="A4ResultVIew" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8z2-3R-GBa" customClass="A4TempResultViewController" customModule="appDivination" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rfb-1z-IqX"/>
                         <viewControllerLayoutGuide type="bottom" id="eXJ-LH-3ys"/>
@@ -2287,6 +2287,9 @@
                                     <navigationItem id="GsR-78-nHB">
                                         <barButtonItem key="leftBarButtonItem" title="&lt;" id="Bqu-Ga-Wbo">
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <segue destination="aqh-nv-CCN" kind="show" id="pNO-vg-1zS"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -2792,6 +2795,9 @@
                                     <navigationItem id="DqV-IH-M7m">
                                         <barButtonItem key="leftBarButtonItem" title="&lt;" id="g1O-cf-eez">
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <segue destination="aqh-nv-CCN" kind="show" id="7fi-O2-5Cx"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -3536,8 +3542,8 @@
         <image name="説明ページ＿先生プロフ" width="1440" height="2560"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SaR-Cu-i2b"/>
-        <segue reference="GZ0-PM-Nsr"/>
-        <segue reference="e8J-gD-5V9"/>
+        <segue reference="zh5-Ny-jGe"/>
+        <segue reference="qDq-9l-yXk"/>
+        <segue reference="2DN-Y7-Oyf"/>
     </inferredMetricsTieBreakers>
 </document>
