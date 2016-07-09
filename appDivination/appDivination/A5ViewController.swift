@@ -135,6 +135,7 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
     @IBOutlet weak var naviBar: UINavigationBar!
 //    @IBOutlet weak var btnConsultation: UIButton!
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnAddMenber: UIButton!
     
     // 画面番号、遷移元を知るために使用
@@ -169,6 +170,10 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
         
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
         
+        var objects = [AnyObject]()
+        objects.insert(NSDate(), atIndex: 0)
+        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         // ダイアログ用
         // テキストフィールドにDatePickerを表示する
 /*        datePicker1 = UIDatePicker()
@@ -293,6 +298,8 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
         defaults.synchronize()
  */
     }
+    
+    
     
     // 画面の適当なところをタッチした時、キーボードを隠す
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {

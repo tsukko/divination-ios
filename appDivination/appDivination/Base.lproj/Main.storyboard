@@ -2318,7 +2318,7 @@
                                     <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="SaR-Cu-i2b"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrJ-9k-fn9">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrJ-9k-fn9">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vm2-IA-OfD">
@@ -2380,25 +2380,20 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="kBZ-Qi-akH" firstAttribute="centerY" secondItem="f4A-A3-avn" secondAttribute="centerY" id="2RV-gw-2mI">
-                                                <variation key="widthClass=compact" constant="364.5"/>
-                                            </constraint>
-                                            <constraint firstItem="kBZ-Qi-akH" firstAttribute="bottom" secondItem="vm2-IA-OfD" secondAttribute="bottom" constant="10" id="2jM-sr-VXf">
-                                                <variation key="widthClass=compact" constant="-10"/>
-                                            </constraint>
+                                            <constraint firstItem="kBZ-Qi-akH" firstAttribute="bottom" secondItem="vm2-IA-OfD" secondAttribute="bottom" constant="-15" id="2jM-sr-VXf"/>
                                             <constraint firstItem="auC-mB-oG0" firstAttribute="centerY" secondItem="vm2-IA-OfD" secondAttribute="centerY" id="7fL-MU-auY"/>
                                             <constraint firstItem="auC-mB-oG0" firstAttribute="centerX" secondItem="vm2-IA-OfD" secondAttribute="centerX" id="AYb-GB-oEw"/>
                                             <constraint firstItem="auC-mB-oG0" firstAttribute="width" secondItem="vm2-IA-OfD" secondAttribute="width" id="C5e-Hc-lMl"/>
                                             <constraint firstItem="auC-mB-oG0" firstAttribute="height" secondItem="vm2-IA-OfD" secondAttribute="height" id="Cdp-vg-Fqv"/>
                                             <constraint firstItem="Dqw-YV-arS" firstAttribute="width" secondItem="vm2-IA-OfD" secondAttribute="width" multiplier="0.8" id="EJ4-sX-4kM"/>
                                             <constraint firstItem="uln-gI-w5C" firstAttribute="width" secondItem="vm2-IA-OfD" secondAttribute="width" id="WJy-1d-jyz"/>
-                                            <constraint firstItem="f4A-A3-avn" firstAttribute="bottom" secondItem="Dqw-YV-arS" secondAttribute="top" constant="10" id="kOE-vN-zIh"/>
+                                            <constraint firstItem="f4A-A3-avn" firstAttribute="bottom" secondItem="Dqw-YV-arS" secondAttribute="top" constant="-15" id="kOE-vN-zIh"/>
                                             <constraint firstItem="kBZ-Qi-akH" firstAttribute="centerX" secondItem="vm2-IA-OfD" secondAttribute="centerX" id="kOc-e7-N4c"/>
                                             <constraint firstItem="kBZ-Qi-akH" firstAttribute="width" secondItem="vm2-IA-OfD" secondAttribute="width" multiplier="0.5" id="n68-fo-WNk"/>
                                             <constraint firstItem="Dqw-YV-arS" firstAttribute="centerX" secondItem="vm2-IA-OfD" secondAttribute="centerX" id="oEW-ZG-rtc"/>
                                             <constraint firstItem="uln-gI-w5C" firstAttribute="centerX" secondItem="vm2-IA-OfD" secondAttribute="centerX" id="plj-Gp-7FT"/>
                                             <constraint firstItem="Dqw-YV-arS" firstAttribute="bottom" secondItem="uln-gI-w5C" secondAttribute="top" constant="-10" id="ptX-bl-mEQ"/>
-                                            <constraint firstItem="f4A-A3-avn" firstAttribute="top" secondItem="vm2-IA-OfD" secondAttribute="top" constant="10" id="rvi-cn-nq3"/>
+                                            <constraint firstAttribute="top" secondItem="f4A-A3-avn" secondAttribute="top" constant="-15" id="rvi-cn-nq3"/>
                                             <constraint firstItem="f4A-A3-avn" firstAttribute="centerX" secondItem="vm2-IA-OfD" secondAttribute="centerX" id="wx7-Ra-QYt"/>
                                         </constraints>
                                         <variation key="default">
@@ -2410,7 +2405,6 @@
                                                 <exclude reference="kBZ-Qi-akH"/>
                                             </mask>
                                             <mask key="constraints">
-                                                <exclude reference="2RV-gw-2mI"/>
                                                 <exclude reference="2jM-sr-VXf"/>
                                                 <exclude reference="kOc-e7-N4c"/>
                                                 <exclude reference="n68-fo-WNk"/>
@@ -2437,7 +2431,6 @@
                                                 <include reference="kBZ-Qi-akH"/>
                                             </mask>
                                             <mask key="constraints">
-                                                <include reference="2RV-gw-2mI"/>
                                                 <include reference="2jM-sr-VXf"/>
                                                 <include reference="kOc-e7-N4c"/>
                                                 <include reference="n68-fo-WNk"/>
@@ -2565,6 +2558,7 @@
                     <connections>
                         <outlet property="btnAppraise" destination="kBZ-Qi-akH" id="iDj-cm-Rt1"/>
                         <outlet property="naviBar" destination="FVh-5A-8tu" id="Rkc-Sv-2pm"/>
+                        <outlet property="tableView" destination="uln-gI-w5C" id="HV2-v2-n7N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="spK-28-Fjh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2826,7 +2820,7 @@
                                     <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="2DN-Y7-Oyf"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0it-Of-fye" customClass="MyScrollView" customModule="appDivination" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0it-Of-fye" customClass="MyScrollView" customModule="appDivination" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cb5-1i-HEa">
@@ -3314,6 +3308,7 @@
                         <outlet property="firstNameTextField" destination="hMH-Mi-KQj" id="gD5-tK-QGJ"/>
                         <outlet property="firstSgCtlSex" destination="XcY-Ff-ztt" id="eOb-JZ-me6"/>
                         <outlet property="lblTitle" destination="w3J-06-FUO" id="RBP-V2-vZk"/>
+                        <outlet property="myScrollView" destination="0it-Of-fye" id="4Re-kB-Ro6"/>
                         <outlet property="naviBar" destination="56j-20-Yhx" id="AH1-CQ-6Wj"/>
                         <outlet property="secondDateTextField" destination="15y-1Z-mmK" id="WNr-G9-E4s"/>
                         <outlet property="secondNameTextField" destination="HlR-Rt-D7b" id="5T8-Zr-9xg"/>
@@ -3542,8 +3537,8 @@
         <image name="説明ページ＿先生プロフ" width="1440" height="2560"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zh5-Ny-jGe"/>
-        <segue reference="nWs-Py-5z6"/>
-        <segue reference="FJY-Ht-s9i"/>
+        <segue reference="e8J-gD-5V9"/>
+        <segue reference="pNO-vg-1zS"/>
+        <segue reference="SaR-Cu-i2b"/>
     </inferredMetricsTieBreakers>
 </document>

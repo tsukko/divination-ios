@@ -66,7 +66,7 @@ import UIKit
 
 
  */
-class A6ViewController : UIViewController, UITextFieldDelegate {
+class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
     
 //    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var firstNameTextField: UITextField!
@@ -80,6 +80,7 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
     //    @IBOutlet weak var btnConsultation: UIButton!
     @IBOutlet weak var lblTitle: UILabel!
     
+    @IBOutlet weak var myScrollView: MyScrollView!
     // 画面番号、遷移元を知るために使用
     let viewNumber = 6
     // 画面遷移時に遷移元が渡す遷移先の値
@@ -146,6 +147,14 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
         // nameTextField の情報を受け取るための delegate を設定
         firstNameTextField.delegate = self
         secondNameTextField.delegate = self
+        
+        // scrollviewを使った場合、ここでタップを検知できるように設定する
+        myScrollView.delegate = self
+        let singleTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self
+            , action:#selector(A6ViewController.singleTap(_:)))
+        singleTapGesture.numberOfTapsRequired = 1
+        self.myScrollView.userInteractionEnabled = true
+        self.myScrollView.addGestureRecognizer(singleTapGesture)
     }
 
     // 相談ボタンを押した時
@@ -260,7 +269,8 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
         defaults.setInteger(secondSgCtlSex.selectedSegmentIndex, forKey: "secondsex")
         defaults.synchronize()
     }
-    
+
+/*  // scrollviewを使った場合は、このイベントはこない
     // 画面の適当なところをタッチした時、キーボードを隠す
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event)
@@ -271,7 +281,17 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
         secondNameTextField.resignFirstResponder()
         secondDateTextField.resignFirstResponder()
     }
-    
+*/
+    // scrollviewを使った場合は、こちらでタップを検知したときの処理となる
+    func singleTap(gesture: UITapGestureRecognizer) -> Void {
+        print("tapped")
+        firstNameTextField.resignFirstResponder()
+        firstDateTextField.resignFirstResponder()
+        secondNameTextField.resignFirstResponder()
+        secondDateTextField.resignFirstResponder()
+    }
+
+
     // 書式指定に従って日付を文字列に変換します
     // パラメータ
     //  date : 日付データ(NSDate型)を指定します
