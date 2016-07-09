@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C5774C01D31707D0098B56C /* MyScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5774BF1D31707D0098B56C /* MyScrollView.swift */; };
 		8C61A5DF1D2D71AA007CDB0A /* A5ResultVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C61A5DE1D2D71AA007CDB0A /* A5ResultVIewController.swift */; };
 		8C61A5E51D2D71BA007CDB0A /* A5ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C61A5E11D2D71BA007CDB0A /* A5ViewController.swift */; };
 		8C61A5E61D2D71BA007CDB0A /* A6ResultVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C61A5E21D2D71BA007CDB0A /* A6ResultVIewController.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8C5774BF1D31707D0098B56C /* MyScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyScrollView.swift; sourceTree = "<group>"; };
 		8C61A5DE1D2D71AA007CDB0A /* A5ResultVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = A5ResultVIewController.swift; sourceTree = "<group>"; };
 		8C61A5E11D2D71BA007CDB0A /* A5ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = A5ViewController.swift; sourceTree = "<group>"; };
 		8C61A5E21D2D71BA007CDB0A /* A6ResultVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = A6ResultVIewController.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				8C61A5E11D2D71BA007CDB0A /* A5ViewController.swift */,
 				8C61A5DE1D2D71AA007CDB0A /* A5ResultVIewController.swift */,
 				8C61A5E31D2D71BA007CDB0A /* A6ViewController.swift */,
+				8C5774BF1D31707D0098B56C /* MyScrollView.swift */,
 				8C61A5E21D2D71BA007CDB0A /* A6ResultVIewController.swift */,
 				8C837B381C70EEFC0087589D /* MidstreamViewController.swift */,
 				8C7AFC4C1C3D6919007E7785 /* kanaDataClass.swift */,
@@ -312,6 +315,7 @@
 				8C61A5E51D2D71BA007CDB0A /* A5ViewController.swift in Sources */,
 				8C61A5DF1D2D71AA007CDB0A /* A5ResultVIewController.swift in Sources */,
 				8C61A5E71D2D71BA007CDB0A /* A6ViewController.swift in Sources */,
+				8C5774C01D31707D0098B56C /* MyScrollView.swift in Sources */,
 				8C61A5E61D2D71BA007CDB0A /* A6ResultVIewController.swift in Sources */,
 				8C837B391C70EEFC0087589D /* MidstreamViewController.swift in Sources */,
 				8C7AFC4E1C3D6919007E7785 /* kanaDataClass.swift in Sources */,

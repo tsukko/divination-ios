@@ -78,6 +78,7 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnAppraise: UIButton!
     @IBOutlet weak var naviBar: UINavigationBar!
     //    @IBOutlet weak var btnConsultation: UIButton!
+    @IBOutlet weak var lblTitle: UILabel!
     
     // 画面番号、遷移元を知るために使用
     let viewNumber = 6
@@ -108,8 +109,11 @@ class A6ViewController : UIViewController, UITextFieldDelegate {
         // カタカムナ音霊命名術でお子様の命名のサポートをさせていただきます。会社名・屋号やペットの命名も可能です。
         // 詳しくは先生の説明をご覧下さい。
         // 父（母）の名前、お誕生日、性別が2セット
-        
+
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
+        
+        // 行数無制限
+        lblTitle.numberOfLines = 0
         
         // テキストフィールドにDatePickerを表示する
         datePicker1 = UIDatePicker()

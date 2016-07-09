@@ -54,15 +54,12 @@ class A4TempResultViewController : UIViewController {
 
         // 運気を上げるつぶやき文字の取得とセット
         var LukcyWord:String? = defaults.stringForKey("LukcyWord")
-//        let saveTime:AnyObject? = defaults.objectForKey("saveTime")
-//        var backgroundDate: NSDate! = saveTime
-        let currentTime = NSDate()
-        // TODO 一日前かどうかも判定する
-        if LukcyWord == nil || LukcyWord!.isEmpty {
+        let saveTime = defaults.objectForKey("saveTime") as? NSDate
+        if LukcyWord == nil || LukcyWord!.isEmpty || saveTime == nil || !checkDateToday(saveTime!) {
             print("get LukcyWord")
             LukcyWord = retDivination.getTodayLuckyWord(userName, plotData: plotResult, tweetWord: "")
             defaults.setObject(LukcyWord, forKey: "LukcyWord")
-            defaults.setObject(currentTime, forKey: "saveTime")
+            defaults.setObject(NSDate(), forKey: "saveTime")
         } else {
             print("LukcyWord Already get")
         }
@@ -91,6 +88,27 @@ class A4TempResultViewController : UIViewController {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
             secondViewController._paramOriginal = viewNumber
+        }
+    }
+    
+    func checkDateToday(savedDate: NSDate) -> Bool {
+        // 日付の変換 YYYY MM DD
+        let cal = NSCalendar.currentCalendar()
+        let comp = cal.components(
+            [NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day,
+                NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second],
+            fromDate: savedDate)
+        let compNow = cal.components(
+            [NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day,
+                NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second],
+            fromDate: NSDate())
+
+        if comp.year == compNow.year &&
+            comp.month == compNow.month &&
+            comp.day == compNow.day {
+            return true
+        } else {
+            return false
         }
     }
     
