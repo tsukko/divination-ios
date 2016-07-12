@@ -125,7 +125,7 @@ d-hライン
 よださんの余った丸を、いちたさんのBとFに与えて、にださんか、さんたさんのBFラインに丸がいかなくなってしまうことがないように振り分ける。
  
  */
-class A5ViewController : UIViewController, UITextFieldDelegate {
+class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
 //    @IBOutlet var viewBack: UIView!
 //    @IBOutlet weak var nameTextField: UITextField!
@@ -172,8 +172,16 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
         
         var objects = [AnyObject]()
         objects.insert(NSDate(), atIndex: 0)
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+//        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+   //     self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+   //     tableView.rowHeight = UITableViewAutomaticDimension
+//        let tblBackColor: UIColor = UIColor.clearColor()
+//        tableView.backgroundColor = tblBackColor
+        tableView.dataSource = self
+        tableView.delegate = self
+//        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
+      
+        
         // ダイアログ用
         // テキストフィールドにDatePickerを表示する
 /*        datePicker1 = UIDatePicker()
@@ -309,6 +317,119 @@ class A5ViewController : UIViewController, UITextFieldDelegate {
 //        nameTextField.resignFirstResponder()
 //        dateTextField.resignFirstResponder()
     }
+    
+    var testteste:[String] = ["あああ","いいい","ううう","えええ","おおお","","",""]
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // 項目数とする
+        return testteste.count + 1
+    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "MyTestCell")
+//        cell.text = "Row #\(indexPath.row)"
+        if (indexPath.row < testteste.count) {
+            cell.textLabel!.text = "#\(indexPath.row):\(testteste[indexPath.row])"
+            let tblBackColor: UIColor = UIColor.clearColor()
+            cell.backgroundColor = tblBackColor
+        } else {
+            cell.textLabel!.text = "追加"
+            cell.textLabel!.textAlignment = NSTextAlignment.Center
+        }
+        return cell
+    }
+//    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+//        return "追加2"
+//    }
+    // セルの削除許可の設定
+    func tableView(tableView: UITableView,canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    {
+        return true
+    }
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+//            testteste.removeObjectAtIndex(indexPath.row)
+            // TODO ちゃんとした削除しょり
+            testteste.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+    }
+    // タップした時の処理
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("\(testteste[indexPath.row])")
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if (indexPath.row == testteste.count + 1) {
+            // ダイアログ表示
+            // アラートコントローラ：　タイトル、メッセージ、アラートスタイル(Alert/ActionSheet)を設定
+/*            let alertController = DOAlertController(title: "title", message: "message", preferredStyle: .Alert)
+            
+            // アクション：　ボタンの文字、ボタンスタイル(Default/Cancel/Destructive)、ボタンを押した時の処理を設定
+            let cancelAction = DOAlertAction(title: "キャンセル", style: .Cancel, handler: nil)
+            
+            // アクションは複数設定できます
+            let okAction = DOAlertAction(title: "OK", style: .Default) { action in
+                NSLog("OKボタンが押されました。")
+            }
+            
+            // アラートコントローラにアクションを追加
+            alertController.addAction(cancelAction)
+            alertController.addAction(okAction)
+            
+            // 表示
+            presentViewController(alertController, animated: true, completion: nil)
+*/        }
+    }
+    
+    /*
+    /// Show a secure text entry alert with two custom buttons.
+    func showSecureTextEntryAlert(_: NSIndexPath) {
+        let title = "Secure Text Entry Alert"
+        let message = "A message should be a short, complete sentence."
+        let cancelButtonTitle = "Cancel"
+        let otherButtonTitle = "OK"
+        
+        let alertController = DOAlertController(title: title, message: message, preferredStyle: .Alert)
+        
+        // Add the text field for the secure text entry.
+        alertController.addTextFieldWithConfigurationHandler { textField in
+            // Listen for changes to the text field's text so that we can toggle the current
+            // action's enabled property based on whether the user has entered a sufficiently
+            // secure entry.
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleTextFieldTextDidChangeNotification:", name: UITextFieldTextDidChangeNotification, object: textField)
+            
+            textField.secureTextEntry = true
+        }
+        
+        // Stop listening for text change notifications on the text field. This closure will be called in the two action handlers.
+        let removeTextFieldObserver: Void -> Void = {
+            NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextFieldTextDidChangeNotification, object: alertController.textFields!.first)
+        }
+        
+        // Create the actions.
+        let cancelAction = DOAlertAction(title: cancelButtonTitle, style: .Cancel) { action in
+            NSLog("The \"Secure Text Entry\" alert's cancel action occured.")
+            
+            removeTextFieldObserver()
+        }
+        
+        let otherAction = DOAlertAction(title: otherButtonTitle, style: .Default) { action in
+            NSLog("The \"Secure Text Entry\" alert's other action occured.")
+            
+            removeTextFieldObserver()
+        }
+        
+        // The text field initially has no text in the text field, so we'll disable it.
+        otherAction.enabled = false
+        
+        // Hold onto the secure text alert action to toggle the enabled/disabled state when the text changed.
+        secureTextAlertAction = otherAction
+        
+        // Add the actions.
+        alertController.addAction(cancelAction)
+        alertController.addAction(otherAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+    }*/
+
     
     // 書式指定に従って日付を文字列に変換します
     // パラメータ
