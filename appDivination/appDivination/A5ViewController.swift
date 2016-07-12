@@ -355,8 +355,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     }
     // タップした時の処理
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("\(testteste[indexPath.row])")
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if (indexPath.row == testteste.count + 1) {
             // ダイアログ表示
             // アラートコントローラ：　タイトル、メッセージ、アラートスタイル(Alert/ActionSheet)を設定
