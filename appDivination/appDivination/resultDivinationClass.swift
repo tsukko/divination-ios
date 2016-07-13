@@ -305,11 +305,51 @@ class resultDivinationClass {
 
     // 相性診断の結果文言の取得
     // TODO plotResultは人数分必要、getCompatibilityScoreの引数も配列で
-    func getCompatibilityScore(plotData:[Int]) -> String {
+    func getCompatibilityScore(plotDataList:[[Int]]) -> String {
         var score:Int = 100
-        return ""
+        
+        // 条件
+        scoreAddFirst:Int = getScoreAddFirst(plotDataList)
+        print("score add1 :\(scoreAddFirst)")
+        scoreAddSecond:Int = getScoreAddSecond(plotDataList)
+        print("score add2 :\(scoreAddSecond)")
+        scoreAddThird:Int = getScoreAddThird(plotDataList)
+        print("score add3 :\(scoreAddSecond)")
+        scoreSubFirst:Int = getScoreSubFirst(plotDataList)
+        print("score sub1 :\(scoreSubFirst)")
+        scoreSubSecond:Int = getScoreSubSecond(plotDataList)
+        print("score sub1 :\(scoreSubSecond)")
+        
+        scoreTotal:Int = score + scoreAddFirst + scoreAddSecond + scoreAddThird + scoreSubFirst + scoreSubSecond
+        return scoreTotal.description
     }
     
+    func getScoreAddFirst(plotDataList:[[Int]]) -> Int {
+        var score:Int = 0
+
+        return score
+    }
+    func getScoreAddSecond(plotDataList:[[Int]]) -> Int {
+        var score:Int = 0
+
+        return score
+    }
+    func getScoreAddThird(plotDataList:[[Int]]) -> Int {
+        var score:Int = 0
+
+        return score
+    }
+    func getScoreSubFirst(plotDataList:[[Int]]) -> Int {
+        var score:Int = 0
+
+        return score
+    }
+    func getScoreSubSecond(plotDataList:[[Int]]) -> Int {
+        var score:Int = 0
+
+        return score
+    }
+
     // 命名術の結果文言の取得
 	// TODO plotResultは2人分必要、getNamingの引数も配列で
     func getNaming(plotData:[Int]) -> String {
