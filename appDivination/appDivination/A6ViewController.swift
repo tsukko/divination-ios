@@ -144,6 +144,16 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
         datePicker2.date = dateFormatter.dateFromString(defDateString)!
         secondDateTextField.inputView = datePicker2
 
+        // 保存していた情報の復元
+        let defaults = NSUserDefaults.standardUserDefaults()
+        firstNameTextField.text = defaults.stringForKey("firstUserName")
+        firstDateTextField.text = defaults.stringForKey("firstBirthday")
+        firstSgCtlSex.selectedSegmentIndex = defaults.integerForKey("firstSex")
+        secondNameTextField.text = defaults.stringForKey("secondUserName")
+        secondDateTextField.text = defaults.stringForKey("secondBirthday")
+        secondSgCtlSex.selectedSegmentIndex = defaults.integerForKey("secondSex")
+
+
         // nameTextField の情報を受け取るための delegate を設定
         firstNameTextField.delegate = self
         secondNameTextField.delegate = self
@@ -261,12 +271,12 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
         
         // NSUserDefaultsオブジェクトを取得し、設定情報を保存する
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(firstNameTextField.text, forKey: "firstuserName")
-        defaults.setObject(firstDateTextField.text, forKey: "firstbirthday")
-        defaults.setInteger(firstSgCtlSex.selectedSegmentIndex, forKey: "firstsex")
-        defaults.setObject(secondNameTextField.text, forKey: "seconduserName")
-        defaults.setObject(secondDateTextField.text, forKey: "secondbirthday")
-        defaults.setInteger(secondSgCtlSex.selectedSegmentIndex, forKey: "secondsex")
+        defaults.setObject(firstNameTextField.text, forKey: "firstUserName")
+        defaults.setObject(firstDateTextField.text, forKey: "firstBirthday")
+        defaults.setInteger(firstSgCtlSex.selectedSegmentIndex, forKey: "firstSex")
+        defaults.setObject(secondNameTextField.text, forKey: "secondUserName")
+        defaults.setObject(secondDateTextField.text, forKey: "secondBirthday")
+        defaults.setInteger(secondSgCtlSex.selectedSegmentIndex, forKey: "secondSex")
         defaults.synchronize()
     }
 
