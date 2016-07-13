@@ -306,21 +306,21 @@ class resultDivinationClass {
     // 相性診断の結果文言の取得
     // TODO plotResultは人数分必要、getCompatibilityScoreの引数も配列で
     func getCompatibilityScore(plotDataList:[[Int]]) -> String {
-        var score:Int = 100
+        let score:Int = 100
         
         // 条件
-        scoreAddFirst:Int = getScoreAddFirst(plotDataList)
+        let scoreAddFirst:Int = getScoreAddFirst(plotDataList)
         print("score add1 :\(scoreAddFirst)")
-        scoreAddSecond:Int = getScoreAddSecond(plotDataList)
+        let scoreAddSecond:Int = getScoreAddSecond(plotDataList)
         print("score add2 :\(scoreAddSecond)")
-        scoreAddThird:Int = getScoreAddThird(plotDataList)
+        let scoreAddThird:Int = getScoreAddThird(plotDataList)
         print("score add3 :\(scoreAddSecond)")
-        scoreSubFirst:Int = getScoreSubFirst(plotDataList)
+        let scoreSubFirst:Int = getScoreSubFirst(plotDataList)
         print("score sub1 :\(scoreSubFirst)")
-        scoreSubSecond:Int = getScoreSubSecond(plotDataList)
+        let scoreSubSecond:Int = getScoreSubSecond(plotDataList)
         print("score sub1 :\(scoreSubSecond)")
         
-        scoreTotal:Int = score + scoreAddFirst + scoreAddSecond + scoreAddThird + scoreSubFirst + scoreSubSecond
+        let scoreTotal:Int = score + scoreAddFirst + scoreAddSecond + scoreAddThird + scoreSubFirst + scoreSubSecond
         return scoreTotal.description
     }
     

@@ -356,26 +356,32 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     // タップした時の処理
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
          tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if (indexPath.row == testteste.count + 1) {
+        print("indexPath.row:\(indexPath.row), testteste.count + 1 :\(testteste.count + 1)")
+        if (indexPath.row == testteste.count ) {
             // ダイアログ表示
-            // アラートコントローラ：　タイトル、メッセージ、アラートスタイル(Alert/ActionSheet)を設定
-/*            let alertController = DOAlertController(title: "title", message: "message", preferredStyle: .Alert)
-            
-            // アクション：　ボタンの文字、ボタンスタイル(Default/Cancel/Destructive)、ボタンを押した時の処理を設定
-            let cancelAction = DOAlertAction(title: "キャンセル", style: .Cancel, handler: nil)
-            
-            // アクションは複数設定できます
-            let okAction = DOAlertAction(title: "OK", style: .Default) { action in
-                NSLog("OKボタンが押されました。")
+            let alert = UIAlertController(title: "追加します", message: "Input text", preferredStyle: .Alert)
+            let saveAction = UIAlertAction(title: "Done", style: .Default) { (action:UIAlertAction!) -> Void in
+                
+                // 入力したテキストをコンソールに表示
+                let textField = alert.textFields![0] as UITextField
+                let textFields = alert.textFields![0] as UITextField
+ //               self.label.text = textField.text
             }
             
-            // アラートコントローラにアクションを追加
-            alertController.addAction(cancelAction)
-            alertController.addAction(okAction)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Default) { (action:UIAlertAction!) -> Void in
+            }
             
-            // 表示
-            presentViewController(alertController, animated: true, completion: nil)
-*/        }
+            // UIAlertControllerにtextFieldを追加
+            alert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
+            }
+            alert.addTextFieldWithConfigurationHandler { (textFields:UITextField!) -> Void in
+            }
+            
+            alert.addAction(saveAction)
+            alert.addAction(cancelAction)
+            
+            presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     /*

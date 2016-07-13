@@ -46,9 +46,9 @@ class A6ResultViewController : UIViewController {
 
 		// 命名術結果の文言のセット
 		// TODO plotResultは2人分必要、getNamingの引数も配列で
-		let plotResult:[Int] = (defaults.objectForKey("plotResult") as? [Int])!
-		let retDivination = resultDivinationClass()
-		lblMessage.text = retDivination.getNaming(plotResult)
+	//	let plotResult:[Int] = (defaults.objectForKey("plotResult") as? [Int])!
+	//	let retDivination = resultDivinationClass()
+	//	lblMessage.text = retDivination.getNaming(plotResult)
     }
     
     // 画面が表示された直後
