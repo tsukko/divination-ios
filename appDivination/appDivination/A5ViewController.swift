@@ -325,10 +325,14 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     }
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
-//            testteste.removeObjectAtIndex(indexPath.row)
-            // TODO ちゃんとした削除しょり
+            // 削除
             userList.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            
+            // データの保存
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject(self.userList, forKey: "UserList")
+            defaults.synchronize()
         }
     }
     // タップした時の処理
