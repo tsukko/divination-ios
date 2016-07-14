@@ -2397,22 +2397,22 @@
                                                 <exclude reference="kBZ-Qi-akH"/>
                                             </mask>
                                             <mask key="constraints">
-                                                <exclude reference="7fL-MU-auY"/>
-                                                <exclude reference="AYb-GB-oEw"/>
-                                                <exclude reference="C5e-Hc-lMl"/>
-                                                <exclude reference="Cdp-vg-Fqv"/>
+                                                <exclude reference="2jM-sr-VXf"/>
+                                                <exclude reference="kOc-e7-N4c"/>
+                                                <exclude reference="n68-fo-WNk"/>
                                                 <exclude reference="EJ4-sX-4kM"/>
                                                 <exclude reference="oEW-ZG-rtc"/>
                                                 <exclude reference="ptX-bl-mEQ"/>
                                                 <exclude reference="kOE-vN-zIh"/>
                                                 <exclude reference="rvi-cn-nq3"/>
                                                 <exclude reference="wx7-Ra-QYt"/>
+                                                <exclude reference="7fL-MU-auY"/>
+                                                <exclude reference="AYb-GB-oEw"/>
+                                                <exclude reference="C5e-Hc-lMl"/>
+                                                <exclude reference="Cdp-vg-Fqv"/>
+                                                <exclude reference="A7T-6W-QCI"/>
                                                 <exclude reference="WJy-1d-jyz"/>
                                                 <exclude reference="plj-Gp-7FT"/>
-                                                <exclude reference="2jM-sr-VXf"/>
-                                                <exclude reference="A7T-6W-QCI"/>
-                                                <exclude reference="kOc-e7-N4c"/>
-                                                <exclude reference="n68-fo-WNk"/>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact">
@@ -2424,22 +2424,22 @@
                                                 <include reference="kBZ-Qi-akH"/>
                                             </mask>
                                             <mask key="constraints">
-                                                <include reference="7fL-MU-auY"/>
-                                                <include reference="AYb-GB-oEw"/>
-                                                <include reference="C5e-Hc-lMl"/>
-                                                <include reference="Cdp-vg-Fqv"/>
+                                                <include reference="2jM-sr-VXf"/>
+                                                <include reference="kOc-e7-N4c"/>
+                                                <include reference="n68-fo-WNk"/>
                                                 <include reference="EJ4-sX-4kM"/>
                                                 <include reference="oEW-ZG-rtc"/>
                                                 <include reference="ptX-bl-mEQ"/>
                                                 <include reference="kOE-vN-zIh"/>
                                                 <include reference="rvi-cn-nq3"/>
                                                 <include reference="wx7-Ra-QYt"/>
+                                                <include reference="7fL-MU-auY"/>
+                                                <include reference="AYb-GB-oEw"/>
+                                                <include reference="C5e-Hc-lMl"/>
+                                                <include reference="Cdp-vg-Fqv"/>
+                                                <include reference="A7T-6W-QCI"/>
                                                 <include reference="WJy-1d-jyz"/>
                                                 <include reference="plj-Gp-7FT"/>
-                                                <include reference="2jM-sr-VXf"/>
-                                                <include reference="A7T-6W-QCI"/>
-                                                <include reference="kOc-e7-N4c"/>
-                                                <include reference="n68-fo-WNk"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -2814,7 +2814,7 @@
                                     <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="2DN-Y7-Oyf"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0it-Of-fye" customClass="MyScrollView" customModule="appDivination" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0it-Of-fye">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cb5-1i-HEa">
@@ -3303,7 +3303,7 @@
                         <outlet property="firstNameTextField" destination="hMH-Mi-KQj" id="gD5-tK-QGJ"/>
                         <outlet property="firstSgCtlSex" destination="XcY-Ff-ztt" id="eOb-JZ-me6"/>
                         <outlet property="lblTitle" destination="w3J-06-FUO" id="RBP-V2-vZk"/>
-                        <outlet property="myScrollView" destination="0it-Of-fye" id="4Re-kB-Ro6"/>
+                        <outlet property="myScrollView" destination="0it-Of-fye" id="lB1-kG-gEF"/>
                         <outlet property="naviBar" destination="56j-20-Yhx" id="AH1-CQ-6Wj"/>
                         <outlet property="secondDateTextField" destination="15y-1Z-mmK" id="WNr-G9-E4s"/>
                         <outlet property="secondNameTextField" destination="HlR-Rt-D7b" id="5T8-Zr-9xg"/>
@@ -3532,8 +3532,8 @@
         <image name="説明ページ＿先生プロフ" width="1440" height="2560"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="e8J-gD-5V9"/>
-        <segue reference="pNO-vg-1zS"/>
-        <segue reference="SaR-Cu-i2b"/>
+        <segue reference="qDq-9l-yXk"/>
+        <segue reference="2DN-Y7-Oyf"/>
+        <segue reference="zh5-Ny-jGe"/>
     </inferredMetricsTieBreakers>
 </document>

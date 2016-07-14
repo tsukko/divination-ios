@@ -152,6 +152,9 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     let defDateString = "2000-01-01"
     let minDateString = "1900-01-01"
     let maxDateString = "2100-01-01"
+    var alert = UIAlertController()
+    
+    var userList:[String] = []
     
     /**
      インスタンス化された直後（初回に一度のみ）
@@ -170,42 +173,15 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
         
-        var objects = [AnyObject]()
-        objects.insert(NSDate(), atIndex: 0)
-//        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-   //     self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-   //     tableView.rowHeight = UITableViewAutomaticDimension
-//        let tblBackColor: UIColor = UIColor.clearColor()
-//        tableView.backgroundColor = tblBackColor
         tableView.dataSource = self
         tableView.delegate = self
-//        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
-      
         
-        // ダイアログ用
-        // テキストフィールドにDatePickerを表示する
-/*        datePicker1 = UIDatePicker()
-        datePicker1.addTarget(self, action: #selector(A5ViewController.changedDateEvent(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        // 日本の日付表示形式にする、年月日の表示にする
-        datePicker1.datePickerMode = UIDatePickerMode.Date
-        format(datePicker1.date,style: "yyyy/MM/dd")
-        datePicker1.locale = NSLocale(localeIdentifier: "ja_JP")
-        // 最小値、最大値、初期値を設定
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-DD"
-        datePicker1.minimumDate = dateFormatter.dateFromString(minDateString)
-        datePicker1.maximumDate = dateFormatter.dateFromString(maxDateString)
-        datePicker1.date = dateFormatter.dateFromString(defDateString)!
-        dateTextField.inputView = datePicker1
-        
-        // nameTextField の情報を受け取るための delegate を設定
-        nameTextField.delegate = self
-*/    }
-        
-    // 追加ボタンを押した時
-    @IBAction func touchDownBtnAddMenber(sender: AnyObject) {
-        // TODO ダイアログの表示
-        
+        // 保存していた情報の復元
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let temp = defaults.objectForKey("UserList") as? [String] {
+            userList = temp
+            print("userList is not nil")
+        }
     }
     
     // 相談ボタンを押した時
@@ -227,7 +203,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             secondViewController._paramOriginal = viewNumber
         }
     }
-/*
+
     // ダイアログ用
     // 日付の変更イベント
     func changedDateEvent(sender:AnyObject?){
@@ -236,20 +212,20 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     }
     // 日付の変更
     func changeLabelDate(date:NSDate) {
-        dateTextField.text = format(datePicker1.date,style: "yyyy年 MM月 dd日")
+        alert.textFields![1].text = format(datePicker1.date,style: "yyyy年 MM月 dd日")
     }
     
     // 名前の入力完了時に閉じる
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        nameTextField.resignFirstResponder()
+        alert.textFields![0].resignFirstResponder()
         return true
     }
-  */
+
     // 入力確認はダイアログで行う
     // 鑑定するボタンを押したとき　　入力の確認
-    @IBAction func touchDownbtnAppraise(sender: AnyObject) {
-/*        // 名前欄のTextFieldの確認
-        if (nameTextField.text!.isEmpty) {
+    func checkInput() -> Bool {
+        // 名前欄のTextFieldの確認
+        if (alert.textFields![0].text!.isEmpty) {
             print("nameTextField.text is enpty.")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
@@ -258,8 +234,9 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
             alertController.addAction(defaultAction)
             presentViewController(alertController, animated: true, completion: nil)
+            return false
         } else {
-            if !nameTextField.text!.ChackHiraganaOrKatakana() {
+            if !alert.textFields![0].text!.ChackHiraganaOrKatakana() {
                 print("nameTextField.text is not hiragana.")
                 let alertController = UIAlertController(
                     title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
@@ -268,11 +245,12 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
                 let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
                 alertController.addAction(defaultAction)
                 presentViewController(alertController, animated: true, completion: nil)
+                return false
             }
         }
         
         // 誕生日欄のTextFieldの確認
-        if (dateTextField.text!.isEmpty) {
+        if (alert.textFields![1].text!.isEmpty) {
             print("dateTextField.text is not hiragana.")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
@@ -281,10 +259,11 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
             alertController.addAction(defaultAction)
             presentViewController(alertController, animated: true, completion: nil)
+            return false
         }
         
         // 性別選択の確認
-        if (sgCtlSex.selectedSegmentIndex == -1) {
+/*        if (alert.sg¥ .sgCtlSex[0].selectedSegmentIndex == -1) {
             print("sgCtlSex.selectedSegmentIndex == -1")
             let alertController = UIAlertController(
                 title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
@@ -294,17 +273,17 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             alertController.addAction(defaultAction)
             presentViewController(alertController, animated: true, completion: nil)
         }
-
+*/
         // この判定が終わったら、次の画面に遷移する
         
         // 保存はどうするか
         // NSUserDefaultsオブジェクトを取得し、設定情報を保存する
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(nameTextField.text, forKey: "userName")
-        defaults.setObject(dateTextField.text, forKey: "birthday")
-        defaults.setInteger(sgCtlSex.selectedSegmentIndex, forKey: "sex")
+//        defaults.setObject(nameTextField.text, forKey: "userName")
+//        defaults.setObject(dateTextField.text, forKey: "birthday")
+//        defaults.setInteger(sgCtlSex.selectedSegmentIndex, forKey: "sex")
         defaults.synchronize()
- */
+        return true
     }
     
     
@@ -314,21 +293,20 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         super.touchesEnded(touches, withEvent: event)
 
         print("close keyboard")
-//        nameTextField.resignFirstResponder()
-//        dateTextField.resignFirstResponder()
+        alert.textFields![0].resignFirstResponder()
+        alert.textFields![1].resignFirstResponder()
     }
     
-    var testteste:[String] = ["あああ","いいい","ううう","えええ","おおお","","",""]
-
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 項目数とする
-        return testteste.count + 1
+
+        return userList.count + 1
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "MyTestCell")
-//        cell.text = "Row #\(indexPath.row)"
-        if (indexPath.row < testteste.count) {
-            cell.textLabel!.text = "#\(indexPath.row):\(testteste[indexPath.row])"
+
+        if (indexPath.row < userList.count) {
+            cell.textLabel!.text = "\(userList[indexPath.row])"
             let tblBackColor: UIColor = UIColor.clearColor()
             cell.backgroundColor = tblBackColor
         } else {
@@ -349,33 +327,78 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         if editingStyle == UITableViewCellEditingStyle.Delete {
 //            testteste.removeObjectAtIndex(indexPath.row)
             // TODO ちゃんとした削除しょり
-            testteste.removeAtIndex(indexPath.row)
+            userList.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
     }
     // タップした時の処理
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
          tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        print("indexPath.row:\(indexPath.row), testteste.count + 1 :\(testteste.count + 1)")
-        if (indexPath.row == testteste.count ) {
+        print("indexPath.row:\(indexPath.row), testteste.count + 1 :\(userList.count + 1)")
+        if (indexPath.row == userList.count ) {
             // ダイアログ表示
-            let alert = UIAlertController(title: "追加します", message: "Input text", preferredStyle: .Alert)
-            let saveAction = UIAlertAction(title: "Done", style: .Default) { (action:UIAlertAction!) -> Void in
-                
-                // 入力したテキストをコンソールに表示
-                let textField = alert.textFields![0] as UITextField
-                let textFields = alert.textFields![0] as UITextField
- //               self.label.text = textField.text
+            alert = UIAlertController(title: "追加します", message: "お名前、生年月日、性別を入力ください", preferredStyle: .Alert)
+            let saveAction = UIAlertAction(title: "追加", style: .Default) { (action:UIAlertAction!) -> Void in
+                self.alert.textFields![0].resignFirstResponder()
+                self.alert.textFields![1].resignFirstResponder()
+                if self.checkInput() {
+                    // 追加
+                    self.userList.append(self.alert.textFields![0].text!)
+                    tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Right)
+
+                    // データの保存
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    defaults.setObject(self.userList, forKey: "UserList")
+                    defaults.synchronize()
+                    return
+                } else {
+                    return
+                }
             }
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Default) { (action:UIAlertAction!) -> Void in
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .Default) { (action:UIAlertAction!) -> Void in
+                self.alert.textFields![0].resignFirstResponder()
+                self.alert.textFields![1].resignFirstResponder()
             }
             
             // UIAlertControllerにtextFieldを追加
             alert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
+                 textField.placeholder = "ひらがな、かたかなで入力ください"
             }
-            alert.addTextFieldWithConfigurationHandler { (textFields:UITextField!) -> Void in
+            alert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
+                textField.placeholder = "誕生日を選択ください"
+                // 配置
+                textField.frame = CGRectMake(0,0,100,120)
             }
+/*            alert.addTextFieldWithConfigurationHandler { (sgCtlSex:UISegmentedControl!) -> Void in
+                
+                let array : NSArray = ["有料","無料","全て"]
+                sgCtlSex = UISegmentedControl(items: array as [AnyObject])
+                // 表示する位置、大きさを設定
+                sgCtlSex.frame = CGRectMake(0,0,100,120)
+                sgCtlSex.selectedSegmentIndex = 0
+                self.view.addSubview(sgCtlSex)
+                // 配置
+            }
+  */
+            // ダイアログ用
+            // テキストフィールドにDatePickerを表示する
+            datePicker1 = UIDatePicker()
+            datePicker1.addTarget(self, action: #selector(A5ViewController.changedDateEvent(_:)), forControlEvents: UIControlEvents.ValueChanged)
+            // 日本の日付表示形式にする、年月日の表示にする
+            datePicker1.datePickerMode = UIDatePickerMode.Date
+            format(datePicker1.date,style: "yyyy/MM/dd")
+            datePicker1.locale = NSLocale(localeIdentifier: "ja_JP")
+            // 最小値、最大値、初期値を設定
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "YYYY-MM-DD"
+            datePicker1.minimumDate = dateFormatter.dateFromString(minDateString)
+            datePicker1.maximumDate = dateFormatter.dateFromString(maxDateString)
+            datePicker1.date = dateFormatter.dateFromString(defDateString)!
+            alert.textFields![1].inputView = datePicker1
+             
+            // nameTextField の情報を受け取るための delegate を設定
+            alert.textFields![0].delegate = self
             
             alert.addAction(saveAction)
             alert.addAction(cancelAction)
@@ -384,57 +407,8 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         }
     }
     
-    /*
-    /// Show a secure text entry alert with two custom buttons.
-    func showSecureTextEntryAlert(_: NSIndexPath) {
-        let title = "Secure Text Entry Alert"
-        let message = "A message should be a short, complete sentence."
-        let cancelButtonTitle = "Cancel"
-        let otherButtonTitle = "OK"
-        
-        let alertController = DOAlertController(title: title, message: message, preferredStyle: .Alert)
-        
-        // Add the text field for the secure text entry.
-        alertController.addTextFieldWithConfigurationHandler { textField in
-            // Listen for changes to the text field's text so that we can toggle the current
-            // action's enabled property based on whether the user has entered a sufficiently
-            // secure entry.
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleTextFieldTextDidChangeNotification:", name: UITextFieldTextDidChangeNotification, object: textField)
-            
-            textField.secureTextEntry = true
-        }
-        
-        // Stop listening for text change notifications on the text field. This closure will be called in the two action handlers.
-        let removeTextFieldObserver: Void -> Void = {
-            NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextFieldTextDidChangeNotification, object: alertController.textFields!.first)
-        }
-        
-        // Create the actions.
-        let cancelAction = DOAlertAction(title: cancelButtonTitle, style: .Cancel) { action in
-            NSLog("The \"Secure Text Entry\" alert's cancel action occured.")
-            
-            removeTextFieldObserver()
-        }
-        
-        let otherAction = DOAlertAction(title: otherButtonTitle, style: .Default) { action in
-            NSLog("The \"Secure Text Entry\" alert's other action occured.")
-            
-            removeTextFieldObserver()
-        }
-        
-        // The text field initially has no text in the text field, so we'll disable it.
-        otherAction.enabled = false
-        
-        // Hold onto the secure text alert action to toggle the enabled/disabled state when the text changed.
-        secureTextAlertAction = otherAction
-        
-        // Add the actions.
-        alertController.addAction(cancelAction)
-        alertController.addAction(otherAction)
-        
-        presentViewController(alertController, animated: true, completion: nil)
-    }*/
-
+    
+    
     
     // 書式指定に従って日付を文字列に変換します
     // パラメータ
