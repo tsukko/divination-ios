@@ -94,12 +94,12 @@ class A3ResultViewController : UIViewController {
         if lblMessageRare.text!.isEmpty {
             lblMessageRare.hidden = true
             lblTitleRare.hidden = true
-            // TOOD -20にしているのは見た目を合わせるため。。。
-            labelHeightConstraintRare.constant = -20
+            // -25にしているのは見た目を合わせるため。TitleとMessageなどView間の高さ
+            labelHeightConstraintRare.constant = -25
         } else {
             lblMessageRare.hidden = false
             lblTitleRare.hidden = false
-            labelHeightConstraintRare.constant = 10
+            labelHeightConstraintRare.constant = 15
         }
         // あなたの特性の表示
         lblMessageLatter.text = retDivination.getMessageLatter(plotResult)
@@ -136,7 +136,7 @@ class A3ResultViewController : UIViewController {
         print("ボタンの中心のX座業:\(midX) Y座標:\(midY)")
         
         // -80にしているのは見た目を合わせるため。。。
-        let newContentHeight = height+midY-80
+        let newContentHeight = height+midY-40
         
         // TODO contentViewの方がよかったりする？？？？？
         let SVSize = resultScrollView.frame.size
