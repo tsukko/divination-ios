@@ -220,6 +220,19 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         return true
     }
 
+    // 鑑定するボタンを押したとき　　入力の確認
+    @IBAction func touchDownbtnAppraise(sender: AnyObject) {
+        if userNameList.isEmpty || userNameList.count == 1 {
+            let alertController = UIAlertController(
+                title: Const.ErrorTitle,
+                message: Const.ErrorMsgDataEmpty,
+                preferredStyle: .Alert)
+            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .Default, handler: nil)
+            alertController.addAction(defaultAction)
+            presentViewController(alertController, animated: true, completion: nil)
+        }
+    }
+
     // 入力確認はダイアログで行う
     // 鑑定するボタンを押したとき　　入力の確認
     func checkInput() -> Bool {
@@ -272,6 +285,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             let defaultAction = UIAlertAction(title: Const.BtnOK, style: .Default, handler: nil)
             alertController.addAction(defaultAction)
             presentViewController(alertController, animated: true, completion: nil)
+            return false
         }
 
         // この判定が終わったら、次の画面に遷移する
