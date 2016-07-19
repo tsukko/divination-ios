@@ -32,7 +32,7 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
     @IBOutlet weak var naviBar: UINavigationBar!
     
     // 画面番号、遷移元を知るために使用
-    let viewNumber = 2
+    let viewNumber = Const.ViewNumber.A2ViewConNum
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
     // 画面遷移時に遷移元が渡す遷移元の値
@@ -93,14 +93,16 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
     }
 
     // 戻るボタンを押した時
+    // もし、今表示しているページが相談するページ（_second = 6）なら、_paramのページに戻って
+    // それ以外の場合は、遷移先ページ（_paramOriginal）に戻る
     @IBAction func touchDownBtnBack(sender: AnyObject) {
             // 遷移するViewを定義して、遷移してきた画面に移動する
         if _second == 6  {
             let mySecondViewController = self.storyboard!.instantiateViewControllerWithIdentifier( "A2View" )
             self.presentViewController(mySecondViewController, animated: false, completion: nil)
-            _second = -1
         }
         if _paramOriginal == 0 {
+            // ここはこない。定義していない
         } else if _paramOriginal == 1 {
             let mySecondViewController = self.storyboard!.instantiateViewControllerWithIdentifier( "A1View" )
             self.presentViewController(mySecondViewController, animated: false, completion: nil)
@@ -136,14 +138,16 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
             secondViewController._second = 6
             secondViewController._param = _param
             secondViewController._paramOriginal = _paramOriginal
+        } else {
+            // ここでは、相談する一枚絵ページ（_second = 6）から戻るを押した後に遷移するための処理
+            // TODO 上とほぼ同じなので共通化したい
+            let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
+            secondViewController._second = _param
+            secondViewController._param = _param
+            secondViewController._paramOriginal = _paramOriginal
         }
     }
 
-    // TODO 戻るボタンを押したときの遷移をつくる
-    // もし、今表示しているページが相談するページ（_second = 6）なら、_paramのページに戻って
-    // それ以外の場合は、遷移先ページ（_paramOriginal）に戻る
-    
-    
     // メーラー起動（相談する一枚絵ページのみに表示）
     @IBAction func touchDownSendMailBtn(sender: AnyObject) {
         //メールを送信できるかチェック
@@ -153,15 +157,15 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
         }
 
         let mailViewController = MFMailComposeViewController()
-        let toRecipients = ["otodamakantei@gmail.com"]
+        let toRecipients = [Const.MailFrom]
 
         mailViewController.mailComposeDelegate = self
         // メール件名
-        mailViewController.setSubject("")
+        mailViewController.setSubject(Const.MailSubject)
         // Toアドレスの表示
         mailViewController.setToRecipients(toRecipients)
         // メール本文
-        mailViewController.setMessageBody("件名・本文を変更せずに、このまま送信してください。鑑定についての詳細を返信致します。", isHTML: false)
+        mailViewController.setMessageBody(Const.MailBody, isHTML: false)
         
         self.presentViewController(mailViewController, animated: true, completion: nil)
     }

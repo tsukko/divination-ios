@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var btnTodayTweet: UIButton!
     
     // 画面番号、遷移元を知るために使用
-    let viewNumber = 1
+    let viewNumber = Const.ViewNumber.ViewConNum
     // 画面遷移時に渡す為の値
     var _param:Int = -1
     // 画面遷移時に遷移元が渡す遷移元の値
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         
         // すでに名前が設定されていたら今日の運勢を行うボタンを表示する
-        if let tempUserName = defaults.stringForKey("userName") {
+        if let tempUserName = defaults.stringForKey(Const.UserName) {
             // NSUserDefaultsに格納された値を取得
             userName = tempUserName
             print("ViewController viewWillAppear userName:\(userName)")
@@ -102,16 +102,25 @@ class ViewController: UIViewController {
     // 今日の運勢を長押しした時
     func doGesture(sender: UILongPressGestureRecognizer) {
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.removeObjectForKey("userName")
-        defaults.removeObjectForKey("birthday")
-        defaults.removeObjectForKey("sex")
+        defaults.removeObjectForKey(Const.UserName)
+        defaults.removeObjectForKey(Const.Birthday)
+        defaults.removeObjectForKey(Const.Sex)
+        defaults.removeObjectForKey(Const.LukcyWord)
+        defaults.removeObjectForKey(Const.SaveTime)
+        defaults.removeObjectForKey(Const.UserNameList)
+        defaults.removeObjectForKey(Const.FirstUserName)
+        defaults.removeObjectForKey(Const.FirstBirthday)
+        defaults.removeObjectForKey(Const.FirstSex)
+        defaults.removeObjectForKey(Const.SecondUserName)
+        defaults.removeObjectForKey(Const.SecondBirthday)
+        defaults.removeObjectForKey(Const.SecondSex)
 
         let alertController = UIAlertController(
-            title: NSLocalizedString("delNameTitle", tableName: "main", comment: ""),
-            message: NSLocalizedString("delNameMsg", tableName: "main", comment: ""),
+            title: Const.DelNameTitle,
+            message: Const.DelNameMsg,
             preferredStyle: .Alert)
         let defaultAction = UIAlertAction(
-            title: NSLocalizedString("btnOK", tableName: "main", comment: ""),
+            title: Const.BtnOK,
             style: .Default,
             handler: nil)
         alertController.addAction(defaultAction)

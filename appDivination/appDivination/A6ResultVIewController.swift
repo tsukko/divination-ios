@@ -19,12 +19,11 @@ import UIKit
  */
 class A6ResultViewController : UIViewController {
     
-//    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var lblName: UILabel!
 
     // 画面番号、遷移元を知るために使用
-    let viewNumber = 6
+    let viewNumber = Const.ViewNumber.A6ViewConNum
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
     // 画面遷移時に遷移元が渡す遷移元の値
@@ -39,16 +38,20 @@ class A6ResultViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("A6ResultViewController viewDidLoad")
-  
-        let defaults = NSUserDefaults.standardUserDefaults()
-        
-        // TODO "音霊命名術結果"を表示
 
-		// 命名術結果の文言のセット
-		// TODO plotResultは2人分必要、getNamingの引数も配列で
-	//	let plotResult:[Int] = (defaults.objectForKey("plotResult") as? [Int])!
-	//	let retDivination = resultDivinationClass()
-	//	lblMessage.text = retDivination.getNaming(plotResult)
+        // 保存していた情報の復元
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let retDivination = resultDivinationClass()
+        var firstPlotResult:[Int] = []
+        var secondPlotResult:[Int] = []
+        if let firstName = defaults.stringForKey(Const.FirstUserName) {
+            firstPlotResult = retDivination.divinationReturnResult(firstName)
+        }
+        if let secondName = defaults.stringForKey(Const.SecondUserName) {
+            secondPlotResult = retDivination.divinationReturnResult(secondName)
+        }
+        
+        lblMessage.text = retDivination.getNaming(firstPlotResult, secondPlotData: secondPlotResult)
     }
     
     // 画面が表示された直後
@@ -62,7 +65,7 @@ class A6ResultViewController : UIViewController {
     
     // 説明を聞くボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
-        _param = 4
+        _param = 5
         performSegueWithIdentifier("segue",sender: nil)
     }
     

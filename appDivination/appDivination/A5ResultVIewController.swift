@@ -19,18 +19,20 @@ import UIKit
  */
 class A5ResultViewController : UIViewController {
     
-//    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var lblName: UILabel!
 
     // 画面番号、遷移元を知るために使用
-    let viewNumber = 5
+    let viewNumber = Const.ViewNumber.A5ViewConNum
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
     // 画面遷移時に遷移元が渡す遷移元の値
     var _paramOriginal:Int = -1
     // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
+
+    var userNameList:[String] = []
+    var plotResultList:[[Int]] = [[]]
 
     /**
      インスタンス化された直後（初回に一度のみ）
@@ -39,16 +41,24 @@ class A5ResultViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("A5ResultViewController viewDidLoad")
-  
-        let defaults = NSUserDefaults.standardUserDefaults()
-        
-        // TODO "音霊相性診断結果"を表示
 
-		// 点数のセット
-		// TODO plotResultは人数分必要、getCompatibilityScoreの引数も配列で
-		let plotResult:[Int] = (defaults.objectForKey("plotResult") as? [Int])!
-		let retDivination = resultDivinationClass()
-//		lblMessage.text = retDivination.getCompatibilityScore(plotResult)
+        // 保存していた情報の復元
+        // TODO 誕生日や性別の情報も保存・復元したほうがいいかも
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let temp = defaults.objectForKey(Const.UserNameList) as? [String] {
+            userNameList = temp
+            print("userList is not nil")
+        }
+
+        let retDivination = resultDivinationClass()
+  //      for indexStr in userNameList {
+            let userName = userNameList[0]
+            let plotResult:[Int] = retDivination.divinationReturnResult(userName)
+            plotResultList.append(plotResult)
+   //     }
+
+        // 点数のセット
+        lblMessage.text = retDivination.getCompatibilityScore(plotResultList)
     }
     
     // 画面が表示された直後
@@ -65,7 +75,7 @@ class A5ResultViewController : UIViewController {
         _param = 4
         performSegueWithIdentifier("segue",sender: nil)
     }
-    
+
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         print("prepareForSegue : \(segue.identifier), _param : \(_param)")

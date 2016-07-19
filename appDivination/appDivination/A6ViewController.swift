@@ -68,7 +68,6 @@ import UIKit
  */
 class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
     
-//    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var firstDateTextField: UITextField!
     @IBOutlet weak var firstSgCtlSex: UISegmentedControl!
@@ -77,12 +76,11 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
     @IBOutlet weak var secondSgCtlSex: UISegmentedControl!
     @IBOutlet weak var btnAppraise: UIButton!
     @IBOutlet weak var naviBar: UINavigationBar!
-    //    @IBOutlet weak var btnConsultation: UIButton!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var myScrollView: UIScrollView!
-    
+
     // 画面番号、遷移元を知るために使用
-    let viewNumber = 6
+    let viewNumber = Const.ViewNumber.A6ViewConNum
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
     // 画面遷移時に遷移元が渡す遷移元の値
@@ -93,9 +91,6 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
     //    var toolBar:UIToolbar!
     var datePicker1: UIDatePicker!
     var datePicker2: UIDatePicker!
-    let defDateString = "2000-01-01"
-    let minDateString = "1900-01-01"
-    let maxDateString = "2100-01-01"
     
     /**
      インスタンス化された直後（初回に一度のみ）
@@ -126,9 +121,9 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
         // 最小値、最大値、初期値を設定
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-DD"
-        datePicker1.minimumDate = dateFormatter.dateFromString(minDateString)
-        datePicker1.maximumDate = dateFormatter.dateFromString(maxDateString)
-        datePicker1.date = dateFormatter.dateFromString(defDateString)!
+        datePicker1.minimumDate = dateFormatter.dateFromString(Const.MinDateString)
+        datePicker1.maximumDate = dateFormatter.dateFromString(Const.MaxDateString)
+        datePicker1.date = dateFormatter.dateFromString(Const.DefDateString)!
         firstDateTextField.inputView = datePicker1
 
         // テキストフィールドにDatePickerを表示する
@@ -139,20 +134,19 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
         format(datePicker2.date,style: "yyyy/MM/dd")
         datePicker2.locale = NSLocale(localeIdentifier: "ja_JP")
         // 最小値、最大値、初期値を設定
-        datePicker2.minimumDate = dateFormatter.dateFromString(minDateString)
-        datePicker2.maximumDate = dateFormatter.dateFromString(maxDateString)
-        datePicker2.date = dateFormatter.dateFromString(defDateString)!
+        datePicker2.minimumDate = dateFormatter.dateFromString(Const.MinDateString)
+        datePicker2.maximumDate = dateFormatter.dateFromString(Const.MaxDateString)
+        datePicker2.date = dateFormatter.dateFromString(Const.DefDateString)!
         secondDateTextField.inputView = datePicker2
 
         // 保存していた情報の復元
         let defaults = NSUserDefaults.standardUserDefaults()
-        firstNameTextField.text = defaults.stringForKey("firstUserName")
-        firstDateTextField.text = defaults.stringForKey("firstBirthday")
-        firstSgCtlSex.selectedSegmentIndex = defaults.integerForKey("firstSex")
-        secondNameTextField.text = defaults.stringForKey("secondUserName")
-        secondDateTextField.text = defaults.stringForKey("secondBirthday")
-        secondSgCtlSex.selectedSegmentIndex = defaults.integerForKey("secondSex")
-
+        firstNameTextField.text = defaults.stringForKey(Const.FirstUserName)
+        firstDateTextField.text = defaults.stringForKey(Const.FirstBirthday)
+        firstSgCtlSex.selectedSegmentIndex = defaults.integerForKey(Const.FirstSex)
+        secondNameTextField.text = defaults.stringForKey(Const.SecondUserName)
+        secondDateTextField.text = defaults.stringForKey(Const.SecondBirthday)
+        secondSgCtlSex.selectedSegmentIndex = defaults.integerForKey(Const.SecondSex)
 
         // nameTextField の情報を受け取るための delegate を設定
         firstNameTextField.delegate = self
@@ -194,7 +188,7 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
     }
     // 日付の変更1
     func changeLabelDate(date:NSDate) {
-        firstDateTextField.text = format(datePicker1.date,style: "yyyy年 MM月 dd日")
+        firstDateTextField.text = format(datePicker1.date,style: Const.DateFormat)
     }
     
     // 日付の変更イベント2
@@ -204,7 +198,7 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
     }
     // 日付の変更2
     func changeLabelDate2(date:NSDate) {
-        secondDateTextField.text = format(datePicker2.date,style: "yyyy年 MM月 dd日")
+        secondDateTextField.text = format(datePicker2.date,style: Const.DateFormat)
     }
     
     // 名前の入力完了時に閉じる
@@ -221,21 +215,21 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
             secondNameTextField.text!.isEmpty) {
             print("nameTextField.text is enpty.")
             let alertController = UIAlertController(
-                title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
-                message: NSLocalizedString("errorMsgNameEmpty", tableName: "main", comment: ""),
+                title: Const.ErrorTitle,
+                message: Const.ErrorMsgNameEmpty,
                 preferredStyle: .Alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .Default, handler: nil)
             alertController.addAction(defaultAction)
             presentViewController(alertController, animated: true, completion: nil)
         } else {
             if !firstNameTextField.text!.ChackHiraganaOrKatakana() ||
                !secondNameTextField.text!.ChackHiraganaOrKatakana() {
-                print("NameTextField.text is not hiragana.")
+                print("nameTextField.text is not hiragana or katakana.")
                 let alertController = UIAlertController(
-                    title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
-                    message: NSLocalizedString("errorMsgNameKana", tableName: "main", comment: ""),
+                    title: Const.ErrorTitle,
+                    message: Const.ErrorMsgNameKana,
                     preferredStyle: .Alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                let defaultAction = UIAlertAction(title: Const.BtnOK, style: .Default, handler: nil)
                 alertController.addAction(defaultAction)
                 presentViewController(alertController, animated: true, completion: nil)
             }
@@ -246,10 +240,10 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
             secondDateTextField.text!.isEmpty) {
             print("DateTextField.text is not hiragana.")
             let alertController = UIAlertController(
-                title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
-                message: NSLocalizedString("errorMsgDate", tableName: "main", comment: ""),
+                title: Const.ErrorTitle,
+                message: Const.ErrorMsgDate,
                 preferredStyle: .Alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .Default, handler: nil)
             alertController.addAction(defaultAction)
             presentViewController(alertController, animated: true, completion: nil)
         }
@@ -259,10 +253,10 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
             secondSgCtlSex.selectedSegmentIndex == -1 ) {
             print("SgCtlSex.selectedSegmentIndex == -1")
             let alertController = UIAlertController(
-                title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
-                message: NSLocalizedString("errorMsgSex", tableName: "main", comment: ""),
+                title: Const.ErrorTitle,
+                message: Const.ErrorMsgSex,
                 preferredStyle: .Alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .Default, handler: nil)
             alertController.addAction(defaultAction)
             presentViewController(alertController, animated: true, completion: nil)
         }
@@ -271,12 +265,12 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
         
         // NSUserDefaultsオブジェクトを取得し、設定情報を保存する
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(firstNameTextField.text, forKey: "firstUserName")
-        defaults.setObject(firstDateTextField.text, forKey: "firstBirthday")
-        defaults.setInteger(firstSgCtlSex.selectedSegmentIndex, forKey: "firstSex")
-        defaults.setObject(secondNameTextField.text, forKey: "secondUserName")
-        defaults.setObject(secondDateTextField.text, forKey: "secondBirthday")
-        defaults.setInteger(secondSgCtlSex.selectedSegmentIndex, forKey: "secondSex")
+        defaults.setObject(firstNameTextField.text, forKey: Const.FirstUserName)
+        defaults.setObject(firstDateTextField.text, forKey: Const.FirstBirthday)
+        defaults.setInteger(firstSgCtlSex.selectedSegmentIndex, forKey: Const.FirstSex)
+        defaults.setObject(secondNameTextField.text, forKey: Const.SecondUserName)
+        defaults.setObject(secondDateTextField.text, forKey: Const.SecondBirthday)
+        defaults.setInteger(secondSgCtlSex.selectedSegmentIndex, forKey: Const.SecondSex)
         defaults.synchronize()
     }
 

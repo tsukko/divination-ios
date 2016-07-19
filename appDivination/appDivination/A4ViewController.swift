@@ -36,7 +36,7 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
 //    @IBOutlet weak var btnConsultation: UIButton!
     
     // 画面番号、遷移元を知るために使用
-    let viewNumber = 4
+    let viewNumber = Const.ViewNumber.A4ViewConNum
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
     // 画面遷移時に遷移元が渡す遷移元の値
@@ -46,9 +46,6 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
 
     //    var toolBar:UIToolbar!
     var datePicker1: UIDatePicker!
-    let defDateString = "2000-01-01"
-    let minDateString = "1900-01-01"
-    let maxDateString = "2100-01-01"
     
     /**
      インスタンス化された直後（初回に一度のみ）
@@ -70,17 +67,17 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
         // 最小値、最大値、初期値を設定
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-DD"
-        datePicker1.minimumDate = dateFormatter.dateFromString(minDateString)
-        datePicker1.maximumDate = dateFormatter.dateFromString(maxDateString)
-        datePicker1.date = dateFormatter.dateFromString(defDateString)!
+        datePicker1.minimumDate = dateFormatter.dateFromString(Const.MinDateString)
+        datePicker1.maximumDate = dateFormatter.dateFromString(Const.MaxDateString)
+        datePicker1.date = dateFormatter.dateFromString(Const.DefDateString)!
         dateTextField.inputView = datePicker1
         
         // 保存していた情報の復元
         // TODO 無料音霊鑑定と共通？？？？
         let defaults = NSUserDefaults.standardUserDefaults()
-        nameTextField.text = defaults.stringForKey("userName")
-        dateTextField.text = defaults.stringForKey("birthday")
-        sgCtlSex.selectedSegmentIndex = defaults.integerForKey("sex")
+        nameTextField.text = defaults.stringForKey(Const.UserName)
+        dateTextField.text = defaults.stringForKey(Const.Birthday)
+        sgCtlSex.selectedSegmentIndex = defaults.integerForKey(Const.Sex)
         
         // nameTextField の情報を受け取るための delegate を設定
         nameTextField.delegate = self
@@ -113,7 +110,7 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
     }
     // 日付の変更
     func changeLabelDate(date:NSDate) {
-        dateTextField.text = format(datePicker1.date,style: "yyyy年 MM月 dd日")
+        dateTextField.text = format(datePicker1.date,style: Const.DateFormat)
     }
     
     // 名前の入力完了時に閉じる
@@ -129,10 +126,10 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
             // null、空のとき
             print("nameTextField.text is enpty.")
             let alertController = UIAlertController(
-                title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
-                message: NSLocalizedString("errorMsgNameEmpty", tableName: "main", comment: ""),
+                title: Const.ErrorTitle,
+                message: Const.ErrorMsgNameEmpty,
                 preferredStyle: .Alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .Default, handler: nil)
             alertController.addAction(defaultAction)
             presentViewController(alertController, animated: true, completion: nil)
         } else {
@@ -140,10 +137,10 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
                 // ひらがな、カタカナ、空白以外のとき
                 print("nameTextField.text is not hiragana or katakana.")
                 let alertController = UIAlertController(
-                    title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
-                    message: NSLocalizedString("errorMsgNameKana", tableName: "main", comment: ""),
+                    title: Const.ErrorTitle,
+                    message: Const.ErrorMsgNameKana,
                     preferredStyle: .Alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                let defaultAction = UIAlertAction(title: Const.BtnOK, style: .Default, handler: nil)
                 alertController.addAction(defaultAction)
                 presentViewController(alertController, animated: true, completion: nil)
             }
@@ -154,10 +151,10 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
             // null、空のとき
             print("dateTextField.text is not hiragana.")
             let alertController = UIAlertController(
-                title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
-                message: NSLocalizedString("errorMsgDate", tableName: "main", comment: ""),
+                title: Const.ErrorTitle,
+                message: Const.ErrorMsgDate,
                 preferredStyle: .Alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .Default, handler: nil)
             alertController.addAction(defaultAction)
             presentViewController(alertController, animated: true, completion: nil)
         }
@@ -167,10 +164,10 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
             // 未選択のとき
             print("sgCtlSex.selectedSegmentIndex == -1")
             let alertController = UIAlertController(
-                title: NSLocalizedString("errorTitle", tableName: "main", comment: ""),
-                message: NSLocalizedString("errorMsgSex", tableName: "main", comment: ""),
+                title: Const.ErrorTitle,
+                message: Const.ErrorMsgSex,
                 preferredStyle: .Alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .Default, handler: nil)
             alertController.addAction(defaultAction)
             presentViewController(alertController, animated: true, completion: nil)
         }
@@ -179,9 +176,14 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
         
         // NSUserDefaultsオブジェクトを取得し、設定情報を保存する
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(nameTextField.text, forKey: "userName")
-        defaults.setObject(dateTextField.text, forKey: "birthday")
-        defaults.setInteger(sgCtlSex.selectedSegmentIndex, forKey: "sex")
+        // 登録されている名前と入力されている名前が異なっている場合は、占い情報をリセット
+        if nameTextField.text != defaults.stringForKey(Const.UserName) {
+            defaults.setObject("", forKey: Const.LukcyWord)
+            defaults.setObject("", forKey: Const.SaveTime)
+        }
+        defaults.setObject(nameTextField.text, forKey: Const.UserName)
+        defaults.setObject(dateTextField.text, forKey: Const.Birthday)
+        defaults.setInteger(sgCtlSex.selectedSegmentIndex, forKey: Const.Sex)
         defaults.synchronize()
     }
     
@@ -215,35 +217,3 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
     }
 }
 
-// コピーやペーストなどのメニューを非表示にするための拡張
-class SampleTextField: UITextField{
-    override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
-        UIMenuController.sharedMenuController().menuVisible = false
-        return false
-    }
-}
-
-// ひらがなチェック用の拡張
-// TODO 定義するクラスを変更する
-extension String {
-    func ChackHiraganaOrKatakana() -> Bool {
-        var flagKana:Bool = false
-        
-        // 文字列を表現するUInt32
-        for c in unicodeScalars {
-            // ひらがな、もしくは、カタカナ、半角空白、全角空白であること
-            if (c.value >= 0x3041 && c.value <= 0x3096) ||
-                (c.value >= 0x30A1 && c.value <= 0x30F6) ||
-                c.value == 0x0020 || c.value == 0xFF5A {
-       //         print("ChackHiragana OK")
-                flagKana = true
-            } else {
-                print("ChackHiragana NG : \(c.value)")
-                flagKana = false
-                break
-            }
-        }
-        
-        return flagKana
-    }
-}

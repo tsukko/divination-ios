@@ -287,7 +287,7 @@ class resultDivinationClass {
         
         // 全てのプロット位置に丸がつくようになると終わり
         if flagYatanokagami == 8 {
-        	//TODO tweetWord　並び替え
+            //TODO tweetWord　並び替え
             var outputWord:String = ""
             var characters = lTweetWord.characters.map { String($0) }
             for _ in characters {
@@ -303,8 +303,8 @@ class resultDivinationClass {
         }
     }
 
+    // TODO arrays.plistいらないよね？？？？？？？
     // 相性診断の結果文言の取得
-    // TODO plotResultは人数分必要、getCompatibilityScoreの引数も配列で
     func getCompatibilityScore(plotDataList:[[Int]]) -> String {
         let score:Int = 100
         
@@ -318,32 +318,37 @@ class resultDivinationClass {
         let scoreSubFirst:Int = getScoreSubFirst(plotDataList)
         print("score sub1 :\(scoreSubFirst)")
         let scoreSubSecond:Int = getScoreSubSecond(plotDataList)
-        print("score sub1 :\(scoreSubSecond)")
+        print("score sub2 :\(scoreSubSecond)")
         
         let scoreTotal:Int = score + scoreAddFirst + scoreAddSecond + scoreAddThird + scoreSubFirst + scoreSubSecond
         return scoreTotal.description
     }
-    
+
+    // 加算　条件１
     func getScoreAddFirst(plotDataList:[[Int]]) -> Int {
         var score:Int = 0
 
         return score
     }
+    // 加算　条件２
     func getScoreAddSecond(plotDataList:[[Int]]) -> Int {
         var score:Int = 0
 
         return score
     }
+    // 加算　条件３
     func getScoreAddThird(plotDataList:[[Int]]) -> Int {
         var score:Int = 0
 
         return score
     }
+    // 減点　条件A
     func getScoreSubFirst(plotDataList:[[Int]]) -> Int {
         var score:Int = 0
 
         return score
     }
+    // 減点　条件B
     func getScoreSubSecond(plotDataList:[[Int]]) -> Int {
         var score:Int = 0
 
@@ -352,7 +357,7 @@ class resultDivinationClass {
 
     // 命名術の結果文言の取得
 	// TODO plotResultは2人分必要、getNamingの引数も配列で
-    func getNaming(plotData:[Int]) -> String {
+    func getNaming(firstPlotData:[Int], secondPlotData:[Int]) -> String {
     	return ""
     }
 }

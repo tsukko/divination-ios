@@ -55,7 +55,7 @@ class A3ResultViewController : UIViewController {
     var imageView01: [UIImageView?] = []
     
     // 画面番号、遷移元を知るために使用
-    let viewNumber = 3
+    let viewNumber = Const.ViewNumber.A3ViewConNum
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
     // 画面遷移時に遷移元が渡す遷移元の値
@@ -71,20 +71,13 @@ class A3ResultViewController : UIViewController {
         super.viewDidLoad()
         print("A3ResultViewController viewDidLoad")
 
-// TODO 背景画像の配置がずれているので治す
-
-        // 占いの実行　、standardUserDefaultsにわざわざ保存しなくてもいい
-//        let retDivination = resultDivinationClass()
-//        retDivination.divination()
-
         // 占い結果を取得、無料言霊鑑定アニメーション画面で保存している
         let defaults = NSUserDefaults.standardUserDefaults()
-        let userName = defaults.stringForKey("userName")!
+        let userName = defaults.stringForKey(Const.UserName)!
         
         // 占いの実行　、standardUserDefaultsにわざわざ保存しなくてもいい
         let retDivination = resultDivinationClass()
         let plotResult:[Int] = retDivination.divinationReturnResult(userName)
-//        let plotResult:[Int] = (defaults.objectForKey("plotResult") as? [Int])!
         
         // 占い結果の円の表示
         displayCycle(plotResult)

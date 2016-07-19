@@ -17,21 +17,19 @@ import UIKit
  * 　今日のつぶやきアニメーション画面
  * 　トップ画面（右下のボタン）
  */
-class A4TempResultViewController : UIViewController {
+class A4ResultViewController : UIViewController {
     
-//    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var lblName: UILabel!
 
     // 画面番号、遷移元を知るために使用
-    let viewNumber = 4
+    let viewNumber = Const.ViewNumber.A4ViewConNum
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
     // 画面遷移時に遷移元が渡す遷移元の値
     var _paramOriginal:Int = -1
     // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
-
 
     /**
      インスタンス化された直後（初回に一度のみ）
@@ -45,7 +43,7 @@ class A4TempResultViewController : UIViewController {
 
         // 名前部分の表示
         let defaults = NSUserDefaults.standardUserDefaults()
-        userName = defaults.stringForKey("userName")!
+        userName = defaults.stringForKey(Const.UserName)!
         lblName.text = userName
         
         // 占いの実行
@@ -53,13 +51,14 @@ class A4TempResultViewController : UIViewController {
         let plotResult:[Int] = retDivination.divinationReturnResult(userName)
 
         // 運気を上げるつぶやき文字の取得とセット
-        var LukcyWord:String? = defaults.stringForKey("LukcyWord")
-        let saveTime = defaults.objectForKey("saveTime") as? NSDate
+        // 初めて占いを行う場合や、前に占ってから日付が変わっている場合に、占いを実施する。
+        var LukcyWord:String? = defaults.stringForKey(Const.LukcyWord)
+        let saveTime = defaults.objectForKey(Const.SaveTime) as? NSDate
         if LukcyWord == nil || LukcyWord!.isEmpty || saveTime == nil || !checkDateToday(saveTime!) {
             print("get LukcyWord")
             LukcyWord = retDivination.getTodayLuckyWord(userName, plotData: plotResult, tweetWord: "")
-            defaults.setObject(LukcyWord, forKey: "LukcyWord")
-            defaults.setObject(NSDate(), forKey: "saveTime")
+            defaults.setObject(LukcyWord, forKey: Const.LukcyWord)
+            defaults.setObject(NSDate(), forKey: Const.SaveTime)
         } else {
             print("LukcyWord Already get")
         }
@@ -80,7 +79,7 @@ class A4TempResultViewController : UIViewController {
         _param = 3
         performSegueWithIdentifier("segue",sender: nil)
     }
-    
+
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         print("prepareForSegue : \(segue.identifier), _param : \(_param)")
@@ -91,6 +90,7 @@ class A4TempResultViewController : UIViewController {
         }
     }
     
+    // 引数の日時が同じ日であるかどうかをチェックする
     func checkDateToday(savedDate: NSDate) -> Bool {
         // 日付の変換 YYYY MM DD
         let cal = NSCalendar.currentCalendar()

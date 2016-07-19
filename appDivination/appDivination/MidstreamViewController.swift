@@ -97,7 +97,7 @@ class MidstreamViewController : UIViewController {
            self.presentViewController(next, animated: true, completion: nil)
         } else if _paramOriginal == 4 {
             // 今日のつぶやき結果画面
-           let next:A4TempResultViewController = storyboard.instantiateViewControllerWithIdentifier("A4ResultView") as! A4TempResultViewController
+           let next:A4ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A4ResultView") as! A4ResultViewController
            next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
            self.presentViewController(next, animated: true, completion: nil)
         } else if _paramOriginal == 5 {
