@@ -48,7 +48,7 @@ class A5ResultViewController : UIViewController {
 		// TODO plotResultは人数分必要、getCompatibilityScoreの引数も配列で
 		let plotResult:[Int] = (defaults.objectForKey("plotResult") as? [Int])!
 		let retDivination = resultDivinationClass()
-		lblMessage.text = retDivination.getCompatibilityScore(plotResult)
+//		lblMessage.text = retDivination.getCompatibilityScore(plotResult)
     }
     
     // 画面が表示された直後

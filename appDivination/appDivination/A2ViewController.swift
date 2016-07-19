@@ -96,26 +96,27 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
     @IBAction func touchDownBtnBack(sender: AnyObject) {
             // 遷移するViewを定義して、遷移してきた画面に移動する
         if _second == 6  {
-            let mySecondViewController: UIViewController = A2ViewController()
+            let mySecondViewController = self.storyboard!.instantiateViewControllerWithIdentifier( "A2View" )
             self.presentViewController(mySecondViewController, animated: false, completion: nil)
             _second = -1
         }
         if _paramOriginal == 0 {
         } else if _paramOriginal == 1 {
-            let mySecondViewController: UIViewController = ViewController()
+            let mySecondViewController = self.storyboard!.instantiateViewControllerWithIdentifier( "A1View" )
             self.presentViewController(mySecondViewController, animated: false, completion: nil)
         } else if _paramOriginal == 2 {
+            // ここはこない。_second == 6の場合になる
         } else if _paramOriginal == 3 {
-            let mySecondViewController: UIViewController = A3ViewController()
-            self.presentViewController(mySecondViewController, animated: false, completion: nil)
+            let mySecondViewController = self.storyboard!.instantiateViewControllerWithIdentifier( "A3View" ) 
+            self.presentViewController(mySecondViewController, animated: true, completion: nil)
         } else if _paramOriginal == 4 {
-            let mySecondViewController: UIViewController = A4ViewController()
+            let mySecondViewController = self.storyboard!.instantiateViewControllerWithIdentifier( "A4View" ) 
             self.presentViewController(mySecondViewController, animated: false, completion: nil)
         } else if _paramOriginal == 5 {
-            let mySecondViewController: UIViewController = A5ViewController()
+            let mySecondViewController = self.storyboard!.instantiateViewControllerWithIdentifier( "A5View" )
             self.presentViewController(mySecondViewController, animated: false, completion: nil)
         } else if _paramOriginal == 6 {
-            let mySecondViewController: UIViewController = A6ViewController()
+            let mySecondViewController = self.storyboard!.instantiateViewControllerWithIdentifier( "A6View" )
             self.presentViewController(mySecondViewController, animated: false, completion: nil)
         }
     }

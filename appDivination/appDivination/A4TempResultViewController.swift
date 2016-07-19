@@ -46,7 +46,7 @@ class A4TempResultViewController : UIViewController {
         // 名前部分の表示
         let defaults = NSUserDefaults.standardUserDefaults()
         userName = defaults.stringForKey("userName")!
-        lblName.text = userName + " さんの"
+        lblName.text = userName
         
         // 占いの実行
         let retDivination = resultDivinationClass()

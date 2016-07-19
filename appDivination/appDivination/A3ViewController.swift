@@ -66,23 +66,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         datePicker1.maximumDate = dateFormatter.dateFromString(maxDateString)
         datePicker1.date = dateFormatter.dateFromString(defDateString)!
         dateTextField.inputView = datePicker1
-        
-        //        datePicker1.userInteractionEnabled = true
-        //        datePicker1.tag = self.TAG_LABEL1
-        
-        // UIToolBarの設定
-/*        toolBar = UIToolbar(frame: CGRectMake(0, self.view.frame.size.height/6, self.view.frame.size.width, 40.0))
-        toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
-        toolBar.barStyle = .BlackTranslucent
-        toolBar.tintColor = UIColor.whiteColor()
-        toolBar.backgroundColor = UIColor.blackColor()
-        
-        let toolBarBtn = UIBarButtonItem(title: "完了", style: .Done, target: self, action: "tappedToolBarBtn:")
-        toolBarBtn.tag = 1
-        toolBar.items = [toolBarBtn]
-        
-        dateTextField.inputAccessoryView = toolBar
-*/
+
         // 保存していた情報の復元
         let defaults = NSUserDefaults.standardUserDefaults()
         nameTextField.text = defaults.stringForKey("userName")

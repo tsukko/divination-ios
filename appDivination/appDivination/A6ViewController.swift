@@ -79,8 +79,8 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
     @IBOutlet weak var naviBar: UINavigationBar!
     //    @IBOutlet weak var btnConsultation: UIButton!
     @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var myScrollView: UIScrollView!
     
-    @IBOutlet weak var myScrollView: MyScrollView!
     // 画面番号、遷移元を知るために使用
     let viewNumber = 6
     // 画面遷移時に遷移元が渡す遷移先の値
