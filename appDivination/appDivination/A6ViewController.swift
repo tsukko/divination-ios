@@ -163,7 +163,7 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
 
     // 相談ボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
-        _param = 2
+        _param = viewNumber
         performSegueWithIdentifier("segue",sender: nil)
     }
     

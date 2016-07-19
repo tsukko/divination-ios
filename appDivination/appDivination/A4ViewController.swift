@@ -85,7 +85,7 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
     
     // 相談ボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
-        _param = 3
+        _param = viewNumber
         performSegueWithIdentifier("segue",sender: nil)
     }
     

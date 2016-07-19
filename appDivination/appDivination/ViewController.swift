@@ -73,13 +73,13 @@ class ViewController: UIViewController {
 
     // プロフィールを押した時
     @IBAction func touchDownBtnProfile(sender: AnyObject) {
-        _param = 0
+        _param = Const.ViewNumber.A2ViewProfile
         performSegueWithIdentifier("segue",sender: nil)
     }
 
     // 鑑定術とは？を押した時
     @IBAction func touchDownBtnDescription(sender: AnyObject) {
-        _param = 1
+        _param = Const.ViewNumber.A2ViewKatakamuna
         performSegueWithIdentifier("segue",sender: nil)
     }
 
@@ -89,7 +89,8 @@ class ViewController: UIViewController {
         if segue.identifier == "segue" {
             // 元画面を示す値_paramOriginal = 0
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
-            secondViewController._second = _param
+            secondViewController._second = viewNumber
+            secondViewController._param = _param
             secondViewController._paramOriginal = viewNumber
         }
     }

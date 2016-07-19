@@ -19,7 +19,6 @@ import UIKit
  */
 class A3ViewController : UIViewController, UITextFieldDelegate {
     
-//    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var sgCtlSex: UISegmentedControl!
@@ -36,7 +35,6 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
     // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
 
-    //    var toolBar:UIToolbar!
     var datePicker1: UIDatePicker!
 
     /**
@@ -76,7 +74,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
     
     // 相談ボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
-        _param = 2
+        _param = viewNumber
         performSegueWithIdentifier("segue",sender: nil)
     }
     

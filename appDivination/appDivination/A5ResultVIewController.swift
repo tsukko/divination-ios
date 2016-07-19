@@ -72,7 +72,7 @@ class A5ResultViewController : UIViewController {
     
     // 説明を聞くボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
-        _param = 4
+        _param = viewNumber
         performSegueWithIdentifier("segue",sender: nil)
     }
 

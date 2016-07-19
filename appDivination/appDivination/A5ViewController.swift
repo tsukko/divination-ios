@@ -125,7 +125,7 @@ d-hライン
 よださんの余った丸を、いちたさんのBとFに与えて、にださんか、さんたさんのBFラインに丸がいかなくなってしまうことがないように振り分ける。
  
  */
-class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
 //    @IBOutlet var viewBack: UIView!
 //    @IBOutlet weak var nameTextField: UITextField!
@@ -150,7 +150,8 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     //    var toolBar:UIToolbar!
     var datePicker1: UIDatePicker!
     var alert = UIAlertController()
-    
+    let dataList = Const.SexDataList
+
     var userNameList:[String] = []
     
     /**
@@ -184,7 +185,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     
     // 相談ボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
-        _param = 2
+        _param = viewNumber
         performSegueWithIdentifier("segue",sender: nil)
     }
     
@@ -311,9 +312,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         }
         return cell
     }
-//    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-//        return "追加2"
-//    }
+
     // セルの削除許可の設定
     func tableView(tableView: UITableView,canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
     {
@@ -371,24 +370,13 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             alert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
                 textField.placeholder = "誕生日を選択ください"
                 // TODO 配置!!!!!!!!!!!!!!!!!
-                textField.frame = CGRectMake(20,30,100,120)
+                textField.frame = CGRectMake(20,30,300,120)
             }
             // TODO 性別のtextField
             alert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
                 textField.placeholder = "性別を選択ください"
-                let array : NSArray = ["有料","無料","全て"]
             }
-/*            alert.addTextFieldWithConfigurationHandler { (sgCtlSex:UISegmentedControl!) -> Void in
-                
-                let array : NSArray = ["有料","無料","全て"]
-                sgCtlSex = UISegmentedControl(items: array as [AnyObject])
-                // 表示する位置、大きさを設定
-                sgCtlSex.frame = CGRectMake(0,0,100,120)
-                sgCtlSex.selectedSegmentIndex = 0
-                self.view.addSubview(sgCtlSex)
-                // 配置
-            }
-  */
+
             // ダイアログ用
             // 誕生日のテキストフィールドにDatePickerを表示する
             datePicker1 = UIDatePicker()
@@ -409,6 +397,12 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             alert.textFields![0].delegate = self
             
             // 性別
+            let picker = UIPickerView()
+            picker.delegate = self
+            picker.dataSource = self
+            picker.showsSelectionIndicator = true
+            picker.frame = CGRectMake(0,0,self.view.bounds.width, 250.0)
+            alert.textFields![2].inputView = picker
             
             // アクションの追加
             alert.addAction(saveAction)
@@ -417,6 +411,33 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             presentViewController(alert, animated: true, completion: nil)
         }
     }
+
+    // 性別用のリスト
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return dataList.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return dataList[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        alert.textFields![2].text = dataList[row]
+    }
+    
+    func cancel() {
+        alert.textFields![2].text = ""
+        alert.textFields![2].endEditing(true)
+    }
+    
+    func done() {
+        alert.textFields![2].endEditing(true)
+    }
+    
     
     // 書式指定に従って日付を文字列に変換します
     // パラメータ
