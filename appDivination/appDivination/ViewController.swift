@@ -106,6 +106,7 @@ class ViewController: UIViewController {
         defaults.removeObjectForKey("birthday")
         defaults.removeObjectForKey("sex")
 
+// TODO NSLocalizedStringを止める!！！！！！！！！！！！！！！！！
         let alertController = UIAlertController(
             title: NSLocalizedString("delNameTitle", tableName: "main", comment: ""),
             message: NSLocalizedString("delNameMsg", tableName: "main", comment: ""),

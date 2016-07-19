@@ -303,8 +303,8 @@ class resultDivinationClass {
         }
     }
 
+    // TODO arrays.plistいらないよね？？？？？？？
     // 相性診断の結果文言の取得
-    // TODO plotResultは人数分必要、getCompatibilityScoreの引数も配列で
     func getCompatibilityScore(plotDataList:[[Int]]) -> String {
         let score:Int = 100
         
@@ -357,7 +357,7 @@ class resultDivinationClass {
 
     // 命名術の結果文言の取得
 	// TODO plotResultは2人分必要、getNamingの引数も配列で
-    func getNaming(plotData:[Int]) -> String {
+    func getNaming(plotDataFirst:[Int], plotDataSecond:[Int]) -> String {
     	return ""
     }
 }

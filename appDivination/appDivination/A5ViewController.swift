@@ -293,6 +293,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         print("close keyboard")
         alert.textFields![0].resignFirstResponder()
         alert.textFields![1].resignFirstResponder()
+        alert.textFields![2].resignFirstResponder()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -342,6 +343,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             let saveAction = UIAlertAction(title: "追加", style: .Default) { (action:UIAlertAction!) -> Void in
                 self.alert.textFields![0].resignFirstResponder()
                 self.alert.textFields![1].resignFirstResponder()
+                self.alert.textFields![2].resignFirstResponder()
                 if self.checkInput() {
                     // 追加
                     self.userList.append(self.alert.textFields![0].text!)
@@ -360,6 +362,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             let cancelAction = UIAlertAction(title: "キャンセル", style: .Default) { (action:UIAlertAction!) -> Void in
                 self.alert.textFields![0].resignFirstResponder()
                 self.alert.textFields![1].resignFirstResponder()
+                self.alert.textFields![2].resignFirstResponder()
             }
             
             // UIAlertControllerにtextFieldを追加、UserName
@@ -369,10 +372,10 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             // 誕生日のtextField
             alert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
                 textField.placeholder = "誕生日を選択ください"
-                // 配置
+                // TODO 配置!!!!!!!!!!!!!!!!!
                 textField.frame = CGRectMake(0,0,100,120)
             }
-            // 性別のtextField
+            // TODO 性別のtextField
             alert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
                 textField.placeholder = "性別を選択ください"
                 let array : NSArray = ["有料","無料","全て"]
