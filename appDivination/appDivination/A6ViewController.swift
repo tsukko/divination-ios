@@ -153,7 +153,6 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
         secondDateTextField.text = defaults.stringForKey("secondBirthday")
         secondSgCtlSex.selectedSegmentIndex = defaults.integerForKey("secondSex")
 
-
         // nameTextField の情報を受け取るための delegate を設定
         firstNameTextField.delegate = self
         secondNameTextField.delegate = self

@@ -177,6 +177,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         tableView.delegate = self
         
         // 保存していた情報の復元
+        // TODO 誕生日や性別の情報も保存・復元したほうがいいかも
         let defaults = NSUserDefaults.standardUserDefaults()
         if let temp = defaults.objectForKey("UserList") as? [String] {
             userList = temp
@@ -276,13 +277,10 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
 */
         // この判定が終わったら、次の画面に遷移する
         
-        // 保存はどうするか
+        // 保存はセルの追加削除時に行っている
         // NSUserDefaultsオブジェクトを取得し、設定情報を保存する
-        let defaults = NSUserDefaults.standardUserDefaults()
-//        defaults.setObject(nameTextField.text, forKey: "userName")
-//        defaults.setObject(dateTextField.text, forKey: "birthday")
-//        defaults.setInteger(sgCtlSex.selectedSegmentIndex, forKey: "sex")
-        defaults.synchronize()
+//        let defaults = NSUserDefaults.standardUserDefaults()
+//        defaults.synchronize()
         return true
     }
     
@@ -298,8 +296,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // 項目数とする
-
+        // userList項目＋追加ボタン　分の数とする
         return userList.count + 1
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -365,14 +362,20 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
                 self.alert.textFields![1].resignFirstResponder()
             }
             
-            // UIAlertControllerにtextFieldを追加
+            // UIAlertControllerにtextFieldを追加、UserName
             alert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
                  textField.placeholder = "ひらがな、かたかなで入力ください"
             }
+            // 誕生日のtextField
             alert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
                 textField.placeholder = "誕生日を選択ください"
                 // 配置
                 textField.frame = CGRectMake(0,0,100,120)
+            }
+            // 性別のtextField
+            alert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
+                textField.placeholder = "性別を選択ください"
+                let array : NSArray = ["有料","無料","全て"]
             }
 /*            alert.addTextFieldWithConfigurationHandler { (sgCtlSex:UISegmentedControl!) -> Void in
                 
@@ -386,7 +389,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             }
   */
             // ダイアログ用
-            // テキストフィールドにDatePickerを表示する
+            // 誕生日のテキストフィールドにDatePickerを表示する
             datePicker1 = UIDatePicker()
             datePicker1.addTarget(self, action: #selector(A5ViewController.changedDateEvent(_:)), forControlEvents: UIControlEvents.ValueChanged)
             // 日本の日付表示形式にする、年月日の表示にする
@@ -404,15 +407,15 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             // nameTextField の情報を受け取るための delegate を設定
             alert.textFields![0].delegate = self
             
+            // 性別
+            
+            // アクションの追加
             alert.addAction(saveAction)
             alert.addAction(cancelAction)
             
             presentViewController(alert, animated: true, completion: nil)
         }
     }
-    
-    
-    
     
     // 書式指定に従って日付を文字列に変換します
     // パラメータ

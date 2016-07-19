@@ -19,7 +19,6 @@ import UIKit
  */
 class A6ResultViewController : UIViewController {
     
-//    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var lblName: UILabel!
 
@@ -39,16 +38,17 @@ class A6ResultViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("A6ResultViewController viewDidLoad")
-  
-        let defaults = NSUserDefaults.standardUserDefaults()
-        
-        // TODO "音霊命名術結果"を表示
 
-		// 命名術結果の文言のセット
-		// TODO plotResultは2人分必要、getNamingの引数も配列で
-	//	let plotResult:[Int] = (defaults.objectForKey("plotResult") as? [Int])!
-	//	let retDivination = resultDivinationClass()
-	//	lblMessage.text = retDivination.getNaming(plotResult)
+        // 保存していた情報の復元
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let firstName = defaults.stringForKey("firstUserName")
+        let secondName = defaults.stringForKey("secondUserName")
+        
+        let retDivination = resultDivinationClass()
+        let firstPlotResult = retDivination.divinationReturnResult(firstName)
+        let secondPlotResult = retDivination.divinationReturnResult(firstName)
+        
+//        lblMessage.text = retDivination.getNaming(firstPlotResult, secondPlotResult)
     }
     
     // 画面が表示された直後
@@ -62,7 +62,7 @@ class A6ResultViewController : UIViewController {
     
     // 説明を聞くボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
-        _param = 4
+        _param = 5
         performSegueWithIdentifier("segue",sender: nil)
     }
     

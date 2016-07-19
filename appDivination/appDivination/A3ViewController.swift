@@ -170,6 +170,11 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         
         // NSUserDefaultsオブジェクトを取得し、設定情報を保存する
         let defaults = NSUserDefaults.standardUserDefaults()
+        // 登録されている名前と入力されている名前が異なっている場合は、占い情報をリセット
+        if nameTextField.text != defaults.stringForKey("userName") {
+            defaults.setObject("", forKey: "LukcyWord")
+            defaults.setObject("", forKey: "saveTime")
+        }
         defaults.setObject(nameTextField.text, forKey: "userName")
         defaults.setObject(dateTextField.text, forKey: "birthday")
         defaults.setInteger(sgCtlSex.selectedSegmentIndex, forKey: "sex")
