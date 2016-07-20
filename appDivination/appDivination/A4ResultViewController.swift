@@ -66,17 +66,17 @@ class A4ResultViewController : UIViewController {
     }
     
     // 画面が表示された直後
-    override func viewDidAppear(animated:Bool) {     
+    override func viewDidAppear(animated:Bool) {
         changeLayout();
     }
 
     func changeLayout(){
-    	// TODO 念のためレイアウト高さの設定が必要？？
+        // レイアウト高さ設定
     }
     
     // 説明を聞くボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
-        _param = 3
+        _param = viewNumber
         performSegueWithIdentifier("segue",sender: nil)
     }
 

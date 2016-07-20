@@ -65,6 +65,52 @@ import UIKit
  それ以外の文字もご自由にお使いください。
 
 
+======
+例）
+ 父: さわきたりき    [00000000] 
+ 母: さわきたみう    [00200000] TODO 上に〇が付いている、自分のは下についている
+
+組み合わせ(36通り)
+- つ + ね
+- つ + せろね + けのめもね
+- つ + せろね + へゆよをけのめもね + すぬやこけのめもね
+- つ + くふヱせろね + ね
+- つ + くふヱせろね + けのめもね + おむせろね
+- つ + くふヱせろね + へゆよをけのめもね + ね
+- つ + くふヱせろね + へゆよをけのめもね + おむせろね + すぬやこけのめもね
+- こ + ね + つ
+- こ + ね + いしそんはほるつ + なにえてまつ
+- こ + せろね + へゆよをけのめもね + つ
+- こ + せろね + へゆよをけのめもね + いしそんはほるつ + なにえてまつ
+- こ + くふヱせろね + ね + つ
+- こ + くふヱせろね + ね + いしそんはほるつ + なにえてまつ
+- こ + くふヱせろね + へゆよをけのめもね + つ + おむせろね
+- こ + くふヱせろね + へゆよをけのめもね + いしそんはほるつ + おむせろね + なにえてまつ
+- はほるつ + ね + なにえてまつ
+- はほるつ + せろね + けのめもね + なにえてまつ
+- はほるつ + せろね + へゆよをけのめもね + なにえてまつ + すぬやこけのめもね
+- はほるつ + くふヱせろね + ね + なにえてまつ
+- はほるつ + くふヱせろね + けのめもね + おむせろね + なにえてまつ
+- はほるつ + くふヱせろね + へゆよをけのめもね + ね + なにえてまつ
+- はほるつ + くふヱせろね + へゆよをけのめもね + おむせろね + なにえてまつ + すぬやこけのめもね
+- あかひれはほるこつ + ね + つ
+- あかひれはほるこつ + ね + いしそんはほるつ + なにえてまつ
+- あかひれはほるこつ + せろね + けのめもね + つ
+- あかひれはほるこつ + せろね + けのめもね + いしそんはほるつ + なにえてまつ
+- あかひれはほるこつ + せろね + へゆよをけのめもね + つ + すぬやこけのめもね
+- あかひれはほるこつ + せろね + へゆよをけのめもね + いしそんはほるつ + なにえてまつ + すぬやこけのめもね
+- あかひれはほるこつ + くふヱせろね + ね + つ
+- あかひれはほるこつ + くふヱせろね + ね + いしそんはほるつ + なにえてまつ
+- あかひれはほるこつ + くふヱせろね + けのめもね + つ + おむせろね
+- あかひれはほるこつ + くふヱせろね + けのめもね + いしそんはほるつ + おむせろね + なにえてまつ
+- あかひれはほるこつ + くふヱせろね + へゆよをけのめもね + つ + ね
+- あかひれはほるこつ + くふヱせろね + へゆよをけのめもね + つ + おむせろね + すぬやこけのめもね
+- あかひれはほるこつ + くふヱせろね + へゆよをけのめもね + いしそんはほるつ + ね + なにえてまつ
+- あかひれはほるこつ + くふヱせろね + へゆよをけのめもね + いしそんはほるつ + おむせろね + なにえてまつ + すぬやこけのめもね
+
+
+
+======
  */
 class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
     
@@ -100,12 +146,6 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
         super.viewDidLoad()
         print("A6ViewController viewDidLoad")
         
-        // TODO レイアウト関係
-        // 音霊鑑定術
-        // カタカムナ音霊命名術でお子様の命名のサポートをさせていただきます。会社名・屋号やペットの命名も可能です。
-        // 詳しくは先生の説明をご覧下さい。
-        // 父（母）の名前、お誕生日、性別が2セット
-
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
         
         // 行数無制限
@@ -120,7 +160,7 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
         datePicker1.locale = NSLocale(localeIdentifier: "ja_JP")
         // 最小値、最大値、初期値を設定
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-DD"
+        dateFormatter.dateFormat = Const.DateSetFormat
         datePicker1.minimumDate = dateFormatter.dateFromString(Const.MinDateString)
         datePicker1.maximumDate = dateFormatter.dateFromString(Const.MaxDateString)
         datePicker1.date = dateFormatter.dateFromString(Const.DefDateString)!
@@ -163,7 +203,7 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
 
     // 相談ボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
-        _param = 2
+        _param = viewNumber
         performSegueWithIdentifier("segue",sender: nil)
     }
     

@@ -19,7 +19,6 @@ import UIKit
  */
 class A3ResultViewController : UIViewController {
     
-//    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var resultScrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var resultBackImage: UIImageView!
@@ -32,8 +31,6 @@ class A3ResultViewController : UIViewController {
     @IBOutlet weak var CircleImageView7: UIImageView!
     @IBOutlet weak var CircleImageView8: UIImageView!
 
-    // 
-//    @IBOutlet weak var lblName: UILabel!
     // レア音霊、あなたの特性、運気を上げる文言のタイトルとメッセージ表示部
     @IBOutlet weak var lblTitleRare: UILabel!
     @IBOutlet weak var lblMessageRare: UILabel!
@@ -75,7 +72,7 @@ class A3ResultViewController : UIViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         let userName = defaults.stringForKey(Const.UserName)!
         
-        // 占いの実行　、standardUserDefaultsにわざわざ保存しなくてもいい
+        // 占いの実行
         let retDivination = resultDivinationClass()
         let plotResult:[Int] = retDivination.divinationReturnResult(userName)
         
@@ -128,7 +125,7 @@ class A3ResultViewController : UIViewController {
         let midY = CGRectGetMidY(lblMessageLatter.frame)
         print("ボタンの中心のX座業:\(midX) Y座標:\(midY)")
         
-        // -80にしているのは見た目を合わせるため。。。
+        // -40にしているのは見た目を合わせるため
         let newContentHeight = height+midY-40
         
         // TODO contentViewの方がよかったりする？？？？？
@@ -142,7 +139,7 @@ class A3ResultViewController : UIViewController {
     
     // 説明を聞くボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
-        _param = 2
+        _param = viewNumber
         performSegueWithIdentifier("segue",sender: nil)
     }
     
@@ -182,6 +179,33 @@ class A3ResultViewController : UIViewController {
                 imageView01[index]!.image = img[5]
             }
         }
+    }
+    
+    // 画像とテキストを合成する
+    func drawText(image :UIImage) ->UIImage {
+        let text = "Some text.."
+
+        let font = UIFont.boldSystemFontOfSize(32)
+        let imageRect = CGRectMake(0,0,image.size.width,image.size.height)
+
+        UIGraphicsBeginImageContext(image.size);
+
+        image.drawInRect(imageRect)
+
+        let textRect  = CGRectMake(5, 5, image.size.width - 5, image.size.height - 5)
+        let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
+        let textFontAttributes = [
+            NSFontAttributeName: font,
+            NSForegroundColorAttributeName: UIColor.whiteColor(),
+            NSParagraphStyleAttributeName: textStyle
+        ]
+        text.drawInRect(textRect, withAttributes: textFontAttributes)
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext();
+
+        UIGraphicsEndImageContext()
+
+        return newImage
     }
     
     /**

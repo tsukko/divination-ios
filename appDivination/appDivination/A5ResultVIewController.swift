@@ -43,22 +43,23 @@ class A5ResultViewController : UIViewController {
         print("A5ResultViewController viewDidLoad")
 
         // 保存していた情報の復元
-        // TODO 誕生日や性別の情報も保存・復元したほうがいいかも
         let defaults = NSUserDefaults.standardUserDefaults()
-        if let temp = defaults.objectForKey(Const.UserNameList) as? [String] {
-            userNameList = temp
+        if let userNameList = defaults.objectForKey(Const.UserNameList) as? [String] {
+            //userNameList = temp
+            let retDivination = resultDivinationClass()
+            for indexStr in userNameList {
+                //let userName = userNameList[0]
+                if let plotResult:[Int] = retDivination.divinationReturnResult(indexStr) {
+                    plotResultList.append(plotResult)
+                }
+            }
             print("userList is not nil")
         }
 
-        let retDivination = resultDivinationClass()
-  //      for indexStr in userNameList {
-            let userName = userNameList[0]
-            let plotResult:[Int] = retDivination.divinationReturnResult(userName)
-            plotResultList.append(plotResult)
-   //     }
-
         // 点数のセット
-        lblMessage.text = retDivination.getCompatibilityScore(plotResultList)
+        if plotResultList.isEmpty {
+            lblMessage.text = retDivination.getCompatibilityScore(plotResultList)
+        }
     }
     
     // 画面が表示された直後
@@ -67,12 +68,12 @@ class A5ResultViewController : UIViewController {
     }
 
     func changeLayout(){
-    	// TODO 念のためレイアウト高さの設定が必要？？
+        // レイアウト高さ設定
     }
     
     // 説明を聞くボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
-        _param = 4
+        _param = viewNumber
         performSegueWithIdentifier("segue",sender: nil)
     }
 

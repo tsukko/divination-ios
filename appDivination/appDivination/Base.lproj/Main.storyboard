@@ -1910,7 +1910,7 @@
         <!--A4ResultVIew-->
         <scene sceneID="GyU-xQ-yTq">
             <objects>
-                <viewController storyboardIdentifier="A4ResultView" title="A4ResultVIew" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8z2-3R-GBa" customClass="A4TempResultViewController" customModule="appDivination" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="A4ResultView" title="A4ResultVIew" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8z2-3R-GBa" customClass="A4ResultViewController" customModule="appDivination" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rfb-1z-IqX"/>
                         <viewControllerLayoutGuide type="bottom" id="eXJ-LH-3ys"/>
@@ -3532,8 +3532,8 @@
         <image name="説明ページ＿先生プロフ" width="1440" height="2560"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tck-e7-cfV"/>
-        <segue reference="MDb-Xd-QKb"/>
-        <segue reference="zh5-Ny-jGe"/>
+        <segue reference="dIp-DA-xeb"/>
+        <segue reference="XZN-2A-R4r"/>
+        <segue reference="g9Z-A6-7ss"/>
     </inferredMetricsTieBreakers>
 </document>
