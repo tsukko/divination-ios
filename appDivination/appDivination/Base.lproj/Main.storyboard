@@ -1988,16 +1988,30 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="さんの" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kfc-bS-3Ph" userLabel="Lblsan">
                                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="52" id="efS-no-PwS"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="efS-no-PwS"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <variation key="widthClass=compact">
+                                                            <mask key="constraints">
+                                                                <include reference="efS-no-PwS"/>
+                                                            </mask>
+                                                        </variation>
                                                     </label>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="aXa-Ru-VFw" firstAttribute="trailing" secondItem="Kfc-bS-3Ph" secondAttribute="leading" constant="-5" id="0EW-9R-Hej"/>
-                                                    <constraint firstItem="aXa-Ru-VFw" firstAttribute="centerX" secondItem="NB9-0x-z2A" secondAttribute="centerX" id="OGv-Cw-aF0"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Kfc-bS-3Ph" secondAttribute="trailing" id="3Oq-hP-VUn"/>
                                                     <constraint firstItem="aXa-Ru-VFw" firstAttribute="height" secondItem="NB9-0x-z2A" secondAttribute="height" id="OTQ-g8-cfM"/>
                                                     <constraint firstItem="aXa-Ru-VFw" firstAttribute="centerY" secondItem="NB9-0x-z2A" secondAttribute="centerY" id="Yn1-kG-RoS"/>
+                                                    <constraint firstItem="aXa-Ru-VFw" firstAttribute="width" secondItem="NB9-0x-z2A" secondAttribute="width" multiplier="0.7" id="aIG-4s-FGR"/>
                                                     <constraint firstItem="Kfc-bS-3Ph" firstAttribute="bottom" secondItem="aXa-Ru-VFw" secondAttribute="bottom" id="xxx-0V-q2p"/>
                                                 </constraints>
                                                 <variation key="default">
@@ -2006,11 +2020,12 @@
                                                         <exclude reference="Kfc-bS-3Ph"/>
                                                     </mask>
                                                     <mask key="constraints">
-                                                        <exclude reference="xxx-0V-q2p"/>
                                                         <exclude reference="0EW-9R-Hej"/>
-                                                        <exclude reference="OGv-Cw-aF0"/>
                                                         <exclude reference="OTQ-g8-cfM"/>
                                                         <exclude reference="Yn1-kG-RoS"/>
+                                                        <exclude reference="aIG-4s-FGR"/>
+                                                        <exclude reference="3Oq-hP-VUn"/>
+                                                        <exclude reference="xxx-0V-q2p"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact">
@@ -2019,11 +2034,12 @@
                                                         <include reference="Kfc-bS-3Ph"/>
                                                     </mask>
                                                     <mask key="constraints">
-                                                        <include reference="xxx-0V-q2p"/>
                                                         <include reference="0EW-9R-Hej"/>
-                                                        <include reference="OGv-Cw-aF0"/>
                                                         <include reference="OTQ-g8-cfM"/>
                                                         <include reference="Yn1-kG-RoS"/>
+                                                        <include reference="aIG-4s-FGR"/>
+                                                        <include reference="3Oq-hP-VUn"/>
+                                                        <include reference="xxx-0V-q2p"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -2064,7 +2080,7 @@
                                             <constraint firstItem="Yki-aS-xul" firstAttribute="top" secondItem="1A9-D9-bNh" secondAttribute="bottom" constant="15" id="Uf6-Sb-xRU"/>
                                             <constraint firstItem="1A9-D9-bNh" firstAttribute="top" secondItem="JhN-bh-d5d" secondAttribute="bottom" constant="15" id="cDc-4v-VZn"/>
                                             <constraint firstItem="WIc-yV-6FR" firstAttribute="leading" secondItem="1CM-pb-w2Z" secondAttribute="leading" id="eoL-ue-xkq"/>
-                                            <constraint firstItem="NB9-0x-z2A" firstAttribute="width" secondItem="u1z-pf-Lvw" secondAttribute="width" multiplier="0.76" id="g55-7a-qlq"/>
+                                            <constraint firstItem="NB9-0x-z2A" firstAttribute="width" secondItem="u1z-pf-Lvw" secondAttribute="width" multiplier="0.7" id="g55-7a-qlq"/>
                                             <constraint firstItem="1CM-pb-w2Z" firstAttribute="height" secondItem="u1z-pf-Lvw" secondAttribute="height" id="kXN-sI-mLC"/>
                                             <constraint firstItem="WIc-yV-6FR" firstAttribute="centerX" secondItem="u1z-pf-Lvw" secondAttribute="centerX" id="lin-qC-1nq"/>
                                             <constraint firstItem="WIc-yV-6FR" firstAttribute="width" secondItem="u1z-pf-Lvw" secondAttribute="width" id="nmC-NR-LIW"/>
@@ -3493,8 +3509,8 @@
         <image name="説明ページ＿先生プロフ" width="1440" height="2560"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="TW7-An-BCZ"/>
-        <segue reference="xrw-Kf-35Q"/>
+        <segue reference="XZN-2A-R4r"/>
+        <segue reference="dIp-DA-xeb"/>
         <segue reference="zh5-Ny-jGe"/>
     </inferredMetricsTieBreakers>
 </document>
