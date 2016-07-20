@@ -23,7 +23,6 @@ import MessageUI
  * 　命名術入力・結果　　　　　　　　→　池田先生の説明を聞く(説明ページ＿命名術)
  * 　一枚絵ページ全部（相談する以外）→　池田先生に相談する
  */
- // TODO バックキーでの戻りを何とかする
 class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var image_back: UIImageView!

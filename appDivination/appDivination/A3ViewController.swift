@@ -24,7 +24,6 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
     @IBOutlet weak var sgCtlSex: UISegmentedControl!
     @IBOutlet weak var btnAppraise: UIButton!
     @IBOutlet weak var naviBar: UINavigationBar!
-//    @IBOutlet weak var btnConsultation: UIButton!
     
     // 画面番号、遷移元を知るために使用
     let viewNumber = Const.ViewNumber.A3ViewConNum
@@ -56,7 +55,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         datePicker1.locale = NSLocale(localeIdentifier: "ja_JP")
         // 最小値、最大値、初期値を設定
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-DD"
+        dateFormatter.dateFormat = Const.DateSetFormat
         datePicker1.minimumDate = dateFormatter.dateFromString(Const.MinDateString)
         datePicker1.maximumDate = dateFormatter.dateFromString(Const.MaxDateString)
         datePicker1.date = dateFormatter.dateFromString(Const.DefDateString)!

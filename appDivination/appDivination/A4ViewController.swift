@@ -27,13 +27,11 @@ import UIKit
  */
 class A4ViewController : UIViewController, UITextFieldDelegate {
     
-//    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var sgCtlSex: UISegmentedControl!
     @IBOutlet weak var btnAppraise: UIButton!
     @IBOutlet weak var naviBar: UINavigationBar!
-//    @IBOutlet weak var btnConsultation: UIButton!
     
     // 画面番号、遷移元を知るために使用
     let viewNumber = Const.ViewNumber.A4ViewConNum
@@ -44,7 +42,6 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
     // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
 
-    //    var toolBar:UIToolbar!
     var datePicker1: UIDatePicker!
     
     /**
@@ -66,7 +63,7 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
         datePicker1.locale = NSLocale(localeIdentifier: "ja_JP")
         // 最小値、最大値、初期値を設定
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-DD"
+        dateFormatter.dateFormat = Const.DateSetFormat
         datePicker1.minimumDate = dateFormatter.dateFromString(Const.MinDateString)
         datePicker1.maximumDate = dateFormatter.dateFromString(Const.MaxDateString)
         datePicker1.date = dateFormatter.dateFromString(Const.DefDateString)!

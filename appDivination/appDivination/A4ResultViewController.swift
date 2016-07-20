@@ -66,7 +66,7 @@ class A4ResultViewController : UIViewController {
     }
     
     // 画面が表示された直後
-    override func viewDidAppear(animated:Bool) {     
+    override func viewDidAppear(animated:Bool) {
         changeLayout();
     }
 

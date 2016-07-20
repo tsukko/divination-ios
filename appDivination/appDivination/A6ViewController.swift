@@ -120,7 +120,7 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
         datePicker1.locale = NSLocale(localeIdentifier: "ja_JP")
         // 最小値、最大値、初期値を設定
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-DD"
+        dateFormatter.dateFormat = Const.DateSetFormat
         datePicker1.minimumDate = dateFormatter.dateFromString(Const.MinDateString)
         datePicker1.maximumDate = dateFormatter.dateFromString(Const.MaxDateString)
         datePicker1.date = dateFormatter.dateFromString(Const.DefDateString)!

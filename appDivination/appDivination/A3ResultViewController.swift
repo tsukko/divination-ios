@@ -19,7 +19,6 @@ import UIKit
  */
 class A3ResultViewController : UIViewController {
     
-//    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var resultScrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var resultBackImage: UIImageView!
@@ -32,8 +31,6 @@ class A3ResultViewController : UIViewController {
     @IBOutlet weak var CircleImageView7: UIImageView!
     @IBOutlet weak var CircleImageView8: UIImageView!
 
-    // 
-//    @IBOutlet weak var lblName: UILabel!
     // レア音霊、あなたの特性、運気を上げる文言のタイトルとメッセージ表示部
     @IBOutlet weak var lblTitleRare: UILabel!
     @IBOutlet weak var lblMessageRare: UILabel!
@@ -75,7 +72,7 @@ class A3ResultViewController : UIViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         let userName = defaults.stringForKey(Const.UserName)!
         
-        // 占いの実行　、standardUserDefaultsにわざわざ保存しなくてもいい
+        // 占いの実行
         let retDivination = resultDivinationClass()
         let plotResult:[Int] = retDivination.divinationReturnResult(userName)
         

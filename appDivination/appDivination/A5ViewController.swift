@@ -127,13 +127,8 @@ d-hライン
  */
 class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
-//    @IBOutlet var viewBack: UIView!
-//    @IBOutlet weak var nameTextField: UITextField!
-//    @IBOutlet weak var dateTextField: UITextField!
-//    @IBOutlet weak var sgCtlSex: UISegmentedControl!
     @IBOutlet weak var btnAppraise: UIButton!
     @IBOutlet weak var naviBar: UINavigationBar!
-//    @IBOutlet weak var btnConsultation: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnAddMenber: UIButton!
@@ -297,8 +292,6 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         return true
     }
     
-    
-    
     // 画面の適当なところをタッチした時、キーボードを隠す
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event)
@@ -321,7 +314,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             let tblBackColor: UIColor = UIColor.clearColor()
             cell.backgroundColor = tblBackColor
         } else {
-            cell.textLabel!.text = "追加"
+            cell.textLabel!.text = Const.LblAdd
             cell.textLabel!.textAlignment = NSTextAlignment.Center
         }
         return cell
@@ -350,8 +343,8 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         print("indexPath.row:\(indexPath.row), testteste.count + 1 :\(userNameList.count + 1)")
         if (indexPath.row == userNameList.count ) {
             // ダイアログ表示
-            alert = UIAlertController(title: "追加します", message: "お名前、生年月日、性別を入力ください", preferredStyle: .Alert)
-            let saveAction = UIAlertAction(title: "追加", style: .Default) { (action:UIAlertAction!) -> Void in
+            alert = UIAlertController(title: Const.AddNameTitle, message: Const.AddNameMsg, preferredStyle: .Alert)
+            let saveAction = UIAlertAction(title: Const.LblAdd, style: .Default) { (action:UIAlertAction!) -> Void in
                 self.alert.textFields![0].resignFirstResponder()
                 self.alert.textFields![1].resignFirstResponder()
                 self.alert.textFields![2].resignFirstResponder()
@@ -370,7 +363,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
                 }
             }
             
-            let cancelAction = UIAlertAction(title: "キャンセル", style: .Default) { (action:UIAlertAction!) -> Void in
+            let cancelAction = UIAlertAction(title: Const.BtnCancel, style: .Default) { (action:UIAlertAction!) -> Void in
                 self.alert.textFields![0].resignFirstResponder()
                 self.alert.textFields![1].resignFirstResponder()
                 self.alert.textFields![2].resignFirstResponder()
@@ -378,17 +371,17 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             
             // UIAlertControllerにtextFieldを追加、UserName
             alert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
-                 textField.placeholder = "ひらがな、かたかなで入力ください"
+                 textField.placeholder = Const.NamePlaceholder
             }
             // 誕生日のtextField
             alert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
-                textField.placeholder = "誕生日を選択ください"
+                textField.placeholder = Const.BirthdayPlaceholder
                 // TODO 配置!!!!!!!!!!!!!!!!!
                 textField.frame = CGRectMake(20,30,300,120)
             }
             // TODO 性別のtextField
             alert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
-                textField.placeholder = "性別を選択ください"
+                textField.placeholder = Const.SexPlaceholder
             }
 
             // ダイアログ用
@@ -401,7 +394,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             datePicker1.locale = NSLocale(localeIdentifier: "ja_JP")
             // 最小値、最大値、初期値を設定
             let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "YYYY-MM-DD"
+            dateFormatter.dateFormat = Const.DateSetFormat
             datePicker1.minimumDate = dateFormatter.dateFromString(Const.MinDateString)
             datePicker1.maximumDate = dateFormatter.dateFromString(Const.MaxDateString)
             datePicker1.date = dateFormatter.dateFromString(Const.DefDateString)!
