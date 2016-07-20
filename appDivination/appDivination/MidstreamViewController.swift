@@ -24,7 +24,7 @@ class MidstreamViewController : UIViewController {
     
     // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
-    // 画面遷移時に遷移元が渡す遷移元の値　（TODO final値）
+    // 画面遷移時に遷移元が渡す遷移元の値
     var _paramOriginal:Int = -1
     // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
@@ -38,18 +38,6 @@ class MidstreamViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("MidstreamViewController viewDidLoad:_paramOriginal:\(_paramOriginal)")
-        
-        // TODO ここすべて削除できるかも
-/*        // NSUserDefaultsオブジェクトを取得
-        let defaults = NSUserDefaults.standardUserDefaults()
-        
-        // すでに名前が設定されていたら今日の運勢を行うボタンを表示する
-        if let _ = defaults.stringForKey("userName") {
-            // NSUserDefaultsに格納された値を取得
-            userName = defaults.stringForKey("userName")!
-            print("MidstreamViewController viewDidLoad userName:\(userName)")
-        }
-*/
     }
 
     // 画面が表示された直後
@@ -71,17 +59,12 @@ class MidstreamViewController : UIViewController {
 
         // アニメーションを実行
         imgYatagarasu.layer.addAnimation(animationGroup, forKey: "moonSaltoAnimation")
-        
-        // 計算する TODO この計算はResultViewに移す
-//        let msg:String = divination()
-//        divination()
-        
+
         // 3秒後に次の結果画面に遷移する
         // 第1引数の部分は、タイマーを発生させる間隔です。例えば、0.1なら0.1秒間隔になります。1.0なら1.0秒間隔です。
         // 第2引数の「target」は、タイマー発生時に呼び出すメソッドがあるターゲットを指定します。通常は「self」で大丈夫だと思います。
         // 第3引数の「selector」の部分は、タイマー発生時に呼び出すメソッドを指定します。今回の場合は「onUpdate」を呼び出しています。
         // 2.0で設定していた
-        // TODO userInfo: msg を空にした
         NSTimer.scheduledTimerWithTimeInterval(0.1,target:self,selector:#selector(MidstreamViewController.transition(_:)), userInfo: "", repeats: false)
     }
 
@@ -90,22 +73,22 @@ class MidstreamViewController : UIViewController {
         print("MidstreamViewController transition:_paramOriginal:\(_paramOriginal)")
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
-        if _paramOriginal == 3 {
+        if _paramOriginal == Const.A3ViewConNum {
             // 無料言霊鑑定結果画面
            let next:A3ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A3ResultView") as! A3ResultViewController
            next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
            self.presentViewController(next, animated: true, completion: nil)
-        } else if _paramOriginal == 4 {
+        } else if _paramOriginal == Const.A4ViewConNum {
             // 今日のつぶやき結果画面
            let next:A4ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A4ResultView") as! A4ResultViewController
            next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
            self.presentViewController(next, animated: true, completion: nil)
-        } else if _paramOriginal == 5 {
+        } else if _paramOriginal == Const.A5ViewConNum {
             // 相性診断結果画面
            let next:A5ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A5ResultView") as! A5ResultViewController
            next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
            self.presentViewController(next, animated: true, completion: nil)
-        } else if _paramOriginal == 6 {
+        } else if _paramOriginal == Const.A6ViewConNum {
             // 命名術結果画面
            let next:A6ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A6ResultView") as! A6ResultViewController
            next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
@@ -115,7 +98,7 @@ class MidstreamViewController : UIViewController {
 
     // 説明を聞くボタンを押した時
     @IBAction func touchDownBtnConsultation(sender: AnyObject) {
-        _param = 2
+        _param = _paramOriginal
         performSegueWithIdentifier("segue",sender: nil)
     }
 

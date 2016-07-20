@@ -125,7 +125,7 @@ class A3ResultViewController : UIViewController {
         let midY = CGRectGetMidY(lblMessageLatter.frame)
         print("ボタンの中心のX座業:\(midX) Y座標:\(midY)")
         
-        // -80にしているのは見た目を合わせるため。。。
+        // -40にしているのは見た目を合わせるため
         let newContentHeight = height+midY-40
         
         // TODO contentViewの方がよかったりする？？？？？

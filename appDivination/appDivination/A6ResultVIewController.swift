@@ -60,7 +60,7 @@ class A6ResultViewController : UIViewController {
     }
 
     func changeLayout(){
-    	// TODO 念のためレイアウト高さの設定が必要？？
+        // レイアウト高さ設定
     }
     
     // 説明を聞くボタンを押した時

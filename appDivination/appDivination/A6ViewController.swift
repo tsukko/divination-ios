@@ -64,7 +64,6 @@ import UIKit
  お伝えさせていただいた文字は必ずお使い下さい。
  それ以外の文字もご自由にお使いください。
 
-
  */
 class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
     
@@ -100,12 +99,6 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
         super.viewDidLoad()
         print("A6ViewController viewDidLoad")
         
-        // TODO レイアウト関係
-        // 音霊鑑定術
-        // カタカムナ音霊命名術でお子様の命名のサポートをさせていただきます。会社名・屋号やペットの命名も可能です。
-        // 詳しくは先生の説明をご覧下さい。
-        // 父（母）の名前、お誕生日、性別が2セット
-
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
         
         // 行数無制限

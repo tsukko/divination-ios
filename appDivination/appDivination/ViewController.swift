@@ -97,10 +97,10 @@ class ViewController: UIViewController {
     
     // 今日の運勢を押した時
     @IBAction func touchDownBtnTodayTweet(sender: AnyObject) {
-        // TODO 無料音霊鑑定の結果ページ
+        // 無料音霊鑑定の結果ページ
     }
     
-    // 今日の運勢を長押しした時
+    // 裏機能。今日の運勢を長押しした時、保存されたすべてのデーターを削除する
     func doGesture(sender: UILongPressGestureRecognizer) {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.removeObjectForKey(Const.UserName)

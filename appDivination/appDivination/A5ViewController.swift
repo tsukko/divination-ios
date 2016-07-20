@@ -142,7 +142,6 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
 
-    //    var toolBar:UIToolbar!
     var datePicker1: UIDatePicker!
     var alert = UIAlertController()
     let dataList = Const.SexDataList
@@ -157,20 +156,15 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         super.viewDidLoad()
         print("A5ViewController viewDidLoad")
         
-        // TODO レイアウトメモ
-        // 音霊相性診断
-        // 相性を占いたい2人以上の名前を、カタカナで入力してください。
-        // リストビュー、左寄せで名前、右側で削除
-        // リストの最後がプラスボタン
-        // プラスボタンを押すと、ダイアログを表示
-        
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
         
         tableView.dataSource = self
         tableView.delegate = self
         
+        setPickerInfo()
+        
         // 保存していた情報の復元
-        // TODO 誕生日や性別の情報も保存・復元したほうがいいかも
+        // 誕生日や性別の情報も保存・復元はおこなっていない
         let defaults = NSUserDefaults.standardUserDefaults()
         if let temp = defaults.objectForKey(Const.UserNameList) as? [String] {
             userNameList = temp
@@ -198,23 +192,6 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         }
     }
 
-    // ダイアログ用
-    // 日付の変更イベント
-    func changedDateEvent(sender:AnyObject?){
-        //        var dateSelecter:UIDatePicker = sender as! UIDatePicker
-        self.changeLabelDate(datePicker1.date)
-    }
-    // 日付の変更
-    func changeLabelDate(date:NSDate) {
-        alert.textFields![1].text = format(datePicker1.date,style: Const.DateFormat)
-    }
-    
-    // 名前の入力完了時に閉じる
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        alert.textFields![0].resignFirstResponder()
-        return true
-    }
-
     // 鑑定するボタンを押したとき　　入力の確認
     @IBAction func touchDownbtnAppraise(sender: AnyObject) {
         if userNameList.isEmpty || userNameList.count == 1 {
@@ -228,8 +205,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         }
     }
 
-    // 入力確認はダイアログで行う
-    // 鑑定するボタンを押したとき　　入力の確認
+    // ダイアログで名前を追加するときの入力確認
     func checkInput() -> Bool {
         // 名前欄のTextFieldの確認
         if (alert.textFields![0].text!.isEmpty) {
@@ -272,7 +248,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         // 性別選択の確認
 //        if (alert.textFields![2].selectedSegmentIndex == -1) {
         if (alert.textFields![2].text!.isEmpty) {
-            print("sgCtlSex.selectedSegmentIndex == -1")
+            print("alert.textFields![2].text!.isEmpty")
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgSex,
@@ -283,25 +259,10 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             return false
         }
 
-        // この判定が終わったら、次の画面に遷移する
-        
         // 保存はセルの追加削除時に行っている
-        // NSUserDefaultsオブジェクトを取得し、設定情報を保存する
-//        let defaults = NSUserDefaults.standardUserDefaults()
-//        defaults.synchronize()
         return true
     }
-    
-    // 画面の適当なところをタッチした時、キーボードを隠す
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event)
 
-        print("close keyboard")
-        alert.textFields![0].resignFirstResponder()
-        alert.textFields![1].resignFirstResponder()
-        alert.textFields![2].resignFirstResponder()
-    }
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // userList項目＋追加ボタン　分の数とする
         return userNameList.count + 1
@@ -379,12 +340,13 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
                 // TODO 配置!!!!!!!!!!!!!!!!!
                 textField.frame = CGRectMake(20,30,300,120)
             }
-            // TODO 性別のtextField
+            // 性別のtextField
             alert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
                 textField.placeholder = Const.SexPlaceholder
             }
 
-            // ダイアログ用
+            // TODO 外に出した。動作確認後、削除する
+/*            // ダイアログ用
             // 誕生日のテキストフィールドにDatePickerを表示する
             datePicker1 = UIDatePicker()
             datePicker1.addTarget(self, action: #selector(A5ViewController.changedDateEvent(_:)), forControlEvents: UIControlEvents.ValueChanged)
@@ -410,6 +372,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             picker.showsSelectionIndicator = true
             picker.frame = CGRectMake(0,0,self.view.bounds.width, 250.0)
             alert.textFields![2].inputView = picker
+            */
             
             // アクションの追加
             alert.addAction(saveAction)
@@ -419,7 +382,55 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         }
     }
 
-    // 性別用のリスト
+    func setPickerInfo() {
+       // TODO 外に出した。動作確認後、上のを削除する
+       // ダイアログ用
+       // 誕生日のテキストフィールドにDatePickerを表示する
+       datePicker1 = UIDatePicker()
+       datePicker1.addTarget(self, action: #selector(A5ViewController.changedDateEvent(_:)), forControlEvents: UIControlEvents.ValueChanged)
+       // 日本の日付表示形式にする、年月日の表示にする
+       datePicker1.datePickerMode = UIDatePickerMode.Date
+       format(datePicker1.date,style: "yyyy/MM/dd")
+       datePicker1.locale = NSLocale(localeIdentifier: "ja_JP")
+       // 最小値、最大値、初期値を設定
+       let dateFormatter = NSDateFormatter()
+       dateFormatter.dateFormat = Const.DateSetFormat
+       datePicker1.minimumDate = dateFormatter.dateFromString(Const.MinDateString)
+       datePicker1.maximumDate = dateFormatter.dateFromString(Const.MaxDateString)
+       datePicker1.date = dateFormatter.dateFromString(Const.DefDateString)!
+       alert.textFields![1].inputView = datePicker1
+        
+       // nameTextField の情報を受け取るための delegate を設定
+       alert.textFields![0].delegate = self
+       
+       // 性別
+       let picker = UIPickerView()
+       picker.delegate = self
+       picker.dataSource = self
+       picker.showsSelectionIndicator = true
+       picker.frame = CGRectMake(0,0,self.view.bounds.width, 250.0)
+       alert.textFields![2].inputView = picker
+    }
+
+    // 日付Picker用 ここから
+    // 日付の変更イベント
+    func changedDateEvent(sender:AnyObject?){
+        //        var dateSelecter:UIDatePicker = sender as! UIDatePicker
+        self.changeLabelDate(datePicker1.date)
+    }
+    // 日付の変更
+    func changeLabelDate(date:NSDate) {
+        alert.textFields![1].text = format(datePicker1.date,style: Const.DateFormat)
+    }
+    
+    // 名前の入力完了時に閉じる
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        alert.textFields![0].resignFirstResponder()
+        return true
+    }
+    // 日付Picker用 ここまで
+
+    // 性別用のリスト ここから
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -444,7 +455,18 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     func done() {
         alert.textFields![2].endEditing(true)
     }
-    
+    // 性別用のリスト ここまで
+
+
+    // 画面の適当なところをタッチした時、キーボードを隠す
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesEnded(touches, withEvent: event)
+
+        print("close keyboard")
+        alert.textFields![0].resignFirstResponder()
+        alert.textFields![1].resignFirstResponder()
+        alert.textFields![2].resignFirstResponder()
+    }
     
     // 書式指定に従って日付を文字列に変換します
     // パラメータ
