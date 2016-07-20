@@ -193,7 +193,7 @@ class A3ResultViewController : UIViewController {
         image.drawInRect(imageRect)
 
         let textRect  = CGRectMake(5, 5, image.size.width - 5, image.size.height - 5)
-        let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
+        let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         let textFontAttributes = [
             NSFontAttributeName: font,
             NSForegroundColorAttributeName: UIColor.whiteColor(),

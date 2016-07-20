@@ -73,22 +73,22 @@ class MidstreamViewController : UIViewController {
         print("MidstreamViewController transition:_paramOriginal:\(_paramOriginal)")
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
-        if _paramOriginal == Const.A3ViewConNum {
+        if _paramOriginal == Const.ViewNumber.A3ViewConNum {
             // 無料言霊鑑定結果画面
            let next:A3ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A3ResultView") as! A3ResultViewController
            next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
            self.presentViewController(next, animated: true, completion: nil)
-        } else if _paramOriginal == Const.A4ViewConNum {
+        } else if _paramOriginal == Const.ViewNumber.A4ViewConNum {
             // 今日のつぶやき結果画面
            let next:A4ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A4ResultView") as! A4ResultViewController
            next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
            self.presentViewController(next, animated: true, completion: nil)
-        } else if _paramOriginal == Const.A5ViewConNum {
+        } else if _paramOriginal == Const.ViewNumber.A5ViewConNum {
             // 相性診断結果画面
            let next:A5ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A5ResultView") as! A5ResultViewController
            next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
            self.presentViewController(next, animated: true, completion: nil)
-        } else if _paramOriginal == Const.A6ViewConNum {
+        } else if _paramOriginal == Const.ViewNumber.A6ViewConNum {
             // 命名術結果画面
            let next:A6ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A6ResultView") as! A6ResultViewController
            next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve

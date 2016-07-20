@@ -161,8 +161,6 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         tableView.dataSource = self
         tableView.delegate = self
         
-        setPickerInfo()
-        
         // 保存していた情報の復元
         // 誕生日や性別の情報も保存・復元はおこなっていない
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -345,34 +343,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
                 textField.placeholder = Const.SexPlaceholder
             }
 
-            // TODO 外に出した。動作確認後、削除する
-/*            // ダイアログ用
-            // 誕生日のテキストフィールドにDatePickerを表示する
-            datePicker1 = UIDatePicker()
-            datePicker1.addTarget(self, action: #selector(A5ViewController.changedDateEvent(_:)), forControlEvents: UIControlEvents.ValueChanged)
-            // 日本の日付表示形式にする、年月日の表示にする
-            datePicker1.datePickerMode = UIDatePickerMode.Date
-            format(datePicker1.date,style: "yyyy/MM/dd")
-            datePicker1.locale = NSLocale(localeIdentifier: "ja_JP")
-            // 最小値、最大値、初期値を設定
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = Const.DateSetFormat
-            datePicker1.minimumDate = dateFormatter.dateFromString(Const.MinDateString)
-            datePicker1.maximumDate = dateFormatter.dateFromString(Const.MaxDateString)
-            datePicker1.date = dateFormatter.dateFromString(Const.DefDateString)!
-            alert.textFields![1].inputView = datePicker1
-             
-            // nameTextField の情報を受け取るための delegate を設定
-            alert.textFields![0].delegate = self
-            
-            // 性別
-            let picker = UIPickerView()
-            picker.delegate = self
-            picker.dataSource = self
-            picker.showsSelectionIndicator = true
-            picker.frame = CGRectMake(0,0,self.view.bounds.width, 250.0)
-            alert.textFields![2].inputView = picker
-            */
+            setPickerInfo()
             
             // アクションの追加
             alert.addAction(saveAction)
@@ -383,7 +354,6 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     }
 
     func setPickerInfo() {
-       // TODO 外に出した。動作確認後、上のを削除する
        // ダイアログ用
        // 誕生日のテキストフィールドにDatePickerを表示する
        datePicker1 = UIDatePicker()

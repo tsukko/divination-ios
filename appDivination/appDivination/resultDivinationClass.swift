@@ -32,46 +32,21 @@ class resultDivinationClass {
     // structの中身の定義
     func initialResultDivination() {
         // 01. 基本
-        retDivination.append(resultDivination(
-            index: ["0"],
-            message: Const.free_divination_message_01,
-            fortuneWord: Const.free_divination_fortuneWord_01))
+        retDivination.append(resultDivination(index: ["0"], message: Const.free_divination_message_01, fortuneWord: Const.free_divination_fortuneWord_01))
         // 02. 努力
-        retDivination.append(resultDivination(
-            index: ["1"],
-            message: Const.free_divination_message_02,
-            fortuneWord: Const.free_divination_fortuneWord_02))
+        retDivination.append(resultDivination(index: ["1"], message: Const.free_divination_message_02, fortuneWord: Const.free_divination_fortuneWord_02))
         // 03. 身に付ける
-        retDivination.append(resultDivination(
-            index: ["2"],
-            message: Const.free_divination_message_03,
-            fortuneWord: Const.free_divination_fortuneWord_03))
+        retDivination.append(resultDivination(index: ["2"], message: Const.free_divination_message_03, fortuneWord: Const.free_divination_fortuneWord_03))
         // 04. 伝える
-        retDivination.append(resultDivination(
-            index: ["3"],
-            message: Const.free_divination_message_04,
-            fortuneWord: Const.free_divination_fortuneWord_04))
+        retDivination.append(resultDivination(index: ["3"], message: Const.free_divination_message_04, fortuneWord: Const.free_divination_fortuneWord_04))
         // 05. 世に出す
-        retDivination.append(resultDivination(
-            index: ["4"],
-            message: Const.free_divination_message_05,
-            fortuneWord: Const.free_divination_fortuneWord_05))
+        retDivination.append(resultDivination(index: ["4"], message: Const.free_divination_message_05, fortuneWord: Const.free_divination_fortuneWord_05))
         // 06. 淋しい
-        retDivination.append(resultDivination(
-            index: ["5"],
-            message: Const.free_divination_message_06,
-            fortuneWord: Const.free_divination_fortuneWord_06))
+        retDivination.append(resultDivination(index: ["5"], message: Const.free_divination_message_06, fortuneWord: Const.free_divination_fortuneWord_06))
         // 07. 成し遂げる
-        retDivination.append(resultDivination(
-            index: ["6"],
-            message: Const.free_divination_message_07,
-            fortuneWord: Const.free_divination_fortuneWord_07))
+        retDivination.append(resultDivination(index: ["6"], message: Const.free_divination_message_07, fortuneWord: Const.free_divination_fortuneWord_07))
         // 08. 仕上げる
-        retDivination.append(resultDivination(
-            index: ["7"],
-            message: Const.free_divination_message_08,
-            fortuneWord: Const.free_divination_fortuneWord_08))
-//        print(retDivination)
+        retDivination.append(resultDivination(index: ["7"], message: Const.free_divination_message_08, fortuneWord: Const.free_divination_fortuneWord_08))
     }
 
     // 占った結果をInt配列で返却
@@ -279,15 +254,16 @@ class resultDivinationClass {
         var add6Count = 0
         var add4Count = 0
         var amari = [0,0,0,0,0,0,0,0]
+        var sPlotDataList = plotDataList
 
-        print("\(plotDataList[0])")
-        print("\(plotDataList[1])")
+        print("\(sPlotDataList[0])")
+        print("\(sPlotDataList[1])")
         // 一人目と二人目のとき
         for index in 0..<8 {
-            if 0 == test(num: plotDataList[0][index]) & test(num: plotDataList[1][index]) {
+            if 0 == test(sPlotDataList[0][index]) & test(sPlotDataList[1][index]) {
                 add6Count = add6Count + 1
             }
-            amari[index] = plotDataList[0][index] + plotDataList[1][index] - 2
+            amari[index] = sPlotDataList[0][index] + sPlotDataList[1][index] - 2
             if amari[index] < 0 {
                 amari[index] = 0
             }
@@ -296,10 +272,10 @@ class resultDivinationClass {
         print("add6Count=\(add6Count), amari=\(amari)")
 
         // 次でfor文でまわすで計算した一人目二人目を削除
-        plotDataList.removeFirst()
-        plotDataList.removeFirst()
+        sPlotDataList.removeFirst()
+        sPlotDataList.removeFirst()
 
-        for plotDataTMP in plotDataList {
+        for plotDataTMP in sPlotDataList {
             print("plotDataTMP=\(plotDataTMP)")
             // 3人目以降
             for index in 0..<8 {
@@ -429,19 +405,19 @@ class resultDivinationClass {
         print("heapPlotData=\(heapPlotData)")
         
         for index in 0..<4 {
-            delCount += heapPlotData[exchangeIndex(num:index + 1)]
-            + heapPlotData[exchangeIndex(num:index + 2)]
-            + heapPlotData[exchangeIndex(num:index + 3)]
-            - heapPlotData[exchangeIndex(num:index + 5)]
-            - heapPlotData[exchangeIndex(num:index + 6)]
-            - heapPlotData[exchangeIndex(num:index + 7)]
+            delCount += heapPlotData[exchangeIndex(index + 1)]
+            + heapPlotData[exchangeIndex(index + 2)]
+            + heapPlotData[exchangeIndex(index + 3)]
+            - heapPlotData[exchangeIndex(index + 5)]
+            - heapPlotData[exchangeIndex(index + 6)]
+            - heapPlotData[exchangeIndex(index + 7)]
 
-            + heapPlotData[exchangeIndex(num:index + 1)]
-            + heapPlotData[exchangeIndex(num:index + 2)] * 2
-            + heapPlotData[exchangeIndex(num:index + 3)]
-            - heapPlotData[exchangeIndex(num:index + 5)]
-            - heapPlotData[exchangeIndex(num:index + 6)] * 2
-            - heapPlotData[exchangeIndex(num:index + 7)]
+            + heapPlotData[exchangeIndex(index + 1)]
+            + heapPlotData[exchangeIndex(index + 2)] * 2
+            + heapPlotData[exchangeIndex(index + 3)]
+            - heapPlotData[exchangeIndex(index + 5)]
+            - heapPlotData[exchangeIndex(index + 6)] * 2
+            - heapPlotData[exchangeIndex(index + 7)]
             print("delCount=\(-delCount)")
         }
         
@@ -467,7 +443,7 @@ class resultDivinationClass {
     // 命名術の結果文言の取得
     func getNaming(firstPlotData:[Int], secondPlotData:[Int]) -> String {
         var heapPlotData = [0,0,0,0,0,0,0,0]
-        var charaList:[String]
+        var charaList:[String] = []
         
         for index in 0..<8 {
             heapPlotData[index] = firstPlotData[index] + secondPlotData[index]
@@ -478,6 +454,6 @@ class resultDivinationClass {
             charaList = kanaData.getCharaListFromPlotData(index)
             print("charaList=\(charaList)")
         }
-        return charaList
+        return "aaaa" //charaList
     }
 }

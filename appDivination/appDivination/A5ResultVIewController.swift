@@ -54,11 +54,10 @@ class A5ResultViewController : UIViewController {
                 }
             }
             print("userList is not nil")
-        }
-
-        // 点数のセット
-        if plotResultList.isEmpty {
-            lblMessage.text = retDivination.getCompatibilityScore(plotResultList)
+            // 点数のセット
+            if plotResultList.isEmpty {
+                lblMessage.text = retDivination.getCompatibilityScore(plotResultList)
+            }
         }
     }
     
