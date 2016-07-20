@@ -181,6 +181,33 @@ class A3ResultViewController : UIViewController {
         }
     }
     
+    // 画像とテキストを合成する
+    func drawText(image :UIImage) ->UIImage {
+        let text = "Some text.."
+
+        let font = UIFont.boldSystemFontOfSize(32)
+        let imageRect = CGRectMake(0,0,image.size.width,image.size.height)
+
+        UIGraphicsBeginImageContext(image.size);
+
+        image.drawInRect(imageRect)
+
+        let textRect  = CGRectMake(5, 5, image.size.width - 5, image.size.height - 5)
+        let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
+        let textFontAttributes = [
+            NSFontAttributeName: font,
+            NSForegroundColorAttributeName: UIColor.whiteColor(),
+            NSParagraphStyleAttributeName: textStyle
+        ]
+        text.drawInRect(textRect, withAttributes: textFontAttributes)
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext();
+
+        UIGraphicsEndImageContext()
+
+        return newImage
+    }
+    
     /**
      memoryWarnig
      */
