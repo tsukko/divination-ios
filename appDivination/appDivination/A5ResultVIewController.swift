@@ -19,8 +19,7 @@ import UIKit
  */
 class A5ResultViewController : UIViewController {
     
-    @IBOutlet weak var lblMessage: UILabel!
-    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblScore: UILabel!
 
     // 画面番号、遷移元を知るために使用
     let viewNumber = Const.ViewNumber.A5ViewConNum
@@ -32,7 +31,7 @@ class A5ResultViewController : UIViewController {
     var _second:Int = 0
 
     var userNameList:[String] = []
-    var plotResultList:[[Int]] = [[]]
+    var plotResultList:[[Int]] = [[Int]]()
 
     /**
      インスタンス化された直後（初回に一度のみ）
@@ -40,12 +39,12 @@ class A5ResultViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("A5ResultViewController viewDidLoad")
+        print("A5ResultViewController viewDidLoad", terminator: "")
 
         // 保存していた情報の復元
         let defaults = NSUserDefaults.standardUserDefaults()
         if let userNameList = defaults.objectForKey(Const.UserNameList) as? [String] {
-            //userNameList = temp
+            print("userNameList:\(userNameList)", terminator: "")
             let retDivination = resultDivinationClass()
             for indexStr in userNameList {
                 //let userName = userNameList[0]
@@ -53,14 +52,31 @@ class A5ResultViewController : UIViewController {
                     plotResultList.append(plotResult)
                 }
             }
-            print("userList is not nil")
-            // 点数のセット
-            if plotResultList.isEmpty {
-                lblMessage.text = retDivination.getCompatibilityScore(plotResultList)
+            print("userList is not nil", terminator: "")
+            // 点数のセット、マイナス時は青字、１００点以上は赤字
+            if !plotResultList.isEmpty {
+                let score = retDivination.getCompatibilityScore(plotResultList)
+                let scoreInt:Int! = Int(NSNumberFormatter().numberFromString(score)!)
+                let scoreLength = score.characters.count
+                var scoreColor = UIColor.blackColor()
+                
+                if scoreInt >= 100 {
+                    scoreColor = UIColor.redColor()
+                } else if scoreInt < 0 {
+                    scoreColor = UIColor.blueColor()
+                }
+                let attrText = NSMutableAttributedString(string: score + " 点")
+                attrText.addAttribute(NSForegroundColorAttributeName,
+                                      value: scoreColor,
+                                      range: NSMakeRange(0, scoreLength))
+                attrText.addAttribute(NSFontAttributeName,
+                                      value: UIFont(name: "Helvetica Neue", size: 52.0)!, range: NSMakeRange(0, scoreLength))
+                lblScore.attributedText = attrText
+               // lblScore.text =
             }
         }
     }
-    
+
     // 画面が表示された直後
     override func viewDidAppear(animated:Bool) {
         changeLayout();
@@ -78,7 +94,7 @@ class A5ResultViewController : UIViewController {
 
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)", terminator: "")
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param

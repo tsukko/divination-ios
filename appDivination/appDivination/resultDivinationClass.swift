@@ -199,12 +199,12 @@ class resultDivinationClass {
             if plotData[i] > 0 {
                 flagYatanokagami += 1
             } else {
-                print("plotData is zero. i:\(i)")
+                print("plotData is zero. i:\(i)", terminator: "")
                 // a: 丸が付かない場所を埋める言葉を洗い出す
                 // b: その中からランダムに一文字決め、名前にその文字を足し合わせる
                 // userNameNew に一文字追加
                 let newAddWord = kanaData.getRandomCharaFromPlotData(i)
-                print("add word :\(newAddWord)")
+                print("add word :\(newAddWord)", terminator: "")
                 lTweetWord = tweetWord + newAddWord
                 userNameNew = userName + newAddWord
                 break
@@ -219,10 +219,10 @@ class resultDivinationClass {
                 let d = Int(arc4random_uniform(UInt32(characters.count)))
                 outputWord = outputWord + characters.removeAtIndex(d)
             }
-            print("inputWord :\(lTweetWord) -> outputWord :\(outputWord)")
+            print("inputWord :\(lTweetWord) -> outputWord :\(outputWord)", terminator: "")
             return outputWord
         } else {
-            print("flagYatanokagami :\(flagYatanokagami)")
+            print("flagYatanokagami :\(flagYatanokagami)", terminator: "")
             // c: 音の鏡を確認し、まだ丸が付いて居ない箇所があれば、aからやり直す
             return getTodayLuckyWord(userNameNew, plotData: divinationReturnResult(userNameNew), tweetWord: lTweetWord)
         }
@@ -234,15 +234,15 @@ class resultDivinationClass {
         
         // 条件
         let scoreAddFirst:Int = getScoreAddFirst(plotDataList)
-        print("score add1 :\(scoreAddFirst)")
+        print("score add1 :\(scoreAddFirst)", terminator: "")
         let scoreAddSecond:Int = getScoreAddSecond(plotDataList)
-        print("score add2 :\(scoreAddSecond)")
+        print("score add2 :\(scoreAddSecond)", terminator: "")
         let scoreAddThird:Int = getScoreAddThird(plotDataList)
-        print("score add3 :\(scoreAddSecond)")
+        print("score add3 :\(scoreAddSecond)", terminator: "")
         let scoreSubFirst:Int = getScoreSubFirst(plotDataList)
-        print("score sub1 :\(scoreSubFirst)")
+        print("score sub1 :\(scoreSubFirst)", terminator: "")
         let scoreSubSecond:Int = getScoreSubSecond(plotDataList)
-        print("score sub2 :\(scoreSubSecond)")
+        print("score sub2 :\(scoreSubSecond)", terminator: "")
         
         let scoreTotal:Int = score + scoreAddFirst + scoreAddSecond + scoreAddThird + scoreSubFirst + scoreSubSecond
         return scoreTotal.description
@@ -256,8 +256,8 @@ class resultDivinationClass {
         var amari = [0,0,0,0,0,0,0,0]
         var sPlotDataList = plotDataList
 
-        print("\(sPlotDataList[0])")
-        print("\(sPlotDataList[1])")
+        print("\(sPlotDataList[0])", terminator: "")
+        print("\(sPlotDataList[1])", terminator: "")
         // 一人目と二人目のとき
         for index in 0..<8 {
             if 0 == test(sPlotDataList[0][index]) & test(sPlotDataList[1][index]) {
@@ -269,14 +269,14 @@ class resultDivinationClass {
             }
         }
 
-        print("add6Count=\(add6Count), amari=\(amari)")
+        print("add6Count=\(add6Count), amari=\(amari)", terminator: "")
 
         // 次でfor文でまわすで計算した一人目二人目を削除
         sPlotDataList.removeFirst()
         sPlotDataList.removeFirst()
 
         for plotDataTMP in sPlotDataList {
-            print("plotDataTMP=\(plotDataTMP)")
+            print("plotDataTMP=\(plotDataTMP)", terminator: "")
             // 3人目以降
             for index in 0..<8 {
                 if 0 == plotDataTMP[index] && amari[index] != 0 {
@@ -287,11 +287,11 @@ class resultDivinationClass {
                     amari[index] = 0
                 }
             }
-            print("add4Count=\(add4Count), amari=\(amari)")
+            print("add4Count=\(add4Count), amari=\(amari)", terminator: "")
         }
         
         score = add6Count * 6 + add4Count * 4
-        print("score=\(score)")
+        print("score=\(score)", terminator: "")
         return score
     }
 
@@ -302,7 +302,7 @@ class resultDivinationClass {
         var amari = [0,0,0,0,0,0,0,0]
         var testPlotData = [0,0,0,0,0,0,0,0]
         for plotDataTMP in plotDataList {
-            print("plotDataTMP=\(plotDataTMP)")
+            print("plotDataTMP=\(plotDataTMP)", terminator: "")
             for index in 0..<8 {
                 if plotDataTMP[index] > 1 {
                     amari[index] = amari[index] + 1
@@ -315,7 +315,7 @@ class resultDivinationClass {
                 }
             }
         }
-        print("amari=\(amari), testPlotData=\(testPlotData)")
+        print("amari=\(amari), testPlotData=\(testPlotData)", terminator: "")
 
         for index in 0..<8 {
             if testPlotData[index] > 0 && amari[index] > 0 {
@@ -330,7 +330,7 @@ class resultDivinationClass {
             }
         }
         score = add2Count * 2
-        print("score=\(score)")
+        print("score=\(score)", terminator: "")
         return score
     }
 
@@ -339,7 +339,7 @@ class resultDivinationClass {
         var score:Int = 0
         var heapPlotData = [0,0,0,0,0,0,0,0]
         for plotDataTMP in plotDataList {
-            print("plotDataTMP=\(plotDataTMP)")
+            print("plotDataTMP=\(plotDataTMP)", terminator: "")
             var flagAllPlot = true
             
             for index in 0..<8 {
@@ -354,9 +354,9 @@ class resultDivinationClass {
                 break
             }
             
-            print("heapPlotData=\(heapPlotData)")
+            print("heapPlotData=\(heapPlotData)", terminator: "")
         }
-        print("score=\(score)")
+        print("score=\(score)", terminator: "")
         return score
     }
 
@@ -367,13 +367,13 @@ class resultDivinationClass {
         var del21Count = 0
         var heapPlotData = [0,0,0,0,0,0,0,0]
         for plotDataTMP in plotDataList {
-            print("plotDataTMP=\(plotDataTMP)")
+            print("plotDataTMP=\(plotDataTMP)", terminator: "")
 
             for index in 0..<8 {
                 heapPlotData[index] = heapPlotData[index] + plotDataTMP[index]
             }
         }
-        print("heapPlotData=\(heapPlotData)")
+        print("heapPlotData=\(heapPlotData)", terminator: "")
         
         for index in 0..<8 {
             if 0 == heapPlotData[index] {
@@ -387,7 +387,7 @@ class resultDivinationClass {
         }
         
         score = -(del9Count * 9 + del21Count * 21)
-        print("score=\(score)")
+        print("score=\(score)", terminator: "")
         return score
     }
     // 減点　条件B
@@ -396,13 +396,13 @@ class resultDivinationClass {
         var delCount = 0
         var heapPlotData = [0,0,0,0,0,0,0,0]
         for plotDataTMP in plotDataList {
-            print("plotDataTMP=\(plotDataTMP)")
+            print("plotDataTMP=\(plotDataTMP)", terminator: "")
 
             for index in 0..<8 {
                 heapPlotData[index] = heapPlotData[index] + plotDataTMP[index]
             }
         }
-        print("heapPlotData=\(heapPlotData)")
+        print("heapPlotData=\(heapPlotData)", terminator: "")
         
         for index in 0..<4 {
             delCount += heapPlotData[exchangeIndex(index + 1)]
@@ -418,11 +418,11 @@ class resultDivinationClass {
             - heapPlotData[exchangeIndex(index + 5)]
             - heapPlotData[exchangeIndex(index + 6)] * 2
             - heapPlotData[exchangeIndex(index + 7)]
-            print("delCount=\(-delCount)")
+            print("delCount=\(-delCount)", terminator: "")
         }
         
         score = -(delCount)
-        print("score=\(score)")
+        print("score=\(score)", terminator: "")
         return score
     }
     func test(num:Int) -> Int {
@@ -452,7 +452,7 @@ class resultDivinationClass {
         let kanaData = kanaDataClass(flagAll: false)
         for index in 0..<8 {
             charaList = kanaData.getCharaListFromPlotData(index)
-            print("charaList=\(charaList)")
+            print("charaList=\(charaList)", terminator: "")
         }
         return "aaaa" //charaList
     }

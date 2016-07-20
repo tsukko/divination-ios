@@ -66,7 +66,7 @@ class A3ResultViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("A3ResultViewController viewDidLoad")
+        print("A3ResultViewController viewDidLoad", terminator: "")
 
         // 占い結果を取得、無料言霊鑑定アニメーション画面で保存している
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -118,12 +118,12 @@ class A3ResultViewController : UIViewController {
         
         let height = CGRectGetHeight(lblMessageLatter.frame)
         let width = CGRectGetWidth(lblMessageLatter.frame)
-        print("ラベルの高さ:\(height) 幅:\(width)")
+        print("ラベルの高さ:\(height) 幅:\(width)", terminator: "")
         
         // ボタンの位置取得
         let midX = CGRectGetMidX(lblMessageLatter.frame)
         let midY = CGRectGetMidY(lblMessageLatter.frame)
-        print("ボタンの中心のX座業:\(midX) Y座標:\(midY)")
+        print("ボタンの中心のX座業:\(midX) Y座標:\(midY)", terminator: "")
         
         // -40にしているのは見た目を合わせるため
         let newContentHeight = height+midY-40
@@ -145,7 +145,7 @@ class A3ResultViewController : UIViewController {
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)", terminator: "")
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param

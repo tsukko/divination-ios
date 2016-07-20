@@ -37,7 +37,7 @@ class A6ResultViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("A6ResultViewController viewDidLoad")
+        print("A6ResultViewController viewDidLoad", terminator: "")
 
         // 保存していた情報の復元
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -71,7 +71,7 @@ class A6ResultViewController : UIViewController {
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)", terminator: "")
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param

@@ -37,7 +37,7 @@ class MidstreamViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("MidstreamViewController viewDidLoad:_paramOriginal:\(_paramOriginal)")
+        print("MidstreamViewController viewDidLoad:_paramOriginal:\(_paramOriginal)", terminator: "")
     }
 
     // 画面が表示された直後
@@ -70,7 +70,7 @@ class MidstreamViewController : UIViewController {
 
     // 3秒後に次の結果画面に遷移する
     func transition(timer: NSTimer) {
-        print("MidstreamViewController transition:_paramOriginal:\(_paramOriginal)")
+        print("MidstreamViewController transition:_paramOriginal:\(_paramOriginal)", terminator: "")
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
         if _paramOriginal == Const.ViewNumber.A3ViewConNum {
@@ -104,7 +104,7 @@ class MidstreamViewController : UIViewController {
 
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)", terminator: "")
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param

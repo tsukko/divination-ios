@@ -131,7 +131,6 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     @IBOutlet weak var naviBar: UINavigationBar!
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var btnAddMenber: UIButton!
     
     // 画面番号、遷移元を知るために使用
     let viewNumber = Const.ViewNumber.A5ViewConNum
@@ -154,19 +153,26 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("A5ViewController viewDidLoad")
+        print("A5ViewController viewDidLoad", terminator: "")
         
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
         
-        tableView.dataSource = self
-        tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        // separatorのlineのマージンを0にする（デフォルト15）
+        self.tableView.separatorInset = UIEdgeInsetsZero
+        self.tableView.layoutMargins = UIEdgeInsetsZero
+        // 空のセルのセパレータは非表示とする
+        self.tableView.tableFooterView = UIView()
+        //tableView.layer.borderColor = UIColor.grayColor().CGColor
+        //tableView.layer.borderWidth = 1
         
         // 保存していた情報の復元
         // 誕生日や性別の情報も保存・復元はおこなっていない
         let defaults = NSUserDefaults.standardUserDefaults()
         if let temp = defaults.objectForKey(Const.UserNameList) as? [String] {
             userNameList = temp
-            print("userList is not nil")
+            print("userList is not nil", terminator: "")
         }
     }
     
@@ -178,7 +184,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)", terminator: "")
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
@@ -207,7 +213,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     func checkInput() -> Bool {
         // 名前欄のTextFieldの確認
         if (alert.textFields![0].text!.isEmpty) {
-            print("nameTextField.text is enpty.")
+            print("nameTextField.text is enpty.", terminator: "")
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgNameEmpty,
@@ -218,7 +224,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             return false
         } else {
             if !alert.textFields![0].text!.ChackHiraganaOrKatakana() {
-                print("nameTextField.text is not hiragana or katakana.")
+                print("nameTextField.text is not hiragana or katakana.", terminator: "")
                 let alertController = UIAlertController(
                     title: Const.ErrorTitle,
                     message: Const.ErrorMsgNameKana,
@@ -232,7 +238,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         
         // 誕生日欄のTextFieldの確認
         if (alert.textFields![1].text!.isEmpty) {
-            print("dateTextField.text is not hiragana.")
+            print("dateTextField.text is not hiragana.", terminator: "")
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgDate,
@@ -246,7 +252,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         // 性別選択の確認
 //        if (alert.textFields![2].selectedSegmentIndex == -1) {
         if (alert.textFields![2].text!.isEmpty) {
-            print("alert.textFields![2].text!.isEmpty")
+            print("alert.textFields![2].text!.isEmpty", terminator: "")
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgSex,
@@ -276,6 +282,9 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             cell.textLabel!.text = Const.LblAdd
             cell.textLabel!.textAlignment = NSTextAlignment.Center
         }
+        // separatorのlineのマージンを0にする（デフォルト15）
+        cell.separatorInset = UIEdgeInsetsZero
+        cell.layoutMargins = UIEdgeInsetsZero
         return cell
     }
 
@@ -299,11 +308,11 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     // タップした時の処理
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
          tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        print("indexPath.row:\(indexPath.row), testteste.count + 1 :\(userNameList.count + 1)")
+        print("indexPath.row:\(indexPath.row), testteste.count + 1 :\(userNameList.count + 1)", terminator: "")
         if (indexPath.row == userNameList.count ) {
             // ダイアログ表示
             alert = UIAlertController(title: Const.AddNameTitle, message: Const.AddNameMsg, preferredStyle: .Alert)
-            let saveAction = UIAlertAction(title: Const.LblAdd, style: .Default) { (action:UIAlertAction!) -> Void in
+            let saveAction = UIAlertAction(title: Const.LblAdd, style: .Default) { (action:UIAlertAction) -> Void in
                 self.alert.textFields![0].resignFirstResponder()
                 self.alert.textFields![1].resignFirstResponder()
                 self.alert.textFields![2].resignFirstResponder()
@@ -322,7 +331,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
                 }
             }
             
-            let cancelAction = UIAlertAction(title: Const.BtnCancel, style: .Default) { (action:UIAlertAction!) -> Void in
+            let cancelAction = UIAlertAction(title: Const.BtnCancel, style: .Default) { (action:UIAlertAction) -> Void in
                 self.alert.textFields![0].resignFirstResponder()
                 self.alert.textFields![1].resignFirstResponder()
                 self.alert.textFields![2].resignFirstResponder()
@@ -431,10 +440,10 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event)
 
-        print("close keyboard")
-        alert.textFields![0].resignFirstResponder()
-        alert.textFields![1].resignFirstResponder()
-        alert.textFields![2].resignFirstResponder()
+        print("close keyboard", terminator: "")
+//        alert.textFields![0].resignFirstResponder()
+//        alert.textFields![1].resignFirstResponder()
+//        alert.textFields![2].resignFirstResponder()
     }
     
     // 書式指定に従って日付を文字列に変換します
