@@ -342,7 +342,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             alert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
                 textField.placeholder = Const.SexPlaceholder
             }
-
+            
             setPickerInfo()
             
             // アクションの追加
@@ -352,10 +352,9 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             presentViewController(alert, animated: true, completion: nil)
         }
     }
-
+    
     func setPickerInfo() {
-       // ダイアログ用
-       // 誕生日のテキストフィールドにDatePickerを表示する
+        // 誕生日のテキストフィールドにDatePickerを表示する
        datePicker1 = UIDatePicker()
        datePicker1.addTarget(self, action: #selector(A5ViewController.changedDateEvent(_:)), forControlEvents: UIControlEvents.ValueChanged)
        // 日本の日付表示形式にする、年月日の表示にする
@@ -370,9 +369,6 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
        datePicker1.date = dateFormatter.dateFromString(Const.DefDateString)!
        alert.textFields![1].inputView = datePicker1
         
-       // nameTextField の情報を受け取るための delegate を設定
-       alert.textFields![0].delegate = self
-       
        // 性別
        let picker = UIPickerView()
        picker.delegate = self
@@ -380,6 +376,9 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
        picker.showsSelectionIndicator = true
        picker.frame = CGRectMake(0,0,self.view.bounds.width, 250.0)
        alert.textFields![2].inputView = picker
+
+        // nameTextField の情報を受け取るための delegate を設定
+        alert.textFields![0].delegate = self
     }
 
     // 日付Picker用 ここから
