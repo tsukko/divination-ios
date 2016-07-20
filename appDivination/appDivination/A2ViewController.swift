@@ -45,7 +45,7 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("A2ViewController viewDidLoad _param : \(_param) _second: \(_second)")
+        print("A2ViewController viewDidLoad _param : \(_param) _second: \(_second)", terminator: "")
         
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
 
@@ -131,7 +131,7 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)", terminator: "")
         if segue.identifier == "segue" {
             // ここでは、一枚絵ページから、同じViewである相談する一枚絵ページ（_second = 6）に遷移するための処理
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
@@ -145,7 +145,7 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
     @IBAction func touchDownSendMailBtn(sender: AnyObject) {
         //メールを送信できるかチェック
         if MFMailComposeViewController.canSendMail()==false {
-            print("Email Send Failed")
+            print("Email Send Failed", terminator: "")
             return
         }
 
@@ -167,16 +167,16 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         switch result.rawValue {
         case MFMailComposeResultCancelled.rawValue:
-            print("Email Send Cancelled")
+            print("Email Send Cancelled", terminator: "")
             break
         case MFMailComposeResultSaved.rawValue:
-            print("Email Saved as a Draft")
+            print("Email Saved as a Draft", terminator: "")
             break
         case MFMailComposeResultSent.rawValue:
-            print("Email Sent Successfully")
+            print("Email Sent Successfully", terminator: "")
             break
         case MFMailComposeResultFailed.rawValue:
-            print("Email Send Failed")
+            print("Email Send Failed", terminator: "")
             break
         default:
             break

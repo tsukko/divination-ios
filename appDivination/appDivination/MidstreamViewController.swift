@@ -37,7 +37,7 @@ class MidstreamViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("MidstreamViewController viewDidLoad:_paramOriginal:\(_paramOriginal)")
+        print("MidstreamViewController viewDidLoad:_paramOriginal:\(_paramOriginal)", terminator: "")
     }
 
     // 画面が表示された直後
@@ -70,25 +70,25 @@ class MidstreamViewController : UIViewController {
 
     // 3秒後に次の結果画面に遷移する
     func transition(timer: NSTimer) {
-        print("MidstreamViewController transition:_paramOriginal:\(_paramOriginal)")
+        print("MidstreamViewController transition:_paramOriginal:\(_paramOriginal)", terminator: "")
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
-        if _paramOriginal == Const.A3ViewConNum {
+        if _paramOriginal == Const.ViewNumber.A3ViewConNum {
             // 無料言霊鑑定結果画面
            let next:A3ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A3ResultView") as! A3ResultViewController
            next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
            self.presentViewController(next, animated: true, completion: nil)
-        } else if _paramOriginal == Const.A4ViewConNum {
+        } else if _paramOriginal == Const.ViewNumber.A4ViewConNum {
             // 今日のつぶやき結果画面
            let next:A4ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A4ResultView") as! A4ResultViewController
            next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
            self.presentViewController(next, animated: true, completion: nil)
-        } else if _paramOriginal == Const.A5ViewConNum {
+        } else if _paramOriginal == Const.ViewNumber.A5ViewConNum {
             // 相性診断結果画面
            let next:A5ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A5ResultView") as! A5ResultViewController
            next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
            self.presentViewController(next, animated: true, completion: nil)
-        } else if _paramOriginal == Const.A6ViewConNum {
+        } else if _paramOriginal == Const.ViewNumber.A6ViewConNum {
             // 命名術結果画面
            let next:A6ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A6ResultView") as! A6ResultViewController
            next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
@@ -104,7 +104,7 @@ class MidstreamViewController : UIViewController {
 
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)", terminator: "")
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param

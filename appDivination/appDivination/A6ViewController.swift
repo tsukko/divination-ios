@@ -144,7 +144,7 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("A6ViewController viewDidLoad")
+        print("A6ViewController viewDidLoad", terminator: "")
         
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
         
@@ -209,7 +209,7 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)", terminator: "")
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
@@ -253,7 +253,7 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
         // 名前欄のTextFieldの確認
         if (firstNameTextField.text!.isEmpty ||
             secondNameTextField.text!.isEmpty) {
-            print("nameTextField.text is enpty.")
+            print("nameTextField.text is enpty.", terminator: "")
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgNameEmpty,
@@ -264,7 +264,7 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
         } else {
             if !firstNameTextField.text!.ChackHiraganaOrKatakana() ||
                !secondNameTextField.text!.ChackHiraganaOrKatakana() {
-                print("nameTextField.text is not hiragana or katakana.")
+                print("nameTextField.text is not hiragana or katakana.", terminator: "")
                 let alertController = UIAlertController(
                     title: Const.ErrorTitle,
                     message: Const.ErrorMsgNameKana,
@@ -278,7 +278,7 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
         // 誕生日欄のTextFieldの確認
         if (firstDateTextField.text!.isEmpty ||
             secondDateTextField.text!.isEmpty) {
-            print("DateTextField.text is not hiragana.")
+            print("DateTextField.text is not hiragana.", terminator: "")
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgDate,
@@ -291,7 +291,7 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
         // 性別選択の確認
         if (firstSgCtlSex.selectedSegmentIndex == -1 ||
             secondSgCtlSex.selectedSegmentIndex == -1 ) {
-            print("SgCtlSex.selectedSegmentIndex == -1")
+            print("SgCtlSex.selectedSegmentIndex == -1", terminator: "")
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgSex,
@@ -328,7 +328,7 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
 */
     // scrollviewを使った場合は、こちらでタップを検知したときの処理となる
     func singleTap(gesture: UITapGestureRecognizer) -> Void {
-        print("tapped")
+        print("tapped", terminator: "")
         firstNameTextField.resignFirstResponder()
         firstDateTextField.resignFirstResponder()
         secondNameTextField.resignFirstResponder()

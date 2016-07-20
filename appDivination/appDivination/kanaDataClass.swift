@@ -257,8 +257,7 @@ class kanaDataClass {
     // 引数に渡したプロットの位置（0～7）に丸が付く（1が入っている）文字列を取得し、返却する
     // TODO 
     func getCharaListFromPlotData(index: Int) -> [String] {
-        var kanaDataList = [kanaData]()
-        var charaList:[String]
+        var charaList:[String] = []
         for chara in knDt {
             if 0 < Int(chara.plot[index]) {
                 charaList.append(chara.character)

@@ -230,7 +230,7 @@
 		8CE368DC1BEF283E00CC7A35 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftMigration = 0720;
+				LastSwiftMigration = 0730;
 				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = Nori;
