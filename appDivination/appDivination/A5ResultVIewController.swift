@@ -70,7 +70,8 @@ class A5ResultViewController : UIViewController {
                                       value: scoreColor,
                                       range: NSMakeRange(0, scoreLength))
                 attrText.addAttribute(NSFontAttributeName,
-                                      value: UIFont(name: "Helvetica Neue", size: 52.0)!, range: NSMakeRange(0, scoreLength))
+                                      value: UIFont(name: "Helvetica Neue", size: 52.0)!,
+                                      range: NSMakeRange(0, scoreLength))
                 lblScore.attributedText = attrText
                // lblScore.text =
             }
