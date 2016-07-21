@@ -240,12 +240,35 @@ class kanaDataClass {
         return sPlot
     }
     
-    // 引数に渡したプロットの位置（0～7）に丸が付く（1が入っている）文字列を取得し、
+    // 引数に渡したプロット（占い結果）において丸がついていないところに、丸が付く（1が入っている）文字列を取得し、
     // ランダムに一文字を返却する
-    func getRandomCharaFromPlotData(index: Int) -> String {
+    // [10100000] [00000001]
+    func getRandomCharaFromPlotData(plotData:[Int]) -> String {
         var kanaDataList = [kanaData]()
+        // すべてのカタカナ文字を検索する
         for chara in knDt {
-            if 0 < Int(chara.plot[index]) {
+            var flagOKChara = false
+            for index in 0..<8 {
+                // 占い結果に丸付き、カナに丸あり　→　なし、次のCharaへ
+                // 占い結果に丸付き、カナに丸なし　→　次のindex
+                // 占い結果に丸なし、カナに丸あり　→　候補
+                // 占い結果に丸なし、カナに丸なし　→　次のindex
+                if 0 < plotData[index] && 0 < Int(chara.plot[index]) {
+                    //print("aaa chara.character: \(chara.character), \(chara.plot), index:\(index)")
+                    flagOKChara = false
+                    break
+                } else if (0 < plotData[index] && 0 == Int(chara.plot[index])) ||
+                    (0 == plotData[index] && 0 == Int(chara.plot[index])) {
+                    //print("bbb chara.character: \(chara.character), \(chara.plot), index:\(index)")
+                    continue
+                } else {
+                    //print("ccc chara.character: \(chara.character), \(chara.plot), index:\(index)")
+                    flagOKChara = true
+                }
+            }
+            
+            //print("flagOKChara:\(flagOKChara), chara.character: \(chara.character), \(chara.plot)")
+            if flagOKChara {
                 kanaDataList.append(chara)
             }
         }

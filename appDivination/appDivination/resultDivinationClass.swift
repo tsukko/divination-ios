@@ -187,23 +187,26 @@ class resultDivinationClass {
         }
     }
     
-    // 今日のつぶやきの結果文言の取得、
+    // 今日のつぶやきの結果文言の取得
     func getTodayLuckyWord(userName:String, plotData:[Int], tweetWord:String) -> String {
+        let kanaData = kanaDataClass(flagAll: false)
+        return getTodayLuckyWord(userName, plotData: plotData, tweetWord: tweetWord, kanaData: kanaData)
+    }
+    
+    func getTodayLuckyWord(userName:String, plotData:[Int], tweetWord:String, kanaData:kanaDataClass) -> String {
         var flagYatanokagami: Int = 0
         var userNameNew: String = userName
         var lTweetWord:String = tweetWord
         
-        // TODO 繰り返し呼ばれる可能性があるので、kanaDataClassクラスの読み込みは少なくすべき
-        let kanaData = kanaDataClass(flagAll: false)
         for i in 0...7 {
             if plotData[i] > 0 {
                 flagYatanokagami += 1
             } else {
-                print("plotData is zero. i:\(i)", terminator: "")
+                print("plotData[\(i)] is zero.", terminator: "")
                 // a: 丸が付かない場所を埋める言葉を洗い出す
                 // b: その中からランダムに一文字決め、名前にその文字を足し合わせる
                 // userNameNew に一文字追加
-                let newAddWord = kanaData.getRandomCharaFromPlotData(i)
+                let newAddWord = kanaData.getRandomCharaFromPlotData(plotData)
                 print("add word :\(newAddWord)", terminator: "")
                 lTweetWord = tweetWord + newAddWord
                 userNameNew = userName + newAddWord
@@ -215,6 +218,7 @@ class resultDivinationClass {
         if flagYatanokagami == 8 {
             var outputWord:String = ""
             var characters = lTweetWord.characters.map { String($0) }
+            // 並び替える
             for _ in characters {
                 let d = Int(arc4random_uniform(UInt32(characters.count)))
                 outputWord = outputWord + characters.removeAtIndex(d)
@@ -224,7 +228,8 @@ class resultDivinationClass {
         } else {
             print("flagYatanokagami :\(flagYatanokagami)", terminator: "")
             // c: 音の鏡を確認し、まだ丸が付いて居ない箇所があれば、aからやり直す
-            return getTodayLuckyWord(userNameNew, plotData: divinationReturnResult(userNameNew), tweetWord: lTweetWord)
+            let plotDataNew = divinationReturnResult(userNameNew)
+            return getTodayLuckyWord(userNameNew, plotData: plotDataNew, tweetWord: lTweetWord, kanaData: kanaData)
         }
     }
 
@@ -291,7 +296,7 @@ class resultDivinationClass {
         }
         
         score = add6Count * 6 + add4Count * 4
-        print("score=\(score)", terminator: "")
+        print("条件1 score=\(score)", terminator: "")
         return score
     }
 
@@ -330,7 +335,7 @@ class resultDivinationClass {
             }
         }
         score = add2Count * 2
-        print("score=\(score)", terminator: "")
+        print("条件2 score=\(score)", terminator: "")
         return score
     }
 
@@ -356,7 +361,7 @@ class resultDivinationClass {
             
             print("heapPlotData=\(heapPlotData)", terminator: "")
         }
-        print("score=\(score)", terminator: "")
+        print("条件3 score=\(score)", terminator: "")
         return score
     }
 
@@ -387,7 +392,7 @@ class resultDivinationClass {
         }
         
         score = -(del9Count * 9 + del21Count * 21)
-        print("score=\(score)", terminator: "")
+        print("条件A score=\(score)", terminator: "")
         return score
     }
     // 減点　条件B
@@ -422,9 +427,10 @@ class resultDivinationClass {
         }
         
         score = -(delCount)
-        print("score=\(score)", terminator: "")
+        print("条件B score=\(score)", terminator: "")
         return score
     }
+
     func test(num:Int) -> Int {
         if num > 0 {
             return 1
