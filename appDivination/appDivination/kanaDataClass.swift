@@ -277,16 +277,19 @@ class kanaDataClass {
         return kanaDataList[d].character
     }
     
-    // 引数に渡したプロットの位置（0～7）に丸が付く（1が入っている）文字列を取得し、返却する
-    // TODO 
-    func getCharaListFromPlotData(index: Int) -> [String] {
-        var charaList:[String] = []
-        for chara in knDt {
-            if 0 < Int(chara.plot[index]) {
-                charaList.append(chara.character)
+    // 引数に渡したプロットのそれぞれの位置に丸が付く（1が入っている）文字列を取得し、返却する
+    func getCharaListFromPlotData(heapPlotData: [Int]) -> [[String]] {
+        var charaList:[[String]] = [[String]]()
+        var charaListPart:[String] = [String]()
+        for index in 0..<8 {
+            for chara in knDt {
+                if 0 < Int(chara.plot[index]) {
+                    charaListPart.append(chara.character)
+                }
             }
+            charaList.append(charaListPart)
+            charaListPart = [String]()
         }
-
         return charaList
     }
 }

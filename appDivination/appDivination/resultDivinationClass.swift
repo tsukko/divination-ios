@@ -154,7 +154,7 @@ class resultDivinationClass {
         return msgTotal
     }
     
-    // 運気を上げる文言の取得、
+    // 運気を上げる文言の取得
     func getMessageLuckyWord(plotData:[Int]) -> String {
         let type: Int = getTypeRare(plotData)
         if type == Const.TypeNumYatanokagami {
@@ -190,7 +190,13 @@ class resultDivinationClass {
     // 今日のつぶやきの結果文言の取得
     func getTodayLuckyWord(userName:String, plotData:[Int], tweetWord:String) -> String {
         let kanaData = kanaDataClass(flagAll: false)
-        return getTodayLuckyWord(userName, plotData: plotData, tweetWord: tweetWord, kanaData: kanaData)
+        // 01. ヤタノカガミ： 全てのプロット位置に丸がつくの場合は、一個もない人と同じ扱いにする
+        var newPlotData = plotData
+        if getTypeRare(plotData) == Const.TypeNumYatanokagami {
+            newPlotData = [0,0,0,0,0,0,0,0]
+        }
+
+        return getTodayLuckyWord(userName, plotData: newPlotData, tweetWord: tweetWord, kanaData: kanaData)
     }
     
     func getTodayLuckyWord(userName:String, plotData:[Int], tweetWord:String, kanaData:kanaDataClass) -> String {
@@ -213,7 +219,7 @@ class resultDivinationClass {
                 break
             }
         }
-        
+
         // 全てのプロット位置に丸がつくようになると終わり
         if flagYatanokagami == 8 {
             var outputWord:String = ""
@@ -449,17 +455,61 @@ class resultDivinationClass {
     // 命名術の結果文言の取得
     func getNaming(firstPlotData:[Int], secondPlotData:[Int]) -> String {
         var heapPlotData = [0,0,0,0,0,0,0,0]
-        var charaList:[String] = []
-        
+        var charaList:[[String]] = [[String]]()
+        var wordALL:String = ""
         for index in 0..<8 {
             heapPlotData[index] = firstPlotData[index] + secondPlotData[index]
         }
-
-        let kanaData = kanaDataClass(flagAll: false)
+            
+        charaList = getCharaListFromPlotData(heapPlotData:heapPlotData)
+        print("ALL charaList=\(charaList)")
+        
+        // すべてに当てはまるもの
         for index in 0..<8 {
-            charaList = kanaData.getCharaListFromPlotData(index)
-            print("charaList=\(charaList)", terminator: "")
+            var tempWord:String = ""
+            if 0 < Int(heapPlotData[index]) {
+                continue
+            } else {
+                print("\(charaList[index])")
+                for chara in charaList[index] {
+                    tempWord.append(chara)
+                }
+            }
+            
+            if !tempWord.isEmpty {
+                if index != 7 {
+                    wordALL.append(tempWord)
+                    wordALL.append(" + ")
+                } else {
+                    wordALL.append(tempWord)
+                    wordALL.append(tempWord + "\n")
+                }
+            }
         }
-        return "aaaa" //charaList
+        
+        // TODO 一つ目が丸が2個以上ある場合
+        for index in 0..<8 {
+            var tempWord:String = ""
+            if 0 < Int(heapPlotData[index]) {
+                continue
+            } else {
+                print("\(charaList[index])")
+                for chara in charaList[index] {
+                    tempWord.append(chara)
+                }
+            }
+            
+            if !tempWord.isEmpty {
+                if index != 7 {
+                    wordALL.append(tempWord)
+                    wordALL.append(" + ")
+                } else {
+                    wordALL.append(tempWord)
+                }
+            }
+        }
+        
+        return wordALL
+
     }
 }

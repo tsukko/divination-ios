@@ -19,7 +19,6 @@ import UIKit
  */
 class MidstreamViewController : UIViewController {
     
-//    @IBOutlet var viewBack: UIView!
     @IBOutlet weak var imgYatagarasu: UIImageView!
     
     // 画面遷移時に遷移元が渡す遷移先の値
@@ -28,8 +27,6 @@ class MidstreamViewController : UIViewController {
     var _paramOriginal:Int = -1
     // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
-    // ユーザー名 今日の運勢のボタンを表示するかどうか
-//    var userName : String = ""
     
     /**
      インスタンス化された直後（初回に一度のみ）
@@ -45,17 +42,23 @@ class MidstreamViewController : UIViewController {
         // 参考：http://dev.classmethod.jp/references/ios-8-cabasicanimation/
         
         // アニメーション時間　2.0秒で設定→1.3秒
-        let duration = 0.2 //1.3 デバッグ用に変更   // アニメーション時間 2秒
+        let duration = 1.3   // アニメーション時間 2秒
         let singleTwist = M_PI * 2 // 360度
         
         // 縦回転アニメーション（X軸を中心に回転）
         let verticalTwistAnimation = CABasicAnimation(keyPath: "transform.rotation")
         verticalTwistAnimation.toValue = singleTwist * 2   // 2回転
+
+        // TODO サイズを変化させるアニメーション
+        var sizeAnimation:CABasicAnimation = CABasicAnimation(keyPath: "bounds.size")
+//        sizeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+        sizeAnimation.fromValue = NSValue(CGSize:CGSizeMake(100, 100))
+        sizeAnimation.toValue = NSValue(CGSize:CGSizeMake(300, 300))
         
         // アニメーションを同時実行するためにグループを作成
         let animationGroup = CAAnimationGroup()
         animationGroup.duration = duration
-        animationGroup.animations = [verticalTwistAnimation]
+        animationGroup.animations = [verticalTwistAnimation, sizeAnimation]
 
         // アニメーションを実行
         imgYatagarasu.layer.addAnimation(animationGroup, forKey: "moonSaltoAnimation")
@@ -65,12 +68,32 @@ class MidstreamViewController : UIViewController {
         // 第2引数の「target」は、タイマー発生時に呼び出すメソッドがあるターゲットを指定します。通常は「self」で大丈夫だと思います。
         // 第3引数の「selector」の部分は、タイマー発生時に呼び出すメソッドを指定します。今回の場合は「onUpdate」を呼び出しています。
         // 2.0で設定していた
-        NSTimer.scheduledTimerWithTimeInterval(0.1,target:self,selector:#selector(MidstreamViewController.transition(_:)), userInfo: "", repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(1.5, target:self, selector:#selector(MidstreamViewController.transition(_:)), userInfo: "", repeats: false)
     }
 
-    // 3秒後に次の結果画面に遷移する
+    // 3秒後に画像を点滅させてから、次の結果画面に遷移する
     func transition(timer: NSTimer) {
         print("MidstreamViewController transition:_paramOriginal:\(_paramOriginal)", terminator: "")
+        
+        // 画像を点滅
+        let imgColorAnimation = CABasicAnimation(keyPath: "foregroundColor")
+        imgColorAnimation.duration = 0.5
+        imgColorAnimation.autoreverses = true
+        imgColorAnimation.repeatCount = 1e100
+        imgColorAnimation.fromValue = UIColor.clearColor().CGColor
+        imgColorAnimation.toValue = self.blackColor().CGColor
+        imgYatagarasu.layer.foregroundColor = self.blackColor().CGColor
+        imgYatagarasu.layer.addAnimation(imgColorAnimation, forKey: "ImgColor")
+        
+        NSTimer.scheduledTimerWithTimeInterval(1.0, target:self, selector:#selector(MidstreamViewController.transition2(_:)), userInfo: "", repeats: false)
+    }
+    
+    func transition2(timer: NSTimer) {
+        goExplainPage()
+    }
+
+    // 次の結果画面に遷移する
+    func goExplainPage() {
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
         if _paramOriginal == Const.ViewNumber.A3ViewConNum {
@@ -94,6 +117,11 @@ class MidstreamViewController : UIViewController {
            next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
            self.presentViewController(next, animated: true, completion: nil)
         }
+    }
+    
+    // アニメーション画像をタップして、アニメーションを飛ばす
+    @IBAction func touchImgSkipAnimation(sender: AnyObject) {
+        goExplainPage()
     }
 
     // 説明を聞くボタンを押した時
