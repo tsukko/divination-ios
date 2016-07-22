@@ -460,8 +460,9 @@ class resultDivinationClass {
         for index in 0..<8 {
             heapPlotData[index] = firstPlotData[index] + secondPlotData[index]
         }
-            
-        charaList = getCharaListFromPlotData(heapPlotData:heapPlotData)
+        
+        let kanaData = kanaDataClass(flagAll: true)
+        charaList = kanaData.getCharaListFromPlotData(heapPlotData)
         print("ALL charaList=\(charaList)")
         
         // すべてに当てはまるもの
@@ -472,17 +473,15 @@ class resultDivinationClass {
             } else {
                 print("\(charaList[index])")
                 for chara in charaList[index] {
-                    tempWord.append(chara)
+                    tempWord += chara
                 }
             }
             
             if !tempWord.isEmpty {
                 if index != 7 {
-                    wordALL.append(tempWord)
-                    wordALL.append(" + ")
+                    wordALL += tempWord + " + "
                 } else {
-                    wordALL.append(tempWord)
-                    wordALL.append(tempWord + "\n")
+                    wordALL += tempWord + "\n"
                 }
             }
         }
@@ -495,16 +494,15 @@ class resultDivinationClass {
             } else {
                 print("\(charaList[index])")
                 for chara in charaList[index] {
-                    tempWord.append(chara)
+                    tempWord += chara
                 }
             }
             
             if !tempWord.isEmpty {
                 if index != 7 {
-                    wordALL.append(tempWord)
-                    wordALL.append(" + ")
+                    wordALL += tempWord + " + "
                 } else {
-                    wordALL.append(tempWord)
+                    wordALL += tempWord + "\n"
                 }
             }
         }
