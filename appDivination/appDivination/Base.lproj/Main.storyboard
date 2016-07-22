@@ -18,14 +18,14 @@
                         <viewControllerLayoutGuide type="bottom" id="oY6-SO-qvq"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xqx-i4-ngs">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="トップページイメージ" translatesAutoresizingMaskIntoConstraints="NO" id="4Si-Yt-df7">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="320" misplaced="YES" restorationIdentifier="img_header" image="component_01_header" translatesAutoresizingMaskIntoConstraints="NO" id="PKC-nJ-eUy">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PKC-nJ-eUy" secondAttribute="height" multiplier="40:7" id="s68-BZ-nGz"/>
                                 </constraints>
@@ -79,6 +79,9 @@
                                             <constraint firstAttribute="width" secondItem="PeD-dZ-QEg" secondAttribute="height" multiplier="686/253" id="woa-Kk-vk5"/>
                                         </constraints>
                                         <state key="normal" image="ボタン_鑑定士プロフのコピー"/>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="233" y="197" width="143" height="53"/>
+                                        </variation>
                                         <connections>
                                             <action selector="touchDownBtnProfile:" destination="aqh-nv-CCN" eventType="touchDown" id="Rhn-Ot-LCJ"/>
                                             <segue destination="VKe-fk-2mg" kind="show" identifier="segue" id="tck-e7-cfV"/>
@@ -138,7 +141,7 @@
                                 </variation>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="component_02_footer" translatesAutoresizingMaskIntoConstraints="NO" id="dXj-Ha-Kfw">
-                                <rect key="frame" x="0.0" y="549" width="600" height="53"/>
+                                <rect key="frame" x="0.0" y="549" width="400" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dXj-Ha-Kfw" secondAttribute="height" multiplier="40:7" id="JBg-yy-sLG"/>
                                 </constraints>
@@ -151,6 +154,9 @@
                                     <constraint firstAttribute="width" constant="42" id="exm-Ua-CuL"/>
                                 </constraints>
                                 <state key="normal" image="btn_00_myOtodama"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="338" y="546" width="42" height="42"/>
+                                </variation>
                                 <connections>
                                     <action selector="touchDownBtnTodayTweet:" destination="aqh-nv-CCN" eventType="touchDown" id="30S-Kf-RgV"/>
                                     <segue destination="SIg-8U-asc" kind="show" id="ueT-LM-Et5"/>
@@ -224,11 +230,11 @@
                         <viewControllerLayoutGuide type="bottom" id="fzc-p6-1ed"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="T49-5Z-QTn">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="説明ページ＿先生プロフ" translatesAutoresizingMaskIntoConstraints="NO" id="eUP-9t-hgL">
-                                <rect key="frame" x="0.0" y="-979.5" width="600" height="2560"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="説明ページ＿先生プロフ" translatesAutoresizingMaskIntoConstraints="NO" id="eUP-9t-hgL">
+                                <rect key="frame" x="0.0" y="-880" width="400" height="2560"/>
                                 <variation key="heightClass=regular" ambiguous="YES">
                                     <rect key="frame" x="0.0" y="-880" width="600" height="2560"/>
                                 </variation>
@@ -237,13 +243,13 @@
                                 </variation>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="component_01_header" translatesAutoresizingMaskIntoConstraints="NO" id="yvu-1x-PLv">
-                                <rect key="frame" x="0.0" y="-3" width="600" height="105"/>
+                                <rect key="frame" x="0.0" y="-3" width="400" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yvu-1x-PLv" secondAttribute="height" multiplier="40:7" id="FT7-6Q-PMn"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="component_02_footer" translatesAutoresizingMaskIntoConstraints="NO" id="GJy-lA-gXZ">
-                                <rect key="frame" x="0.0" y="498" width="600" height="105"/>
+                                <rect key="frame" x="0.0" y="498" width="400" height="105"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="GJy-lA-gXZ" secondAttribute="height" multiplier="40:7" id="Grh-rV-cSB"/>
                                 </constraints>
@@ -554,7 +560,8 @@
                                         <exclude reference="rZX-7H-lZn"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="230" width="400" height="146"/>
                                     <mask key="subviews">
                                         <include reference="8Go-F3-eWn"/>
                                         <include reference="w5h-Ho-mit"/>
@@ -809,6 +816,9 @@
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="component_04_yatagarasu" translatesAutoresizingMaskIntoConstraints="NO" id="b5U-Dh-szQ">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="b5U-Dh-szQ" secondAttribute="height" multiplier="1403:1040" id="vdZ-7V-4iu"/>
                                 </constraints>
@@ -1746,7 +1756,8 @@
                                         <exclude reference="uG5-rl-XQT"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="260" width="400" height="146"/>
                                     <mask key="subviews">
                                         <include reference="GYE-HJ-LME"/>
                                         <include reference="jme-cP-9Vp"/>
@@ -3072,7 +3083,8 @@
                                                         <exclude reference="qpb-0n-0gg"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="widthClass=compact">
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="0.0" y="374" width="400" height="146"/>
                                                     <mask key="subviews">
                                                         <include reference="zcl-AO-Xvf"/>
                                                         <include reference="ccr-5h-hx2"/>
@@ -3115,7 +3127,8 @@
                                                         <exclude reference="3ZB-ya-mjS"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="widthClass=compact">
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="100" y="540" width="200" height="73"/>
                                                     <mask key="constraints">
                                                         <include reference="3ZB-ya-mjS"/>
                                                     </mask>
@@ -3557,8 +3570,8 @@
         <image name="説明ページ＿先生プロフ" width="1440" height="2560"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nWs-Py-5z6"/>
-        <segue reference="FJY-Ht-s9i"/>
+        <segue reference="Yzp-WV-oRW"/>
         <segue reference="zh5-Ny-jGe"/>
+        <segue reference="ajD-2a-HmZ"/>
     </inferredMetricsTieBreakers>
 </document>

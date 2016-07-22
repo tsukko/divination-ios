@@ -35,6 +35,10 @@ class MidstreamViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("MidstreamViewController viewDidLoad:_paramOriginal:\(_paramOriginal)", terminator: "")
+        
+        self.imgYatagarasu.userInteractionEnabled = true
+        let myTap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MidstreamViewController.touchImgSkipAnimation(_:)))
+        self.imgYatagarasu.addGestureRecognizer(myTap)
     }
 
     // 画面が表示された直後
@@ -50,7 +54,7 @@ class MidstreamViewController : UIViewController {
         verticalTwistAnimation.toValue = singleTwist * 2   // 2回転
 
         // TODO サイズを変化させるアニメーション
-        var sizeAnimation:CABasicAnimation = CABasicAnimation(keyPath: "bounds.size")
+        let sizeAnimation:CABasicAnimation = CABasicAnimation(keyPath: "bounds.size")
 //        sizeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
         sizeAnimation.fromValue = NSValue(CGSize:CGSizeMake(100, 100))
         sizeAnimation.toValue = NSValue(CGSize:CGSizeMake(300, 300))
@@ -81,8 +85,8 @@ class MidstreamViewController : UIViewController {
         imgColorAnimation.autoreverses = true
         imgColorAnimation.repeatCount = 1e100
         imgColorAnimation.fromValue = UIColor.clearColor().CGColor
-        imgColorAnimation.toValue = self.blackColor().CGColor
-        imgYatagarasu.layer.foregroundColor = self.blackColor().CGColor
+        imgColorAnimation.toValue = UIColor.blackColor().CGColor
+     //   imgYatagarasu.layer.foregroundColor = UIColor.blackColor().CGColor
         imgYatagarasu.layer.addAnimation(imgColorAnimation, forKey: "ImgColor")
         
         NSTimer.scheduledTimerWithTimeInterval(1.0, target:self, selector:#selector(MidstreamViewController.transition2(_:)), userInfo: "", repeats: false)
@@ -120,7 +124,7 @@ class MidstreamViewController : UIViewController {
     }
     
     // アニメーション画像をタップして、アニメーションを飛ばす
-    @IBAction func touchImgSkipAnimation(sender: AnyObject) {
+    func touchImgSkipAnimation(sender:UITapGestureRecognizer) {
         goExplainPage()
     }
 
