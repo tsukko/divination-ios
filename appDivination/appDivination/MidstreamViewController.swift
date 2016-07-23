@@ -36,6 +36,8 @@ class MidstreamViewController : UIViewController {
         super.viewDidLoad()
         print("MidstreamViewController viewDidLoad:_paramOriginal:\(_paramOriginal)", terminator: "")
         
+        self.imgYatagarasu.hidden = true
+        
         self.imgYatagarasu.userInteractionEnabled = true
         let myTap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MidstreamViewController.touchImgSkipAnimation(_:)))
         self.imgYatagarasu.addGestureRecognizer(myTap)
@@ -44,6 +46,8 @@ class MidstreamViewController : UIViewController {
     // 画面が表示された直後
     override func viewDidAppear(animated:Bool) {
         // 参考：http://dev.classmethod.jp/references/ios-8-cabasicanimation/
+        
+        self.imgYatagarasu.hidden = false
         
         // アニメーション時間　2.0秒で設定→1.3秒
         let duration = 1.3   // アニメーション時間 2秒
@@ -56,8 +60,8 @@ class MidstreamViewController : UIViewController {
         // TODO サイズを変化させるアニメーション
         let sizeAnimation:CABasicAnimation = CABasicAnimation(keyPath: "bounds.size")
 //        sizeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
-        sizeAnimation.fromValue = NSValue(CGSize:CGSizeMake(100, 100))
-        sizeAnimation.toValue = NSValue(CGSize:CGSizeMake(300, 300))
+        sizeAnimation.fromValue = NSValue(CGSize:CGSizeMake(360/6, 266/6))
+        sizeAnimation.toValue = NSValue(CGSize:CGSizeMake(360, 266))
         
         // アニメーションを同時実行するためにグループを作成
         let animationGroup = CAAnimationGroup()
@@ -72,27 +76,30 @@ class MidstreamViewController : UIViewController {
         // 第2引数の「target」は、タイマー発生時に呼び出すメソッドがあるターゲットを指定します。通常は「self」で大丈夫だと思います。
         // 第3引数の「selector」の部分は、タイマー発生時に呼び出すメソッドを指定します。今回の場合は「onUpdate」を呼び出しています。
         // 2.0で設定していた
-        NSTimer.scheduledTimerWithTimeInterval(1.5, target:self, selector:#selector(MidstreamViewController.transition(_:)), userInfo: "", repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(1.3, target:self, selector:#selector(MidstreamViewController.transition(_:)), userInfo: "", repeats: false)
     }
 
     // 3秒後に画像を点滅させてから、次の結果画面に遷移する
     func transition(timer: NSTimer) {
         print("MidstreamViewController transition:_paramOriginal:\(_paramOriginal)", terminator: "")
         
-        // 画像を点滅
-        let imgColorAnimation = CABasicAnimation(keyPath: "foregroundColor")
-        imgColorAnimation.duration = 0.5
-        imgColorAnimation.autoreverses = true
-        imgColorAnimation.repeatCount = 1e100
-        imgColorAnimation.fromValue = UIColor.clearColor().CGColor
-        imgColorAnimation.toValue = UIColor.blackColor().CGColor
-     //   imgYatagarasu.layer.foregroundColor = UIColor.blackColor().CGColor
-        imgYatagarasu.layer.addAnimation(imgColorAnimation, forKey: "ImgColor")
+        //点滅アニメーション
+        UIView.animateWithDuration(0.2, delay: 0.0,
+                                   options: UIViewAnimationOptions.Repeat, animations: { () -> Void in
+                                    self.imgYatagarasu.alpha = 0.0
+            }, completion: nil)
         
         NSTimer.scheduledTimerWithTimeInterval(1.0, target:self, selector:#selector(MidstreamViewController.transition2(_:)), userInfo: "", repeats: false)
     }
     
     func transition2(timer: NSTimer) {
+        
+        //点滅の停止処理
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.animateWithDuration(0.001, animations: {
+            self.imgYatagarasu.alpha = 1.0
+        })
+        
         goExplainPage()
     }
 

@@ -48,7 +48,6 @@ class A4ResultViewController : UIViewController {
         
         // 占いの実行
         let retDivination = resultDivinationClass()
-        let plotResult:[Int] = retDivination.divinationReturnResult(userName)
 
         // 運気を上げるつぶやき文字の取得とセット
         // 初めて占いを行う場合や、前に占ってから日付が変わっている場合に、占いを実施する。
@@ -56,7 +55,7 @@ class A4ResultViewController : UIViewController {
         let saveTime = defaults.objectForKey(Const.SaveTime) as? NSDate
         if LukcyWord == nil || LukcyWord!.isEmpty || saveTime == nil || !checkDateToday(saveTime!) {
             print("get LukcyWord", terminator: "")
-            LukcyWord = retDivination.getTodayLuckyWord(userName, plotData: plotResult, tweetWord: "")
+            LukcyWord = retDivination.getTodayLuckyWord(userName, tweetWord: "")
             defaults.setObject(LukcyWord, forKey: Const.LukcyWord)
             defaults.setObject(NSDate(), forKey: Const.SaveTime)
         } else {
