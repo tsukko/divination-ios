@@ -143,6 +143,9 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var myScrollView: UIScrollView!
 
+    @IBOutlet weak var InputView1: UIView!
+    @IBOutlet weak var InputView2: UIView!
+
     // 画面番号、遷移元を知るために使用
     let viewNumber = Const.ViewNumber.A6ViewConNum
     // 画面遷移時に遷移元が渡す遷移先の値
@@ -166,8 +169,12 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
         
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
         
-        // 行数無制限
-        lblTitle.numberOfLines = 0
+        self.InputView1.layer.borderColor = UIColor(red: 220/255.0, green: 220/255.0, blue: 220/255.0, alpha: 1.0).CGColor
+        self.InputView1.layer.borderWidth = 1
+        self.InputView1.layer.cornerRadius = 5
+        self.InputView2.layer.borderColor = UIColor(red: 220/255.0, green: 220/255.0, blue: 220/255.0, alpha: 1.0).CGColor
+        self.InputView2.layer.borderWidth = 1
+        self.InputView2.layer.cornerRadius = 5
         
         // テキストフィールドにDatePickerを表示する
         datePicker1 = UIDatePicker()

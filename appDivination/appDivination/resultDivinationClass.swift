@@ -188,21 +188,24 @@ class resultDivinationClass {
     }
     
     // 今日のつぶやきの結果文言の取得
-    func getTodayLuckyWord(userName:String, plotData:[Int], tweetWord:String) -> String {
+    func getTodayLuckyWord(userName:String, tweetWord:String) -> String {
         let kanaData = kanaDataClass(flagAll: false)
+        var newUserName = userName
+        let newPlotData = divinationReturnResult(newUserName)
+        
         // 01. ヤタノカガミ： 全てのプロット位置に丸がつくの場合は、一個もない人と同じ扱いにする
-        var newPlotData = plotData
-        if getTypeRare(plotData) == Const.TypeNumYatanokagami {
-            newPlotData = [0,0,0,0,0,0,0,0]
+        if getTypeRare(newPlotData) == Const.TypeNumYatanokagami {
+            newUserName = ""
         }
 
-        return getTodayLuckyWord(userName, plotData: newPlotData, tweetWord: tweetWord, kanaData: kanaData)
+        return getTodayLuckyWord(newUserName, tweetWord: tweetWord, kanaData: kanaData)
     }
     
-    func getTodayLuckyWord(userName:String, plotData:[Int], tweetWord:String, kanaData:kanaDataClass) -> String {
+    func getTodayLuckyWord(userName:String, tweetWord:String, kanaData:kanaDataClass) -> String {
         var flagYatanokagami: Int = 0
-        var userNameNew: String = userName
+        var newUserName: String = userName
         var lTweetWord:String = tweetWord
+        let plotData = divinationReturnResult(newUserName)
         
         for i in 0...7 {
             if plotData[i] > 0 {
@@ -215,7 +218,7 @@ class resultDivinationClass {
                 let newAddWord = kanaData.getRandomCharaFromPlotData(plotData)
                 print("add word :\(newAddWord)", terminator: "")
                 lTweetWord = tweetWord + newAddWord
-                userNameNew = userName + newAddWord
+                newUserName = userName + newAddWord
                 break
             }
         }
@@ -234,8 +237,7 @@ class resultDivinationClass {
         } else {
             print("flagYatanokagami :\(flagYatanokagami)", terminator: "")
             // c: 音の鏡を確認し、まだ丸が付いて居ない箇所があれば、aからやり直す
-            let plotDataNew = divinationReturnResult(userNameNew)
-            return getTodayLuckyWord(userNameNew, plotData: plotDataNew, tweetWord: lTweetWord, kanaData: kanaData)
+            return getTodayLuckyWord(newUserName, tweetWord: lTweetWord, kanaData: kanaData)
         }
     }
 

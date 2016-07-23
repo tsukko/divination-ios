@@ -84,12 +84,12 @@ class A3ResultViewController : UIViewController {
         if lblMessageRare.text!.isEmpty {
             lblMessageRare.hidden = true
             lblTitleRare.hidden = true
-            // -25にしているのは見た目を合わせるため。TitleとMessageなどView間の高さ
-            labelHeightConstraintRare.constant = -25
+            // -30にしているのは見た目を合わせるため。TitleとMessageのView間の高さ（それぞれ15,5だけど30引いた方がいい感じだった。。。）
+            labelHeightConstraintRare.constant = -30
         } else {
             lblMessageRare.hidden = false
             lblTitleRare.hidden = false
-            labelHeightConstraintRare.constant = 15
+            labelHeightConstraintRare.constant = 20
         }
         // あなたの特性の表示
         lblMessageLatter.text = retDivination.getMessageLatter(plotResult)
