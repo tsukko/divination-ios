@@ -49,9 +49,6 @@
                                             <constraint firstAttribute="width" secondItem="GbQ-tO-6oy" secondAttribute="height" multiplier="686/253" id="KyV-RK-AAg"/>
                                         </constraints>
                                         <state key="normal" image="ボタン_今日のつぶやきのコピー"/>
-                                        <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="50" width="177" height="66"/>
-                                        </variation>
                                         <connections>
                                             <segue destination="lbR-qQ-xeK" kind="show" id="CFn-J0-8rs"/>
                                         </connections>
@@ -3561,7 +3558,7 @@
         <image name="説明ページ＿先生プロフ" width="1440" height="2560"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xrw-Kf-35Q"/>
+        <segue reference="tck-e7-cfV"/>
         <segue reference="TW7-An-BCZ"/>
         <segue reference="zh5-Ny-jGe"/>
     </inferredMetricsTieBreakers>
