@@ -18,14 +18,14 @@
                         <viewControllerLayoutGuide type="bottom" id="oY6-SO-qvq"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xqx-i4-ngs">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="トップページイメージ" translatesAutoresizingMaskIntoConstraints="NO" id="4Si-Yt-df7">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="320" misplaced="YES" restorationIdentifier="img_header" image="component_01_header" translatesAutoresizingMaskIntoConstraints="NO" id="PKC-nJ-eUy">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="52"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PKC-nJ-eUy" secondAttribute="height" multiplier="40:7" id="s68-BZ-nGz"/>
                                 </constraints>
@@ -49,6 +49,9 @@
                                             <constraint firstAttribute="width" secondItem="GbQ-tO-6oy" secondAttribute="height" multiplier="686/253" id="KyV-RK-AAg"/>
                                         </constraints>
                                         <state key="normal" image="ボタン_今日のつぶやきのコピー"/>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="50" width="177" height="66"/>
+                                        </variation>
                                         <connections>
                                             <segue destination="lbR-qQ-xeK" kind="show" id="CFn-J0-8rs"/>
                                         </connections>
@@ -138,7 +141,7 @@
                                 </variation>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="component_02_footer" translatesAutoresizingMaskIntoConstraints="NO" id="dXj-Ha-Kfw">
-                                <rect key="frame" x="0.0" y="549" width="400" height="53"/>
+                                <rect key="frame" x="0.0" y="549" width="600" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dXj-Ha-Kfw" secondAttribute="height" multiplier="40:7" id="JBg-yy-sLG"/>
                                 </constraints>
@@ -224,11 +227,11 @@
                         <viewControllerLayoutGuide type="bottom" id="fzc-p6-1ed"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="T49-5Z-QTn">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="説明ページ＿先生プロフ" translatesAutoresizingMaskIntoConstraints="NO" id="eUP-9t-hgL">
-                                <rect key="frame" x="0.0" y="-880" width="400" height="2560"/>
+                                <rect key="frame" x="0.0" y="-980" width="600" height="2560"/>
                                 <variation key="heightClass=regular" ambiguous="YES">
                                     <rect key="frame" x="0.0" y="-880" width="600" height="2560"/>
                                 </variation>
@@ -237,13 +240,13 @@
                                 </variation>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="component_01_header" translatesAutoresizingMaskIntoConstraints="NO" id="yvu-1x-PLv">
-                                <rect key="frame" x="0.0" y="-3" width="400" height="70"/>
+                                <rect key="frame" x="0.0" y="-3" width="600" height="105"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yvu-1x-PLv" secondAttribute="height" multiplier="40:7" id="FT7-6Q-PMn"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="component_02_footer" translatesAutoresizingMaskIntoConstraints="NO" id="GJy-lA-gXZ">
-                                <rect key="frame" x="0.0" y="498" width="400" height="105"/>
+                                <rect key="frame" x="0.0" y="498" width="600" height="105"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="GJy-lA-gXZ" secondAttribute="height" multiplier="40:7" id="Grh-rV-cSB"/>
                                 </constraints>
@@ -768,7 +771,7 @@
                         <viewControllerLayoutGuide type="bottom" id="InH-TQ-sbQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1hx-Ac-Jgr">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="830"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backimg_blue" translatesAutoresizingMaskIntoConstraints="NO" id="oIu-ua-auT">
@@ -781,7 +784,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="component_02_footer" translatesAutoresizingMaskIntoConstraints="NO" id="KsF-lI-cee">
-                                <rect key="frame" x="0.0" y="733" width="400" height="70"/>
+                                <rect key="frame" x="0.0" y="763" width="400" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="KsF-lI-cee" secondAttribute="height" multiplier="40:7" id="dxr-DS-jeP"/>
                                 </constraints>
@@ -913,7 +916,7 @@
                         <viewControllerLayoutGuide type="bottom" id="vOp-z5-XP4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="jGb-JR-87V">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="component_01_header" translatesAutoresizingMaskIntoConstraints="NO" id="IuS-P0-D3I">
@@ -923,7 +926,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="component_02_footer" translatesAutoresizingMaskIntoConstraints="NO" id="Dk2-y9-Jbj">
-                                <rect key="frame" x="0.0" y="733" width="400" height="70"/>
+                                <rect key="frame" x="0.0" y="933" width="400" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Dk2-y9-Jbj" secondAttribute="height" multiplier="40:7" id="51C-3U-tzj"/>
                                 </constraints>
@@ -1289,7 +1292,10 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g95-CJ-bc2" userLabel="lblMessageRare">
                                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                <string key="text">あなたは、、、１行目２行目３行目</string>
+                                                <string key="text">あなたは、、、
+１行目
+２行目
+３行目</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1370,36 +1376,36 @@
                                             </mask>
                                             <mask key="constraints">
                                                 <exclude reference="r8H-4f-Ril"/>
-                                                <exclude reference="XLz-eY-Pt2"/>
-                                                <exclude reference="Zd2-ah-JCD"/>
-                                                <exclude reference="eup-0K-naD"/>
-                                                <exclude reference="ApJ-kc-nc2"/>
-                                                <exclude reference="ApR-oN-9Jj"/>
-                                                <exclude reference="jOj-i5-AW2"/>
-                                                <exclude reference="y1l-CL-rGY"/>
-                                                <exclude reference="GqH-tR-AbU"/>
-                                                <exclude reference="r3Y-ly-WIu"/>
-                                                <exclude reference="xqX-FA-fPg"/>
-                                                <exclude reference="8YD-08-WfF"/>
+                                                <exclude reference="YFY-T5-bEe"/>
+                                                <exclude reference="Z21-AP-9Fa"/>
+                                                <exclude reference="bNt-8S-0DX"/>
                                                 <exclude reference="Aob-8T-YHA"/>
                                                 <exclude reference="BPi-zf-da6"/>
                                                 <exclude reference="Jf8-cE-8Yi"/>
                                                 <exclude reference="bNI-Xz-19q"/>
-                                                <exclude reference="2qy-K5-hXO"/>
-                                                <exclude reference="CXo-3U-ItA"/>
-                                                <exclude reference="YZF-eW-ACC"/>
-                                                <exclude reference="YFY-T5-bEe"/>
-                                                <exclude reference="Z21-AP-9Fa"/>
-                                                <exclude reference="bNt-8S-0DX"/>
-                                                <exclude reference="D8S-x9-SrE"/>
-                                                <exclude reference="e0l-eo-cYQ"/>
-                                                <exclude reference="g7h-PZ-lcH"/>
                                                 <exclude reference="Bpc-PV-Oxa"/>
                                                 <exclude reference="pU0-20-Opg"/>
                                                 <exclude reference="vG7-xr-oPI"/>
                                                 <exclude reference="3zY-GF-ccd"/>
                                                 <exclude reference="9qs-Xk-vPF"/>
                                                 <exclude reference="efb-8j-gcr"/>
+                                                <exclude reference="D8S-x9-SrE"/>
+                                                <exclude reference="e0l-eo-cYQ"/>
+                                                <exclude reference="g7h-PZ-lcH"/>
+                                                <exclude reference="2qy-K5-hXO"/>
+                                                <exclude reference="CXo-3U-ItA"/>
+                                                <exclude reference="YZF-eW-ACC"/>
+                                                <exclude reference="GqH-tR-AbU"/>
+                                                <exclude reference="r3Y-ly-WIu"/>
+                                                <exclude reference="xqX-FA-fPg"/>
+                                                <exclude reference="XLz-eY-Pt2"/>
+                                                <exclude reference="Zd2-ah-JCD"/>
+                                                <exclude reference="eup-0K-naD"/>
+                                                <exclude reference="8YD-08-WfF"/>
+                                                <exclude reference="ApJ-kc-nc2"/>
+                                                <exclude reference="ApR-oN-9Jj"/>
+                                                <exclude reference="jOj-i5-AW2"/>
+                                                <exclude reference="y1l-CL-rGY"/>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact">
@@ -1417,36 +1423,36 @@
                                             </mask>
                                             <mask key="constraints">
                                                 <include reference="r8H-4f-Ril"/>
-                                                <include reference="XLz-eY-Pt2"/>
-                                                <include reference="Zd2-ah-JCD"/>
-                                                <include reference="eup-0K-naD"/>
-                                                <include reference="ApJ-kc-nc2"/>
-                                                <include reference="ApR-oN-9Jj"/>
-                                                <include reference="jOj-i5-AW2"/>
-                                                <include reference="y1l-CL-rGY"/>
-                                                <include reference="GqH-tR-AbU"/>
-                                                <include reference="r3Y-ly-WIu"/>
-                                                <include reference="xqX-FA-fPg"/>
-                                                <include reference="8YD-08-WfF"/>
+                                                <include reference="YFY-T5-bEe"/>
+                                                <include reference="Z21-AP-9Fa"/>
+                                                <include reference="bNt-8S-0DX"/>
                                                 <include reference="Aob-8T-YHA"/>
                                                 <include reference="BPi-zf-da6"/>
                                                 <include reference="Jf8-cE-8Yi"/>
                                                 <include reference="bNI-Xz-19q"/>
-                                                <include reference="2qy-K5-hXO"/>
-                                                <include reference="CXo-3U-ItA"/>
-                                                <include reference="YZF-eW-ACC"/>
-                                                <include reference="YFY-T5-bEe"/>
-                                                <include reference="Z21-AP-9Fa"/>
-                                                <include reference="bNt-8S-0DX"/>
-                                                <include reference="D8S-x9-SrE"/>
-                                                <include reference="e0l-eo-cYQ"/>
-                                                <include reference="g7h-PZ-lcH"/>
                                                 <include reference="Bpc-PV-Oxa"/>
                                                 <include reference="pU0-20-Opg"/>
                                                 <include reference="vG7-xr-oPI"/>
                                                 <include reference="3zY-GF-ccd"/>
                                                 <include reference="9qs-Xk-vPF"/>
                                                 <include reference="efb-8j-gcr"/>
+                                                <include reference="D8S-x9-SrE"/>
+                                                <include reference="e0l-eo-cYQ"/>
+                                                <include reference="g7h-PZ-lcH"/>
+                                                <include reference="2qy-K5-hXO"/>
+                                                <include reference="CXo-3U-ItA"/>
+                                                <include reference="YZF-eW-ACC"/>
+                                                <include reference="GqH-tR-AbU"/>
+                                                <include reference="r3Y-ly-WIu"/>
+                                                <include reference="xqX-FA-fPg"/>
+                                                <include reference="XLz-eY-Pt2"/>
+                                                <include reference="Zd2-ah-JCD"/>
+                                                <include reference="eup-0K-naD"/>
+                                                <include reference="8YD-08-WfF"/>
+                                                <include reference="ApJ-kc-nc2"/>
+                                                <include reference="ApR-oN-9Jj"/>
+                                                <include reference="jOj-i5-AW2"/>
+                                                <include reference="y1l-CL-rGY"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -2775,7 +2781,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Fdc-ks-sIo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0Fn-1c-kWj">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="830"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="component_01_header" translatesAutoresizingMaskIntoConstraints="NO" id="gqN-09-gqM">
@@ -2785,7 +2791,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="component_02_footer" translatesAutoresizingMaskIntoConstraints="NO" id="I9S-dT-Hm7">
-                                <rect key="frame" x="0.0" y="733" width="400" height="70"/>
+                                <rect key="frame" x="0.0" y="763" width="400" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="I9S-dT-Hm7" secondAttribute="height" multiplier="40:7" id="so0-Oz-5Ee"/>
                                 </constraints>
