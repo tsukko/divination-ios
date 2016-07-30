@@ -34,13 +34,9 @@ class MidstreamViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("MidstreamViewController viewDidLoad:_paramOriginal:\(_paramOriginal)", terminator: "")
+        print("MidstreamViewController viewDidLoad:_paramOriginal:\(_paramOriginal)")
         
         self.imgYatagarasu.hidden = true
-        
-        self.imgYatagarasu.userInteractionEnabled = true
-        let myTap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MidstreamViewController.touchImgSkipAnimation(_:)))
-        self.imgYatagarasu.addGestureRecognizer(myTap)
     }
 
     // 画面が表示された直後
@@ -48,6 +44,9 @@ class MidstreamViewController : UIViewController {
         // 参考：http://dev.classmethod.jp/references/ios-8-cabasicanimation/
         
         self.imgYatagarasu.hidden = false
+        self.imgYatagarasu.userInteractionEnabled = true
+        let myTap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MidstreamViewController.touchImgSkipAnimation(_:)))
+        self.imgYatagarasu.addGestureRecognizer(myTap)
         
         // アニメーション時間　2.0秒で設定→1.3秒
         let duration = 1.3   // アニメーション時間 2秒
@@ -81,13 +80,15 @@ class MidstreamViewController : UIViewController {
 
     // 3秒後に画像を点滅させてから、次の結果画面に遷移する
     func transition(timer: NSTimer) {
-        print("MidstreamViewController transition:_paramOriginal:\(_paramOriginal)", terminator: "")
+        print("MidstreamViewController transition:_paramOriginal:\(_paramOriginal)")
         
         //点滅アニメーション
-        UIView.animateWithDuration(0.2, delay: 0.0,
-                                   options: UIViewAnimationOptions.Repeat, animations: { () -> Void in
-                                    self.imgYatagarasu.alpha = 0.0
-            }, completion: nil)
+        UIView.animateWithDuration(0.2,
+                                   delay: 0.0,
+                                   options: UIViewAnimationOptions.Repeat,
+                                   animations: {() -> Void in
+                                    self.imgYatagarasu.alpha = 0.0},
+                                   completion: nil)
         
         NSTimer.scheduledTimerWithTimeInterval(1.0, target:self, selector:#selector(MidstreamViewController.transition2(_:)), userInfo: "", repeats: false)
     }
@@ -143,7 +144,7 @@ class MidstreamViewController : UIViewController {
 
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        print("prepareForSegue : \(segue.identifier), _param : \(_param)", terminator: "")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
