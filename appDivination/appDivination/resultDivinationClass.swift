@@ -247,15 +247,15 @@ class resultDivinationClass {
         
         // 条件
         let scoreAddFirst:Int = getScoreAddFirst(plotDataList)
-        print("score add1 :\(scoreAddFirst)")
+//        print("score add1 :\(scoreAddFirst)")
         let scoreAddSecond:Int = getScoreAddSecond(plotDataList)
-        print("score add2 :\(scoreAddSecond)")
+//        print("score add2 :\(scoreAddSecond)")
         let scoreAddThird:Int = getScoreAddThird(plotDataList)
-        print("score add3 :\(scoreAddSecond)")
+//        print("score add3 :\(scoreAddSecond)")
         let scoreSubFirst:Int = getScoreSubFirst(plotDataList)
-        print("score sub1 :\(scoreSubFirst)")
+//        print("score sub1 :\(scoreSubFirst)")
         let scoreSubSecond:Int = getScoreSubSecond(plotDataList)
-        print("score sub2 :\(scoreSubSecond)")
+//        print("score sub2 :\(scoreSubSecond)")
         
         let scoreTotal:Int = score + scoreAddFirst + scoreAddSecond + scoreAddThird + scoreSubFirst + scoreSubSecond
         return scoreTotal.description
@@ -431,19 +431,25 @@ class resultDivinationClass {
             - heapPlotData[exchangeIndex(index + 6)] * 2
             - heapPlotData[exchangeIndex(index + 7)]
             
-            // debug
+            // debugログ
             let delCount1 = heapPlotData[exchangeIndex(index + 1)] + heapPlotData[exchangeIndex(index + 2)] + heapPlotData[exchangeIndex(index + 3)]
             let delCount2 = heapPlotData[exchangeIndex(index + 5)] + heapPlotData[exchangeIndex(index + 6)] + heapPlotData[exchangeIndex(index + 7)]
             let delCount3 = heapPlotData[exchangeIndex(index + 1)] + heapPlotData[exchangeIndex(index + 2)] * 2 + heapPlotData[exchangeIndex(index + 3)]
             let delCount4 = heapPlotData[exchangeIndex(index + 5)] + heapPlotData[exchangeIndex(index + 6)] * 2 + heapPlotData[exchangeIndex(index + 7)]
-            print("delCount1=\(delCount1)")
-            print("delCount2=\(delCount2)")
-            print("delCount3=\(delCount3)")
-            print("delCount4=\(delCount4)")
-            print("delCount1 - delCount2=\(delCount1 - delCount2)")
-            print("delCount3 - delCount4=\(delCount3 - delCount4)")
-            print("delCount=\(delCount1 - delCount2 + delCount3 - delCount4)")
-            print("delCountTotal=\(-delCount)")
+            var lineName:String!
+            if index == 0 {
+                lineName = "CG"
+            } else if index == 1 {
+                lineName = "DH"
+            } else if index == 2 {
+                lineName = "AE"
+            } else if index == 3 {
+                lineName = "BF"
+            }
+            print("delCount1=\(delCount1),\tdelCount2=\(delCount2),\tdelCount1 - delCount2=\(delCount1 - delCount2)")
+            print("delCount3=\(delCount3),\tdelCount4=\(delCount4),\tdelCount3 - delCount4=\(delCount3 - delCount4)")
+            print("\(lineName)ラインの点=\(delCount1 - delCount2 + delCount3 - delCount4)")
+//            print("delCountTotal=\(-delCount)")
         }
         
         score = delCount
@@ -460,8 +466,9 @@ class resultDivinationClass {
         }
     }
     
-    // PlotDataの配列が時計の3時の場所から”反時計回り”で数えているが、この呼び先（条件B）は"時計回り"で計算している
-    // 反時計回り計算を逆にする
+    // PlotDataの配列が時計の3時の場所から”反時計回り”で数えているが、
+    // この呼び先（条件B）は0時の場所から"時計回り"で計算している
+    // それに適応するようにindexを変換
     func exchangeIndex(num:Int) -> Int {
         var changeNum = 0
         if num > 7 {

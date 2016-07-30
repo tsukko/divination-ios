@@ -168,7 +168,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         //tableView.layer.borderColor = UIColor.grayColor().CGColor
         //tableView.layer.borderWidth = 1
         
-        alert = UIAlertController(title: Const.AddNameTitle, message: Const.AddNameMsg, preferredStyle: .Alert)
+        //alert = UIAlertController(title: Const.AddNameTitle, message: Const.AddNameMsg, preferredStyle: .Alert)
         setPickerInfo()
         
         // 保存していた情報の復元
@@ -315,7 +315,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         print("indexPath.row:\(indexPath.row), userNameList.count + 1 :\(userNameList.count + 1)")
         if (indexPath.row == userNameList.count ) {
             // ダイアログ表示
-            //alert = UIAlertController(title: Const.AddNameTitle, message: Const.AddNameMsg, preferredStyle: .Alert)
+            alert = UIAlertController(title: Const.AddNameTitle, message: Const.AddNameMsg, preferredStyle: .Alert)
             let saveAction = UIAlertAction(title: Const.LblAdd, style: .Default) { (action:UIAlertAction) -> Void in
                 self.alert.textFields![0].resignFirstResponder()
                 self.alert.textFields![1].resignFirstResponder()
