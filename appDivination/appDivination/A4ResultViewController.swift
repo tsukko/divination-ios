@@ -37,7 +37,7 @@ class A4ResultViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("A4ResultViewController viewDidLoad", terminator: "")
+        print("A4ResultViewController viewDidLoad")
  
         var userName:String = ""
 
@@ -54,12 +54,12 @@ class A4ResultViewController : UIViewController {
         var LukcyWord:String? = defaults.stringForKey(Const.LukcyWord)
         let saveTime = defaults.objectForKey(Const.SaveTime) as? NSDate
         if LukcyWord == nil || LukcyWord!.isEmpty || saveTime == nil || !checkDateToday(saveTime!) {
-            print("get LukcyWord", terminator: "")
+            print("get LukcyWord")
             LukcyWord = retDivination.getTodayLuckyWord(userName, tweetWord: "")
             defaults.setObject(LukcyWord, forKey: Const.LukcyWord)
             defaults.setObject(NSDate(), forKey: Const.SaveTime)
         } else {
-            print("LukcyWord Already get", terminator: "")
+            print("LukcyWord Already get")
         }
         lblMessage.text = LukcyWord
     }
@@ -81,7 +81,7 @@ class A4ResultViewController : UIViewController {
 
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        print("prepareForSegue : \(segue.identifier), _param : \(_param)", terminator: "")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param

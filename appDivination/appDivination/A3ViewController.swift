@@ -42,7 +42,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("A3ViewController viewDidLoad", terminator: "")
+        print("A3ViewController viewDidLoad")
 
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
         
@@ -79,7 +79,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        print("prepareForSegue : \(segue.identifier), _param : \(_param)", terminator: "")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
@@ -112,7 +112,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         // 名前欄のTextFieldの確認
         if (nameTextField.text!.isEmpty) {
             // null、空のとき
-            print("nameTextField.text is enpty.", terminator: "")
+            print("nameTextField.text is enpty.")
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgNameEmpty,
@@ -123,7 +123,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         } else {
             if !nameTextField.text!.ChackHiraganaOrKatakana() {
                 // ひらがな、カタカナ、空白以外のとき
-                print("nameTextField.text is not hiragana or katakana.", terminator: "")
+                print("nameTextField.text is not hiragana or katakana.")
                 let alertController = UIAlertController(
                     title: Const.ErrorTitle,
                     message: Const.ErrorMsgNameKana,
@@ -137,7 +137,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         // 誕生日欄のTextFieldの確認
         if (dateTextField.text!.isEmpty) {
             // null、空のとき
-            print("dateTextField.text is not hiragana.", terminator: "")
+            print("dateTextField.text is not hiragana.")
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgDate,
@@ -150,7 +150,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         // 性別選択の確認
         if (sgCtlSex.selectedSegmentIndex == -1) {
             // 未選択のとき
-            print("sgCtlSex.selectedSegmentIndex == -1", terminator: "")
+            print("sgCtlSex.selectedSegmentIndex == -1")
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgSex,
@@ -179,7 +179,7 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event)
 
-        print("close keyboard", terminator: "")
+        print("close keyboard")
         nameTextField.resignFirstResponder()
         dateTextField.resignFirstResponder()
     }
@@ -228,7 +228,7 @@ extension String {
                 //         print("ChackHiragana OK")
                 flagKana = true
             } else {
-                print("ChackHiragana NG : \(c.value)", terminator: "")
+                print("ChackHiragana NG : \(c.value)")
                 flagKana = false
                 break
             }

@@ -26,11 +26,11 @@ import UIKit
 ★　　　12345678
 　　 A:[12011201]
 　　 B:[21211031]
-　加算:[00100110]　→　3,6,7番目が該当する、6点、　and＆not　のような
+　加算:[00100110]　→　3,6,7番目が該当する、計6点、　and＆not　のような
 　結果:[33222232]
 　余り:[11000010]　→プラスして、全部2を引く
 　　 C:[00112011]
-　加算:[11000000]　→　1,2番目が該当する、4点、Cに対して0から1になったもの
+　加算:[11000000]　→　1,2番目が該当する、計4点、Cに対して0から1になったもの
 　結果:[11112021]
 　余り:[00001010]　→プラスして、全部1を引く
 
@@ -141,8 +141,9 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
 
-    var datePicker1: UIDatePicker!
-    var alert = UIAlertController()
+    var datePicker: UIDatePicker!
+    var sexPicker: UIPickerView!
+    var alert: UIAlertController!
     let dataList = Const.SexDataList
 
     var userNameList:[String] = []
@@ -153,7 +154,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("A5ViewController viewDidLoad", terminator: "")
+        print("A5ViewController viewDidLoad")
         
         naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
         
@@ -167,12 +168,15 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         //tableView.layer.borderColor = UIColor.grayColor().CGColor
         //tableView.layer.borderWidth = 1
         
+        alert = UIAlertController(title: Const.AddNameTitle, message: Const.AddNameMsg, preferredStyle: .Alert)
+        setPickerInfo()
+        
         // 保存していた情報の復元
         // 誕生日や性別の情報も保存・復元はおこなっていない
         let defaults = NSUserDefaults.standardUserDefaults()
         if let temp = defaults.objectForKey(Const.UserNameList) as? [String] {
             userNameList = temp
-            print("userList is not nil", terminator: "")
+            print("userList is not nil")
         }
     }
     
@@ -184,7 +188,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        print("prepareForSegue : \(segue.identifier), _param : \(_param)", terminator: "")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param
@@ -213,7 +217,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     func checkInput() -> Bool {
         // 名前欄のTextFieldの確認
         if (alert.textFields![0].text!.isEmpty) {
-            print("nameTextField.text is enpty.", terminator: "")
+            print("nameTextField.text is enpty.")
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgNameEmpty,
@@ -224,7 +228,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             return false
         } else {
             if !alert.textFields![0].text!.ChackHiraganaOrKatakana() {
-                print("nameTextField.text is not hiragana or katakana.", terminator: "")
+                print("nameTextField.text is not hiragana or katakana.")
                 let alertController = UIAlertController(
                     title: Const.ErrorTitle,
                     message: Const.ErrorMsgNameKana,
@@ -238,7 +242,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         
         // 誕生日欄のTextFieldの確認
         if (alert.textFields![1].text!.isEmpty) {
-            print("dateTextField.text is not hiragana.", terminator: "")
+            print("dateTextField.text is not hiragana.")
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgDate,
@@ -252,7 +256,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         // 性別選択の確認
 //        if (alert.textFields![2].selectedSegmentIndex == -1) {
         if (alert.textFields![2].text!.isEmpty) {
-            print("alert.textFields![2].text!.isEmpty", terminator: "")
+            print("alert.textFields![2].text!.isEmpty")
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgSex,
@@ -308,10 +312,10 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     // タップした時の処理
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
          tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        print("indexPath.row:\(indexPath.row), testteste.count + 1 :\(userNameList.count + 1)", terminator: "")
+        print("indexPath.row:\(indexPath.row), userNameList.count + 1 :\(userNameList.count + 1)")
         if (indexPath.row == userNameList.count ) {
             // ダイアログ表示
-            alert = UIAlertController(title: Const.AddNameTitle, message: Const.AddNameMsg, preferredStyle: .Alert)
+            //alert = UIAlertController(title: Const.AddNameTitle, message: Const.AddNameMsg, preferredStyle: .Alert)
             let saveAction = UIAlertAction(title: Const.LblAdd, style: .Default) { (action:UIAlertAction) -> Void in
                 self.alert.textFields![0].resignFirstResponder()
                 self.alert.textFields![1].resignFirstResponder()
@@ -352,7 +356,10 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
                 textField.placeholder = Const.SexPlaceholder
             }
             
-            setPickerInfo()
+            //setPickerInfo()
+            alert.textFields![1].inputView = datePicker
+            alert.textFields![2].inputView = sexPicker
+            alert.textFields![0].delegate = self
             
             // アクションの追加
             alert.addAction(saveAction)
@@ -364,41 +371,41 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     
     func setPickerInfo() {
         // 誕生日のテキストフィールドにDatePickerを表示する
-       datePicker1 = UIDatePicker()
-       datePicker1.addTarget(self, action: #selector(A5ViewController.changedDateEvent(_:)), forControlEvents: UIControlEvents.ValueChanged)
-       // 日本の日付表示形式にする、年月日の表示にする
-       datePicker1.datePickerMode = UIDatePickerMode.Date
-       format(datePicker1.date,style: "yyyy/MM/dd")
-       datePicker1.locale = NSLocale(localeIdentifier: "ja_JP")
-       // 最小値、最大値、初期値を設定
-       let dateFormatter = NSDateFormatter()
-       dateFormatter.dateFormat = Const.DateSetFormat
-       datePicker1.minimumDate = dateFormatter.dateFromString(Const.MinDateString)
-       datePicker1.maximumDate = dateFormatter.dateFromString(Const.MaxDateString)
-       datePicker1.date = dateFormatter.dateFromString(Const.DefDateString)!
-       alert.textFields![1].inputView = datePicker1
+        datePicker = UIDatePicker()
+        datePicker.addTarget(self, action: #selector(A5ViewController.changedDateEvent(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        // 日本の日付表示形式にする、年月日の表示にする
+        datePicker.datePickerMode = UIDatePickerMode.Date
+        format(datePicker.date,style: "yyyy/MM/dd")
+        datePicker.locale = NSLocale(localeIdentifier: "ja_JP")
+        // 最小値、最大値、初期値を設定
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = Const.DateSetFormat
+        datePicker.minimumDate = dateFormatter.dateFromString(Const.MinDateString)
+        datePicker.maximumDate = dateFormatter.dateFromString(Const.MaxDateString)
+        datePicker.date = dateFormatter.dateFromString(Const.DefDateString)!
+//        alert.textFields![1].inputView = datePicker
         
-       // 性別
-       let picker = UIPickerView()
-       picker.delegate = self
-       picker.dataSource = self
-       picker.showsSelectionIndicator = true
-       picker.frame = CGRectMake(0,0,self.view.bounds.width, 250.0)
-       alert.textFields![2].inputView = picker
+        // 性別
+        sexPicker = UIPickerView()
+        sexPicker.delegate = self
+        sexPicker.dataSource = self
+        sexPicker.showsSelectionIndicator = true
+        sexPicker.frame = CGRectMake(0,0,self.view.bounds.width, 250.0)
+//        alert.textFields![2].inputView = sexPicker
 
         // nameTextField の情報を受け取るための delegate を設定
-        alert.textFields![0].delegate = self
+//        alert.textFields![0].delegate = self
     }
 
     // 日付Picker用 ここから
     // 日付の変更イベント
     func changedDateEvent(sender:AnyObject?){
         //        var dateSelecter:UIDatePicker = sender as! UIDatePicker
-        self.changeLabelDate(datePicker1.date)
+        self.changeLabelDate(datePicker.date)
     }
     // 日付の変更
     func changeLabelDate(date:NSDate) {
-        alert.textFields![1].text = format(datePicker1.date,style: Const.DateFormat)
+        alert.textFields![1].text = format(datePicker.date,style: Const.DateFormat)
     }
     
     // 名前の入力完了時に閉じる
@@ -440,7 +447,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event)
 
-        print("close keyboard", terminator: "")
+        print("close keyboard")
 //        alert.textFields![0].resignFirstResponder()
 //        alert.textFields![1].resignFirstResponder()
 //        alert.textFields![2].resignFirstResponder()

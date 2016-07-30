@@ -39,12 +39,12 @@ class A5ResultViewController : UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("A5ResultViewController viewDidLoad", terminator: "")
+        print("A5ResultViewController viewDidLoad")
 
         // 保存していた情報の復元
         let defaults = NSUserDefaults.standardUserDefaults()
         if let userNameList = defaults.objectForKey(Const.UserNameList) as? [String] {
-            print("userNameList:\(userNameList)", terminator: "")
+            print("userNameList:\(userNameList)")
             let retDivination = resultDivinationClass()
             for indexStr in userNameList {
                 //let userName = userNameList[0]
@@ -52,7 +52,7 @@ class A5ResultViewController : UIViewController {
                     plotResultList.append(plotResult)
                 }
             }
-            print("userList is not nil", terminator: "")
+            //print("userList is not nil")
             // 点数のセット、マイナス時は青字、１００点以上は赤字
             if !plotResultList.isEmpty {
                 let score = retDivination.getCompatibilityScore(plotResultList)
@@ -73,7 +73,6 @@ class A5ResultViewController : UIViewController {
                                       value: UIFont(name: "Helvetica Neue", size: 52.0)!,
                                       range: NSMakeRange(0, scoreLength))
                 lblScore.attributedText = attrText
-               // lblScore.text =
             }
         }
     }
@@ -95,7 +94,7 @@ class A5ResultViewController : UIViewController {
 
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        print("prepareForSegue : \(segue.identifier), _param : \(_param)", terminator: "")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
             secondViewController._second = _param

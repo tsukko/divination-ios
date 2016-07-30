@@ -62,7 +62,7 @@ class resultDivinationClass {
                 if (c.value >= 0x3041 && c.value <= 0x3096) ||
                    (c.value >= 0x30A1 && c.value <= 0x30F6) ||
                    c.value == 0x0020 || c.value == 0xFF5A {
-                    print("ChackHiragana OK: \(v) : \(c.value)")
+                    //print("ChackHiragana OK: \(v) : \(c.value)")
                     let s = NSString(format:"%2X", c.value) as String
                     var test:[String!] = kanaData.getPlotData("0x" + s)
                     for i in 0...7 {
@@ -211,12 +211,12 @@ class resultDivinationClass {
             if plotData[i] > 0 {
                 flagYatanokagami += 1
             } else {
-                print("plotData[\(i)] is zero.", terminator: "")
+                print("plotData[\(i)] is zero.")
                 // a: 丸が付かない場所を埋める言葉を洗い出す
                 // b: その中からランダムに一文字決め、名前にその文字を足し合わせる
                 // userNameNew に一文字追加
                 let newAddWord = kanaData.getRandomCharaFromPlotData(plotData)
-                print("add word :\(newAddWord)", terminator: "")
+                print("add word :\(newAddWord)")
                 lTweetWord = tweetWord + newAddWord
                 newUserName = userName + newAddWord
                 break
@@ -232,10 +232,10 @@ class resultDivinationClass {
                 let d = Int(arc4random_uniform(UInt32(characters.count)))
                 outputWord = outputWord + characters.removeAtIndex(d)
             }
-            print("inputWord :\(lTweetWord) -> outputWord :\(outputWord)", terminator: "")
+            print("inputWord :\(lTweetWord) -> outputWord :\(outputWord)")
             return outputWord
         } else {
-            print("flagYatanokagami :\(flagYatanokagami)", terminator: "")
+            print("flagYatanokagami :\(flagYatanokagami)")
             // c: 音の鏡を確認し、まだ丸が付いて居ない箇所があれば、aからやり直す
             return getTodayLuckyWord(newUserName, tweetWord: lTweetWord, kanaData: kanaData)
         }
@@ -247,15 +247,15 @@ class resultDivinationClass {
         
         // 条件
         let scoreAddFirst:Int = getScoreAddFirst(plotDataList)
-        print("score add1 :\(scoreAddFirst)", terminator: "")
+        print("score add1 :\(scoreAddFirst)")
         let scoreAddSecond:Int = getScoreAddSecond(plotDataList)
-        print("score add2 :\(scoreAddSecond)", terminator: "")
+        print("score add2 :\(scoreAddSecond)")
         let scoreAddThird:Int = getScoreAddThird(plotDataList)
-        print("score add3 :\(scoreAddSecond)", terminator: "")
+        print("score add3 :\(scoreAddSecond)")
         let scoreSubFirst:Int = getScoreSubFirst(plotDataList)
-        print("score sub1 :\(scoreSubFirst)", terminator: "")
+        print("score sub1 :\(scoreSubFirst)")
         let scoreSubSecond:Int = getScoreSubSecond(plotDataList)
-        print("score sub2 :\(scoreSubSecond)", terminator: "")
+        print("score sub2 :\(scoreSubSecond)")
         
         let scoreTotal:Int = score + scoreAddFirst + scoreAddSecond + scoreAddThird + scoreSubFirst + scoreSubSecond
         return scoreTotal.description
@@ -264,17 +264,16 @@ class resultDivinationClass {
     // 加算　条件１
     func getScoreAddFirst(plotDataList:[[Int]]) -> Int {
         var score:Int = 0
-        var add6Count = 0
-        var add4Count = 0
+        var add2Count = 0
         var amari = [0,0,0,0,0,0,0,0]
         var sPlotDataList = plotDataList
 
-        print("\(sPlotDataList[0])", terminator: "")
-        print("\(sPlotDataList[1])", terminator: "")
+        print("\(sPlotDataList[0])")
+        print("\(sPlotDataList[1])")
         // 一人目と二人目のとき
         for index in 0..<8 {
             if 0 == test(sPlotDataList[0][index]) & test(sPlotDataList[1][index]) {
-                add6Count = add6Count + 1
+                add2Count = add2Count + 1
             }
             amari[index] = sPlotDataList[0][index] + sPlotDataList[1][index] - 2
             if amari[index] < 0 {
@@ -282,29 +281,29 @@ class resultDivinationClass {
             }
         }
 
-        print("add6Count=\(add6Count), amari=\(amari)", terminator: "")
+        print("1:add2Count=\(add2Count), amari=\(amari)")
 
         // 次でfor文でまわすで計算した一人目二人目を削除
         sPlotDataList.removeFirst()
         sPlotDataList.removeFirst()
 
         for plotDataTMP in sPlotDataList {
-            print("plotDataTMP=\(plotDataTMP)", terminator: "")
+            print("plotDataTMP =\(plotDataTMP)")
             // 3人目以降
             for index in 0..<8 {
                 if 0 == plotDataTMP[index] && amari[index] != 0 {
-                    add4Count = add4Count + 1
+                    add2Count = add2Count + 1
                 }
                 amari[index] = amari[index] + plotDataTMP[index] - 1
                 if amari[index] < 0 {
                     amari[index] = 0
                 }
             }
-            print("add4Count=\(add4Count), amari=\(amari)", terminator: "")
+            print("2:dd2Count=\(add2Count), amari=\(amari)")
         }
         
-        score = add6Count * 6 + add4Count * 4
-        print("条件1 score=\(score)", terminator: "")
+        score = add2Count * 2
+        print("条件1 score=\(score)")
         return score
     }
 
@@ -312,38 +311,38 @@ class resultDivinationClass {
     func getScoreAddSecond(plotDataList:[[Int]]) -> Int {
         var score:Int = 0
         var add2Count = 0
-        var amari = [0,0,0,0,0,0,0,0]
-        var testPlotData = [0,0,0,0,0,0,0,0]
+        var heapPlotData = [0,0,0,0,0,0,0,0]
+        var addPointPlotData = [0,0,0,0,0,0,0,0]
         for plotDataTMP in plotDataList {
-            print("plotDataTMP=\(plotDataTMP)", terminator: "")
+            print("plotDataTMP =\(plotDataTMP)")
             for index in 0..<8 {
                 if plotDataTMP[index] > 1 {
-                    amari[index] = amari[index] + 1
+                    heapPlotData[index] = heapPlotData[index] + 1
                 }
                 if index < 4 {
                     if plotDataTMP[index] == 0 && plotDataTMP[index + 4] == 0 {
-                        testPlotData[index] += 1
-                        testPlotData[index + 4] += 1
+                        addPointPlotData[index] += 1
+                        addPointPlotData[index + 4] += 1
                     }
                 }
             }
         }
-        print("amari=\(amari), testPlotData=\(testPlotData)", terminator: "")
+        print("heapPlotData=\(heapPlotData), addPointPlotData=\(addPointPlotData)")
 
         for index in 0..<8 {
-            if testPlotData[index] > 0 && amari[index] > 0 {
-                amari[index] -= 1
+            if addPointPlotData[index] > 0 && heapPlotData[index] > 0 {
+                heapPlotData[index] -= 1
                 if index < 4 {
-                    amari[index + 4] -= 1
+                    heapPlotData[index + 4] -= 1
                 } else {
                     // ここはこない想定
-                    amari[index - 4] -= 1
+                    heapPlotData[index - 4] -= 1
                 }
                 add2Count += 1
             }
         }
         score = add2Count * 2
-        print("条件2 score=\(score)", terminator: "")
+        print("条件2 score=\(score)")
         return score
     }
 
@@ -352,7 +351,7 @@ class resultDivinationClass {
         var score:Int = 0
         var heapPlotData = [0,0,0,0,0,0,0,0]
         for plotDataTMP in plotDataList {
-            print("plotDataTMP=\(plotDataTMP)", terminator: "")
+            print("plotDataTMP =\(plotDataTMP)")
             var flagAllPlot = true
             
             for index in 0..<8 {
@@ -362,14 +361,13 @@ class resultDivinationClass {
                 }
             }
 
+            print("heapPlotData=\(heapPlotData)")
             if flagAllPlot {
                 score = 8
                 break
             }
-            
-            print("heapPlotData=\(heapPlotData)", terminator: "")
         }
-        print("条件3 score=\(score)", terminator: "")
+        print("条件3 score=\(score)")
         return score
     }
 
@@ -380,13 +378,13 @@ class resultDivinationClass {
         var del21Count = 0
         var heapPlotData = [0,0,0,0,0,0,0,0]
         for plotDataTMP in plotDataList {
-            print("plotDataTMP=\(plotDataTMP)", terminator: "")
+            print("plotDataTMP =\(plotDataTMP)")
 
             for index in 0..<8 {
                 heapPlotData[index] = heapPlotData[index] + plotDataTMP[index]
             }
         }
-        print("heapPlotData=\(heapPlotData)", terminator: "")
+        print("heapPlotData=\(heapPlotData)")
         
         for index in 0..<8 {
             if 0 == heapPlotData[index] {
@@ -400,22 +398,23 @@ class resultDivinationClass {
         }
         
         score = -(del9Count * 9 + del21Count * 21)
-        print("条件A score=\(score)", terminator: "")
+        print("条件A score=\(score)")
         return score
     }
+    
     // 減点　条件B
     func getScoreSubSecond(plotDataList:[[Int]]) -> Int {
         var score:Int = 0
         var delCount = 0
         var heapPlotData = [0,0,0,0,0,0,0,0]
         for plotDataTMP in plotDataList {
-            print("plotDataTMP=\(plotDataTMP)", terminator: "")
+            print("plotDataTMP =\(plotDataTMP)")
 
             for index in 0..<8 {
                 heapPlotData[index] = heapPlotData[index] + plotDataTMP[index]
             }
         }
-        print("heapPlotData=\(heapPlotData)", terminator: "")
+        print("heapPlotData=\(heapPlotData)")
         
         for index in 0..<4 {
             delCount += heapPlotData[exchangeIndex(index + 1)]
@@ -431,14 +430,28 @@ class resultDivinationClass {
             - heapPlotData[exchangeIndex(index + 5)]
             - heapPlotData[exchangeIndex(index + 6)] * 2
             - heapPlotData[exchangeIndex(index + 7)]
-            print("delCount=\(-delCount)", terminator: "")
+            
+            // debug
+            let delCount1 = heapPlotData[exchangeIndex(index + 1)] + heapPlotData[exchangeIndex(index + 2)] + heapPlotData[exchangeIndex(index + 3)]
+            let delCount2 = heapPlotData[exchangeIndex(index + 5)] + heapPlotData[exchangeIndex(index + 6)] + heapPlotData[exchangeIndex(index + 7)]
+            let delCount3 = heapPlotData[exchangeIndex(index + 1)] + heapPlotData[exchangeIndex(index + 2)] * 2 + heapPlotData[exchangeIndex(index + 3)]
+            let delCount4 = heapPlotData[exchangeIndex(index + 5)] + heapPlotData[exchangeIndex(index + 6)] * 2 + heapPlotData[exchangeIndex(index + 7)]
+            print("delCount1=\(delCount1)")
+            print("delCount2=\(delCount2)")
+            print("delCount3=\(delCount3)")
+            print("delCount4=\(delCount4)")
+            print("delCount1 - delCount2=\(delCount1 - delCount2)")
+            print("delCount3 - delCount4=\(delCount3 - delCount4)")
+            print("delCount=\(delCount1 - delCount2 + delCount3 - delCount4)")
+            print("delCountTotal=\(-delCount)")
         }
         
-        score = -(delCount)
-        print("条件B score=\(score)", terminator: "")
+        score = delCount
+        print("条件B score=\(score)")
         return score
     }
 
+    // １つ以上の丸がある場合、１を返す（例えば丸が３つあっても１を返す）
     func test(num:Int) -> Int {
         if num > 0 {
             return 1
@@ -446,12 +459,34 @@ class resultDivinationClass {
             return 0
         }
     }
+    
+    // PlotDataの配列が時計の3時の場所から”反時計回り”で数えているが、この呼び先（条件B）は"時計回り"で計算している
+    // 反時計回り計算を逆にする
     func exchangeIndex(num:Int) -> Int {
+        var changeNum = 0
         if num > 7 {
-            return num - 8
+            changeNum = num - 8
         } else {
-            return num
+            changeNum = num
         }
+        // 反時計のindexを時計回りに対応させる
+        var retNum = 0
+        if changeNum == 0 || changeNum == 4 {
+            retNum = changeNum
+        } else if changeNum == 1 {
+            retNum = 7
+        } else if changeNum == 2 {
+            retNum = 6
+        } else if changeNum == 3 {
+            retNum = 5
+        } else if changeNum == 5 {
+            retNum = 3
+        } else if changeNum == 6 {
+            retNum = 2
+        } else if changeNum == 7 {
+            retNum = 1
+        }
+        return retNum
     }
 
     // 命名術の結果文言の取得

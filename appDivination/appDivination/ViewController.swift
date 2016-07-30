@@ -40,7 +40,7 @@ class ViewController: UIViewController {
     // インスタンス化された直後（初回に一度のみ）
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("ViewController viewDidLoad", terminator: "")
+        print("ViewController viewDidLoad")
         
         // viewにロングタップのジェスチャーを追加
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.doGesture(_:)))
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
         if let tempUserName = defaults.stringForKey(Const.UserName) {
             // NSUserDefaultsに格納された値を取得
             userName = tempUserName
-            print("ViewController viewWillAppear userName:\(userName)", terminator: "")
+            print("ViewController viewWillAppear userName:\(userName)")
             btnTodayTweet.hidden = false
         } else {
             btnTodayTweet.hidden = true
@@ -85,7 +85,7 @@ class ViewController: UIViewController {
 
     // Segueはビューが遷移するタイミングで呼ばれるもの
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        print("prepareForSegue : \(segue.identifier), _param : \(_param)", terminator: "")
+        print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
             // 元画面を示す値_paramOriginal = 0
             let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
