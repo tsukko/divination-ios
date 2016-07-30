@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -21,17 +22,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="トップページタイトル" translatesAutoresizingMaskIntoConstraints="NO" id="3eA-hQ-A2Z">
-                                <rect key="frame" x="124" y="176" width="352" height="248"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="352" id="3Vv-uN-lrC"/>
-                                </constraints>
+                                <rect key="frame" x="72" y="-189" width="456" height="878"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ZIW-2a-YDG" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" id="CXr-eX-YxE"/>
-                            <constraint firstItem="3eA-hQ-A2Z" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="OFB-iW-u3W"/>
-                            <constraint firstItem="3eA-hQ-A2Z" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="156" id="OxD-hG-ngB"/>
+                            <constraint firstItem="3eA-hQ-A2Z" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.76" id="Jwi-XF-zfL"/>
+                            <constraint firstItem="3eA-hQ-A2Z" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-50" id="OFB-iW-u3W"/>
                             <constraint firstItem="ZIW-2a-YDG" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="djC-pY-K7p"/>
                             <constraint firstItem="3eA-hQ-A2Z" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="gEs-Or-9if"/>
                             <constraint firstItem="ZIW-2a-YDG" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="gkK-ae-Lco"/>
