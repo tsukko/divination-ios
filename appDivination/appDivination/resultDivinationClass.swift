@@ -64,9 +64,9 @@ class resultDivinationClass {
                    c.value == 0x0020 || c.value == 0xFF5A {
                     //print("ChackHiragana OK: \(v) : \(c.value)")
                     let s = NSString(format:"%2X", c.value) as String
-                    var test:[String!] = kanaData.getPlotData("0x" + s)
+                    var sPlotData:[String!] = kanaData.getPlotData("0x" + s)
                     for i in 0...7 {
-                        plotResult[i] += Int(test[i])!
+                        plotResult[i] += Int(sPlotData[i])!
                     }
                 } else {
                     // ここに来るまでに判定しているので、ここは通らない想定
@@ -247,15 +247,10 @@ class resultDivinationClass {
         
         // 条件
         let scoreAddFirst:Int = getScoreAddFirst(plotDataList)
-//        print("score add1 :\(scoreAddFirst)")
         let scoreAddSecond:Int = getScoreAddSecond(plotDataList)
-//        print("score add2 :\(scoreAddSecond)")
         let scoreAddThird:Int = getScoreAddThird(plotDataList)
-//        print("score add3 :\(scoreAddSecond)")
         let scoreSubFirst:Int = getScoreSubFirst(plotDataList)
-//        print("score sub1 :\(scoreSubFirst)")
         let scoreSubSecond:Int = getScoreSubSecond(plotDataList)
-//        print("score sub2 :\(scoreSubSecond)")
         
         let scoreTotal:Int = score + scoreAddFirst + scoreAddSecond + scoreAddThird + scoreSubFirst + scoreSubSecond
         return scoreTotal.description
@@ -272,7 +267,8 @@ class resultDivinationClass {
         print("\(sPlotDataList[1])")
         // 一人目と二人目のとき
         for index in 0..<8 {
-            if 0 == test(sPlotDataList[0][index]) & test(sPlotDataList[1][index]) {
+            if (0 == sPlotDataList[0][index] && 2 <= sPlotDataList[1][index]) ||
+                (2 <= sPlotDataList[0][index] && 0 == sPlotDataList[1][index]) {
                 add2Count = add2Count + 1
             }
             amari[index] = sPlotDataList[0][index] + sPlotDataList[1][index] - 2
@@ -291,13 +287,16 @@ class resultDivinationClass {
             print("plotDataTMP =\(plotDataTMP)")
             // 3人目以降
             for index in 0..<8 {
+                var subPoint = 0
+                var addPoint = 0
                 if 0 == plotDataTMP[index] && amari[index] != 0 {
                     add2Count = add2Count + 1
+                    subPoint = 1
                 }
-                amari[index] = amari[index] + plotDataTMP[index] - 1
-                if amari[index] < 0 {
-                    amari[index] = 0
+                if 2 <= plotDataTMP[index] {
+                    addPoint = plotDataTMP[index] - 1
                 }
+                amari[index] = amari[index] - subPoint + addPoint
             }
             print("2:dd2Count=\(add2Count), amari=\(amari)")
         }
@@ -457,15 +456,6 @@ class resultDivinationClass {
         return score
     }
 
-    // １つ以上の丸がある場合、１を返す（例えば丸が３つあっても１を返す）
-    func test(num:Int) -> Int {
-        if num > 0 {
-            return 1
-        } else {
-            return 0
-        }
-    }
-    
     // PlotDataの配列が時計の3時の場所から”反時計回り”で数えているが、
     // この呼び先（条件B）は0時の場所から"時計回り"で計算している
     // それに適応するようにindexを変換
@@ -555,3 +545,35 @@ class resultDivinationClass {
 
     }
 }
+
+/*
+命名診断結果
+
+父: さわきたりき
+母: さわきたみう
+
+[パターン１]
+
+～命名方法～
+
+ご家族の調和をとるために導きだされた結果になります。
+結果で表示されたパターンの中からお好きなパターンをお一つお選びください。
+１～５個位のカッコ群で構成されていますので、すべてのカッコの中からそれぞれ一文字ずつお選びください。
+ほかのカッコの中に同じ文字が重複している場合があります。
+もし重複している文字をお選びになる場合は、ほかのカッコの中からも同じ文字を選んでください。
+同じ文字を複数回選んだとしても、使用されるのは一回で結構です。
+必ずカッコからお選びいただいた文字は全て使用してください。
+それ以外の文字は、何文字でも５０音からご自由にお選びいただけます。
+お好きなように組み合わせて命名してくださって結構です。
+こちらの説明だけではご理解いただけない場合や、文字数が多くて組み合わせが困難な場合、また、お子様にこのように育ってほしい、ある特性を伸ばしたいなどのご希望がある場合は直接ご相談ください。
+
+
+コマツザキ
+21301121
+よねだ
+11021102
+まえだ
+30301031
+あべ
+10113000
+*/
