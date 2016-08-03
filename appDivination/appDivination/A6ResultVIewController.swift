@@ -19,8 +19,9 @@ import UIKit
  */
 class A6ResultViewController : UIViewController {
     
-    @IBOutlet weak var lblMessage: UILabel!
-    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblName1: UILabel!
+    @IBOutlet weak var lblName2: UILabel!
+    @IBOutlet weak var lblResult: UILabel!
 
     // 画面番号、遷移元を知るために使用
     let viewNumber = Const.ViewNumber.A6ViewConNum
@@ -46,12 +47,14 @@ class A6ResultViewController : UIViewController {
         var secondPlotResult:[Int] = []
         if let firstName = defaults.stringForKey(Const.FirstUserName) {
             firstPlotResult = retDivination.divinationReturnResult(firstName)
+            lblName1.text = "父： " + firstName
         }
         if let secondName = defaults.stringForKey(Const.SecondUserName) {
             secondPlotResult = retDivination.divinationReturnResult(secondName)
+            lblName1.text = "母： " + secondName
         }
         
-        lblMessage.text = retDivination.getNaming(firstPlotResult, secondPlotData: secondPlotResult)
+        lblResult.text = retDivination.getNaming(firstPlotResult, secondPlotData: secondPlotResult)
     }
     
     // 画面が表示された直後
