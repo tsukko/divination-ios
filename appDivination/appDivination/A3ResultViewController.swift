@@ -170,36 +170,35 @@ class A3ResultViewController : UIViewController {
             imageView01[index]!.hidden = false
             if (plotResult[index]==0) {
                 // 0の場合は、円の画像は表示しない
-                imageView01[index]!.hidden = true
+                imageView01[index]!.image = drawText(img[5], score: "8")
             } else if (plotResult[index]>=1 && plotResult[index]<=6) {
                 // 1〜6までの時は、画像を表示
                 imageView01[index]!.image = img[plotResult[index]-1]
             } else {
-                // TODO 7以上は、数字を表示、ひとまず最大を表示
-                imageView01[index]!.image = img[5]
+                // 7以上は、数字を表示
+                imageView01[index]!.image = drawText(img[5], score: plotResult[index].description)
             }
         }
     }
     
     // 画像とテキストを合成する
-    func drawText(image :UIImage) ->UIImage {
-        let text = "Some text.."
-
-        let font = UIFont.boldSystemFontOfSize(32)
-        let imageRect = CGRectMake(0,0,image.size.width,image.size.height)
+    func drawText(image :UIImage, score :String) ->UIImage {
+        let font = UIFont.boldSystemFontOfSize(216)
+//        let imageRect = CGRectMake(0,0,image.size.width,image.size.height)
 
         UIGraphicsBeginImageContext(image.size);
 
-        image.drawInRect(imageRect)
-
-        let textRect  = CGRectMake(5, 5, image.size.width - 5, image.size.height - 5)
+        //image.drawInRect(imageRect)
+        let textRect  = CGRectMake(0, image.size.height/2-128, image.size.width, image.size.height)
         let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
+        textStyle.alignment = NSTextAlignment.Center
         let textFontAttributes = [
             NSFontAttributeName: font,
-            NSForegroundColorAttributeName: UIColor.whiteColor(),
+            NSForegroundColorAttributeName: UIColor.blackColor(),
             NSParagraphStyleAttributeName: textStyle
+
         ]
-        text.drawInRect(textRect, withAttributes: textFontAttributes)
+        score.drawInRect(textRect, withAttributes: textFontAttributes)
 
         let newImage = UIGraphicsGetImageFromCurrentImageContext();
 
