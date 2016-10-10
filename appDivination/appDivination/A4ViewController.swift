@@ -55,7 +55,8 @@ class A4ViewController : UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         print("A4ViewController viewDidLoad")
 
-        naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
+        naviBar.setBackgroundImage(UIImage(), forBarPosition: .TopAttached, barMetrics: .Default)
+        naviBar.shadowImage = UIImage()
 
         // テキストフィールドにDatePickerを表示する
         datePicker1 = UIDatePicker()

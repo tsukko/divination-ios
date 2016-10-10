@@ -170,7 +170,9 @@ class A3ResultViewController : UIViewController {
             imageView01[index]!.hidden = false
             if (plotResult[index]==0) {
                 // 0の場合は、円の画像は表示しない
-                imageView01[index]!.image = drawText(img[5], score: "8")
+                imageView01[index]!.hidden = true
+                // 以下は、debug
+                //imageView01[index]!.image = drawText(img[5], score: "8")
             } else if (plotResult[index]>=1 && plotResult[index]<=6) {
                 // 1〜6までの時は、画像を表示
                 imageView01[index]!.image = img[plotResult[index]-1]
@@ -204,7 +206,7 @@ class A3ResultViewController : UIViewController {
 
         UIGraphicsEndImageContext()
 
-        return newImage
+        return newImage!
     }
     
     /**

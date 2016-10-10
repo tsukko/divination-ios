@@ -167,7 +167,8 @@ class A6ViewController : UIViewController, UITextFieldDelegate, UIScrollViewDele
         super.viewDidLoad()
         print("A6ViewController viewDidLoad")
         
-        naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
+        naviBar.setBackgroundImage(UIImage(), forBarPosition: .TopAttached, barMetrics: .Default)
+        naviBar.shadowImage = UIImage()
         
         self.InputView1.layer.borderColor = UIColor(red: 220/255.0, green: 220/255.0, blue: 220/255.0, alpha: 1.0).CGColor
         self.InputView1.layer.borderWidth = 1

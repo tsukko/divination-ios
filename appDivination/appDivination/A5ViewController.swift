@@ -156,7 +156,8 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         super.viewDidLoad()
         print("A5ViewController viewDidLoad")
         
-        naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
+        naviBar.setBackgroundImage(UIImage(), forBarPosition: .TopAttached, barMetrics: .Default)
+        naviBar.shadowImage = UIImage()
         
         self.tableView.dataSource = self
         self.tableView.delegate = self

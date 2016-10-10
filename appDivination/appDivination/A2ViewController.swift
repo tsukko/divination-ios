@@ -47,7 +47,8 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
         super.viewDidLoad()
         print("A2ViewController viewDidLoad _param : \(_param) _second: \(_second)")
         
-        naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
+        naviBar.setBackgroundImage(UIImage(), forBarPosition: .TopAttached, barMetrics: .Default)
+        naviBar.shadowImage = UIImage()
 
         if _second == Const.ViewNumber.ViewConNum {
             if _param == Const.ViewNumber.A2ViewProfile  {
@@ -166,16 +167,16 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
     // メールキャンセル
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         switch result.rawValue {
-        case MFMailComposeResultCancelled.rawValue:
+        case MFMailComposeResult.Cancelled.rawValue:
             print("Email Send Cancelled")
             break
-        case MFMailComposeResultSaved.rawValue:
+        case MFMailComposeResult.Saved.rawValue:
             print("Email Saved as a Draft")
             break
-        case MFMailComposeResultSent.rawValue:
+        case MFMailComposeResult.Sent.rawValue:
             print("Email Sent Successfully")
             break
-        case MFMailComposeResultFailed.rawValue:
+        case MFMailComposeResult.Failed.rawValue:
             print("Email Send Failed")
             break
         default:
