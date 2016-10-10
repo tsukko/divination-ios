@@ -166,16 +166,16 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
     // メールキャンセル
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         switch result.rawValue {
-        case MFMailComposeResultCancelled.rawValue:
+        case MFMailComposeResult.Cancelled.rawValue:
             print("Email Send Cancelled")
             break
-        case MFMailComposeResultSaved.rawValue:
+        case MFMailComposeResult.Saved.rawValue:
             print("Email Saved as a Draft")
             break
-        case MFMailComposeResultSent.rawValue:
+        case MFMailComposeResult.Sent.rawValue:
             print("Email Sent Successfully")
             break
-        case MFMailComposeResultFailed.rawValue:
+        case MFMailComposeResult.Failed.rawValue:
             print("Email Send Failed")
             break
         default:
