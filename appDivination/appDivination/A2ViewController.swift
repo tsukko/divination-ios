@@ -47,7 +47,8 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
         super.viewDidLoad()
         print("A2ViewController viewDidLoad _param : \(_param) _second: \(_second)")
         
-        naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
+        naviBar.setBackgroundImage(UIImage(), forBarPosition: .TopAttached, barMetrics: .Default)
+        naviBar.shadowImage = UIImage()
 
         if _second == Const.ViewNumber.ViewConNum {
             if _param == Const.ViewNumber.A2ViewProfile  {
