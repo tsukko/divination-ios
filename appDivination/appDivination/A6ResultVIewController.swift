@@ -19,10 +19,12 @@ import UIKit
  */
 class A6ResultViewController : UIViewController {
     
+    @IBOutlet weak var resultScrollView: UIScrollView!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var resultBackImage: UIImageView!
     @IBOutlet weak var lblName1: UILabel!
     @IBOutlet weak var lblName2: UILabel!
     @IBOutlet weak var lblResult: UILabel!
-    @IBOutlet weak var contentView: UIView!
 
     // 画面番号、遷移元を知るために使用
     let viewNumber = Const.ViewNumber.A6ViewConNum
@@ -52,13 +54,11 @@ class A6ResultViewController : UIViewController {
         }
         if let secondName = defaults.stringForKey(Const.SecondUserName) {
             secondPlotResult = retDivination.divinationReturnResult(secondName)
-            lblName1.text = "母： " + secondName
+            lblName2.text = "母： " + secondName
         }
         
         lblResult.text = retDivination.getNaming(firstPlotResult, secondPlotData: secondPlotResult)
-        lblResult.text = lblResult.text!+"\n\ntest\ntesttest\ntesttest\ntesttest\ntesttest\ntesttest"
-        
-//        contentView.autoresizesSubviews
+        lblResult.text = lblResult.text!
     }
     
     // 画面が表示された直後
@@ -68,6 +68,30 @@ class A6ResultViewController : UIViewController {
 
     func changeLayout(){
         // レイアウト高さ設定
+        // 行数無制限
+        lblResult.numberOfLines = 0
+        // サイズを自動調整
+        lblResult.sizeToFit()
+        
+        let height = CGRectGetHeight(lblResult.frame)
+        let width = CGRectGetWidth(lblResult.frame)
+        print("ラベルの高さ:\(height) 幅:\(width)")
+        
+        // ラベルの位置取得
+        //let midX = CGRectGetMidX(lblResult.frame)
+        //let midY = CGRectGetMidY(lblResult.frame)
+        //print("ラベルの中心のX座業:\(midX) Y座標:\(midY)")
+        
+        // -40にしているのは見た目を合わせるため
+        let newContentHeight = height+1020
+        
+        // TODO contentViewの方がよかったりする？？？？？
+        let SVSize = resultScrollView.frame.size
+        self.resultScrollView.contentSize = CGSizeMake(SVSize.width, newContentHeight);
+        resultBackImage.frame = CGRectMake(0, 0, resultBackImage.frame.width, newContentHeight)
+        
+        //scroll画面の初期位置
+        resultScrollView.contentOffset = CGPointMake(0, 0);
     }
     
     // 説明を聞くボタンを押した時
