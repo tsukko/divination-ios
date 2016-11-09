@@ -178,20 +178,20 @@ class A3ResultViewController : UIViewController {
                 imageView01[index]!.image = img[plotResult[index]-1]
             } else {
                 // 7以上は、数字を表示
-                imageView01[index]!.image = drawText(img[5], score: plotResult[index].description)
+                imageView01[index]!.image = drawText(img[5].size, score: plotResult[index].description)
             }
         }
     }
     
     // 画像とテキストを合成する
-    func drawText(image :UIImage, score :String) ->UIImage {
+    func drawText(imageSize :CGSize, score :String) ->UIImage {
         let font = UIFont.boldSystemFontOfSize(216)
 //        let imageRect = CGRectMake(0,0,image.size.width,image.size.height)
 
-        UIGraphicsBeginImageContext(image.size);
+        UIGraphicsBeginImageContext(imageSize);
 
         //image.drawInRect(imageRect)
-        let textRect  = CGRectMake(0, image.size.height/2-128, image.size.width, image.size.height)
+        let textRect  = CGRectMake(0, imageSize.height/2-128, imageSize.width, imageSize.height)
         let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         textStyle.alignment = NSTextAlignment.Center
         let textFontAttributes = [

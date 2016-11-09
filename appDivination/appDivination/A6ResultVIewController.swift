@@ -22,6 +22,7 @@ class A6ResultViewController : UIViewController {
     @IBOutlet weak var lblName1: UILabel!
     @IBOutlet weak var lblName2: UILabel!
     @IBOutlet weak var lblResult: UILabel!
+    @IBOutlet weak var contentView: UIView!
 
     // 画面番号、遷移元を知るために使用
     let viewNumber = Const.ViewNumber.A6ViewConNum
@@ -55,6 +56,9 @@ class A6ResultViewController : UIViewController {
         }
         
         lblResult.text = retDivination.getNaming(firstPlotResult, secondPlotData: secondPlotResult)
+        lblResult.text = lblResult.text!+"\n\ntest\ntesttest\ntesttest\ntesttest\ntesttest\ntesttest"
+        
+//        contentView.autoresizesSubviews
     }
     
     // 画面が表示された直後
