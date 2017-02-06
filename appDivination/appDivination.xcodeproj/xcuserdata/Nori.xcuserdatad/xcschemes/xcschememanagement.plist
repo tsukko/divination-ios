@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>appDivinationUITests copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>8C735B4F1E48D043009FB5C1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8CE368E31BEF283E00CC7A35</key>
 		<dict>
 			<key>primary</key>

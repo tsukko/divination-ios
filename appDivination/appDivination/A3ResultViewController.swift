@@ -8,12 +8,19 @@
 
 import UIKit
 
+/*
+ * 無料言霊鑑定結果画面
+ * 遷移先
+ * 　池田先生の説明を聞く(説明ページ＿音霊鑑定)
+ * 　戻る（略）
+ * 遷移元
+ * 　無料言霊鑑定アニメーション画面
+ * 　トップ画面（右下のボタン）
+ */
 class A3ResultViewController : UIViewController {
     
-//    @IBOutlet var viewBack: UIView!
-    @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var resultScrollView: UIScrollView!
-    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var resultBackImage: UIImageView!
     @IBOutlet weak var CircleImageView1: UIImageView!
     @IBOutlet weak var CircleImageView2: UIImageView!
@@ -23,6 +30,17 @@ class A3ResultViewController : UIViewController {
     @IBOutlet weak var CircleImageView6: UIImageView!
     @IBOutlet weak var CircleImageView7: UIImageView!
     @IBOutlet weak var CircleImageView8: UIImageView!
+
+    // レア音霊、あなたの特性、運気を上げる文言のタイトルとメッセージ表示部
+    @IBOutlet weak var lblTitleRare: UILabel!
+    @IBOutlet weak var lblMessageRare: UILabel!
+    @IBOutlet weak var lblTitleLatter: UILabel!
+    @IBOutlet weak var lblMessageLatter: UILabel!
+    @IBOutlet weak var lblTitleLuckyWord: UILabel!
+    @IBOutlet weak var lblMessageLuckyWord: UILabel!
+    
+    // レア音霊が非表示となったときに高さをつめるための定義
+    @IBOutlet weak var labelHeightConstraintRare: NSLayoutConstraint!
     
     var img: [UIImage] = [
         UIImage(named:"maru1")!,
@@ -33,77 +51,110 @@ class A3ResultViewController : UIViewController {
         UIImage(named:"maru6")!]
     var imageView01: [UIImageView?] = []
     
-    /// 画面遷移時に渡す為の値
+    // 画面番号、遷移元を知るために使用
+    let viewNumber = Const.ViewNumber.A3ViewConNum
+    // 画面遷移時に遷移元が渡す遷移先の値
     var _param:Int = -1
-    /// 遷移時の受け取り用の変数
+    // 画面遷移時に遷移元が渡す遷移元の値
+    var _paramOriginal:Int = -1
+    // 画面遷移時に遷移先が受け取る遷移先の値
     var _second:Int = 0
-    
-    var _message:String = "b"
-    
+
     /**
      インスタンス化された直後（初回に一度のみ）
      viewDiDLoad
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("A3ResultViewController viewDidLoad msg: \(_message)")
+        print("A3ResultViewController viewDidLoad")
+
+        // 占い結果を取得、無料言霊鑑定アニメーション画面で保存している
+        let defaults = UserDefaults.standard
+        let userName = defaults.string(forKey: Const.UserName)!
         
-        // バック画像の設定
-//        viewBack.backgroundColor = UIColor(patternImage: UIImage(named: "backimg_blue")!)
-        
-        lblMessage.text = _message
-        
-        let defaults = NSUserDefaults.standardUserDefaults()
-        lblName.text = defaults.stringForKey("userName")!+" さん"
-        let plotResult:[Int] = (defaults.objectForKey("plotResult") as? [Int])!
+        // 占いの実行
+        let retDivination = resultDivinationClass()
+        let plotResult:[Int] = retDivination.divinationReturnResult(userName: userName)
         
         // 占い結果の円の表示
         displayCycle(plotResult)
+        
+        // レア言霊
+        lblMessageRare.text = retDivination.getMessagRare(plotResult)
+        if lblMessageRare.text!.isEmpty {
+            lblMessageRare.isHidden = true
+            lblTitleRare.isHidden = true
+            // -30にしているのは見た目を合わせるため。TitleとMessageのView間の高さ（それぞれ15,5だけど30引いた方がいい感じだった。。。）
+            labelHeightConstraintRare.constant = -30
+        } else {
+            lblMessageRare.isHidden = false
+            lblTitleRare.isHidden = false
+            labelHeightConstraintRare.constant = 20
+        }
+        // あなたの特性の表示
+        lblMessageLatter.text = retDivination.getMessageLatter(plotResult)
+        
+        // 運気を上げる文言の表示
+        lblMessageLuckyWord.text = retDivination.getMessageLuckyWord(plotResult)
+        
+        //ここで変更しても反映されない
+        //changeLayout();
+    }
+
+    override func viewWillAppear(_ animated:Bool) {
+        changeLayout();
     }
     
     // 画面が表示された直後
-    override func viewDidAppear(animated:Bool) {
+    override func viewDidAppear(_ animated:Bool) {
+        changeLayout();
+    }
+    
+    func changeLayout(){
         // 行数無制限
-        lblMessage.numberOfLines = 0
+        lblMessageLatter.numberOfLines = 0
         // サイズを自動調整
-        lblMessage.sizeToFit()
+        lblMessageLatter.sizeToFit()
         
-        let height = CGRectGetHeight(lblMessage.frame)
-        let width = CGRectGetWidth(lblMessage.frame)
+        let height = lblMessageLatter.frame.height
+        let width = lblMessageLatter.frame.width
         print("ラベルの高さ:\(height) 幅:\(width)")
         
         // ボタンの位置取得
-        let midX = CGRectGetMidX(lblMessage.frame)
-        let midY = CGRectGetMidY(lblMessage.frame)
+        let midX = lblMessageLatter.frame.midX
+        let midY = lblMessageLatter.frame.midY
         print("ボタンの中心のX座業:\(midX) Y座標:\(midY)")
         
-        let newContentHeight = height+midY
+        // -40にしているのは見た目を合わせるため
+        let newContentHeight = height+midY-40
         
+        // TODO contentViewの方がよかったりする？？？？？
         let SVSize = resultScrollView.frame.size
-        self.resultScrollView.contentSize = CGSizeMake(SVSize.width, newContentHeight-100);
-        resultBackImage.frame = CGRectMake(0, 0, resultBackImage.frame.width, newContentHeight)
-
+        self.resultScrollView.contentSize = CGSize(width: SVSize.width, height: newContentHeight);
+        resultBackImage.frame = CGRect(x: 0, y: 0, width: resultBackImage.frame.width, height: newContentHeight)
+        
         //scroll画面の初期位置
-        resultScrollView.contentOffset = CGPointMake(0, 0);
+        resultScrollView.contentOffset = CGPoint(x: 0, y: 0);
     }
     
-    // 相談ボタンを押した時
-    @IBAction func touchDownBtnConsultation(sender: AnyObject) {
-        _param = 2
-        performSegueWithIdentifier("segue",sender: nil)
+    // 説明を聞くボタンを押した時
+    @IBAction func touchDownBtnConsultation(_ sender: AnyObject) {
+        _param = viewNumber
+        performSegue(withIdentifier: "segue",sender: nil)
     }
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
-            let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
+            let secondViewController:A2ViewController = segue.destination as! A2ViewController
             secondViewController._second = _param
+            secondViewController._paramOriginal = viewNumber
         }
     }
     
     // 占い結果の円の表示
-    func displayCycle(plotResult:[Int]) {
+    func displayCycle(_ plotResult:[Int]) {
         // UIImageViewにUIIimageを追加
         imageView01 = [
             CircleImageView1,
@@ -116,18 +167,46 @@ class A3ResultViewController : UIViewController {
             CircleImageView8]
         
         for index in 0...7 {
-            imageView01[index]!.hidden = false
+            imageView01[index]!.isHidden = false
             if (plotResult[index]==0) {
                 // 0の場合は、円の画像は表示しない
-                imageView01[index]!.hidden = true
+                imageView01[index]!.isHidden = true
+                // 以下は、debug
+                //imageView01[index]!.image = drawText(img[5], score: "8")
             } else if (plotResult[index]>=1 && plotResult[index]<=6) {
                 // 1〜6までの時は、画像を表示
                 imageView01[index]!.image = img[plotResult[index]-1]
             } else {
-                // TODO 7以上は、数字を表示
-                
+                // 7以上は、数字を表示
+                imageView01[index]!.image = drawText(img[5].size, score: plotResult[index].description)
             }
         }
+    }
+    
+    // 画像とテキストを合成する
+    func drawText(_ imageSize :CGSize, score :String) ->UIImage {
+        let font = UIFont.boldSystemFont(ofSize: 216)
+//        let imageRect = CGRectMake(0,0,image.size.width,image.size.height)
+
+        UIGraphicsBeginImageContext(imageSize);
+
+        //image.drawInRect(imageRect)
+        let textRect  = CGRect(x: 0, y: imageSize.height/2-128, width: imageSize.width, height: imageSize.height)
+        let textStyle = NSMutableParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+        textStyle.alignment = NSTextAlignment.center
+        let textFontAttributes = [
+            NSFontAttributeName: font,
+            NSForegroundColorAttributeName: UIColor.black,
+            NSParagraphStyleAttributeName: textStyle
+
+        ]
+        score.draw(in: textRect, withAttributes: textFontAttributes)
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext();
+
+        UIGraphicsEndImageContext()
+
+        return newImage!
     }
     
     /**
