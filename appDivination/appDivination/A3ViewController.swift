@@ -45,72 +45,72 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
         print("A3ViewController viewDidLoad")
 
 //        naviBar.setBackgroundImage(UIImage(named: "component_01_header2"), forBarPosition: .TopAttached, barMetrics: .Default)
-        naviBar.setBackgroundImage(UIImage(), forBarPosition: .TopAttached, barMetrics: .Default)
+        naviBar.setBackgroundImage(UIImage(), for: .topAttached, barMetrics: .default)
         naviBar.shadowImage = UIImage()
         
         // テキストフィールドにDatePickerを表示する
         datePicker1 = UIDatePicker()
-        datePicker1.addTarget(self, action: #selector(A3ViewController.changedDateEvent(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        datePicker1.addTarget(self, action: #selector(A3ViewController.changedDateEvent(_:)), for: UIControlEvents.valueChanged)
         // 日本の日付表示形式にする、年月日の表示にする
-        datePicker1.datePickerMode = UIDatePickerMode.Date
-        format(datePicker1.date,style: "yyyy/MM/dd")
-        datePicker1.locale = NSLocale(localeIdentifier: "ja_JP")
+        datePicker1.datePickerMode = UIDatePickerMode.date
+        //format(datePicker1.date,style: "yyyy/MM/dd")
+        datePicker1.locale = Locale(identifier: "ja_JP")
         // 最小値、最大値、初期値を設定
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Const.DateSetFormat
-        datePicker1.minimumDate = dateFormatter.dateFromString(Const.MinDateString)
-        datePicker1.maximumDate = dateFormatter.dateFromString(Const.MaxDateString)
-        datePicker1.date = dateFormatter.dateFromString(Const.DefDateString)!
+        datePicker1.minimumDate = dateFormatter.date(from: Const.MinDateString)
+        datePicker1.maximumDate = dateFormatter.date(from: Const.MaxDateString)
+        datePicker1.date = dateFormatter.date(from: Const.DefDateString)!
         dateTextField.inputView = datePicker1
 
         // 保存していた情報の復元
-        let defaults = NSUserDefaults.standardUserDefaults()
-        nameTextField.text = defaults.stringForKey(Const.UserName)
-        dateTextField.text = defaults.stringForKey(Const.Birthday)
-        sgCtlSex.selectedSegmentIndex = defaults.integerForKey(Const.Sex)
+        let defaults = UserDefaults.standard
+        nameTextField.text = defaults.string(forKey: Const.UserName)
+        dateTextField.text = defaults.string(forKey: Const.Birthday)
+        sgCtlSex.selectedSegmentIndex = defaults.integer(forKey: Const.Sex)
         
         // nameTextField の情報を受け取るための delegate を設定
         nameTextField.delegate = self
     }
     
     // 相談ボタンを押した時
-    @IBAction func touchDownBtnConsultation(sender: AnyObject) {
+    @IBAction func touchDownBtnConsultation(_ sender: AnyObject) {
         _param = viewNumber
-        performSegueWithIdentifier("segue",sender: nil)
+        performSegue(withIdentifier: "segue",sender: nil)
     }
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
-            let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
+            let secondViewController:A2ViewController = segue.destination as! A2ViewController
             secondViewController._second = _param
             secondViewController._paramOriginal = viewNumber
         } else if segue.identifier == "midstream" {
-            let secondViewController:MidstreamViewController = segue.destinationViewController as! MidstreamViewController
+            let secondViewController:MidstreamViewController = segue.destination as! MidstreamViewController
             secondViewController._second = _param
             secondViewController._paramOriginal = viewNumber
         }
     }
     
     // 日付の変更イベント
-    func changedDateEvent(sender:AnyObject?){
+    func changedDateEvent(_ sender:AnyObject?){
         //        var dateSelecter:UIDatePicker = sender as! UIDatePicker
         self.changeLabelDate(datePicker1.date)
     }
     // 日付の変更
-    func changeLabelDate(date:NSDate) {
+    func changeLabelDate(_ date:Date) {
         dateTextField.text = format(datePicker1.date,style: Const.DateFormat)
     }
     
     // 名前の入力完了時に閉じる
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameTextField.resignFirstResponder()
         return true
     }
     
     // 鑑定するボタンを押したとき　　入力の確認
-    @IBAction func touchDownbtnAppraise(sender: AnyObject) {
+    @IBAction func touchDownbtnAppraise(_ sender: AnyObject) {
         // 名前欄のTextFieldの確認
         if (nameTextField.text!.isEmpty) {
             // null、空のとき
@@ -118,10 +118,10 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgNameEmpty,
-                preferredStyle: .Alert)
-            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .Default, handler: nil)
+                preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .default, handler: nil)
             alertController.addAction(defaultAction)
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
         } else {
             if !nameTextField.text!.ChackHiraganaOrKatakana() {
                 // ひらがな、カタカナ、空白以外のとき
@@ -129,10 +129,10 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
                 let alertController = UIAlertController(
                     title: Const.ErrorTitle,
                     message: Const.ErrorMsgNameKana,
-                    preferredStyle: .Alert)
-                let defaultAction = UIAlertAction(title: Const.BtnOK, style: .Default, handler: nil)
+                    preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: Const.BtnOK, style: .default, handler: nil)
                 alertController.addAction(defaultAction)
-                presentViewController(alertController, animated: true, completion: nil)
+                present(alertController, animated: true, completion: nil)
             }
         }
         
@@ -143,10 +143,10 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgDate,
-                preferredStyle: .Alert)
-            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .Default, handler: nil)
+                preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .default, handler: nil)
             alertController.addAction(defaultAction)
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
         }
         
         // 性別選択の確認
@@ -156,30 +156,30 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgSex,
-                preferredStyle: .Alert)
-            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .Default, handler: nil)
+                preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .default, handler: nil)
             alertController.addAction(defaultAction)
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
         }
 
         // この判定が終わったら、次の画面に遷移する
         
         // NSUserDefaultsオブジェクトを取得し、設定情報を保存する
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         // 登録されている名前と入力されている名前が異なっている場合は、占い情報をリセット
-        if nameTextField.text != defaults.stringForKey(Const.UserName) {
-            defaults.setObject("", forKey: Const.LukcyWord)
-            defaults.setObject("", forKey: Const.SaveTime)
+        if nameTextField.text != defaults.string(forKey: Const.UserName) {
+            defaults.set("", forKey: Const.LukcyWord)
+            defaults.set("", forKey: Const.SaveTime)
         }
-        defaults.setObject(nameTextField.text, forKey: Const.UserName)
-        defaults.setObject(dateTextField.text, forKey: Const.Birthday)
-        defaults.setInteger(sgCtlSex.selectedSegmentIndex, forKey: Const.Sex)
+        defaults.set(nameTextField.text, forKey: Const.UserName)
+        defaults.set(dateTextField.text, forKey: Const.Birthday)
+        defaults.set(sgCtlSex.selectedSegmentIndex, forKey: Const.Sex)
         defaults.synchronize()
     }
     
     // 画面の適当なところをタッチした時、キーボードを隠す
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
 
         print("close keyboard")
         nameTextField.resignFirstResponder()
@@ -192,11 +192,11 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
     //  style : 書式を指定します
     //          yyyy 西暦,MM 月,dd 日,HH 時,mm 分,ss 秒
     //
-    func format(date : NSDate, style : String) -> String {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP")
+    func format(_ date : Date, style : String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ja_JP")
         dateFormatter.dateFormat = style
-        return  dateFormatter.stringFromDate(date)
+        return  dateFormatter.string(from: date)
     }
     
     /**
@@ -209,8 +209,8 @@ class A3ViewController : UIViewController, UITextFieldDelegate {
 
 // コピーやペーストなどのメニューを非表示にするための拡張
 class SampleTextField: UITextField{
-    override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
-        UIMenuController.sharedMenuController().menuVisible = false
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        UIMenuController.shared.isMenuVisible = false
         return false
     }
 }

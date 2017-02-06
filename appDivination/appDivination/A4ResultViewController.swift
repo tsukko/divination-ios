@@ -42,8 +42,8 @@ class A4ResultViewController : UIViewController {
         var userName:String = ""
 
         // 名前部分の表示
-        let defaults = NSUserDefaults.standardUserDefaults()
-        userName = defaults.stringForKey(Const.UserName)!
+        let defaults = UserDefaults.standard
+        userName = defaults.string(forKey: Const.UserName)!
         lblName.text = userName
         
         // 占いの実行
@@ -51,13 +51,13 @@ class A4ResultViewController : UIViewController {
 
         // 運気を上げるつぶやき文字の取得とセット
         // 初めて占いを行う場合や、前に占ってから日付が変わっている場合に、占いを実施する。
-        var LukcyWord:String? = defaults.stringForKey(Const.LukcyWord)
-        let saveTime = defaults.objectForKey(Const.SaveTime) as? NSDate
+        var LukcyWord:String? = defaults.string(forKey: Const.LukcyWord)
+        let saveTime = defaults.object(forKey: Const.SaveTime) as? Date
         if LukcyWord == nil || LukcyWord!.isEmpty || saveTime == nil || !checkDateToday(saveTime!) {
             print("get LukcyWord")
             LukcyWord = retDivination.getTodayLuckyWord(userName, tweetWord: "")
-            defaults.setObject(LukcyWord, forKey: Const.LukcyWord)
-            defaults.setObject(NSDate(), forKey: Const.SaveTime)
+            defaults.set(LukcyWord, forKey: Const.LukcyWord)
+            defaults.set(Date(), forKey: Const.SaveTime)
         } else {
             print("LukcyWord Already get")
         }
@@ -65,7 +65,7 @@ class A4ResultViewController : UIViewController {
     }
     
     // 画面が表示された直後
-    override func viewDidAppear(animated:Bool) {
+    override func viewDidAppear(_ animated:Bool) {
         changeLayout();
     }
 
@@ -74,33 +74,33 @@ class A4ResultViewController : UIViewController {
     }
     
     // 説明を聞くボタンを押した時
-    @IBAction func touchDownBtnConsultation(sender: AnyObject) {
+    @IBAction func touchDownBtnConsultation(_ sender: AnyObject) {
         _param = viewNumber
-        performSegueWithIdentifier("segue",sender: nil)
+        performSegue(withIdentifier: "segue",sender: nil)
     }
 
     // Segueはビューが遷移するタイミングで呼ばれるもの
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
-            let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
+            let secondViewController:A2ViewController = segue.destination as! A2ViewController
             secondViewController._second = _param
             secondViewController._paramOriginal = viewNumber
         }
     }
     
     // 引数の日時が同じ日であるかどうかをチェックする
-    func checkDateToday(savedDate: NSDate) -> Bool {
+    func checkDateToday(_ savedDate: Date) -> Bool {
         // 日付の変換 YYYY MM DD
-        let cal = NSCalendar.currentCalendar()
-        let comp = cal.components(
-            [NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day,
-                NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second],
-            fromDate: savedDate)
-        let compNow = cal.components(
-            [NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day,
-                NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second],
-            fromDate: NSDate())
+        let cal = Calendar.current
+        let comp = (cal as NSCalendar).components(
+            [NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day,
+                NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second],
+            from: savedDate)
+        let compNow = (cal as NSCalendar).components(
+            [NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day,
+                NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second],
+            from: Date())
 
         if comp.year == compNow.year &&
             comp.month == compNow.month &&

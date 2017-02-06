@@ -12,10 +12,10 @@ class resultDivinationClass {
     var retDivination = [resultDivination]()
     
     struct resultDivination {
-        var index: [String!]
-        var message: [String!]
-        var fortuneWord: [String!]
-        func toDictionary() -> [String: [String!]] {
+        var index: [String?]
+        var message: [String?]
+        var fortuneWord: [String?]
+        func toDictionary() -> [String: [String?]] {
             return [
                 "index" : index,
                 "message" : message,
@@ -64,9 +64,9 @@ class resultDivinationClass {
                    c.value == 0x0020 || c.value == 0xFF5A {
                     //print("ChackHiragana OK: \(v) : \(c.value)")
                     let s = NSString(format:"%2X", c.value) as String
-                    var sPlotData:[String!] = kanaData.getPlotData("0x" + s)
+                    var sPlotData:[String?] = kanaData.getPlotData("0x" + s)
                     for i in 0...7 {
-                        plotResult[i] += Int(sPlotData[i])!
+                        plotResult[i] += Int(sPlotData[i]!)!
                     }
                 } else {
                     // ここに来るまでに判定しているので、ここは通らない想定
@@ -80,7 +80,7 @@ class resultDivinationClass {
 
     // レア言霊の出力判定、
     // 表示する文を返す。レアではない場合はnullを返す
-    func getMessagRare(plotData:[Int]) -> String {
+    func getMessagRare(_ plotData:[Int]) -> String {
         let type: Int = getTypeRare(plotData)
         if type == Const.TypeNumYatanokagami {
             return Const.MessageYatanokagami
@@ -94,7 +94,7 @@ class resultDivinationClass {
     }
     
     // レア言霊かどうか、タイプを判定する。-1はレアではないことを示す
-    func getTypeRare(plotData:[Int]) -> Int {
+    func getTypeRare(_ plotData:[Int]) -> Int {
         var flagYatanokagami: Int = 0
         var flagHutomani: Bool = true
         var flagMikumari: Int = 0
@@ -137,16 +137,16 @@ class resultDivinationClass {
     }
     
     // 後半部分のメッセージ、特性について表示する文言の取得
-    func getMessageLatter(plotData:[Int]) -> String {
+    func getMessageLatter(_ plotData:[Int]) -> String {
         var index:Int = 0
         var msgTotal:String = ""
         for msg in retDivination {
             if plotData[index] >= 3 {
-                msgTotal += "・" + msg.message[2]
+                msgTotal += "・" + msg.message[2]!
             } else if plotData[index] < 3 && plotData[index] >= 1 {
-                msgTotal += "・" + msg.message[1]
+                msgTotal += "・" + msg.message[1]!
             } else  {
-                msgTotal += "・" + msg.message[0]
+                msgTotal += "・" + msg.message[0]!
             }
             index += 1
         }
@@ -155,7 +155,7 @@ class resultDivinationClass {
     }
     
     // 運気を上げる文言の取得
-    func getMessageLuckyWord(plotData:[Int]) -> String {
+    func getMessageLuckyWord(_ plotData:[Int]) -> String {
         let type: Int = getTypeRare(plotData)
         if type == Const.TypeNumYatanokagami {
             return Const.FortuneWordYatanokagami
@@ -174,9 +174,9 @@ class resultDivinationClass {
                     // 運気を上げる言葉をランダムで取得する
                     let randInt = Int(arc4random_uniform(UInt32(msg.fortuneWord.count)))
                     if unkiIndex == 0 {
-                        fortuneWordTotal += msg.fortuneWord[randInt]
+                        fortuneWordTotal += msg.fortuneWord[randInt]!
                     } else {
-                        fortuneWordTotal += ", " + msg.fortuneWord[randInt]
+                        fortuneWordTotal += ", " + msg.fortuneWord[randInt]!
                     }
                     unkiIndex += 1
                 }
@@ -188,10 +188,10 @@ class resultDivinationClass {
     }
     
     // 今日のつぶやきの結果文言の取得
-    func getTodayLuckyWord(userName:String, tweetWord:String) -> String {
+    func getTodayLuckyWord(_ userName:String, tweetWord:String) -> String {
         let kanaData = kanaDataClass(flagAll: false)
         var newUserName = userName
-        let newPlotData = divinationReturnResult(newUserName)
+        let newPlotData = divinationReturnResult(userName: newUserName)
         
         // 01. ヤタノカガミ： 全てのプロット位置に丸がつくの場合は、一個もない人と同じ扱いにする
         if getTypeRare(newPlotData) == Const.TypeNumYatanokagami {
@@ -201,11 +201,11 @@ class resultDivinationClass {
         return getTodayLuckyWord(newUserName, tweetWord: tweetWord, kanaData: kanaData)
     }
     
-    func getTodayLuckyWord(userName:String, tweetWord:String, kanaData:kanaDataClass) -> String {
+    func getTodayLuckyWord(_ userName:String, tweetWord:String, kanaData:kanaDataClass) -> String {
         var flagYatanokagami: Int = 0
         var newUserName: String = userName
         var lTweetWord:String = tweetWord
-        let plotData = divinationReturnResult(newUserName)
+        let plotData = divinationReturnResult(userName: newUserName)
         
         for i in 0...7 {
             if plotData[i] > 0 {
@@ -230,7 +230,7 @@ class resultDivinationClass {
             // 並び替える
             for _ in characters {
                 let d = Int(arc4random_uniform(UInt32(characters.count)))
-                outputWord = outputWord + characters.removeAtIndex(d)
+                outputWord = outputWord + characters.remove(at: d)
             }
             print("inputWord :\(lTweetWord) -> outputWord :\(outputWord)")
             return outputWord
@@ -242,7 +242,7 @@ class resultDivinationClass {
     }
 
     // 相性診断の結果文言の取得
-    func getCompatibilityScore(plotDataList:[[Int]]) -> String {
+    func getCompatibilityScore(_ plotDataList:[[Int]]) -> String {
         let score:Int = 100
         
         // 条件
@@ -257,7 +257,7 @@ class resultDivinationClass {
     }
 
     // 加算　条件１
-    func getScoreAddFirst(plotDataList:[[Int]]) -> Int {
+    func getScoreAddFirst(_ plotDataList:[[Int]]) -> Int {
         var score:Int = 0
         var add2Count = 0
         var amari = [0,0,0,0,0,0,0,0]
@@ -307,7 +307,7 @@ class resultDivinationClass {
     }
 
     // 加算　条件２
-    func getScoreAddSecond(plotDataList:[[Int]]) -> Int {
+    func getScoreAddSecond(_ plotDataList:[[Int]]) -> Int {
         var score:Int = 0
         var add2Count = 0
         var heapPlotData = [0,0,0,0,0,0,0,0]
@@ -346,7 +346,7 @@ class resultDivinationClass {
     }
 
     // 加算　条件３
-    func getScoreAddThird(plotDataList:[[Int]]) -> Int {
+    func getScoreAddThird(_ plotDataList:[[Int]]) -> Int {
         var score:Int = 0
         var heapPlotData = [0,0,0,0,0,0,0,0]
         for plotDataTMP in plotDataList {
@@ -371,7 +371,7 @@ class resultDivinationClass {
     }
 
     // 減点　条件A
-    func getScoreSubFirst(plotDataList:[[Int]]) -> Int {
+    func getScoreSubFirst(_ plotDataList:[[Int]]) -> Int {
         var score:Int = 0
         var del9Count = 0
         var del21Count = 0
@@ -402,7 +402,7 @@ class resultDivinationClass {
     }
     
     // 減点　条件B
-    func getScoreSubSecond(plotDataList:[[Int]]) -> Int {
+    func getScoreSubSecond(_ plotDataList:[[Int]]) -> Int {
         var score:Int = 0
         var delCount = 0
         var heapPlotData = [0,0,0,0,0,0,0,0]
@@ -459,7 +459,7 @@ class resultDivinationClass {
     // PlotDataの配列が時計の3時の場所から”反時計回り”で数えているが、
     // この呼び先（条件B）は0時の場所から"時計回り"で計算している
     // それに適応するようにindexを変換
-    func exchangeIndex(num:Int) -> Int {
+    func exchangeIndex(_ num:Int) -> Int {
         var changeNum = 0
         if num > 7 {
             changeNum = num - 8
@@ -487,7 +487,7 @@ class resultDivinationClass {
     }
 
     // 命名術の結果文言の取得
-    func getNaming(firstPlotData:[Int], secondPlotData:[Int]) -> String {
+    func getNaming(_ firstPlotData:[Int], secondPlotData:[Int]) -> String {
         var heapPlotData = [0,0,0,0,0,0,0,0]
         var charaList:[[String]] = [[String]]()
         var wordALL:String = ""

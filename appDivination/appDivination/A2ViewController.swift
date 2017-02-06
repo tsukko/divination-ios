@@ -47,46 +47,46 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
         super.viewDidLoad()
         print("A2ViewController viewDidLoad _param : \(_param) _second: \(_second)")
         
-        naviBar.setBackgroundImage(UIImage(), forBarPosition: .TopAttached, barMetrics: .Default)
+        naviBar.setBackgroundImage(UIImage(), for: .topAttached, barMetrics: .default)
         naviBar.shadowImage = UIImage()
 
         if _second == Const.ViewNumber.ViewConNum {
             if _param == Const.ViewNumber.A2ViewProfile  {
                 // 鑑定士プロフィールを押した時
                 image_back.image = UIImage(named: "説明ページ＿先生プロフ")
-                btnReceiveMail.hidden = true
-                btnConsultation.hidden = false
+                btnReceiveMail.isHidden = true
+                btnConsultation.isHidden = false
             } else if _param == Const.ViewNumber.A2ViewKatakamuna {
                 // 音霊鑑定術とは？を押した時
                 image_back.image = UIImage(named: "説明ページ＿カタカムナとは？")
-                btnReceiveMail.hidden = true
-                btnConsultation.hidden = false
+                btnReceiveMail.isHidden = true
+                btnConsultation.isHidden = false
             }
         } else if _second == Const.ViewNumber.A3ViewConNum  {
             // 池田先生の説明を聞く(説明ページ＿音霊鑑定)
             image_back.image = UIImage(named: "説明ページ＿音霊鑑定")
-            btnReceiveMail.hidden = true
-            btnConsultation.hidden = false
+            btnReceiveMail.isHidden = true
+            btnConsultation.isHidden = false
         } else if _second == Const.ViewNumber.A4ViewConNum  {
             // 池田先生の説明を聞く(説明ページ＿今日のつぶやき)を押した時
             image_back.image = UIImage(named: "説明ページ＿今日のつぶやき")
-            btnReceiveMail.hidden = true
-            btnConsultation.hidden = false
+            btnReceiveMail.isHidden = true
+            btnConsultation.isHidden = false
         } else if _second == Const.ViewNumber.A5ViewConNum  {
             // 池田先生の説明を聞く(説明ページ＿相性診断)を押した時
             image_back.image = UIImage(named: "説明ページ＿相性診断")
-            btnReceiveMail.hidden = true
-            btnConsultation.hidden = false
+            btnReceiveMail.isHidden = true
+            btnConsultation.isHidden = false
         } else if _second == Const.ViewNumber.A6ViewConNum  {
             // 池田先生の説明を聞く(説明ページ＿命名術)を押した時
             image_back.image = UIImage(named: "説明ページ＿命名術")
-            btnReceiveMail.hidden = true
-            btnConsultation.hidden = false
+            btnReceiveMail.isHidden = true
+            btnConsultation.isHidden = false
         } else if _second == Const.ViewNumber.A2ViewRequest  {
             // 池田先生に相談するを押した時
             image_back.image = UIImage(named: "ページ_鑑定依頼")
-            btnReceiveMail.hidden = false
-            btnConsultation.hidden = true
+            btnReceiveMail.isHidden = false
+            btnConsultation.isHidden = true
         }  else {
             // その他　ここはこない
         }
@@ -95,47 +95,47 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
     // 戻るボタンを押した時
     // もし、今表示しているページが相談するページ（_second = 6）なら、_paramのページに戻って
     // それ以外の場合は、遷移先ページ（_paramOriginal）に戻る
-    @IBAction func touchDownBtnBack(sender: AnyObject) {
+    @IBAction func touchDownBtnBack(_ sender: AnyObject) {
         // 遷移するViewを定義して、遷移してきた画面に移動する
         // 鑑定依頼ページから戻る場合は、同じA2ViewControllerに戻る
         if _second == Const.ViewNumber.A2ViewRequest  {
-            let mySecondViewController:A2ViewController = self.storyboard!.instantiateViewControllerWithIdentifier( "A2View" ) as! A2ViewController
+            let mySecondViewController:A2ViewController = self.storyboard!.instantiateViewController( withIdentifier: "A2View" ) as! A2ViewController
             mySecondViewController._second = _paramOriginal
             mySecondViewController._param = _param
             mySecondViewController._paramOriginal = _paramOriginal
-            self.presentViewController(mySecondViewController, animated: true, completion: nil)
+            self.present(mySecondViewController, animated: true, completion: nil)
         }
         // 鑑定依頼ページ以外の一枚画像ページの場合は、遷移元ページに戻る
         if _paramOriginal == Const.ViewNumber.ViewConNum {
-            let mySecondViewController = self.storyboard!.instantiateViewControllerWithIdentifier( "A1View" )
-            self.presentViewController(mySecondViewController, animated: true, completion: nil)
+            let mySecondViewController = self.storyboard!.instantiateViewController( withIdentifier: "A1View" )
+            self.present(mySecondViewController, animated: true, completion: nil)
         } else if _paramOriginal == Const.ViewNumber.A3ViewConNum {
-            let mySecondViewController = self.storyboard!.instantiateViewControllerWithIdentifier( "A3View" ) 
-            self.presentViewController(mySecondViewController, animated: true, completion: nil)
+            let mySecondViewController = self.storyboard!.instantiateViewController( withIdentifier: "A3View" ) 
+            self.present(mySecondViewController, animated: true, completion: nil)
         } else if _paramOriginal == Const.ViewNumber.A4ViewConNum {
-            let mySecondViewController = self.storyboard!.instantiateViewControllerWithIdentifier( "A4View" ) 
-            self.presentViewController(mySecondViewController, animated: true, completion: nil)
+            let mySecondViewController = self.storyboard!.instantiateViewController( withIdentifier: "A4View" ) 
+            self.present(mySecondViewController, animated: true, completion: nil)
         } else if _paramOriginal == Const.ViewNumber.A5ViewConNum {
-            let mySecondViewController = self.storyboard!.instantiateViewControllerWithIdentifier( "A5View" )
-            self.presentViewController(mySecondViewController, animated: true, completion: nil)
+            let mySecondViewController = self.storyboard!.instantiateViewController( withIdentifier: "A5View" )
+            self.present(mySecondViewController, animated: true, completion: nil)
         } else if _paramOriginal == Const.ViewNumber.A6ViewConNum {
-            let mySecondViewController = self.storyboard!.instantiateViewControllerWithIdentifier( "A6View" )
-            self.presentViewController(mySecondViewController, animated: true, completion: nil)
+            let mySecondViewController = self.storyboard!.instantiateViewController( withIdentifier: "A6View" )
+            self.present(mySecondViewController, animated: true, completion: nil)
         }
     }
 
     // 相談ボタンを押した時
-    @IBAction func touchDownBtnConsultation(sender: AnyObject) {
+    @IBAction func touchDownBtnConsultation(_ sender: AnyObject) {
     //    _param = 6
-        performSegueWithIdentifier("segue",sender: nil)
+        performSegue(withIdentifier: "segue",sender: nil)
     }
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
             // ここでは、一枚絵ページから、同じViewである相談する一枚絵ページ（_second = 6）に遷移するための処理
-            let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
+            let secondViewController:A2ViewController = segue.destination as! A2ViewController
             secondViewController._second = Const.ViewNumber.A2ViewRequest
             secondViewController._param = _param
             secondViewController._paramOriginal = _paramOriginal
@@ -143,7 +143,7 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
     }
 
     // メーラー起動（相談する一枚絵ページのみに表示）
-    @IBAction func touchDownSendMailBtn(sender: AnyObject) {
+    @IBAction func touchDownSendMailBtn(_ sender: AnyObject) {
         //メールを送信できるかチェック
         if MFMailComposeViewController.canSendMail()==false {
             print("Email Send Failed")
@@ -161,29 +161,29 @@ class A2ViewController : UIViewController, MFMailComposeViewControllerDelegate {
         // メール本文
         mailViewController.setMessageBody(Const.MailBody, isHTML: false)
         
-        self.presentViewController(mailViewController, animated: true, completion: nil)
+        self.present(mailViewController, animated: true, completion: nil)
     }
 
     // メールキャンセル
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         switch result.rawValue {
-        case MFMailComposeResult.Cancelled.rawValue:
+        case MFMailComposeResult.cancelled.rawValue:
             print("Email Send Cancelled")
             break
-        case MFMailComposeResult.Saved.rawValue:
+        case MFMailComposeResult.saved.rawValue:
             print("Email Saved as a Draft")
             break
-        case MFMailComposeResult.Sent.rawValue:
+        case MFMailComposeResult.sent.rawValue:
             print("Email Sent Successfully")
             break
-        case MFMailComposeResult.Failed.rawValue:
+        case MFMailComposeResult.failed.rawValue:
             print("Email Send Failed")
             break
         default:
             break
         }
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     /**

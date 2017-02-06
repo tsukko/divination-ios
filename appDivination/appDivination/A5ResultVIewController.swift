@@ -42,13 +42,13 @@ class A5ResultViewController : UIViewController {
         print("A5ResultViewController viewDidLoad")
 
         // 保存していた情報の復元
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let userNameList = defaults.objectForKey(Const.UserNameList) as? [String] {
+        let defaults = UserDefaults.standard
+        if let userNameList = defaults.object(forKey: Const.UserNameList) as? [String] {
             print("userNameList:\(userNameList)")
             let retDivination = resultDivinationClass()
             for indexStr in userNameList {
                 //let userName = userNameList[0]
-                if let plotResult:[Int] = retDivination.divinationReturnResult(indexStr) {
+                if let plotResult:[Int] = retDivination.divinationReturnResult(userName: indexStr) {
                     plotResultList.append(plotResult)
                 }
             }
@@ -56,14 +56,14 @@ class A5ResultViewController : UIViewController {
             // 点数のセット、マイナス時は青字、１００点以上は赤字
             if !plotResultList.isEmpty {
                 let score = retDivination.getCompatibilityScore(plotResultList)
-                let scoreInt:Int! = Int(NSNumberFormatter().numberFromString(score)!)
+                let scoreInt:Int! = Int(NumberFormatter().number(from: score)!)
                 let scoreLength = score.characters.count
-                var scoreColor = UIColor.blackColor()
+                var scoreColor = UIColor.black
                 
                 if scoreInt >= 100 {
-                    scoreColor = UIColor.redColor()
+                    scoreColor = UIColor.red
                 } else if scoreInt < 0 {
-                    scoreColor = UIColor.blueColor()
+                    scoreColor = UIColor.blue
                 }
                 let attrText = NSMutableAttributedString(string: score + " 点")
                 attrText.addAttribute(NSForegroundColorAttributeName,
@@ -78,7 +78,7 @@ class A5ResultViewController : UIViewController {
     }
 
     // 画面が表示された直後
-    override func viewDidAppear(animated:Bool) {
+    override func viewDidAppear(_ animated:Bool) {
         changeLayout();
     }
 
@@ -87,16 +87,16 @@ class A5ResultViewController : UIViewController {
     }
     
     // 説明を聞くボタンを押した時
-    @IBAction func touchDownBtnConsultation(sender: AnyObject) {
+    @IBAction func touchDownBtnConsultation(_ sender: AnyObject) {
         _param = viewNumber
-        performSegueWithIdentifier("segue",sender: nil)
+        performSegue(withIdentifier: "segue",sender: nil)
     }
 
     // Segueはビューが遷移するタイミングで呼ばれるもの
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
-            let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
+            let secondViewController:A2ViewController = segue.destination as! A2ViewController
             secondViewController._second = _param
             secondViewController._paramOriginal = viewNumber
         }

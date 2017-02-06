@@ -45,24 +45,24 @@ class ViewController: UIViewController {
         // viewにロングタップのジェスチャーを追加
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.doGesture(_:)))
         longPressGesture.minimumPressDuration = 1.0
-        self.btnTodayTweet.userInteractionEnabled = true
+        self.btnTodayTweet.isUserInteractionEnabled = true
         self.btnTodayTweet.addGestureRecognizer(longPressGesture)
     }
     
     // 画面が表示される直前
-    override func viewWillAppear(animated:Bool) {
+    override func viewWillAppear(_ animated:Bool) {
         
         // NSUserDefaultsオブジェクトを取得
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
         // すでに名前が設定されていたら今日の運勢を行うボタンを表示する
-        if let tempUserName = defaults.stringForKey(Const.UserName) {
+        if let tempUserName = defaults.string(forKey: Const.UserName) {
             // NSUserDefaultsに格納された値を取得
             userName = tempUserName
             print("ViewController viewWillAppear userName:\(userName)")
-            btnTodayTweet.hidden = false
+            btnTodayTweet.isHidden = false
         } else {
-            btnTodayTweet.hidden = true
+            btnTodayTweet.isHidden = true
         }
     }
     
@@ -72,23 +72,23 @@ class ViewController: UIViewController {
     }
 
     // プロフィールを押した時
-    @IBAction func touchDownBtnProfile(sender: AnyObject) {
+    @IBAction func touchDownBtnProfile(_ sender: AnyObject) {
         _param = Const.ViewNumber.A2ViewProfile
-        performSegueWithIdentifier("segue",sender: nil)
+        performSegue(withIdentifier: "segue",sender: nil)
     }
 
     // 鑑定術とは？を押した時
-    @IBAction func touchDownBtnDescription(sender: AnyObject) {
+    @IBAction func touchDownBtnDescription(_ sender: AnyObject) {
         _param = Const.ViewNumber.A2ViewKatakamuna
-        performSegueWithIdentifier("segue",sender: nil)
+        performSegue(withIdentifier: "segue",sender: nil)
     }
 
     // Segueはビューが遷移するタイミングで呼ばれるもの
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
             // 元画面を示す値_paramOriginal = 0
-            let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
+            let secondViewController:A2ViewController = segue.destination as! A2ViewController
             secondViewController._second = viewNumber
             secondViewController._param = _param
             secondViewController._paramOriginal = viewNumber
@@ -96,38 +96,38 @@ class ViewController: UIViewController {
     }
     
     // 今日の運勢を押した時
-    @IBAction func touchDownBtnTodayTweet(sender: AnyObject) {
+    @IBAction func touchDownBtnTodayTweet(_ sender: AnyObject) {
         // 無料音霊鑑定の結果ページ
     }
     
     // 裏機能。今日の運勢を長押しした時、保存されたすべてのデーターを削除する
-    func doGesture(sender: UILongPressGestureRecognizer) {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.removeObjectForKey(Const.UserName)
-        defaults.removeObjectForKey(Const.Birthday)
-        defaults.removeObjectForKey(Const.Sex)
-        defaults.removeObjectForKey(Const.LukcyWord)
-        defaults.removeObjectForKey(Const.SaveTime)
-        defaults.removeObjectForKey(Const.UserNameList)
-        defaults.removeObjectForKey(Const.FirstUserName)
-        defaults.removeObjectForKey(Const.FirstBirthday)
-        defaults.removeObjectForKey(Const.FirstSex)
-        defaults.removeObjectForKey(Const.SecondUserName)
-        defaults.removeObjectForKey(Const.SecondBirthday)
-        defaults.removeObjectForKey(Const.SecondSex)
+    func doGesture(_ sender: UILongPressGestureRecognizer) {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: Const.UserName)
+        defaults.removeObject(forKey: Const.Birthday)
+        defaults.removeObject(forKey: Const.Sex)
+        defaults.removeObject(forKey: Const.LukcyWord)
+        defaults.removeObject(forKey: Const.SaveTime)
+        defaults.removeObject(forKey: Const.UserNameList)
+        defaults.removeObject(forKey: Const.FirstUserName)
+        defaults.removeObject(forKey: Const.FirstBirthday)
+        defaults.removeObject(forKey: Const.FirstSex)
+        defaults.removeObject(forKey: Const.SecondUserName)
+        defaults.removeObject(forKey: Const.SecondBirthday)
+        defaults.removeObject(forKey: Const.SecondSex)
 
         let alertController = UIAlertController(
             title: Const.DelNameTitle,
             message: Const.DelNameMsg,
-            preferredStyle: .Alert)
+            preferredStyle: .alert)
         let defaultAction = UIAlertAction(
             title: Const.BtnOK,
-            style: .Default,
+            style: .default,
             handler: nil)
         alertController.addAction(defaultAction)
-        presentViewController(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
         
-        btnTodayTweet.hidden = true
+        btnTodayTweet.isHidden = true
     }
 }
 

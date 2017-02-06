@@ -156,14 +156,14 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         super.viewDidLoad()
         print("A5ViewController viewDidLoad")
         
-        naviBar.setBackgroundImage(UIImage(), forBarPosition: .TopAttached, barMetrics: .Default)
+        naviBar.setBackgroundImage(UIImage(), for: .topAttached, barMetrics: .default)
         naviBar.shadowImage = UIImage()
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
         // separatorのlineのマージンを0にする（デフォルト15）
-        self.tableView.separatorInset = UIEdgeInsetsZero
-        self.tableView.layoutMargins = UIEdgeInsetsZero
+        self.tableView.separatorInset = UIEdgeInsets.zero
+        self.tableView.layoutMargins = UIEdgeInsets.zero
         // 空のセルのセパレータは非表示とする
         self.tableView.tableFooterView = UIView()
         //tableView.layer.borderColor = UIColor.grayColor().CGColor
@@ -174,43 +174,43 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         
         // 保存していた情報の復元
         // 誕生日や性別の情報も保存・復元はおこなっていない
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let temp = defaults.objectForKey(Const.UserNameList) as? [String] {
+        let defaults = UserDefaults.standard
+        if let temp = defaults.object(forKey: Const.UserNameList) as? [String] {
             userNameList = temp
             print("userList is not nil")
         }
     }
     
     // 相談ボタンを押した時
-    @IBAction func touchDownBtnConsultation(sender: AnyObject) {
+    @IBAction func touchDownBtnConsultation(_ sender: AnyObject) {
         _param = viewNumber
-        performSegueWithIdentifier("segue",sender: nil)
+        performSegue(withIdentifier: "segue",sender: nil)
     }
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
-            let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
+            let secondViewController:A2ViewController = segue.destination as! A2ViewController
             secondViewController._second = _param
             secondViewController._paramOriginal = viewNumber
         } else if segue.identifier == "midstream" {
-            let secondViewController:MidstreamViewController = segue.destinationViewController as! MidstreamViewController
+            let secondViewController:MidstreamViewController = segue.destination as! MidstreamViewController
             secondViewController._second = _param
             secondViewController._paramOriginal = viewNumber
         }
     }
 
     // 鑑定するボタンを押したとき　　入力の確認
-    @IBAction func touchDownbtnAppraise(sender: AnyObject) {
+    @IBAction func touchDownbtnAppraise(_ sender: AnyObject) {
         if userNameList.isEmpty || userNameList.count == 1 {
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgDataEmpty,
-                preferredStyle: .Alert)
-            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .Default, handler: nil)
+                preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .default, handler: nil)
             alertController.addAction(defaultAction)
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
         }
     }
 
@@ -222,10 +222,10 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgNameEmpty,
-                preferredStyle: .Alert)
-            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .Default, handler: nil)
+                preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .default, handler: nil)
             alertController.addAction(defaultAction)
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             return false
         } else {
             if !alert.textFields![0].text!.ChackHiraganaOrKatakana() {
@@ -233,10 +233,10 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
                 let alertController = UIAlertController(
                     title: Const.ErrorTitle,
                     message: Const.ErrorMsgNameKana,
-                    preferredStyle: .Alert)
-                let defaultAction = UIAlertAction(title: Const.BtnOK, style: .Default, handler: nil)
+                    preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: Const.BtnOK, style: .default, handler: nil)
                 alertController.addAction(defaultAction)
-                presentViewController(alertController, animated: true, completion: nil)
+                present(alertController, animated: true, completion: nil)
                 return false
             }
         }
@@ -247,10 +247,10 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgDate,
-                preferredStyle: .Alert)
-            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .Default, handler: nil)
+                preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .default, handler: nil)
             alertController.addAction(defaultAction)
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             return false
         }
         
@@ -261,10 +261,10 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             let alertController = UIAlertController(
                 title: Const.ErrorTitle,
                 message: Const.ErrorMsgSex,
-                preferredStyle: .Alert)
-            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .Default, handler: nil)
+                preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: Const.BtnOK, style: .default, handler: nil)
             alertController.addAction(defaultAction)
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             return false
         }
 
@@ -272,63 +272,63 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         return true
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // userList項目＋追加ボタン　分の数とする
         return userNameList.count + 1
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "MyTestCell")
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "MyTestCell")
 
         if (indexPath.row < userNameList.count) {
             cell.textLabel!.text = "\(userNameList[indexPath.row])"
-            let tblBackColor: UIColor = UIColor.clearColor()
+            let tblBackColor: UIColor = UIColor.clear
             cell.backgroundColor = tblBackColor
         } else {
             cell.textLabel!.text = Const.LblAdd
-            cell.textLabel!.textAlignment = NSTextAlignment.Center
+            cell.textLabel!.textAlignment = NSTextAlignment.center
         }
         // separatorのlineのマージンを0にする（デフォルト15）
-        cell.separatorInset = UIEdgeInsetsZero
-        cell.layoutMargins = UIEdgeInsetsZero
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
         return cell
     }
 
     // セルの削除許可の設定
-    func tableView(tableView: UITableView,canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    func tableView(_ tableView: UITableView,canEditRowAt indexPath: IndexPath) -> Bool
     {
         return true
     }
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.Delete {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
             // 削除
-            userNameList.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            userNameList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
             
             // データの保存
-            let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setObject(self.userNameList, forKey: Const.UserNameList)
+            let defaults = UserDefaults.standard
+            defaults.set(self.userNameList, forKey: Const.UserNameList)
             defaults.synchronize()
         }
     }
     // タップした時の処理
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         tableView.deselectRow(at: indexPath, animated: true)
         print("indexPath.row:\(indexPath.row), userNameList.count + 1 :\(userNameList.count + 1)")
         if (indexPath.row == userNameList.count ) {
             // ダイアログ表示
-            alert = UIAlertController(title: Const.AddNameTitle, message: Const.AddNameMsg, preferredStyle: .Alert)
-            let saveAction = UIAlertAction(title: Const.LblAdd, style: .Default) { (action:UIAlertAction) -> Void in
+            alert = UIAlertController(title: Const.AddNameTitle, message: Const.AddNameMsg, preferredStyle: .alert)
+            let saveAction = UIAlertAction(title: Const.LblAdd, style: .default) { (action:UIAlertAction) -> Void in
                 self.alert.textFields![0].resignFirstResponder()
                 self.alert.textFields![1].resignFirstResponder()
                 self.alert.textFields![2].resignFirstResponder()
                 if self.checkInput() {
                     // 追加
                     self.userNameList.append(self.alert.textFields![0].text!)
-                    tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Right)
+                    tableView.insertRows(at: [indexPath], with: UITableViewRowAnimation.right)
 
                     // データの保存
-                    let defaults = NSUserDefaults.standardUserDefaults()
-                    defaults.setObject(self.userNameList, forKey: Const.UserNameList)
+                    let defaults = UserDefaults.standard
+                    defaults.set(self.userNameList, forKey: Const.UserNameList)
                     defaults.synchronize()
                     return
                 } else {
@@ -336,24 +336,24 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
                 }
             }
             
-            let cancelAction = UIAlertAction(title: Const.BtnCancel, style: .Default) { (action:UIAlertAction) -> Void in
+            let cancelAction = UIAlertAction(title: Const.BtnCancel, style: .default) { (action:UIAlertAction) -> Void in
                 self.alert.textFields![0].resignFirstResponder()
                 self.alert.textFields![1].resignFirstResponder()
                 self.alert.textFields![2].resignFirstResponder()
             }
             
             // UIAlertControllerにtextFieldを追加、UserName
-            alert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
+            alert.addTextField { (textField:UITextField!) -> Void in
                  textField.placeholder = Const.NamePlaceholder
             }
             // 誕生日のtextField
-            alert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
+            alert.addTextField { (textField:UITextField!) -> Void in
                 textField.placeholder = Const.BirthdayPlaceholder
                 // TODO 配置!!!!!!!!!!!!!!!!!
-                textField.frame = CGRectMake(20,30,300,120)
+                textField.frame = CGRect(x: 20,y: 30,width: 300,height: 120)
             }
             // 性別のtextField
-            alert.addTextFieldWithConfigurationHandler { (textField:UITextField!) -> Void in
+            alert.addTextField { (textField:UITextField!) -> Void in
                 textField.placeholder = Const.SexPlaceholder
             }
             
@@ -366,24 +366,24 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
             alert.addAction(saveAction)
             alert.addAction(cancelAction)
             
-            presentViewController(alert, animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
         }
     }
     
     func setPickerInfo() {
         // 誕生日のテキストフィールドにDatePickerを表示する
         datePicker = UIDatePicker()
-        datePicker.addTarget(self, action: #selector(A5ViewController.changedDateEvent(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        datePicker.addTarget(self, action: #selector(A5ViewController.changedDateEvent(_:)), for: UIControlEvents.valueChanged)
         // 日本の日付表示形式にする、年月日の表示にする
-        datePicker.datePickerMode = UIDatePickerMode.Date
-        format(datePicker.date,style: "yyyy/MM/dd")
-        datePicker.locale = NSLocale(localeIdentifier: "ja_JP")
+        datePicker.datePickerMode = UIDatePickerMode.date
+        //format(datePicker.date,style: "yyyy/MM/dd")
+        datePicker.locale = Locale(identifier: "ja_JP")
         // 最小値、最大値、初期値を設定
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Const.DateSetFormat
-        datePicker.minimumDate = dateFormatter.dateFromString(Const.MinDateString)
-        datePicker.maximumDate = dateFormatter.dateFromString(Const.MaxDateString)
-        datePicker.date = dateFormatter.dateFromString(Const.DefDateString)!
+        datePicker.minimumDate = dateFormatter.date(from: Const.MinDateString)
+        datePicker.maximumDate = dateFormatter.date(from: Const.MaxDateString)
+        datePicker.date = dateFormatter.date(from: Const.DefDateString)!
 //        alert.textFields![1].inputView = datePicker
         
         // 性別
@@ -391,7 +391,7 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
         sexPicker.delegate = self
         sexPicker.dataSource = self
         sexPicker.showsSelectionIndicator = true
-        sexPicker.frame = CGRectMake(0,0,self.view.bounds.width, 250.0)
+        sexPicker.frame = CGRect(x: 0,y: 0,width: self.view.bounds.width, height: 250.0)
 //        alert.textFields![2].inputView = sexPicker
 
         // nameTextField の情報を受け取るための delegate を設定
@@ -400,36 +400,36 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
 
     // 日付Picker用 ここから
     // 日付の変更イベント
-    func changedDateEvent(sender:AnyObject?){
+    func changedDateEvent(_ sender:AnyObject?){
         //        var dateSelecter:UIDatePicker = sender as! UIDatePicker
         self.changeLabelDate(datePicker.date)
     }
     // 日付の変更
-    func changeLabelDate(date:NSDate) {
+    func changeLabelDate(_ date:Date) {
         alert.textFields![1].text = format(datePicker.date,style: Const.DateFormat)
     }
     
     // 名前の入力完了時に閉じる
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         alert.textFields![0].resignFirstResponder()
         return true
     }
     // 日付Picker用 ここまで
 
     // 性別用のリスト ここから
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return dataList.count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return dataList[row]
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         alert.textFields![2].text = dataList[row]
     }
     
@@ -445,8 +445,8 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
 
 
     // 画面の適当なところをタッチした時、キーボードを隠す
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
 
         print("close keyboard")
 //        alert.textFields![0].resignFirstResponder()
@@ -460,11 +460,11 @@ class A5ViewController : UIViewController, UITableViewDataSource, UITableViewDel
     //  style : 書式を指定します
     //          yyyy 西暦,MM 月,dd 日,HH 時,mm 分,ss 秒
     //
-    func format(date : NSDate, style : String) -> String {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP")
+    func format(_ date : Date, style : String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ja_JP")
         dateFormatter.dateFormat = style
-        return  dateFormatter.stringFromDate(date)
+        return  dateFormatter.string(from: date)
     }
     
     /**

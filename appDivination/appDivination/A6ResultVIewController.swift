@@ -44,16 +44,16 @@ class A6ResultViewController : UIViewController {
         print("A6ResultViewController viewDidLoad")
 
         // 保存していた情報の復元
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         let retDivination = resultDivinationClass()
         var firstPlotResult:[Int] = []
         var secondPlotResult:[Int] = []
-        if let firstName = defaults.stringForKey(Const.FirstUserName) {
-            firstPlotResult = retDivination.divinationReturnResult(firstName)
+        if let firstName = defaults.string(forKey: Const.FirstUserName) {
+            firstPlotResult = retDivination.divinationReturnResult(userName: firstName)
             lblName1.text = "父： " + firstName
         }
-        if let secondName = defaults.stringForKey(Const.SecondUserName) {
-            secondPlotResult = retDivination.divinationReturnResult(secondName)
+        if let secondName = defaults.string(forKey: Const.SecondUserName) {
+            secondPlotResult = retDivination.divinationReturnResult(userName: secondName)
             lblName2.text = "母： " + secondName
         }
         
@@ -62,7 +62,7 @@ class A6ResultViewController : UIViewController {
     }
     
     // 画面が表示された直後
-    override func viewDidAppear(animated:Bool) {
+    override func viewDidAppear(_ animated:Bool) {
         changeLayout();
     }
 
@@ -73,8 +73,8 @@ class A6ResultViewController : UIViewController {
         // サイズを自動調整
         lblResult.sizeToFit()
         
-        let height = CGRectGetHeight(lblResult.frame)
-        let width = CGRectGetWidth(lblResult.frame)
+        let height = lblResult.frame.height
+        let width = lblResult.frame.width
         print("ラベルの高さ:\(height) 幅:\(width)")
         
         // ラベルの位置取得
@@ -87,24 +87,24 @@ class A6ResultViewController : UIViewController {
         
         // TODO contentViewの方がよかったりする？？？？？
         let SVSize = resultScrollView.frame.size
-        self.resultScrollView.contentSize = CGSizeMake(SVSize.width, newContentHeight);
-        resultBackImage.frame = CGRectMake(0, 0, resultBackImage.frame.width, newContentHeight)
+        self.resultScrollView.contentSize = CGSize(width: SVSize.width, height: newContentHeight);
+        resultBackImage.frame = CGRect(x: 0, y: 0, width: resultBackImage.frame.width, height: newContentHeight)
         
         //scroll画面の初期位置
-        resultScrollView.contentOffset = CGPointMake(0, 0);
+        resultScrollView.contentOffset = CGPoint(x: 0, y: 0);
     }
     
     // 説明を聞くボタンを押した時
-    @IBAction func touchDownBtnConsultation(sender: AnyObject) {
+    @IBAction func touchDownBtnConsultation(_ sender: AnyObject) {
         _param = viewNumber
-        performSegueWithIdentifier("segue",sender: nil)
+        performSegue(withIdentifier: "segue",sender: nil)
     }
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
-            let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
+            let secondViewController:A2ViewController = segue.destination as! A2ViewController
             secondViewController._second = _param
             secondViewController._paramOriginal = viewNumber
         }

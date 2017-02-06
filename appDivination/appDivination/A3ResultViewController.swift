@@ -69,12 +69,12 @@ class A3ResultViewController : UIViewController {
         print("A3ResultViewController viewDidLoad")
 
         // 占い結果を取得、無料言霊鑑定アニメーション画面で保存している
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let userName = defaults.stringForKey(Const.UserName)!
+        let defaults = UserDefaults.standard
+        let userName = defaults.string(forKey: Const.UserName)!
         
         // 占いの実行
         let retDivination = resultDivinationClass()
-        let plotResult:[Int] = retDivination.divinationReturnResult(userName)
+        let plotResult:[Int] = retDivination.divinationReturnResult(userName: userName)
         
         // 占い結果の円の表示
         displayCycle(plotResult)
@@ -82,13 +82,13 @@ class A3ResultViewController : UIViewController {
         // レア言霊
         lblMessageRare.text = retDivination.getMessagRare(plotResult)
         if lblMessageRare.text!.isEmpty {
-            lblMessageRare.hidden = true
-            lblTitleRare.hidden = true
+            lblMessageRare.isHidden = true
+            lblTitleRare.isHidden = true
             // -30にしているのは見た目を合わせるため。TitleとMessageのView間の高さ（それぞれ15,5だけど30引いた方がいい感じだった。。。）
             labelHeightConstraintRare.constant = -30
         } else {
-            lblMessageRare.hidden = false
-            lblTitleRare.hidden = false
+            lblMessageRare.isHidden = false
+            lblTitleRare.isHidden = false
             labelHeightConstraintRare.constant = 20
         }
         // あなたの特性の表示
@@ -101,12 +101,12 @@ class A3ResultViewController : UIViewController {
         //changeLayout();
     }
 
-    override func viewWillAppear(animated:Bool) {
+    override func viewWillAppear(_ animated:Bool) {
         changeLayout();
     }
     
     // 画面が表示された直後
-    override func viewDidAppear(animated:Bool) {
+    override func viewDidAppear(_ animated:Bool) {
         changeLayout();
     }
     
@@ -116,13 +116,13 @@ class A3ResultViewController : UIViewController {
         // サイズを自動調整
         lblMessageLatter.sizeToFit()
         
-        let height = CGRectGetHeight(lblMessageLatter.frame)
-        let width = CGRectGetWidth(lblMessageLatter.frame)
+        let height = lblMessageLatter.frame.height
+        let width = lblMessageLatter.frame.width
         print("ラベルの高さ:\(height) 幅:\(width)")
         
         // ボタンの位置取得
-        let midX = CGRectGetMidX(lblMessageLatter.frame)
-        let midY = CGRectGetMidY(lblMessageLatter.frame)
+        let midX = lblMessageLatter.frame.midX
+        let midY = lblMessageLatter.frame.midY
         print("ボタンの中心のX座業:\(midX) Y座標:\(midY)")
         
         // -40にしているのは見た目を合わせるため
@@ -130,31 +130,31 @@ class A3ResultViewController : UIViewController {
         
         // TODO contentViewの方がよかったりする？？？？？
         let SVSize = resultScrollView.frame.size
-        self.resultScrollView.contentSize = CGSizeMake(SVSize.width, newContentHeight);
-        resultBackImage.frame = CGRectMake(0, 0, resultBackImage.frame.width, newContentHeight)
+        self.resultScrollView.contentSize = CGSize(width: SVSize.width, height: newContentHeight);
+        resultBackImage.frame = CGRect(x: 0, y: 0, width: resultBackImage.frame.width, height: newContentHeight)
         
         //scroll画面の初期位置
-        resultScrollView.contentOffset = CGPointMake(0, 0);
+        resultScrollView.contentOffset = CGPoint(x: 0, y: 0);
     }
     
     // 説明を聞くボタンを押した時
-    @IBAction func touchDownBtnConsultation(sender: AnyObject) {
+    @IBAction func touchDownBtnConsultation(_ sender: AnyObject) {
         _param = viewNumber
-        performSegueWithIdentifier("segue",sender: nil)
+        performSegue(withIdentifier: "segue",sender: nil)
     }
     
     // Segueはビューが遷移するタイミングで呼ばれるもの
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
-            let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
+            let secondViewController:A2ViewController = segue.destination as! A2ViewController
             secondViewController._second = _param
             secondViewController._paramOriginal = viewNumber
         }
     }
     
     // 占い結果の円の表示
-    func displayCycle(plotResult:[Int]) {
+    func displayCycle(_ plotResult:[Int]) {
         // UIImageViewにUIIimageを追加
         imageView01 = [
             CircleImageView1,
@@ -167,10 +167,10 @@ class A3ResultViewController : UIViewController {
             CircleImageView8]
         
         for index in 0...7 {
-            imageView01[index]!.hidden = false
+            imageView01[index]!.isHidden = false
             if (plotResult[index]==0) {
                 // 0の場合は、円の画像は表示しない
-                imageView01[index]!.hidden = true
+                imageView01[index]!.isHidden = true
                 // 以下は、debug
                 //imageView01[index]!.image = drawText(img[5], score: "8")
             } else if (plotResult[index]>=1 && plotResult[index]<=6) {
@@ -184,23 +184,23 @@ class A3ResultViewController : UIViewController {
     }
     
     // 画像とテキストを合成する
-    func drawText(imageSize :CGSize, score :String) ->UIImage {
-        let font = UIFont.boldSystemFontOfSize(216)
+    func drawText(_ imageSize :CGSize, score :String) ->UIImage {
+        let font = UIFont.boldSystemFont(ofSize: 216)
 //        let imageRect = CGRectMake(0,0,image.size.width,image.size.height)
 
         UIGraphicsBeginImageContext(imageSize);
 
         //image.drawInRect(imageRect)
-        let textRect  = CGRectMake(0, imageSize.height/2-128, imageSize.width, imageSize.height)
-        let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
-        textStyle.alignment = NSTextAlignment.Center
+        let textRect  = CGRect(x: 0, y: imageSize.height/2-128, width: imageSize.width, height: imageSize.height)
+        let textStyle = NSMutableParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+        textStyle.alignment = NSTextAlignment.center
         let textFontAttributes = [
             NSFontAttributeName: font,
-            NSForegroundColorAttributeName: UIColor.blackColor(),
+            NSForegroundColorAttributeName: UIColor.black,
             NSParagraphStyleAttributeName: textStyle
 
         ]
-        score.drawInRect(textRect, withAttributes: textFontAttributes)
+        score.draw(in: textRect, withAttributes: textFontAttributes)
 
         let newImage = UIGraphicsGetImageFromCurrentImageContext();
 

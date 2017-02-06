@@ -36,15 +36,15 @@ class MidstreamViewController : UIViewController {
         super.viewDidLoad()
         print("MidstreamViewController viewDidLoad:_paramOriginal:\(_paramOriginal)")
         
-        self.imgYatagarasu.hidden = true
+        self.imgYatagarasu.isHidden = true
     }
 
     // 画面が表示された直後
-    override func viewDidAppear(animated:Bool) {
+    override func viewDidAppear(_ animated:Bool) {
         // 参考：http://dev.classmethod.jp/references/ios-8-cabasicanimation/
         
-        self.imgYatagarasu.hidden = false
-        self.imgYatagarasu.userInteractionEnabled = true
+        self.imgYatagarasu.isHidden = false
+        self.imgYatagarasu.isUserInteractionEnabled = true
         let myTap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MidstreamViewController.touchImgSkipAnimation(_:)))
         self.imgYatagarasu.addGestureRecognizer(myTap)
         
@@ -59,8 +59,8 @@ class MidstreamViewController : UIViewController {
         // TODO サイズを変化させるアニメーション
         let sizeAnimation:CABasicAnimation = CABasicAnimation(keyPath: "bounds.size")
 //        sizeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
-        sizeAnimation.fromValue = NSValue(CGSize:CGSizeMake(360/6, 266/6))
-        sizeAnimation.toValue = NSValue(CGSize:CGSizeMake(360, 266))
+        sizeAnimation.fromValue = NSValue(cgSize:CGSize(width: 360/6, height: 266/6))
+        sizeAnimation.toValue = NSValue(cgSize:CGSize(width: 360, height: 266))
         
         // アニメーションを同時実行するためにグループを作成
         let animationGroup = CAAnimationGroup()
@@ -68,36 +68,36 @@ class MidstreamViewController : UIViewController {
         animationGroup.animations = [verticalTwistAnimation, sizeAnimation]
 
         // アニメーションを実行
-        imgYatagarasu.layer.addAnimation(animationGroup, forKey: "moonSaltoAnimation")
+        imgYatagarasu.layer.add(animationGroup, forKey: "moonSaltoAnimation")
 
         // 3秒後に次の結果画面に遷移する
         // 第1引数の部分は、タイマーを発生させる間隔です。例えば、0.1なら0.1秒間隔になります。1.0なら1.0秒間隔です。
         // 第2引数の「target」は、タイマー発生時に呼び出すメソッドがあるターゲットを指定します。通常は「self」で大丈夫だと思います。
         // 第3引数の「selector」の部分は、タイマー発生時に呼び出すメソッドを指定します。今回の場合は「onUpdate」を呼び出しています。
         // 2.0で設定していた
-        NSTimer.scheduledTimerWithTimeInterval(1.3, target:self, selector:#selector(MidstreamViewController.transition(_:)), userInfo: "", repeats: false)
+        Timer.scheduledTimer(timeInterval: 1.3, target:self, selector:#selector(MidstreamViewController.transition(_:)), userInfo: "", repeats: false)
     }
 
     // 3秒後に画像を点滅させてから、次の結果画面に遷移する
-    func transition(timer: NSTimer) {
+    func transition(_ timer: Timer) {
         print("MidstreamViewController transition:_paramOriginal:\(_paramOriginal)")
         
         //点滅アニメーション
-        UIView.animateWithDuration(0.2,
+        UIView.animate(withDuration: 0.2,
                                    delay: 0.0,
-                                   options: UIViewAnimationOptions.Repeat,
+                                   options: UIViewAnimationOptions.repeat,
                                    animations: {() -> Void in
                                     self.imgYatagarasu.alpha = 0.0},
                                    completion: nil)
         
-        NSTimer.scheduledTimerWithTimeInterval(1.0, target:self, selector:#selector(MidstreamViewController.transition2(_:)), userInfo: "", repeats: false)
+        Timer.scheduledTimer(timeInterval: 1.0, target:self, selector:#selector(MidstreamViewController.transition2(_:)), userInfo: "", repeats: false)
     }
     
-    func transition2(timer: NSTimer) {
+    func transition2(_ timer: Timer) {
         
         //点滅の停止処理
         UIView.setAnimationBeginsFromCurrentState(true)
-        UIView.animateWithDuration(0.001, animations: {
+        UIView.animate(withDuration: 0.001, animations: {
             self.imgYatagarasu.alpha = 1.0
         })
         
@@ -110,43 +110,43 @@ class MidstreamViewController : UIViewController {
 
         if _paramOriginal == Const.ViewNumber.A3ViewConNum {
             // 無料言霊鑑定結果画面
-           let next:A3ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A3ResultView") as! A3ResultViewController
-           next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-           self.presentViewController(next, animated: true, completion: nil)
+           let next:A3ResultViewController = storyboard.instantiateViewController(withIdentifier: "A3ResultView") as! A3ResultViewController
+           next.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+           self.present(next, animated: true, completion: nil)
         } else if _paramOriginal == Const.ViewNumber.A4ViewConNum {
             // 今日のつぶやき結果画面
-           let next:A4ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A4ResultView") as! A4ResultViewController
-           next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-           self.presentViewController(next, animated: true, completion: nil)
+           let next:A4ResultViewController = storyboard.instantiateViewController(withIdentifier: "A4ResultView") as! A4ResultViewController
+           next.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+           self.present(next, animated: true, completion: nil)
         } else if _paramOriginal == Const.ViewNumber.A5ViewConNum {
             // 相性診断結果画面
-           let next:A5ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A5ResultView") as! A5ResultViewController
-           next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-           self.presentViewController(next, animated: true, completion: nil)
+           let next:A5ResultViewController = storyboard.instantiateViewController(withIdentifier: "A5ResultView") as! A5ResultViewController
+           next.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+           self.present(next, animated: true, completion: nil)
         } else if _paramOriginal == Const.ViewNumber.A6ViewConNum {
             // 命名術結果画面
-           let next:A6ResultViewController = storyboard.instantiateViewControllerWithIdentifier("A6ResultView") as! A6ResultViewController
-           next.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-           self.presentViewController(next, animated: true, completion: nil)
+           let next:A6ResultViewController = storyboard.instantiateViewController(withIdentifier: "A6ResultView") as! A6ResultViewController
+           next.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+           self.present(next, animated: true, completion: nil)
         }
     }
     
     // アニメーション画像をタップして、アニメーションを飛ばす
-    func touchImgSkipAnimation(sender:UITapGestureRecognizer) {
+    func touchImgSkipAnimation(_ sender:UITapGestureRecognizer) {
         goExplainPage()
     }
 
     // 説明を聞くボタンを押した時
-    @IBAction func touchDownBtnConsultation(sender: AnyObject) {
+    @IBAction func touchDownBtnConsultation(_ sender: AnyObject) {
         _param = _paramOriginal
-        performSegueWithIdentifier("segue",sender: nil)
+        performSegue(withIdentifier: "segue",sender: nil)
     }
 
     // Segueはビューが遷移するタイミングで呼ばれるもの
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         print("prepareForSegue : \(segue.identifier), _param : \(_param)")
         if segue.identifier == "segue" {
-            let secondViewController:A2ViewController = segue.destinationViewController as! A2ViewController
+            let secondViewController:A2ViewController = segue.destination as! A2ViewController
             secondViewController._second = _param
             secondViewController._paramOriginal = _paramOriginal
         }

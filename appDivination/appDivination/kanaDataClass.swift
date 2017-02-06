@@ -7,6 +7,19 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 /*
  * ひらがな、カタカナ、空白文字の占い結果を扱う
  */
@@ -18,8 +31,8 @@ class kanaDataClass {
         var code: String!
         var character: String!
         var vowel: String!
-        var plot: [String!]=["","","","","","","",""]
-        func toDictionary() -> [String: String!] {
+        var plot: [String?]=["","","","","","","",""]
+        func toDictionary() -> [String: String?] {
             return [
                 "code" : code,
                 "character" : character,
@@ -42,7 +55,7 @@ class kanaDataClass {
     }
     
     // ひらがな、カタカナ、空白のデータ
-    func initialKanaData(flagAll:Bool) {
+    func initialKanaData(_ flagAll:Bool) {
         // フラグが立っている場合、ひらがなデータ含めもすべて取得する
         // 今日の運気を上げるつぶやきの結果で表示する文字列は、カタカナの一部のみなので。
         // フラグが立っている場合、入力で使用する。フラグが立っていない場合は、出力で使用するイメージ
@@ -311,8 +324,8 @@ class kanaDataClass {
     }
     
     // 引数に渡した文字コード（例：0x3041）に対応するプロットデータを返す
-    func getPlotData(code: String) -> [String!] {
-        let sPlot: [String!]=["","","","","","","",""]
+    func getPlotData(_ code: String) -> [String?] {
+        let sPlot: [String?]=["","","","","","","",""]
         for chara in knDt {
             if code == chara.code {
                 //print(chara.character)
@@ -325,7 +338,7 @@ class kanaDataClass {
     // 引数に渡したプロット（占い結果）において丸がついていないところに、丸が付く（1が入っている）文字列を取得し、
     // ランダムに一文字を返却する
     // [10100000] [00000001]
-    func getRandomCharaFromPlotData(plotData:[Int]) -> String {
+    func getRandomCharaFromPlotData(_ plotData:[Int]) -> String {
         var kanaDataList = [kanaData]()
         // すべてのカタカナ文字を検索する
         for chara in knDt {
@@ -335,12 +348,12 @@ class kanaDataClass {
                 // 占い結果に丸付き、カナに丸なし　→　次のindex
                 // 占い結果に丸なし、カナに丸あり　→　候補
                 // 占い結果に丸なし、カナに丸なし　→　次のindex
-                if 0 < plotData[index] && 0 < Int(chara.plot[index]) {
+                if 0 < plotData[index] && 0 < Int(chara.plot[index]!)! {
                     //print("aaa chara.character: \(chara.character), \(chara.plot), index:\(index)")
                     flagOKChara = false
                     break
-                } else if (0 < plotData[index] && 0 == Int(chara.plot[index])) ||
-                    (0 == plotData[index] && 0 == Int(chara.plot[index])) {
+                } else if (0 < plotData[index] && 0 == Int(chara.plot[index]!)!) ||
+                    (0 == plotData[index] && 0 == Int(chara.plot[index]!)!) {
                     //print("bbb chara.character: \(chara.character), \(chara.plot), index:\(index)")
                     continue
                 } else {
@@ -360,12 +373,12 @@ class kanaDataClass {
     }
     
     // 引数に渡したプロットのそれぞれの位置に丸が付く（1が入っている）文字列を取得し、返却する
-    func getCharaListFromPlotData(heapPlotData: [Int]) -> [[String]] {
+    func getCharaListFromPlotData(_ heapPlotData: [Int]) -> [[String]] {
         var charaList:[[String]] = [[String]]()
         var charaListPart:[String] = [String]()
         for index in 0..<8 {
             for chara in knDt {
-                if 0 < Int(chara.plot[index]) {
+                if 0 < Int(chara.plot[index]!)! {
                     charaListPart.append(chara.character)
                 }
             }
