@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  appDivination
 //
-//  Created by Norizou on 2015/11/08.
-//  Copyright © 2015年 Nori. All rights reserved.
+//  Created by nt on 2015/11/08.
+//  Copyright © 2015年 nt. All rights reserved.
 //
 
 import UIKit
